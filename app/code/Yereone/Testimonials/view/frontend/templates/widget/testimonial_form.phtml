@@ -1,0 +1,177 @@
+<?php
+/**
+ * Testimonial form template
+ *
+ * @var $block \Yereone\Testimonials\Block\Widget\TestimonialForm
+ */
+?>
+<?php if ($widgetTitle = $block->getWidgetTitle()): ?>
+    <div class="yereone-testimonials-block-title">
+        <h2><span><?php echo /* @escapeNotVerified */ $widgetTitle; ?></span></h2>
+    </div>
+<?php endif; ?>
+<form class="form testimonial"
+      action="<?php echo $block->escapeUrl($block->getFormAction()) ?>"
+      enctype="multipart/form-data"
+      id="testimonial-form"
+      method="post"
+      data-hasrequired="<?php echo $block->escapeHtml(__('* Required Fields')) ?>"
+      data-mage-init='{"validation":{}}'>
+    <fieldset class="fieldset">
+        <legend class="legend"><span><?php echo $block->escapeHtml(__('Author Information')) ?></span></legend><br />
+        <div class="field name required">
+            <label class="label" for="author"><span><?php echo $block->escapeHtml(__('Name')) ?></span></label>
+            <div class="control">
+                <input name="author" id="author" title="<?php echo $block->escapeHtml(__('Name')) ?>" value="" class="input-text" type="text" data-validate="{required:true}"/>
+            </div>
+        </div>
+        <div class="field email required">
+            <label class="label" for="email"><span><?php echo  $block->escapeHtml(__('Email')) ?></span></label>
+            <div class="control">
+                <input name="email" id="email" title="<?php echo $block->escapeHtml(__('Email')) ?>" value="" class="input-text" type="email" data-validate="{required:true, 'validate-email':true}"/>
+                <span class="note"><?php echo __('Will not display on site and only used for response'); ?></span>
+            </div>
+        </div>
+        <?php if ($block->showCompany()):  ?>
+            <div class="field company">
+                <label class="label" for="company"><span><?php echo $block->escapeHtml(__('Company')) ?></span></label>
+                <div class="control">
+                    <input name="company_name" id="company" title="<?php echo $block->escapeHtml(__('Company')) ?>" value="" class="input-text" type="text"/>
+                </div>
+            </div>
+            <div class="field company-url">
+                <label class="label" for="company-url"><span><?php echo $block->escapeHtml(__('Company URL')) ?></span></label>
+                <div class="control">
+                    <input name="company_url" id="company-url" title="<?php echo $block->escapeHtml(__('Company URL')) ?>" value="" class="input-text" type="text"/>
+                </div>
+            </div>
+        <?php endif; ?>
+        <?php if ($block->showJob()): ?>
+            <div class="field job">
+                <label class="label" for="job"><span><?php echo $block->escapeHtml(__('Job')) ?></span></label>
+                <div class="control">
+                    <input name="job" id="job" title="<?php echo $block->escapeHtml(__('Job')) ?>" value="" class="input-text" type="text"/>
+                </div>
+            </div>
+        <?php endif; ?>
+        <?php if ($block->showCity()): ?>
+            <div class="field city">
+                <label class="label" for="city"><span><?php echo $block->escapeHtml(__('City')) ?></span></label>
+                <div class="control">
+                    <input name="city" id="city" title="<?php echo $block->escapeHtml(__('City')) ?>" value="" class="input-text" type="text"/>
+                </div>
+            </div>
+        <?php endif; ?>
+        <?php if ($block->showImage()): ?>
+            <div class="field image">
+                <label class="label" for="image"><span><?php echo $block->escapeHtml(__('Image')) ?></span></label>
+                <div class="control">
+                    <input name="image" id="image" title="<?php echo $block->escapeHtml(__('Image')) ?>" type="file" />
+                </div>
+            </div>
+        <?php endif; ?>
+        <legend class="legend"><span><?php echo $block->escapeHtml(__('Write Your Testimonial')) ?></span></legend><br />
+        <div class="field title required">
+            <label class="label" for="title"><span><?php echo $block->escapeHtml(__('Title')) ?></span></label>
+            <div class="control">
+                <input name="title" id="title" title="<?php echo $block->escapeHtml(__('Title')) ?>" value="" class="input-text" type="text" data-validate="{required:true}"/>
+            </div>
+        </div>
+        <div class="field testimonial_content required">
+            <label class="label" for="testimonial_content"><span><?php echo $block->escapeHtml(__('What’s on your mind?')) ?></span></label>
+            <div class="control">
+                <textarea name="testimonial_content" id="testimonial_content" title="<?php echo $block->escapeHtml(__('Your Thoughts')) ?>" class="input-text" cols="5" rows="3" data-validate="{required:true}"></textarea>
+            </div>
+        </div>
+        <?php if ($block->showRating()): ?>
+            <div class="field">
+                <label class="label"><span><?php echo $block->escapeHtml(__('Your Rating')) ?></span></label>
+                <div class="control rating">
+                    <span><input type="radio" name="rating" id="str5" value="100"><label for="str5"></label></span>
+                    <span><input type="radio" name="rating" id="str4" value="80"><label for="str4"></label></span>
+                    <span><input type="radio" name="rating" id="str3" value="60"><label for="str3"></label></span>
+                    <span><input type="radio" name="rating" id="str2" value="40"><label for="str2"></label></span>
+                    <span><input type="radio" name="rating" id="str1" value="20"><label for="str1"></label></span>
+                </div>
+            </div>
+        <?php endif; ?>
+        <?php if ($block->showSocial()): ?>
+            <legend class="legend"><span><?php echo $block->escapeHtml(__('Social Information')) ?></span></legend><br />
+            <div class="field facebook_url">
+                <label class="label" for="facebook_url"><span><?php echo $block->escapeHtml(__('Facebook URL')) ?></span></label>
+                <div class="control">
+                    <input name="facebook_url" id="facebook_url" title="<?php echo $block->escapeHtml(__('Facebook URL')) ?>" value="" class="input-text" type="text"/>
+                </div>
+            </div>
+            <div class="field twitter_url">
+                <label class="label" for="twitter_url"><span><?php echo $block->escapeHtml(__('Twitter URL')) ?></span></label>
+                <div class="control">
+                    <input name="twitter_url" id="twitter_url" title="<?php echo $block->escapeHtml(__('Twitter URL')) ?>" value="" class="input-text" type="text"/>
+                </div>
+            </div>
+            <div class="field linkedin_url">
+                <label class="label" for="linkedin_url"><span><?php echo $block->escapeHtml(__('Linkedin URL')) ?></span></label>
+                <div class="control">
+                    <input name="linkedin_url" id="linkedin_url" title="<?php echo $block->escapeHtml(__('Linkedin URL')) ?>" value="" class="input-text" type="text"/>
+                </div>
+            </div>
+            <div class="field googleplus_url">
+                <label class="label" for="googleplus_url"><span><?php echo $block->escapeHtml(__('Google Plus URL')) ?></span></label>
+                <div class="control">
+                    <input name="googleplus_url" id="googleplus_url" title="<?php echo $block->escapeHtml(__('Google Plus URL')) ?>" value="" class="input-text" type="text"/>
+                </div>
+            </div>
+            <div class="field youtube_url">
+                <label class="label" for="youtube_url"><span><?php echo $block->escapeHtml(__('Youtube URL')) ?></span></label>
+                <div class="control">
+                    <input name="youtube_url" id="youtube_url" title="<?php echo $block->escapeHtml(__('Youtube URL')) ?>" value="" class="input-text" type="text"/>
+                </div>
+            </div>
+        <?php endif; ?>
+        <?php if ($block->showRecaptcha()): ?>
+            <script src='https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit'></script>
+            <div id="recaptchawrap" class="control captcha g-recaptcha"></div>
+            <script type="text/javascript">
+                require(['jquery'], function ($) {
+                    var captchaResponse = null;
+
+                    var verifyCallback = function (response) {
+                        captchaResponse = response
+                    };
+
+                    window.onloadCallback = function () {
+                        grecaptcha.render('recaptchawrap', {
+                            'sitekey': '<?php echo $block->getRecaptchaSiteKey(); ?>',
+                            'callback': verifyCallback
+                        });
+                    }
+
+                    $('#testimonial-form .action.submit').click(function(e){
+                        e.preventDefault();
+                        if(captchaResponse !== null){
+                            $('#testimonial-form').submit();
+                        }
+                    })
+
+                })
+            </script>
+        <?php endif; ?>
+    </fieldset>
+    <div class="actions-toolbar">
+        <div class="primary">
+            <button type="submit" title="<?php echo$block->escapeHtml(__('Submit')) ?>" class="action submit primary">
+                <span><?php echo $block->escapeHtml(__('Submit')) ?></span>
+            </button>
+            <button type="reset" class="button" value="<?php echo $block->escapeHtml(__('Reset')) ?>">
+                <span><?php echo $block->escapeHtml(__('Reset')) ?></span>
+            </button>
+        </div>
+    </div>
+</form>
+<script type="text/x-magento-init">
+    {
+        "#testimonial-form": {
+            "Yereone_Testimonials/js/testimonial-form":{}
+        }
+    }
+</script>

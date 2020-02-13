@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Widget:etc/widget.xsd">
+    <widget id="film_slider"
+            class="TemplateMonster\FilmSlider\Block\Widget\FilmSlider">
+        <label translate="true">FilmSlider</label>
+        <description translate="true">Create render for specific slider.</description>
+        <parameters>
+            <parameter name="slider_id" xsi:type="block" visible="true" required="true" sort_order="10">
+                <label translate="true">Slider</label>
+                <block class="TemplateMonster\FilmSlider\Block\Adminhtml\SliderItem\Widget\Chooser">
+                    <data>
+                        <item name="button" xsi:type="array">
+                            <item name="open" xsi:type="string" translate="true">Slider Item...</item>
+                        </item>
+                    </data>
+                </block>
+            </parameter>
+            <parameter name="title" xsi:type="text" visible="true">
+                <label>Widget Title</label>
+                <description>Name of the title</description>
+            </parameter>
+        </parameters>
+    </widget>
+</widgets>

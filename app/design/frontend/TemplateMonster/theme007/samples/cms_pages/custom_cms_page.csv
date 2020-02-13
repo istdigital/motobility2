@@ -1,0 +1,727 @@
+page_id,title,page_layout,meta_keywords,meta_description,identifier,content_heading,content,creation_time,update_time,is_active,sort_order,layout_update_xml,custom_theme,custom_root_template,custom_layout_update_xml,custom_theme_from,custom_theme_to,meta_title
+1,404 Not Found,1column,Page keywords,Page description,no-route,,"<div class=""not-found-page"">
+	<dl>
+		<dt class=""not-found-page_top"">
+			<img src=""{{view url='images/404.png'}}"" alt=""404-img"">
+			<div>
+				<strong>Sorry...</strong>
+				<span>It’s not you. It’s us.</span>
+			</div>
+		</dt>
+	</dl>
+	<dl class=""not-found-page_bottom"">
+		<dt>The page you are looking for can’t be found.</dt>
+		<dd><a href=""{{store url=""""}}"">Go Home!</a></dd>
+	</dl>
+</div>",2016-07-27 02:32:45,2016-10-10 13:43:42,1,0,,NULL,NULL,NULL,NULL,NULL,
+3,Enable Cookies,1column,NULL,NULL,enable-cookies,What are Cookies?,"<div class=""enable-cookies cms-content"">
+<p>""Cookies"" are little pieces of data we send when you visit our store. Cookies help us get to know you better and personalize your experience. Plus they help protect you and other shoppers from fraud.</p>
+<p style=""margin-bottom: 20px;"">Set your browser to accept cookies so you can buy items, save items, and receive customized recommendations. Here’s how:</p>
+<ul>
+<li><a href=""https://support.google.com/accounts/answer/61416?hl=en"" target=""_blank"">Google Chrome</a></li>
+<li><a href=""http://windows.microsoft.com/en-us/internet-explorer/delete-manage-cookies"" target=""_blank"">Internet Explorer</a></li>
+<li><a href=""http://support.apple.com/kb/PH19214"" target=""_blank"">Safari</a></li>
+<li><a href=""https://support.mozilla.org/en-US/kb/enable-and-disable-cookies-website-preferences"" target=""_blank"">Mozilla/Firefox</a></li>
+</ul>
+</div>",2016-07-27 02:32:46,2016-07-27 02:32:46,1,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL
+4,Privacy Policy,1column,,,privacy-policy-cookie-restriction-mode,Privacy Policy,"<div class=""change-message"">
+	<span>Please replace this text with your Privacy Policy.</span>
+</div>
+<dl class=""custom-page privacy-policy-page"">
+    <dt class=""heading-2"">General information</dt>
+    <dd>Welcome to our Privacy Policy page! When you use our store services, you trust us with your information. This Privacy Policy is meant to help you understand what data we collect, why we collect it, and what we do with it. When you share information with us, we can make our services even better for you. For instance, we can show you more relevant search results and ads, help you connect with people or to make sharing with others quicker and easier. As you use our services, we want you to be clear how we’re using information and the ways in which you can protect your privacy. This is important; we hope you will take time to read it carefully. Remember, you can find controls to manage your information and protect your privacy and security. We’ve tried to keep it as simple as possible.</dd>
+    <dt class=""heading-2"">Right to access, correct and delete data and to object to data processing</dt>
+    <dd>Our customers have the right to access, correct and delete personal data relating to them, and to object to the processing of such data, by addressing a written request, at any time. The Company makes every effort to put in place suitable precautions to safeguard the security and privacy of personal data, and to prevent it from being altered, corrupted, destroyed or accessed by unauthorized third parties. However, the Company does not control each and every risk related to the use of the Internet, and therefore warns the Site users of the potential risks involved in the functioning and use of the Internet. The Site may include links to other web sites or other internet sources. As the Company cannot control these web sites and external sources, the Company cannot be held responsible for the provision or display of these web sites and external sources, and may not be held liable for the content, advertising, products, services or any other material available on or from these web sites or external sources.</dd>
+    <dt class=""heading-2"">Management of personal data</dt>
+    <dd>You can view or edit your personal data online for many of our services. You can also make choices about our collection and use of your data. How you can access or control your personal data will depend on which services you use. You can choose whether you wish to receive promotional communications from our store by email, SMS, physical mail, and telephone. If you receive promotional email or SMS messages from us and would like to opt out, you can do so by following the directions in that message. You can also make choices about the receipt of promotional email, telephone calls, and postal mail by visiting and signing into Company Promotional Communications Manager, which allows you to update contact information, manage contact preferences, opt out of email subscriptions, and choose whether to share your contact information with our partners. These choices do not apply to mandatory service communications that are part of certain store services.</dd>
+    <dt class=""heading-2"">Information We Collect</dt>
+    <dd>Our store collects data to operate effectively and provide you the best experiences with our services. You provide some of this data directly, such as when you create a personal account. We get some of it by recording how you interact with our services by, for example, using technologies like cookies, and receiving error reports or usage data from software running on your device. We also obtain data from third parties (including other companies). For example, we supplement the data we collect by purchasing demographic data from other companies. We also use services from other companies to help us determine a location based on your IP address in order to customize certain services to your location. The data we collect depends on the services and features you use.</dd>
+    <dt class=""heading-2"">How We Use Your Information</dt>
+    <dd>Our store uses the data we collect for three basic purposes: to operate our business and provide (including improving and personalizing) the services we offer, to send communications, including promotional communications, and to display advertising. In carrying out these purposes, we combine data we collect through the various store services you use to give you a more seamless, consistent and personalized experience. However, to enhance privacy, we have built in technological and procedural safeguards designed to prevent certain data combinations. For example, we store data we collect from you when you are unauthenticated (not signed in) separately from any account information that directly identifies you, such as your name, email address or phone number.</dd>
+    <dt class=""heading-2"">Sharing Your Information</dt>
+    <dd>We share your personal data with your consent or as necessary to complete any transaction or provide any service you have requested or authorized. For example, we share your content with third parties when you tell us to do so. When you provide payment data to make a purchase, we will share payment data with banks and other entities that process payment transactions or provide other financial services, and for fraud prevention and credit risk reduction. In addition, we share personal data among our controlled affiliates and subsidiaries. We also share personal data with vendors or agents working on our behalf for the purposes described in this statement. For example, companies we've hired to provide customer service support or assist in protecting and securing our systems and services may need access to personal data in order to provide those functions. In such cases, these companies must abide by our data privacy and security requirements and are not allowed to use personal data they receive from us for any other purpose. We may also disclose personal data as part of a corporate transaction such as a merger or sale of assets.</dd>
+</dl>",2016-07-27 02:32:46,2016-10-10 13:18:34,1,0,,NULL,NULL,NULL,NULL,NULL,
+6,Customer Service,1column,,,customer-service,Customer Service,"<div class=""customer-service"">
+	<div class=""text-block customer-service__block"">
+		<h3>Delivery</h3>
+		<h4>Hello and welcome to the shipping and delivery information page! Here you can get acquainted with useful information on terms 
+and conditions of our goods delivery</h4>
+		<p>You can purchase your items online and pick them up at our street store, or ship them directly to your doorstep. Shipping is free on some orders. We use the best carriers in the business to make sure your order gets to you on time. From the Secure Checkout page you'll see your item description, price and delivery timing. Where available, you can also choose a faster delivery method for each item on your order, for an additional fee. Delivery times vary according to your selected delivery address, availability of your items and the time of day you place your order.</p>
+	</div>
+	<div class=""table-block  customer-service__block"">
+		<h3>Cost</h3>
+		<div class=""table-block_wrapper"">
+			<table>
+				<thead>
+					<th>Services</th>
+					<th>Locations</th>
+					<th>Delivery Schedule</th>
+					<th>Cost Per Shipment</th>
+				</thead>
+				<tbody>
+					<tr>
+						<td>Royal mail 1st Class Service (Order value $20 or less)</td>
+						<td>All of UK & some European Countries</td>
+						<td>1-3 days Monday - Saturday</td>
+						<td>$5</td>
+					</tr>
+					<tr>
+						<td>Royal mail Tracker (Order value $50 or less)</td>
+						<td>All of UK</td>
+						<td>1-3 days Delivery 7.30am - 5.30am Monday - Friday</td>
+						<td>$45</td>
+					</tr>
+					<tr>
+						<td>Standard Courier Delivery</td>
+						<td>UK mainland only</td>
+						<td>1-3 days Monday - Saturday</td>
+						<td>$124</td>
+					</tr>
+					<tr>
+						<td>Standard Courier Delivery</td>
+						<td>Northern Ireland, Eire, Scilly Isles</td>
+						<td>1-3 days Delivery 7.30am - 5.30am Monday - Friday</td>
+						<td>$11</td>
+					</tr>
+					<tr>
+						<td>Royal mail 1st Class Service (Order value $20 or less)</td>
+						<td>All of UK & some European Countries</td>
+						<td>1-3 days Monday - Saturday</td>
+						<td>$5</td>
+					</tr>
+					<tr>
+						<td>Priority courier pre 12pm Next Working Day</td>
+						<td>UK mainland only</td>
+						<td>1-3 days Delivery 7.30am - 5.30am Monday - Friday</td>
+						<td>$89</td>
+					</tr>
+					<tr>
+						<td>Royal mail 1st Class Service (Order value $20 or less)</td>
+						<td>All of UK & some European Countries</td>
+						<td>1-3 days Monday - Saturday</td>
+						<td>$72</td>
+					</tr>
+				</tbody>
+			</table>			
+		</div>
+	</div>
+	<div class=""text-block  customer-service__block"">
+		<h3>Free Delivery</h3>
+		<p>Free two-day shipping is available on in-stock items. You can see in your bag if your item is in stock. Free two-day shipping is not available on customized, engraved products, and for certain order types, including orders paid for with financing or by bank transfer. To get free two-day shipping, you will need to place your order by 5pm, Monday to Friday. For instance, if you order your goods before 5:00 pm, Monday to Friday we will deliver them in two business days.</p>
+	</div>
+	<div class=""list-block  customer-service__block"">
+		<h3>Terms & Conditions</h3>
+		<ul class=""row"">
+			<li class=""col-md-6"">
+				<h4>Entire agreement</h4>
+				<p>If you require a complete delivery of your orders, please enter an X in the Complete Delivery field on the shipping screen of the customer master record. The indicator is copied into the order header, which you can also use for the purpose.</p>
+			</li>
+			<li class=""col-md-6"">
+				<h4>Entire agreement</h4>
+				<p>If you require a complete delivery of your orders, please enter an X in the Complete Delivery field on the shipping screen of the customer master record. The indicator is copied into the order header, which you can also use for the purpose.</p>
+			</li>
+			<li class=""col-md-6"">
+				<h4>Controlling terms</h4>
+				<p>Buyer expressly agrees that Seller’s Invoice and these Terms and Conditions of Sale represent the complete agreement of the parties with respect to the sale of the product(s) listed on the Invoice and no different or additional terms or conditions in Buyer’s purchase order or in any other prior or subsequent communications in any way adding to, modifying or otherwise changing these Terms and Conditions of Sale shall be binding upon Seller.</p>
+			</li>
+			<li class=""col-md-6"">
+				<h4>Controlling terms</h4>
+				<p>Buyer expressly agrees that Seller’s Invoice and these Terms and Conditions of Sale represent the complete agreement of the parties with respect to the sale of the product(s) listed on the Invoice and no different or additional terms or conditions in Buyer’s purchase order or in any other prior or subsequent communications in any way adding to, modifying or otherwise changing these Terms and Conditions of Sale shall be binding upon Seller.</p>
+			</li>
+			<li class=""col-md-6"">
+				<h4>Entire agreement</h4>
+				<p>If you require a complete delivery of your orders, please enter an X in the Complete Delivery field on the shipping screen of the customer master record. The indicator is copied into the order header, which you can also use for the purpose.</p>
+			</li>
+			<li class=""col-md-6"">
+				<h4>Entire agreement</h4>
+				<p>If you require a complete delivery of your orders, please enter an X in the Complete Delivery field on the shipping screen of the customer master record. The indicator is copied into the order header, which you can also use for the purpose.</p>
+			</li>
+			<li class=""col-md-6"">
+				<h4>Controlling terms</h4>
+				<p>Buyer expressly agrees that Seller’s Invoice and these Terms and Conditions of Sale represent the complete agreement of the parties with respect to the sale of the product(s) listed on the Invoice and no different or additional terms or conditions in Buyer’s purchase order or in any other prior or subsequent communications in any way adding to, modifying or otherwise changing these Terms and Conditions of Sale shall be binding upon Seller.</p>
+			</li>
+			<li class=""col-md-6"">
+				<h4>Controlling terms</h4>
+				<p>Buyer expressly agrees that Seller’s Invoice and these Terms and Conditions of Sale represent the complete agreement of the parties with respect to the sale of the product(s) listed on the Invoice and no different or additional terms or conditions in Buyer’s purchase order or in any other prior or subsequent communications in any way adding to, modifying or otherwise changing these Terms and Conditions of Sale shall be binding upon Seller.</p>
+			</li>
+			<li class=""col-md-6"">
+				<h4>Entire agreement</h4>
+				<p>If you require a complete delivery of your orders, please enter an X in the Complete Delivery field on the shipping screen of the customer master record. The indicator is copied into the order header, which you can also use for the purpose.</p>
+			</li>
+			<li class=""col-md-6"">
+				<h4>Entire agreement</h4>
+				<p>If you require a complete delivery of your orders, please enter an X in the Complete Delivery field on the shipping screen of the customer master record. The indicator is copied into the order header, which you can also use for the purpose.</p>
+			</li>
+			<li class=""col-md-6"">
+				<h4>Controlling terms</h4>
+				<p>Buyer expressly agrees that Seller’s Invoice and these Terms and Conditions of Sale represent the complete agreement of the parties with respect to the sale of the product(s) listed on the Invoice and no different or additional terms or conditions in Buyer’s purchase order or in any other prior or subsequent communications in any way adding to, modifying or otherwise changing these Terms and Conditions of Sale shall be binding upon Seller.</p>
+			</li>
+			<li class=""col-md-6"">
+				<h4>Controlling terms</h4>
+				<p>Buyer expressly agrees that Seller’s Invoice and these Terms and Conditions of Sale represent the complete agreement of the parties with respect to the sale of the product(s) listed on the Invoice and no different or additional terms or conditions in Buyer’s purchase order or in any other prior or subsequent communications in any way adding to, modifying or otherwise changing these Terms and Conditions of Sale shall be binding upon Seller.</p>
+			</li>
+		</ul>
+	</div>
+</div>
+
+<script>
+var headertext = [];
+var headers = document.querySelectorAll("".table-block thead"");
+var tablebody = document.querySelectorAll("".table-block tbody"");
+
+for (var i = 0; i < headers.length; i++) {
+	headertext[i]=[];
+	for (var j = 0, headrow; headrow = headers[i].rows[0].cells[j]; j++) {
+	  var current = headrow;
+	  headertext[i].push(current.textContent);
+	  }
+} 
+
+for (var h = 0, tbody; tbody = tablebody[h]; h++) {
+	for (var i = 0, row; row = tbody.rows[i]; i++) {
+	  for (var j = 0, col; col = row.cells[j]; j++) {
+	    col.setAttribute(""data-th"", headertext[h][j]);
+	  } 
+	}
+}
+</script>",2016-08-01 03:01:42,2016-09-14 11:49:46,1,0,,NULL,NULL,NULL,NULL,NULL,
+7,About Us,1column,,,about-us,About Us,"<div class=""about-us-page row"">
+    <div class=""col-md-8 col-md-preffix-2 col-sm-12 "">
+        <img src=""{{view url='images/media/aboutus.jpg'}}"" alt=""page-img"">
+        <p>
+            If we talk about our founder, Mary Harris, her interest in furniture and everything related to it began in her father's local chairs & tables store in Virginia... Starting off as his helper and accountant, she eventually grew fond of the whole thing and began to consider an option of starting her own furniture store in the big city. With her first store in Arlington in 1999, Mary's chain began to gradually expand, now consisting of more than 5 furniture stores nationwide... We sell only the best furniture sets and pieces, manufactured in either US, Canada or the UK... All of our range includes only brands with long-lasting reputation, which have been proved as popular among people for years...
+        </p>
+        <p>
+            Ultimate Quality and Comfort <br> When you're looking for a sofa or a chair, comfort and durability must come first! With our range of cozy daybeds, recliners and many other pieces we can guarantee that you'll find it!
+        </p>
+        <p>
+            Agreeable pricing for a great quality <br> The pricing policy that we have put in place makes affordability a centre point... While for some people quality means sky-high cost, for us the balance between these two is reached easily.
+        </p>     
+    </div>
+</div>",2016-08-01 03:02:50,2017-01-19 08:53:33,1,0,,NULL,NULL,NULL,NULL,NULL,
+8,Template settings,1column,,,template-settings,Template Settings,,2016-08-01 03:03:50,2017-05-23 16:04:33,1,0,,NULL,NULL,NULL,NULL,NULL,
+10,Shipping & Delivery,1column,,,shipping-delivery,Shipping & Delivery,"<div class=""shipping-delivery-page row"">
+	<div class=""col-md-8 col-md-preffix-2"">
+		<p>
+			So you’ve done your shopping; just how long will it be till you can rock that swanky new Axolotl-themed laptop skin? The calculator below will give you the average amount of days it takes to ship a product to your door and the best time to contact our support team. Please note that every order at Redbubble is custom printed just for you, and will take 1-3 business days to print prior to shipping.
+		</p>
+		<span class=""heading-3"">Here are a few things to consider while you wait for your order:</span>
+		<ul>
+			<li><span>We ship in business days. Monday - Friday, excluding national holidays.</span></li>
+			<li><span>Shipping starts from the date you received the “Your Order Has Shipped!” email.</span></li>
+			<li><span>The estimate above does not include manufacturing time - we need 1-3 business days to make sure your custom order is everything you hoped it would be.</span></li>
+		</ul>
+		<p>
+			Redbubble is a global company - we work with production and shipping partners all over the world to get your things to your doorstep, wherever that may be. Although the vast majority of our customers will get their orders by the day listed above, actual timeframes may vary from region to region.
+		</p>
+		<div class=""shipping-delivery-page__border"">
+			<span class=""heading-3"">So when do you contact Redbubble?</span>
+			<span>The calculator above lets you know the best time to message us. When that day rolls around.</span>
+			<span>Even if your order hasn’t arrived by the listed date, it’s probably still on its way (and worth the wait).</span>
+		</div>
+		<ol class=""shipping-delivery-page__list"">
+			<li>
+				<span class=""heading-3 shipping-delivery-page_shipping-icon"">How much is shipping?</span>
+				<p>Once you’ve clicked through to Secure Checkout, you can enter your delivery address and choose a shipping method. Shipping costs are then calculated and tacked on to your subtotal at the bottom of the page.</p>
+			</li>
+			<li>
+				<span class=""heading-3 shipping-delivery-page_track-icon"">Can I track my order?</span>
+				<p>We rely on a global network of shipping partners (UPS, FedEx, DHL) as well as local postal services (USPS) to get your order to your doorstep as soon as possible. For this reason, tracking is not always available. If your order is being sent by a trackable service, these details will be included on your orders page as well as on the shipping email we send you.</p>
+			</li>
+			<li>
+				<span class=""heading-3 shipping-delivery-page_order-icon"">Where does my order ship from?</span>
+				<p>We rely on a global network of shipping partners (UPS, FedEx, DHL) as well as local postal services (USPS) to get your order to your doorstep as soon as possible. For this reason, tracking is not always available. If your order is being sent by a trackable service, these details will be included on your orders page as well as on the shipping email we send you.</p>
+			</li>
+		</ol>
+	</div>
+</div>",2016-09-14 12:00:23,2016-09-14 12:00:23,1,0,,NULL,NULL,NULL,NULL,NULL,
+11,FAQ,1column,,,faq,FAQ,"<div class=""faq-page row"">
+	<div class=""col-md-8 col-md-preffix-2"">
+		<div id=""faq-accordion"">
+			<div class=""accordion-block close"">
+				<div class=""accordion-trigger close"">
+					<span>Is it necessary for me to register an account in order to buy an item?</span>
+				</div>
+				<div class=""accordion-content"">
+					<p> Yes and this is made with your own convenience in mind.  By creating (or using) an account during the  purchasing process you will have 3 things made so much easier for yourself:</p>
+					<ul>
+						<li>- keeping track of your order's delivery status</li>
+						<li>- changing or canceling the order</li>
+						<li>- using your previous purchase history to become eligible for a Loyal Customer's discount</li>
+					</ul>
+              	</div>				
+			</div>
+			<div class=""accordion-block close"">
+				<div class=""accordion-trigger close"">
+					<span>Which shipping providers do you use?</span>
+				</div>
+				<div class=""accordion-content"">
+					<p> Yes and this is made with your own convenience in mind.  By creating (or using) an account during the  purchasing process you will have 3 things made so much easier for yourself:</p>
+					<ul>
+						<li>- keeping track of your order's delivery status</li>
+						<li>- changing or canceling the order</li>
+						<li>- using your previous purchase history to become eligible for a Loyal Customer's discount</li>
+					</ul>
+              	</div>				
+			</div>
+			<div class=""accordion-block close"">
+				<div class=""accordion-trigger close"">
+					<span>How long it will take to receive the furniture?</span>
+				</div>
+				<div class=""accordion-content"">
+					<p> Yes and this is made with your own convenience in mind.  By creating (or using) an account during the  purchasing process you will have 3 things made so much easier for yourself:</p>
+					<ul>
+						<li>- keeping track of your order's delivery status</li>
+						<li>- changing or canceling the order</li>
+						<li>- using your previous purchase history to become eligible for a Loyal Customer's discount</li>
+					</ul>
+              	</div>				
+			</div>
+			<div class=""accordion-block close"">
+				<div class=""accordion-trigger close"">
+					<span>How long it will take to receive the furniture?</span>
+				</div>
+				<div class=""accordion-content"">
+					<p> Yes and this is made with your own convenience in mind.  By creating (or using) an account during the  purchasing process you will have 3 things made so much easier for yourself:</p>
+					<ul>
+						<li>- keeping track of your order's delivery status</li>
+						<li>- changing or canceling the order</li>
+						<li>- using your previous purchase history to become eligible for a Loyal Customer's discount</li>
+					</ul>
+              	</div>				
+			</div>
+			<div class=""accordion-block close"">
+				<div class=""accordion-trigger close"">
+					<span>Do you offer any kind of discounts?</span>
+				</div>
+				<div class=""accordion-content"">
+					<p> Yes and this is made with your own convenience in mind.  By creating (or using) an account during the  purchasing process you will have 3 things made so much easier for yourself:</p>
+					<ul>
+						<li>- keeping track of your order's delivery status</li>
+						<li>- changing or canceling the order</li>
+						<li>- using your previous purchase history to become eligible for a Loyal Customer's discount</li>
+					</ul>
+              	</div>				
+			</div>
+			<div class=""accordion-block close"">
+				<div class=""accordion-trigger close"">
+					<span>Do you accept orders from all 50 US states?</span>
+				</div>
+				<div class=""accordion-content"">
+					<p> Yes and this is made with your own convenience in mind.  By creating (or using) an account during the  purchasing process you will have 3 things made so much easier for yourself:</p>
+					<ul>
+						<li>- keeping track of your order's delivery status</li>
+						<li>- changing or canceling the order</li>
+						<li>- using your previous purchase history to become eligible for a Loyal Customer's discount</li>
+					</ul>
+              	</div>				
+			</div>
+		</div>
+	</div>
+</div>",2016-09-14 12:03:12,2016-10-10 14:04:38,1,0,,NULL,NULL,NULL,NULL,NULL,
+12,Support,1column,,,support,Support,"<div class=""support-page row"">
+	<div class=""col-md-8 col-md-preffix-2"">
+		<div class=""text-block"">
+			<p>Our customer support department is ready to come to your aid in a 24/7 manner, be your request in a form on email ticket or a phone call... We have a team of professional managers who will consult you regarding any technical, in-stock or billing question you might have. Also, should there be any problems with the delivery or if you would want to file a return, we will help you as well!</p>
+		</div>
+		<div class=""boxes-block"">
+			<h3>Have a Question?</h3>
+			<ul class=""row"">
+				<li class=""col-md-6""><a href=""#""><div>
+					<span class=""support-page__archive-icon"">Knowledge Base</span>
+				</div></a></li>
+				<li class=""col-md-6""><a href=""#""><div>
+					<span class=""support-page__bubbles-icon"">Community Forum</span>
+				</div></a></li>
+				<li class=""col-md-6""><a href=""#""><div>
+					<span class=""support-page__bubble-question-icon"">24/7Ticket Support</span>
+				</div></a></li>
+				<li class=""col-md-6""><a href=""#""><div>
+					<span class=""support-page__envelope-icon"">Contact us</span>
+				</div></a></li>
+			</ul>
+		</div>		
+	</div>
+</div>",2016-09-14 12:04:12,2016-10-10 14:14:32,1,0,,NULL,NULL,NULL,NULL,NULL,
+13,Guarantee,1column,,,guarantee,Guarantee & After-Sales Service,"<div class=""guarantee-page row"">
+	<div class=""col-md-8 col-md-preffix-2"">
+		<div class=""text-block"">
+			<p>Quite often, even after we’ve chosen an item and purchased it successfully, there may be some things we might want to change or repair afterward - either during or following the delivery process, when filing a return or applying for using our warranty. Here we'll try to explain in plain terms how does our store’s warranty policy works and how you can be using it when shopping with us!</p>
+		</div>
+		<div class=""text-block"">
+			<h3>What Products are Provided with the Warranty?</h3>
+			<p>Some of our furniture items apply for an almost unconditional Lifetime Warranty. The items included in this policy are sofas, couches, love seats, upholstered chairs, ottomans, sectionals, and sleepers. As a retailer we warrant these components to you, the original retail purchaser, to be free from material manufacturing defects. The lifetime duration of the Warranty means the standardized usage cycle for a specific furniture item.</p>
+			<ul>
+				<li>
+					<h4>Repair & Refurbishing</h4>
+					<span>Our store will pay, within one year from the date of purchase, reasonable and conditional labor rates for refurbishing or replacing the defective parts and shipping costs.</span>
+				</li>
+				<li>
+					<h4>Different Types of Warranty</h4>
+					<span>While for some items we have a lifetime warranty, the springs in all of our items are offered with a 5 Year Limited type of a Warranty.</span>
+				</li>
+				<li>
+					<h4>Warranty Exceptions</h4>
+					<span>All seat cushion cores have a natural tendencey to become softer during a normal usage cycle, and will conform to the shape of the user. A Limited 1 Year Warranty applies.</span>
+				</li>
+			</ul>
+		</div>
+		<div class=""text-block"">
+			<h3>Where to Apply for Warranty Services?</h3>
+			<p>Under these Limited Warranties, all of the legal liability of our store is limited to repair, or  if required (or requested by the customer), replacement. We are  ready to pay, within one year from the date of purchase, reasonable and customary labor rates to repair or replace the defective parts and shipping costs from the retailer...</p>
+			<p>These Limited Warranties are not applicable for any of our products which ave been altered by any person, dealer, or company without the express written authorization of our store. PLease note, that some States Do Not Allow Limitations On How Long An Implied Warranty Lasts, So The Above Limitations May Not Apply To You.</p>
+		</div>
+		<div class=""text-block"">
+			<h3>In What Cases the Warranty is Not Provided?</h3>
+			<p>There can be two limits for the Warranties issued with the purchase of the furniture items on our website.</p>
+			<ul class=""row"">
+				<li class=""col-md-6"">
+					<h4>1, 3 & 5 Years Limited Warranty</h4>
+					<span>The first one is the Warranty time frame, if it is limited to 1, 3 or 5 years. Hence the Lifetime Warranty is not time-restricted.</span>
+				</li>
+				<li class=""col-md-6"">
+					<h4>Regular Usage Check</h4>
+					<span>The second one is the examination of the item by our customer support agent, making sure the usage was regular.</span>
+				</li>
+			</ul>
+		</div>
+		<div class=""text-block"">
+			<h3>Change and Return</h3>
+			<p>Filing a change or a return is an easy process, requiring nothing more than your proof of purchase (which usually is the receipt you received), the item itself and the return label printed out by you and put at the top of the package...</p>
+		</div>	
+	</div>
+</div>",2016-09-14 12:04:50,2016-10-10 13:52:54,1,0,,NULL,NULL,NULL,NULL,NULL,
+14,Secure payment,1column,,,secure-payment,Secure payment,"<div class=""secure-payment-page row"">
+	<div class=""col-md-8 col-md-preffix-2"">
+		<p>
+			When it comes to purchasing something, anything online, the security question towers above everything else. We do not take our store’s overall cyber security and particularly the billing process security lightly. We can assure you that all of your shopping here will be a fun and safe experience, enhanced by the all of the factors listed below.
+		</p>
+		<ul>
+			<li>
+				<h4>SSL Certificate</h4>
+				<span>If the website has an SLL certificate, this means that the owners care about your shopping experience being secure, safe and sound and want to make sure that all the data (including financial) that you enter on our website will be securely encrypted!</span>
+			</li>
+			<li>
+				<h4>Multiple Gateways</h4>
+				<span>When we were considering which payment gateways to use on our website, the choice narrowed down to 5 most universal ones: Visa; MasterCard; PayPal; Discover; Stripe.</span>
+			</li>
+			<li>
+				<h4>24/7 Customer Support</h4>
+				<span>Also, it is comforting to know that should you experience any kind of technical bump in the road during the checkout process, you can always address our customer support department with your billing questions!</span>
+			</li>
+		</ul>
+		<div class=""secure-payment_icons"">
+			<ul>
+				<li><a href=""#"" class=""fa fa-cc-visa""></a></li>
+				<li><a href=""#"" class=""fa fa-cc-mastercard""></a></li>
+				<li><a href=""#"" class=""fa fa-cc-paypal""></a></li>
+				<li><a href=""#"" class=""fa fa-cc-discover""></a></li>
+				<li><a href=""#"" class=""fa fa-cc-stripe""></a></li>
+			</ul>
+		</div>
+	</div>
+</div>",2016-09-14 12:05:22,2016-10-10 13:56:42,1,0,,NULL,NULL,NULL,NULL,NULL,
+15,Terms & Conditions,1column,,,terms-conditions,Terms & Conditions,"<div class=""terms-conditions-page row"">
+	<div class=""col-md-8 col-md-preffix-2"">
+		<div class=""text-block"">
+			<p>This Policy is projected to all personal information and sensitive personal data or information that is given by or obtained from any person who visits or uses or accesses the website (""User""). We reserve the right to modify or review the details of this Policy without prior notice and the revised Policy will be in effect from the day of uploading.  Therefore, Users are requested to periodically visit the website and review the policy.</p>
+			<ul>
+				<li>
+					<h4>Rule 1</h4>
+					<p>A User may be required to give away some Personal Information, including Sensitive Personal Information while browsing through the website or for availing services at the website.
+</p>
+				</li>
+				<li>
+					<h4>Rule 2</h4>
+					<p>Personal Information disclosed to Us by a User will be used by Us for one or more of the following purposes: (a) to help Us in creating content that is relevant to the User; (b)  to collect a database of all the Personal Information collected from User</p>
+				</li>
+				<li>
+					<h4>Rule 3</h4>
+					<p>When a User visits the website, one or more cookies shall be sent to a computer or the device being used by the User to visit the websites. Cookies are used upscale the quality of the services provided by Us, including for keeping User preferences...</p>
+				</li>
+			</ul>
+		</div>		
+	</div>
+</div>",2016-09-14 12:05:52,2016-10-10 14:17:47,1,0,,NULL,NULL,NULL,NULL,NULL,
+16,Magetique,landing_home,,,landing,,"<div class=""landing-page"">
+	<div id=""home""></div>
+	<header class=""header"">
+		<div class=""header-top"">
+			<div class=""logo""><a href=""{{store url=''}}""><img src=""{{media url='landing/logo.png}}"" alt=""logo""></a></div>
+			<div class=""menu-wrapper"">
+				<ul class=""menu"" id=""landing-menu"">
+					<li><a href=""#home"">Home</a></li>
+					<li><a href=""#demos"">Demos</a></li>
+					<li><a href=""#features"">Features</a></li>
+					<li><a href=""#support"">Support</a></li>
+				</ul>
+			</div>
+			<a href=""http://www.templatemonster.com/magetique.html"" class=""l-button"">Buy theme!</a>			
+		</div>
+		<div class=""header-content"">
+			<div class=""header-content_text"">
+				<h3>Premium Magento theme</h3>
+				<h1>Magetique</h1>
+				<a href=""{{store url=''}}"" class=""l-button"">Demos</a>
+			</div>
+			<img src=""{{media url='landing/mockup-1.png}}"" alt=""mockup-1"" class=""mockup-1"">	
+		</div>
+	</header>
+	<div class=""main-content"">
+		<div id=""demos""></div>
+		<div class=""gallery"">
+			<h3>5 Premium Layouts for Any Niche</h3>
+			<p>This template is an absolute treat for any store and niche. You get 5 fully functional designs for the price of one.</p>
+			<div class=""gallery-wrapper"">
+				<ul>
+					<li><div class=""gallery-item gallery-item-1""> 
+						<a href=""{{store url=''}}?___store=english""><div class=""gallery-item_wrapper"">
+							<img src=""{{media url='landing/theme-2.jpg}}"" alt=""theme-img"">
+						</div><span>Lingerie</span></a>
+					</div></li>
+					<li><div class=""gallery-item gallery-item-2 wow fadeInRight"" data-wow-offset=""50"" data-wow-delay=""0.4s"" >						
+						<a href=""{{store url=''}}?___store=furniture_store_view""><div class=""gallery-item_wrapper"">
+							<img src=""{{media url='landing/theme-1.jpg}}"" alt=""theme-img"">
+						</div><span>Furniture</span></a>
+					</div></li>
+					<li><div class=""gallery-item gallery-item-3 wow fadeInLeft"" data-wow-offset=""150"" data-wow-delay=""0.2s"">
+						<a href=""{{store url=''}}?___store=bikes_store_view""><div class=""gallery-item_wrapper"">
+							<img src=""{{media url='landing/theme-3.jpg}}"" alt=""theme-img"">
+						</div><span>Bikes and Spare Parts</span></a>
+					</div></li>
+					<li><div class=""gallery-item gallery-item-4 wow fadeInLeft"" data-wow-offset=""-50"" data-wow-delay=""0.4s"">
+						<a href=""{{store url=''}}?___store=medical_supplies_and_equipment""><div class=""gallery-item_wrapper"">
+							<img src=""{{media url='landing/theme-4.jpg}}"" alt=""theme-img"">
+						</div><span>Medical Equipment</span></a>
+					</div></li>
+					<li><div class=""gallery-item gallery-item-5 comming-soon wow fadeInRight"" data-wow-offset=""150"">
+						<div class=""gallery-item_wrapper"">
+							<img src=""{{media url='landing/theme-5.jpg}}"" alt=""theme-img"">
+						</div><span>Spare parts</span>
+					</div></li>
+				</ul>
+			</div>
+		</div>
+		<div id=""features""></div>
+		<div class=""info-1"">
+			<div class=""info-1-content"">
+				<h3>Create Tailored Page Designs with the Color Scheme Tool</h3>
+				<p>Up until now, you required design prowess and knowledge of CSS files, along with their structures in order to make the necessary changes to your store’s color scheme. But as a part of Magetique’s functionality, you can edit color arrangements on any page of your website, using our intuitive visual interface. Experiment in order to boost your conversion rates.</p>
+			</div>
+			<img src=""{{media url='landing/color_scheme.png}}"" alt=""info-1-img"">
+		</div>
+		<div class=""info-2"">
+			<div class=""info-2-content wow fadeIn"" data-wow-offset=""50"" data-wow-delay=""0.3s"" data-wow-offset=""-100"">
+				<h3>Dazzling Design</h3>
+				<p>Our 14 years of experience creating successful eCommerce designs was poured into optimizing Magetique. Everything in this theme, from the color schemes, UX, navigation to page structures, catalogs and product pages, creates the right conditions, which drive your visitors to successful conversions.</p>
+			</div>
+			<div class=""info-2-img"">
+				<img src=""{{media url='landing/box-1-1.jpg}}"" alt=""info-2-img"" class=""info-2-img-1 wow fadeInUp"">
+				<img src=""{{media url='landing/box-1-3.jpg}}"" alt=""info-2-img"" class=""info-2-img-2 wow fadeInRight"" data-wow-delay=""0.2s"" data-wow-offset=""-100"">
+				<img src=""{{media url='landing/box-1-2.jpg}}"" alt=""info-2-img"" class=""info-2-img-3 wow fadeInLeft"" data-wow-delay=""0.5s"" data-wow-offset=""-100"">				
+			</div>
+		</div>
+		<div class=""info-3"">
+			<div class=""info-3-content"">
+				<h3>Functional Header Designs</h3>
+				<p>Our selection of pre-made header layouts offers unparalleled usability and customization options. This means that you can precisely control where people are heading on your website, which paves the way for effortless product discovery and purchases.</p>
+			</div>
+			<div class=""info-3-list"">
+				<ul>
+					<li class=""wow fadeInLeft"" data-wow-delay=""0.5s""><img src=""{{media url='landing/scheme-1-1.jpg}}"" alt=""box-img""></li>
+					<li class=""wow fadeInUp"" data-wow-delay=""0.3s""><img src=""{{media url='landing/scheme-1-2.jpg}}"" alt=""box-img""></li>
+					<li class=""wow fadeInUp""><img src=""{{media url='landing/scheme-1-3.jpg}}"" alt=""box-img""></li>
+					<li class=""wow fadeInUp"" data-wow-delay=""0.3s""><img src=""{{media url='landing/scheme-1-4.jpg}}"" alt=""box-img""></li>
+					<li class=""wow fadeInRight"" data-wow-delay=""0.5s""><img src=""{{media url='landing/scheme-1-5.jpg}}"" alt=""box-img""></li>
+				</ul>
+			</div>
+		</div>
+		<div class=""info-4"">
+			<div class=""info-4-content"">
+				<h3>Flexible Footer Layouts</h3>
+				<p>Some people might shrug off the footer, but it play an important role in overall user experience. For example, many of us go straight to the footer, if we’re looking for certain contact details. That’s why our selection of footer designs provides a great myriad of customization options that’ll allow you to create a compact, informative and optimized footer, which might even play a role in your conversion rates.</p>
+			</div>
+			<div class=""info-4-list"">
+				<ul>
+					<li class=""wow fadeInUp"" data-wow-delay=""0.3s""  data-wow-offset=""50""><img src=""{{media url='landing/scheme-2-1.jpg}}"" alt=""box-img""></li>
+					<li class=""wow fadeInUp"" data-wow-delay=""0.5s""  data-wow-offset=""50""><img src=""{{media url='landing/scheme-2-2.jpg}}"" alt=""box-img""></li>
+					<li class=""wow fadeInUp"" data-wow-delay=""0.7s""  data-wow-offset=""50""><img src=""{{media url='landing/scheme-2-3.jpg}}"" alt=""box-img""></li>
+					<li class=""wow fadeInUp"" data-wow-delay=""0.9s""  data-wow-offset=""50""><img src=""{{media url='landing/scheme-2-4.jpg}}"" alt=""box-img""></li>
+				</ul>
+			</div>
+		</div>
+		<div class=""list-1"">
+			<h3>Save up to <em>$1718</em><span>on Premium Modules with Magetique Theme</span></h3>
+			<ul>
+				<li>
+					<div class=""l-icon-megamenu""></div>
+					<span>Megamenu</span>
+				</li>
+				<li>
+					<div class=""l-icon-like""></div>
+					<span>Ajax Wishlist</span>
+				</li>
+				<li>
+					<div class=""l-icon-compare""></div>
+					<span>Ajax Compare</span>
+				</li>
+				<li>
+					<div class=""l-icon-filter""></div>
+					<span>Ajax Catalog Filter</span>
+				</li>
+				<li>
+					<div class=""l-icon-newsletter""></div>
+					<span>Newsletter Popup</span>
+				</li>
+				<li>
+					<div class=""l-icon-layout""></div>
+					<span>Layout Switcher</span>
+				</li>
+				<li>
+					<div class=""l-icon-paralax""></div>
+					<span>Parallax</span>
+				</li>
+				<li>
+					<div class=""l-icon-slider""></div>
+					<span>Film Slider</span>
+				</li>
+				<li>
+					<div class=""l-icon-search""></div>
+					<span>Ajax Search</span>
+				</li>
+				<li>
+					<div class=""l-icon-map""></div>
+					<span>Google Map</span>
+				</li>
+				<li>
+					<div class=""l-icon-img-grid""></div>
+					<span>Catalog Images Grid</span>
+				</li>
+				<li>
+					<div class=""l-icon-blog""></div>
+					<span>Blog</span>
+				</li>
+				<li>
+					<div class=""l-icon-options""></div>
+					<span>Theme Options</span>
+				</li>
+				<li>
+					<div class=""l-icon-featured""></div>
+					<span>Featured Product</span>
+				</li>
+				<li>
+					<div class=""l-icon-brands""></div>
+					<span>Brands</span>
+				</li>
+				<li>
+					<div class=""l-icon-video""></div>
+					<span>Video Background</span>
+				</li>
+				<li>
+					<div class=""l-icon-timer""></div>
+					<span>Countdown Timer</span>
+				</li>
+				<li>
+					<div class=""l-icon-labels""></div>
+					<span>Smart Product Labels</span>
+				</li>
+				<li>
+					<div class=""l-icon-zoom""></div>
+					<span>Cloud Zoom</span>
+				</li>
+				<li>
+					<div class=""l-icon-maintence""></div>
+					<span>Maintenance</span>
+				</li>
+				<li>
+					<div class=""l-icon-login""></div>
+					<span>Social Login</span>
+				</li>
+				<li>
+					<div class=""l-icon-sharing""></div>
+					<span>Social Sharing</span>
+				</li>
+			</ul>
+		</div>
+		<div id=""support""></div>
+		<div class=""info-5"">
+			<div class=""info-5-content wow fadeInUp"" data-wow-offset=""-100"">
+				<h3>Free and Comprehensive Lifetime Support</h3>
+				<p>Our support representatives will provide you with step-by-step instructions on any aspect of running, maintaining and customizing the Magetique theme. Our live chat is here for you 24/7.</p>
+			</div>
+			<img src=""{{media url='landing/box-2.png}}"" alt=""box-2-img"" class=""wow fadeInRight"">			
+		</div>
+		<div class=""list-2"">
+			<h3>Our Benefits</h3>
+			<ul>
+				<li>
+					<img src=""{{media url='landing/box-3-1.jpg}}"" alt=""list-2"" class=""wow flipInY"" data-wow-offset=""50"" data-wow-duration=""0.4s"">
+					<h4>Built with Conversions in Mind</h4>
+					<p>We want your visitors to easily discover and purchase products from your store. This means that the path between arriving at your website and making a purchase becomes a smooth ride.</p>
+				</li>
+				<li>
+					<img src=""{{media url='landing/box-3-2.jpg}}"" alt=""list-2"" class=""wow flipInY"" data-wow-offset=""50"" data-wow-delay=""0.1s"" data-wow-duration=""0.4s"">
+					<h4>Make Way for Mobile Shoppers</h4>
+					<p>Many people are actively using mobile devices to shop. Magetique facilitates mobile users like no other Magento 2 theme. It’s smooth, touch-friendly, its design is perfect for Retina displays.</p>
+				</li>
+				<li>
+					<img src=""{{media url='landing/box-3-3.jpg}}"" alt=""list-2"" class=""wow flipInY"" data-wow-offset=""50"" data-wow-delay=""0.2s"" data-wow-duration=""0.4s"">
+					<h4>Amazingly Fast Performance</h4>
+					<p>Magetique’s code is optimized to make sure that your customers don’t waste precious seconds. Those seconds may cost you sales, so we’ve done everything for the lightning-fast performance.</p>
+				</li>
+				<li>
+					<img src=""{{media url='landing/box-3-4.jpg}}"" alt=""list-2"" class=""wow flipInY"" data-wow-offset=""50"" data-wow-delay=""0.3s"" data-wow-duration=""0.4s"">
+					<h4>Faster Market for Stores and Products</h4>
+					<p>Magetique offers great visual editing capabilities for anyone. This allows business owners to launch new stores and beat their competitors with simplified product launch routines.</p>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<footer class=""footer"">
+		<div class=""footer-content"">
+			<div class=""footer-content_text"">
+				<span class=""footer-title"">Get Magetique Today</span>
+				<a href=""http://www.templatemonster.com/magetique.html"" class=""l-button"">Buy now!</a>
+			</div>
+			<img src=""{{media url='landing/mockup-2.png}}"" alt=""mockup-2"" class=""mockup-2"">	
+		</div>
+		<div class=""copyright""><span>Magetique © 2016. All Rights Reserved.</span></div>
+	</footer>
+</div>",2016-11-21 21:58:26,2016-12-28 05:16:32,1,0,"<head>
+    <title>
+        Magetique
+    </title>
+    <script src=""js/landing/jquery-2.2.4.min.js""/>
+    <script src=""js/landing/stickUp.min.js""/>  
+    <script src=""js/landing/wow.js""/>
+    <script src=""js/landing/landing-scripts.js""/>
+
+    <css src=""css/landing.css"" />
+
+    <remove src=""requirejs/require.js""/>
+
+    <remove src=""mage/calendar.css""/>
+    <remove src=""TemplateMonster_FilmSlider::css/slider-pro.css""/>
+    <remove src=""TemplateMonster_FilmSlider::css/animate.css""/>
+    <remove src=""TemplateMonster_CountdownTimer::css/timer.css""/>
+    <remove src=""TemplateMonster_LayoutSwitcher::css/module.css""/>
+    <remove src=""TemplateMonster_LayoutSwitcher::fonts/font-awesome-4.5.0/css/font-awesome.min.css""/>
+    <remove src=""TemplateMonster_Parallax::css/rd-parallax/style.css""/>
+    <remove src=""TemplateMonster_Parallax::css/jquery-youtubebackground/style.css""/>
+    <remove src=""TemplateMonster_AjaxCompare::css/modal-compare.css""/>
+    <remove src=""TemplateMonster_FeaturedProduct::fonts/font-awesome-4.5.0/css/font-awesome.min.css""/>
+    <remove src=""TemplateMonster_FeaturedProduct::css/module.css""/>
+    <remove src=""css/material-icons.css""/>
+    <remove src=""css/font-awesome.css""/>
+    <remove src=""css/modules.css""/>
+    <remove src=""css/style.css""/>
+</head>
+
+<referenceBlock name=""page.preloader"" remove=""true"" />
+<referenceBlock name=""translate"" remove=""true"" />
+<referenceBlock name=""googlemap.page.content"" remove=""true"" />
+<referenceBlock name=""googlemap.init"" remove=""true"" />
+<referenceContainer name=""after.body.start"" remove=""true"" />
+<referenceContainer name=""before.body.end"" remove=""true"" />
+<referenceContainer name=""page.messages"" remove=""true"" />
+<referenceContainer name=""footer"" remove=""true"" />",NULL,NULL,NULL,NULL,NULL,

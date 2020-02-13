@@ -1,0 +1,360 @@
+// /**
+//  * Copyright � 2015 Magento. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+
+//
+//  Lib -> Components -> Modals
+//  _____________________________________________
+
+//
+//  Variables
+//  ---------------------------------------------
+
+$modal__background-color: $white;
+$modal__output-background-color: transparentize($white,.35);
+$modal__box-shadow: 0 5px 27px 0 rgba(0, 0, 0, 0.19);
+
+$modal-popup__indent-vertical: 4rem;
+$modal-popup__padding: 1rem;
+$modal-popup__width: 75%;
+$modal-popup__z-index: 1000;
+
+$modal-slide__first__indent-left: auto;
+$modal-slide__indent-left: 4.5rem;
+$modal-slide__padding: 0.5rem;
+$modal-slide__z-index: 1000;
+
+$modal-slide__width: 310px;
+$modal-slide-header__padding-vertical: 10px;
+
+$modal-popup-confirm__width: 50rem;
+
+$modal-popup-image-box__border-color: #ccc;
+$modal-popup-image-box__max-width: 78rem;
+
+$modal-popup-image-box-preview-image__max-height: 54rem;
+$modal-popup-image-box-preview__max-width: $modal-popup-image-box-preview-image__max-height + (2 * $indent-base);
+
+
+//
+//  Utilities
+//  ---------------------------------------------
+
+@mixin abs-modal() {
+    bottom: 0;
+    left: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+    pointer-events: none;
+    &._show {
+        visibility: visible;
+        background: $modal__output-background-color;
+        pointer-events: auto;
+        .modal-inner-wrap {
+            position: relative;
+            -ms-transform:translate(0, 0);
+            -webkit-transform: translate(0, 0);
+            transform: translate(0, 0);
+        }
+    }
+    .modal-inner-wrap {
+        padding: 30px 15px;
+        background-color: #fff;
+        box-shadow: $modal__box-shadow;
+        opacity: 1;
+    }
+}
+
+@mixin abs-modal-slide() {
+    left: $modal-slide__first__indent-left;
+    z-index: $modal-slide__z-index;
+    &._show {
+        .modal-inner-wrap {
+            -ms-transform: translateX(0);
+            -webkit-transform: translateX(0);
+            transform: translateX(0);
+        }
+    }
+    .modal-inner-wrap {
+        height: 100%;
+        overflow-y: auto;
+        position: static;
+        -ms-transform:translateX(100%);
+        -webkit-transform: translateX(100%);
+        transform: translateX(100%);
+        transition-duration: .3s;
+        -webkit-transition-property: -webkit-transform, visibility;
+        transition-property:         transform, visibility;
+        transition-timing-function: ease-in-out;
+        width: $modal-slide__width;
+    }
+
+    &._inner-scroll {
+        .modal-inner-wrap {
+            overflow-y: visible;
+            display: flex;
+            flex-direction: column;
+        }
+        .modal-header,
+        .modal-footer {
+            flex-grow: 0;
+            flex-shrink: 1;
+        }
+        .modal-content {
+            overflow-y: auto;
+        }
+        .modal-footer {
+            margin-top: auto;
+        }
+    }
+    .modal-header,
+    .modal-content,
+    .modal-footer {
+        padding: 0 $modal-slide__padding $modal-slide__padding;
+    }
+    .modal-header {
+        padding-bottom: $modal-slide-header__padding-vertical;
+        padding-top: $modal-slide-header__padding-vertical;
+    }
+}
+
+@mixin abs-modal-popup() {
+    left: 0;
+    display: block;
+    overflow-y: auto;
+    z-index: $modal-popup__z-index;
+    &._show {
+        .modal-inner-wrap {
+            -ms-transform: translateY(0);
+            -webkit-transform: translateY(0);
+            transform: translateY(0);
+        }
+    }
+    .modal-inner-wrap {
+        box-sizing: border-box;
+        height: auto;
+        left: 0;
+        margin: $modal-popup__indent-vertical auto;
+        position: absolute;
+        right: 0;
+        -ms-transform: translateY(-200%);
+        -webkit-transform: translateY(-200%);
+        transform: translateY(-200%);
+        transition-duration: .2s;
+        -webkit-transition-property: -webkit-transform, visibility;
+        transition-property: transform, visibility;
+        transition-timing-function: ease;
+        display: flex;
+        flex-direction: column;
+        width: $modal-popup__width;
+    }
+}
+
+//
+
+body {
+    &._has-modal {
+        height: 100%;
+        overflow: hidden;
+        width: 100%;
+    }
+
+    &._has-modal-custom {
+        .modal-custom-overlay {
+            height: 100vh;
+            left: 0;
+            position: fixed;
+            top: 0;
+            width: 100vw;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 999;
+        }
+    }
+}
+
+// Close
+.modal-custom,
+.modal-popup,
+.modal-slide {
+    .action-close {
+        position: absolute;
+        right: 20px;
+        top: 15px;
+        overflow: hidden;
+        display: none;
+
+        &:before{
+            font-size: 22px;
+            font-family: $linearicons-icon;
+            content: "\e935";
+        }
+        &:hover {
+            &:before {
+                opacity: 0.5;
+            }
+        }
+        span {
+            display: none;
+        }
+    }
+
+}
+
+// Modals overlay
+
+.modals-overlay {
+    z-index: 800;
+}
+
+.modal-slide,
+.modal-popup {
+    @include abs-modal();
+}
+
+.modal-slide {
+    @include abs-modal-slide();
+}
+
+.modal-popup {
+    @include abs-modal-popup();
+    //  If applied, switching outer popup scroll to inner
+    &._inner-scroll {
+        overflow-y: visible;
+        .ie11 &,
+        .ie10 &,
+        .ie9 & {
+            overflow-y: auto;
+        }
+        .modal-inner-wrap {
+            max-height: 90%;
+            .ie11 &,
+            .ie10 &,
+            .ie9 & {
+                max-height: none;
+            }
+        }
+        .modal-content {
+            overflow-y: auto;
+        }
+    }
+    .modal-header,
+    .modal-content,
+    .modal-footer {
+        padding-left: $modal-popup__padding;
+        padding-right: $modal-popup__padding;
+        text-align: center;
+    }
+    .modal-header,
+    .modal-footer {
+        flex-grow: 0;
+        flex-shrink: 1;
+    }
+    .modal-header {
+    }
+    .modal-footer {
+        margin-top: auto;
+        padding-top: $modal-popup__padding;
+        button{
+            margin: 0 3px;
+            @include button-block;
+            @include button-block__primary;
+        }
+    }
+    .modal-footer-actions {
+        text-align: right;
+    }
+    &.confirm {
+        .modal-inner-wrap {
+            left: 50%;
+            margin-left: -($modal-popup-confirm__width/2);
+            width: $modal-popup-confirm__width;
+            @media (max-width: $screen-sm-min - 1) {
+                width: auto;
+                margin-left: 15px;
+                margin-right: 15px;
+                left: 0;
+                right: 0;
+            }
+        }
+    }
+    &._image-box {
+        .modal-inner-wrap {
+            margin: 5rem auto;
+            max-width: $modal-popup-image-box__max-width;
+            position: static;
+        }
+        .thumbnail-preview {
+            padding-bottom: $indent-large;
+            text-align: center;
+            .thumbnail-preview-image-block {
+                border: 1px solid $modal-popup-image-box__border-color;
+                margin: 0 auto $indent-base;
+                max-width: $modal-popup-image-box-preview__max-width;
+                padding: $indent-base;
+            }
+            .thumbnail-preview-image {
+                max-height: $modal-popup-image-box-preview-image__max-height;
+            }
+        }
+    }
+}
+
+
+.modal-title {
+    font-size: 26px;
+    text-align: center;
+    font-weight: 600;
+    line-height: normal;
+    margin-bottom: 15px;
+}
+//
+//  Mobile
+//  ---------------------------------------------
+
+//  Mobile transform to modal-slide
+@media (max-width: $screen-sm-min -1) {
+     .custom-slide {
+        @include abs-modal();
+        @include abs-modal-slide();
+        &._show {
+            -webkit-overflow-scrolling: touch;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+        .modal-inner-wrap {
+            box-sizing: border-box;
+            height: auto;
+            min-height: 100%;
+        }
+    }
+    body {
+        &._has-modal-custom {
+            height: 100vh;
+            overflow: hidden;
+            width: 100vw;
+        }
+    }
+
+    .modal-custom,
+    .modal-popup,
+    .modal-slide {
+        .action-close{
+            display: block;
+        }
+    }
+}
+
+
+//
+//  Print
+//  ---------------------------------------------
+
+@media print {
+    .modal-popup{
+        display: none;
+        visibility: hidden;
+        opacity: 0;
+    }
+}

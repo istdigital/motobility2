@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="div.sidebar.main">
+            <block class="TemplateMonster\Megamenu\Block\Html\Topmenu"
+                   name="catalog.sidebarnav"
+                   template="TemplateMonster_Megamenu::html/topmenu.phtml"
+                   ifconfig="megamenu/config/megamenu_general_show_left"
+                   before="-"
+                   ttl="3600" />
+        </referenceContainer>
+        <referenceBlock name="catalog.topnav" template="TemplateMonster_Megamenu::html/topmenu.phtml" />
+    </body>
+</page>

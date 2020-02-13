@@ -1,0 +1,230 @@
+//
+//  Rating summary
+//  ---------------------------------------------------
+
+.rating-summary {
+  @include make-flex();
+  position: relative;
+  .label {
+    margin-right: $indent-small;
+  }
+  .rating-result__stars,
+  .rating-result__text {
+    font-size: 19px;
+    span {
+      margin-right: 1px;
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+  .rating-result__text {
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: #fd8f00;
+    display: inline-block;
+    div {
+      overflow: hidden;
+      background: #fff;
+      display: flex;
+    }
+  }
+}
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+  .rating-summary .rating-result__text div {
+    display: flex;
+  }
+}
+.review-toolbar {
+  @include clearfix;
+  .field > .label {
+    margin-right: 10px;
+    padding: 14px 0;
+    font-weight: normal;
+  }
+  .field {
+    margin-bottom: 0;
+  }
+}
+//
+//  Review List
+//  ---------------------------------------------------
+
+.review-list {
+  .review-items {
+    margin-top:25px;
+  }
+  .review-item {
+    margin-bottom: $indent-base;
+  }
+  .review-title {
+    @extend .heading-4;
+    margin-bottom: $indent-small;
+  }
+
+  //Rating
+  .review-ratings {
+  }
+
+  .rating-summary {
+    @include make-flex();
+  }
+  .rating-label {
+    @include flex-basis(30%);
+    padding: $input-padding-vert 0;
+  }
+  .rating-result {
+    display: inline-block;
+  }
+
+  //Details
+  .review-details {
+    @include make-flex();
+    p {
+      width: 50%;
+      margin: 0;
+    }
+  }
+  .review-author {
+    text-align: left;
+  }
+  .review-date {
+    text-align: right;
+  }
+  .review-details-label {
+  }
+  .review-details-value {
+    display: inline-block;
+  }
+}
+
+@media (min-width: $screen-sm-min) {
+  .review-list {
+    .rating-label {
+      @include flex-basis(10%);
+    }
+  }
+}
+
+//
+//  Review Form
+//  ---------------------------------------------------
+
+.review-add {
+  .review-legend {
+    @extend .heading-4;
+    span {
+      display: inline-block;
+      margin-right: $indent-small;
+    }
+  }
+}
+
+.review-fieldset {
+
+  .review-legend {
+    font-size: $font-ultra-small;
+    padding: 37px 0 7px;
+    margin: 0;
+    span {
+      font-weight: normal;
+    }
+    strong {
+      font-weight: normal;
+    }
+  }
+  .label {
+    font-weight: normal;
+  }
+  .control .nested {
+    margin-top: 0;
+  }
+}
+
+.review-field-ratings {
+}
+
+.review-field-rating {
+  > label.label {
+    min-width: 43px;
+    padding: 0;
+    margin-right: 5px;
+    font-weight: 300;
+  }
+}
+.control  {
+  .nested .field.review-field-rating {
+    margin-bottom: 7px;
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.control.review-control-vote {
+  display: inline-block;
+  label[class^='rating-'] {
+    display: inline-block;
+    cursor: pointer;
+    margin-right: -3px;
+    padding: 0;
+    font-weight: normal;
+    //Star rating
+    .rating-star {
+      display: inline-block;
+      font-size: 19px;
+      line-height: 1;
+      &:before {
+        font-family: $linearicons-icon;
+        content: "\e68d";
+      }
+    }
+
+    &.fill {
+      .rating-star {
+        color: #fd8f00;
+      }
+    }
+  }
+  .radio {
+    visibility: hidden;
+  }
+}
+
+.form-review-product-pages {
+  padding-top: 5px;
+  .field {
+    margin-bottom: 30px;
+  }
+  .label {
+    margin: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+  @media (min-width: $screen-md-min) {
+    .field {
+      @include make-flex;
+      @include align-items(center);
+    }
+    .label {
+      @include make-col();
+      @include flex-basis(11%);
+    }
+    .control {
+      @include flex-basis(89%);
+    }
+  }
+}
+
+.review-form-actions,
+.review-field-ratings > .control {
+
+  @media (min-width: $screen-md-min) {
+    padding-left: 9.2%;
+  }
+}
+
+.table-wrapper.reviews {
+  margin-bottom: 20px;
+}

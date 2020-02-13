@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd">
+    <head>
+        <script src="js/landing/jquery-2.2.4.min.js"/>
+        <script src="js/landing/stickUp.min.js"/>
+        <script src="js/landing/wow.js"/>
+        <script src="js/landing/landing-scripts.js"/>
+
+        <remove src="requirejs/require.js"/>
+
+        <css src="css/landing.css" />
+
+        <remove src="mage/calendar.css"/>
+        <remove src="TemplateMonster_FilmSlider::css/slider-pro.css"/>
+        <remove src="TemplateMonster_FilmSlider::css/animate.css"/>
+        <remove src="TemplateMonster_CountdownTimer::css/timer.css"/>
+        <remove src="TemplateMonster_LayoutSwitcher::css/module.css"/>
+        <remove src="TemplateMonster_LayoutSwitcher::fonts/font-awesome-4.5.0/css/font-awesome.min.css"/>
+        <remove src="TemplateMonster_Parallax::css/rd-parallax/style.css"/>
+        <remove src="TemplateMonster_Parallax::css/jquery-youtubebackground/style.css"/>
+        <remove src="TemplateMonster_AjaxCompare::css/modal-compare.css"/>
+        <remove src="TemplateMonster_FeaturedProduct::fonts/font-awesome-4.5.0/css/font-awesome.min.css"/>
+        <remove src="TemplateMonster_FeaturedProduct::css/module.css"/>
+        <remove src="css/material-icons.css"/>
+        <remove src="css/font-awesome.css"/>
+        
+        <remove src="css/modules.css"/>
+        <remove src="css/style.css"/>
+        <remove src="mage/calendar.css"/>
+    </head>
+</page>

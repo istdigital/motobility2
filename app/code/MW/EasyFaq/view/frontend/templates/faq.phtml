@@ -1,0 +1,37 @@
+<?php
+$faqData = $block->getFaqCollection();
+?>
+<div class="faq-container">
+    <div class="toolbar-products row">
+        <div class="col-xs-6 result-wrap">
+            <p class="count_results"><?= $block->getCollection()->count() ?> Results</p>
+        </div>
+        <div class="col-xs-6 result-fbtn">
+            <button
+                type="button"
+                class="action filter-toggle"
+                data-trigger="filter"
+                style="display: none;">
+                <span><?php echo __('Filter'); ?></span>
+            </button>
+        </div>
+    </div>
+
+    <?php if($faqData->count()): ?>
+        <div class="faq-list" data-mage-init='{"loader": {}}'>
+            <ul>
+                <?php foreach($faqData as $faq): ?>
+                    <li>
+                        <span><?= $faq->getCategoryName() ?></span>
+                        <h4><?= $faq->getQuestion() ?></h4>
+                        <?= $faq->getAnswer() ?>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
+        </div>
+        <div class="post-bottom-toolbar"><?php echo $block->getPagerHtml() ?></div>
+    <?php else: ?>
+        <div class="message info empty"><div>Sorry!, No faq found.</div></div>
+    <?php endif  ?>
+</div>
+<?php return ?>

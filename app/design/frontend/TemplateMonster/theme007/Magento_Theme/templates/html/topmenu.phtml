@@ -1,0 +1,35 @@
+<?php
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<?php
+/**
+ * Top menu for store
+ *
+ * @see \Magento\Theme\Block\Html\Topmenu
+ */
+?>
+<?php $columnsLimit = $block->getColumnsLimit() ?: 0; ?>
+<?php $_menu = $block->getHtml('level-top', 'rd-navbar-dropdown', $columnsLimit); ?>
+
+<div class="rd-navbar-panel-canvas"></div>
+<nav class="navigation" role="navigation">
+    <div class="container">
+        <!-- RD Navbar Panel -->
+            <!-- RD Navbar Toggle -->
+            <button class="rd-navbar-toggle" data-rd-navbar-toggle=".rd-navbar-nav-wrap"><span></span></button>
+            <!-- END RD Navbar Toggle -->
+        
+        <!-- END RD Navbar Panel -->
+        <div class="rd-navbar-nav-wrap">
+            <ul class="rd-navbar-nav">  
+                <?php echo $_menu; ?>
+            </ul>
+        </div>
+    </div>
+</nav>

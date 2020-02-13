@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="TemplateMonster\FilmSlider\Api\Data\SliderInterface"
+                type="TemplateMonster\FilmSlider\Model\Slider"/>
+    <preference for="TemplateMonster\FilmSlider\Api\SliderRepositoryInterface"
+                type="TemplateMonster\FilmSlider\Model\SliderRepository"/>
+    <preference for="TemplateMonster\FilmSlider\Api\Data\SliderSearchResultsInterface"
+                type="Magento\Framework\Api\SearchResults" />
+    <preference for="TemplateMonster\FilmSlider\Api\Data\SliderItemInterface"
+                type="TemplateMonster\FilmSlider\Model\SliderItem"/>
+    <preference for="TemplateMonster\FilmSlider\Api\SliderItemRepositoryInterface"
+                type="TemplateMonster\FilmSlider\Model\SliderItemRepository"/>
+    <preference for="TemplateMonster\FilmSlider\Api\Data\SliderItemSearchResultsInterface"
+                type="Magento\Framework\Api\SearchResults" />
+    <preference for="TemplateMonster\FilmSlider\Api\Animation\ConfigInterface"
+                type="TemplateMonster\FilmSlider\Model\Animation\Config" />
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="filmslider_listing_data_source" xsi:type="string">TemplateMonster\FilmSlider\Model\ResourceModel\Slider\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="TemplateMonster\FilmSlider\Model\ResourceModel\Slider\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">film_slider</argument>
+            <argument name="eventPrefix" xsi:type="string">film_slider_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">film_slider_collection</argument>
+            <argument name="resourceModel" xsi:type="string">TemplateMonster\FilmSlider\Model\ResourceModel\Slider</argument>
+        </arguments>
+    </type>
+    <virtualType name="FilmSliderFilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
+        <arguments>
+            <argument name="appliers" xsi:type="array">
+                <item name="regular" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\RegularFilter</item>
+                <item name="fulltext" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\FulltextFilter</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="FilmSliderDataProvider" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+        <arguments>
+            <argument name="collection" xsi:type="object" shared="false">TemplateMonster\FilmSlider\Model\ResourceModel\Slider\Collection</argument>
+            <argument name="filterPool" xsi:type="object" shared="false">FilmSliderFilterPool</argument>
+        </arguments>
+    </virtualType>
+    <type name="TemplateMonster\FilmSlider\Model\Animation\Config">
+        <arguments>
+            <argument name="reader" xsi:type="object">TemplateMonster\FilmSlider\Model\Animation\Config\Reader\Proxy</argument>
+        </arguments>
+    </type>
+</config>

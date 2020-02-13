@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+
+<layout xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_layout.xsd">
+    <referenceContainer name="columns" htmlClass="columns container"/>
+    <referenceContainer name="root">
+        <container name="page.wrapper.outer" before="page.wrapper"/>
+    </referenceContainer>
+    <move element="page.wrapper" destination="page.wrapper.outer"/>
+    <move element="footer-container" destination="page.wrapper.outer"/>
+</layout>

@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="templatemonster" translate="label" sortOrder="90">
+            <label>TemplateMonster</label>
+        </tab>
+        <section id="ajaxcatalog" translate="label" type="text" sortOrder="100"
+                 showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>Ajax Catalog</label>
+            <tab>templatemonster</tab>
+            <resource>TemplateMonster_AjaxCatalog::config_ajaxcatalog</resource>
+            <group id="general" translate="label" type="text" sortOrder="90"
+                   showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General</label>
+                <field id="ajaxcatalog_layer_active" translate="label comment" type="select" sortOrder="10"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Use Ajax Filter</label>
+                    <comment>Enable/Disable ajax filter > Enable to filter products without reloading the page.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                </field>
+                <field id="ajaxcatalog_viewmode_active" translate="label comment" type="select" sortOrder="20"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label> Grid/List Mode Button</label>
+                    <comment>Use ajax filter for view mode switcher.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                </field>
+                <field id="ajaxcatalog_listorder_active" translate="label comment" type="select" sortOrder="30"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Sort Order</label>
+                    <comment>Use ajax filter for order switcher</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                </field>
+                <field id="ajaxcatalog_sortby_active" translate="label comment" type="select" sortOrder="40"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Sort By(DESC/ASC)</label>
+                    <comment>Use ajax filter for 'sort by' switcher</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                </field>
+                <field id="ajaxcatalog_pagination_active" translate="label comment" type="select" sortOrder="50"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Pagination</label>
+                    <comment>Use ajax filter for pagination</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                </field>
+                <field id="ajaxcatalog_shownumber_active" translate="label comment" type="select" sortOrder="60"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Items per page</label>
+                    <comment>Use ajax filter for 'items per page' switcher</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                </field>
+                <field id="ajaxcatalog_show_price_slider" translate="label comment" type="select" sortOrder="70"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Price slider</label>
+                    <comment>Show price slider in place of default two fields price range</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                </field>
+                <field id="ajaxcatalog_infinite_scroll" translate="label comment" type="select" sortOrder="80"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Infinite scroll</label>
+                    <comment>Enable infinite scroll in place of default pagination. Note: ajax filter for pagination should be enabled.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                </field>
+                <field id="ajaxcatalog_infinite_pages" translate="label comment" type="text" sortOrder="90"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Pages to show</label>
+                    <comment>Choose the number of pages to show on infinite scroll load</comment>
+                    <depends>
+                        <field id="ajaxcatalog_infinite_scroll">1</field>
+                    </depends>
+                    <validate>required-entry</validate>
+                </field>
+                <field id="ajaxcatalog_attribute_multy" translate="label comment" type="multiselect"
+                       sortOrder="100"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Product Attributes</label>
+                        <comment>Choose attributes for layer navigation multiselect</comment>
+                        <source_model>TemplateMonster\AjaxCatalog\Model\Source\Filterable\AttributeList</source_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

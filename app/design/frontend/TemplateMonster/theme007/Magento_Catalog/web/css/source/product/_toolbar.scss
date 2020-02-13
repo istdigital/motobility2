@@ -1,0 +1,268 @@
+//
+//  Toolbar
+//  ---------------------------------------------
+
+.toolbar-products {
+  position: relative;
+  font-size: $font-ultra-small;
+  z-index: 2;
+  border-bottom: 1px solid $theme-line-1;
+  padding-bottom: 49px;
+  margin-bottom: 50px;
+  @include clearfix;
+
+  .toolbar-sorter {
+    float: left;
+  }
+
+  .field {
+    margin: 0;
+    > .label,
+    > .control,
+    > .action {
+      display: inline-block;
+    }
+    > .label {
+      padding: 14px 0;
+      margin-right: 10px;
+    }
+    > .control {
+    }
+  }
+}
+.toolbar-bottom{
+  .toolbar-products {
+    border-top: 1px solid $theme-line-1;
+    border-bottom: 0;
+    padding: 45px 0 0;
+    margin: 50px 0 0;
+  }
+}
+
+.toolbar-container {
+  .filter-toggle {
+    @include button-block(); //@mixin source/_mixins.scss
+    margin-bottom: 20px;
+    display: none;
+  }
+}
+
+// Modes
+.modes {
+  float: right;
+  font-size: 22px;
+  padding-top: 14px;
+  padding-left: 6px;
+  .modes-label {
+    display: none;
+  }
+  .modes-mode {
+    margin-left: 14px;
+    font-weight: normal;
+    span {
+      display: none;
+    }
+  }
+  .mode-grid {
+    &:before {
+      font-family: $linearicons-icon;
+      content: "\e87e";
+    }
+  }
+  .mode-list {
+    &:before {
+      font-family: $linearicons-icon;
+      content: "\e92f";
+    }
+  }
+  a.modes-mode:hover {
+    opacity: 0.6;
+
+  }
+}
+
+//Amount
+.toolbar-amount {
+  text-align: center;
+  position: absolute;
+  top:14px;
+  width: 100%;
+  margin: 0;
+  padding: 0 30%;
+  z-index: -1;
+  @media (max-width: $screen-lg-min) {
+    top:65px;
+    padding: 0;
+  }
+}
+.layout_3 {
+  @media (min-width: $screen-lg-min - 1) {
+    .toolbar-amount {
+      padding: 0 240px 0 0;
+      text-align: right;
+    }
+  }
+}
+
+//Pages
+.pages {
+  display: none;
+  .pages-items {
+    position: relative;
+    display: inline-block;
+    @include clearfix;
+  }
+  .item {
+    float: left;
+    margin-right: 5px;
+    &.pages-item-previous,
+    &.pages-item-next {
+      span {
+        &:before {
+          font-family: $linearicons-icon;
+          display: inline-block;
+          margin-top: -1px;
+          transition: all 0.2s ease;
+        }
+        &:not(.label) {
+          display: none;
+        }
+      }
+    }
+    &.pages-item-previous {
+      span::before {
+        content: '\e93b';
+        margin-right: 4px;
+        float: left;
+      }
+    }
+    &.pages-item-next {
+      span:before {
+        content: '\e93c';
+        float: right;
+        margin-left: 4px;
+      }
+    }
+    .next,
+    .previous {
+      font-size: $font-size-small;
+      text-transform: uppercase;
+      font-weight: 600;
+      line-height: 50px;
+    }
+
+    .page {
+      width: 50px;
+      height: 50px;
+      line-height: 50px;
+      text-align: center;
+      display: block;
+    }
+  }
+  .toolbar-bottom & {
+    display: block;
+  }
+}
+
+//Limiter
+.limiter {
+  float: right;
+  .limiter-text {
+    display: none;
+  }
+}
+
+//Sorter
+.toolbar-sorter {
+  .label {
+    text-align: left;
+  }
+  .sorter-action {
+    font-size: 22px;
+    padding: 14px 0 0 10px;
+    span {
+      display: none;
+    }
+    &.sort-asc {
+      &:before {
+        font-family: $linearicons-icon;
+        content: "\e9ba";
+      }
+    }
+    &.sort-desc {
+      &:before {
+        font-family: $linearicons-icon;
+        content: "\e9b9";
+      }
+    }
+  }
+}
+
+.toolbar-bottom {
+  .modes,
+  .toolbar-amount,
+  .limiter,
+  .toolbar-sorter {
+    display: none !important;
+  }
+}
+
+
+@media (max-width: $screen-sm-min - 1) {
+  .modes,
+  .toolbar-amount,
+  .toolbar-products .limiter {
+    display: none !important;
+  }
+  .toolbar-products .sorter-label.label {
+    display: none;
+  }
+  .toolbar-products .toolbar-sorter > .control {
+    min-width: 126px;
+  }
+}
+@media (max-width: $screen-xs-min - 1) {
+  .toolbar-products .limiter {
+    float: left;
+    clear: left;
+    margin-top: 10px;
+  }
+
+}
+
+.toolbar-bottom.widget-toolbar {
+  position: relative;
+  border: 1px solid $border-color;
+  padding: 15px;
+  .toolbar-amount {
+    display: block !important;
+    font-size: 12px;
+    padding: 0;
+    text-align: right;
+    top:30px;
+    right: 20px;
+    @media (max-width: $screen-md-min - 1) {
+      position: relative;
+      top:0;
+      right: 0;
+      text-align: left;
+      border-bottom: 1px solid $border-color;
+      margin-bottom: 10px;
+    }
+  }
+}
+
+// fix ios iphone mobile
+
+.ios {
+  &.mobile,
+  &.tablet{
+    body:not(.no-mobile) {
+      .toolbar-products {
+        .control {
+          padding-top: 11px;
+        }
+      }
+    }
+  }
+}

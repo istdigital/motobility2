@@ -1,0 +1,10 @@
+<?php /* @var \Magento\Framework\View\Element\Template $block */ ?>
+<script>
+    var manaScripts = Array.prototype.slice.call(document.getElementsByTagName('script'))
+        .filter(function(element) {
+            return element.getAttribute('type') == 'text/x-magento-init';
+        })
+        .map(function(element) {
+            return JSON.parse(element.textContent);
+        });
+</script>

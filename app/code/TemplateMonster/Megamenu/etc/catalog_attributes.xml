@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Catalog:etc/catalog_attributes.xsd">
+    <group name="catalog_category">
+        <attribute name="mm_turn_on"/>
+        <attribute name="mm_turn_column_on"/>
+        <attribute name="mm_column_number"/>
+        <attribute name="mm_turn_images_on"/>
+        <attribute name="mm_image"/>
+        <attribute name="mm_turn_products_on"/>
+        <attribute name="mm_products"/>
+        <attribute name="mm_turn_blocks_on"/>
+        <attribute name="mm_blocks"/>
+        <attribute name="mm_turn_label_on"/>
+        <attribute name="mm_label"/>
+        <attribute name="mm_css_class"/>
+        <attribute name="mm_template"/>
+        <attribute name="mm_configurator"/>
+    </group>
+</config>

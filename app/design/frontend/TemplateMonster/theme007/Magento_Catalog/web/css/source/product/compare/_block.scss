@@ -1,0 +1,54 @@
+//
+//  Compare products block
+//  ---------------------------------------------
+
+.block-compare {
+  .product-items {
+    margin-bottom: 30px;
+  }
+  .product-item-name {
+    display: block;
+    font-size: $default-font-size;
+    font-weight: 400;
+    padding-right: 20px;
+    @media (max-width: $screen-lg-min - 1){
+      font-size: $font-size-small;
+    }
+  }
+  .product-item {
+    position: relative;
+    margin-bottom: $indent-small;
+  }
+  .action.delete {
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 0;
+    font-size: 12px;
+  }
+  .actions-toolbar {
+    @include make-flex();
+    @include justify-content(space-between);
+    .primary {
+      @include order(2);
+    }
+    @media (max-width: $screen-lg-min) {
+      display: block;
+      margin: 0;
+      .action {
+        margin: 0 0 10px;
+      }
+    }
+  }
+}
+.grid-left-fixed {
+  .block-compare {
+    .actions-toolbar {
+      display: block;
+      margin: 0;
+      .action {
+        margin: 0 0 10px;
+      }
+    }
+  }
+}

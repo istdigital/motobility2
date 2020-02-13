@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <catalogimagesgrid>
+            <general>
+                <enable>1</enable>
+            </general>
+            <category_page>
+                <use_image>thumbnail_image</use_image>
+                <enable_image_categories>0</enable_image_categories>
+                <enable_image_subcategories>0</enable_image_subcategories>
+                <enable_image_subcategories>0</enable_image_subcategories>
+                <columns_count>4</columns_count>
+                <image_width>100</image_width>
+                <amount_subcategories>4</amount_subcategories>
+                <amount_categories>5</amount_categories>
+                <view_more>0</view_more>
+                <show_after_grid>0</show_after_grid>
+                <show_before_grid>1</show_before_grid>
+            </category_page>
+        </catalogimagesgrid>
+    </default>
+</config>

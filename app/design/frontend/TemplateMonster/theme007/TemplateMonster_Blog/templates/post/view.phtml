@@ -1,0 +1,37 @@
+<?php
+$post = $this->getPost();
+$dateFormat = $this->getDateFormat();
+?>
+
+<div class="post-page">
+    <div class="post-content">
+        <div class="post-data">
+            <span class="create-date">
+                <time><?php echo date($dateFormat, strtotime($post->getCreationTime()));?></time>
+            </span>
+            <?php if ($author = $post->getAuthor()): ?>
+                <span class="post-author">
+                <span class="label"><?php echo __('by '); ?></span>
+                <span class="author"><?php echo $author; ?></span>
+            </span>
+            <?php endif; ?>
+            <?php if ($post->getCommentsEnabled()) : ?>
+                <span class="post-comments">
+                <a href="#post-comments">
+                    <span class="count">
+                        <?php echo $post->getApprovedComments()->count(); ?>
+                    </span>
+                </a>
+            </span>
+            <?php endif; ?>
+        </div>
+        <div class="post-text">
+            <?php echo $this->filterContent($post->getContent()); ?>
+            <?php echo $this->getChildHtml('blog.social.sharing'); ?>
+        </div>
+
+        <?php echo $this->getChildHtml('comments'); ?>
+        <?php echo $this->getChildHtml('products'); ?>
+        <?php echo $this->getChildHtml('posts'); ?>
+    </div>
+</div>

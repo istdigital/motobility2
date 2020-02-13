@@ -1,0 +1,682 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="templatemonster" class="templatemonster_tab">
+            <label>TemplateMonster</label>
+        </tab>
+        <section id="newsletter_popup" translate="label" type="text" sortOrder="220" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Newsletter Pop-Up</label>
+            <tab>templatemonster</tab>
+            <resource>TemplateMonster_NewsletterPopup::newsletter_popup_config</resource>
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General</label>
+                <field id="version" translate="label comment" type="label" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Version</label>
+                    <comment>Current module version.</comment>
+                    <frontend_model>TemplateMonster\NewsletterPopup\Block\Adminhtml\System\Config\Field\Version</frontend_model>
+                </field>
+                <field id="enabled" translate="label comment" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enabled</label>
+                    <comment>Turn on to enable the module.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="show_on_startup" translate="label comment" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show on startup</label>
+                    <comment>Turn on to show popup on startup.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="show_on_footer" translate="label comment" type="select" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show on footer</label>
+                    <comment>Turn on to show popup when scrolled to footer.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="title" translate="label comment" type="text" sortOrder="41" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Title</label>
+                    <comment>Newsletter pop-up Title.</comment>
+                </field>
+                <field id="content" translate="label comment" type="editor" sortOrder="42" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Content</label>
+                    <comment>Newsletter pop-up Content.</comment>
+                    <frontend_model>TemplateMonster\NewsletterPopup\Block\Adminhtml\System\Config\Field\Editor</frontend_model>
+                </field>
+                <field id="submit_button" translate="label comment" type="text" sortOrder="43" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Submit button text</label>
+                    <comment>Enter text for Submit button.</comment>
+                </field>
+                <field id="cancel_button" translate="label comment" type="text" sortOrder="44" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Cancel button text</label>
+                    <comment>Enter text for Cancel button.</comment>
+                </field>
+                <field id="popup_width" translate="label comment" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Pop-Up width</label>
+                    <comment>Newsletter pop-up width in pixels (75% by default).</comment>
+                </field>
+                <field id="show_subscription_link_in_footer" translate="label comment" type="select" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show subscription link in footer</label>
+                    <comment>Turn on to show subscription link in footer.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="footer_link_text" translate="label comment" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Footer link text</label>
+                    <comment>Newsletter pop-up footer link text.</comment>
+                    <depends>
+                        <field id="show_subscription_link_in_footer">1</field>
+                    </depends>
+                </field>
+                <field id="popup_show_delay" translate="label comment" type="text" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Pop-up show delay</label>
+                    <comment>Newsletter pop-up show delay in seconds.</comment>
+                </field>
+                <field id="button_color" translate="label comment" type="text" sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Button color</label>
+                    <comment>Button color in hex format.</comment>
+                    <frontend_model>TemplateMonster\NewsletterPopup\Block\Adminhtml\System\Config\Field\ColorPicker</frontend_model>
+                </field>
+                <field id="button_hover_color" translate="label comment" type="text" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Button hover color</label>
+                    <comment>Button hover color in hex format.</comment>
+                    <frontend_model>TemplateMonster\NewsletterPopup\Block\Adminhtml\System\Config\Field\ColorPicker</frontend_model>
+                </field>
+                <field id="custom_css_class" translate="label comment" type="text" sortOrder="110" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Custom CSS-class</label>
+                    <comment>Newsletter pop-up custom CSS-class.</comment>
+                </field>
+            </group>
+            <!--<group id="newsletter_popup_GDPR" translate="label" type="text" sortOrder="19" showInDefault="1" showInWebsite="1" showInStore="1">-->
+                <!--<label>GDPR Settings</label>-->
+                <!--<field id="message" translate="label" type="textarea" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">-->
+                    <!--<label>Notification Message</label>-->
+                    <!--<comment>Enter the text for the Privacy notification message.</comment>-->
+                <!--</field>-->
+                <!--<field id="learn_message" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">-->
+                    <!--<label>Link Text</label>-->
+                    <!--<comment>Specify the title for the Privacy Policy page link.</comment>-->
+                <!--</field>-->
+                <!--<field id="learn_link" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">-->
+                    <!--<label>Link URL</label>-->
+                    <!--<comment>Enter the Privacy Police page URL (the page with the information on how you protect and manage the submitted data).</comment>-->
+                <!--</field>-->
+            <!--</group>-->
+            <group id="social" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Social Settings</label>
+                <field id="enabled_all" translate="label comment" type="select" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Social Icons</label>
+                    <comment>Turn on to enable the Social icons block.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <group id="facebook_settings" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Facebook settings</label>
+                    <field id="enabled" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Enabled</label>
+                        <comment>Turn on to enable the Facebook icon.</comment>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    </field>
+                    <field id="use_default_icon_colors" translate="label comment" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Use default icon colors</label>
+                        <comment>Turn on to use default icon colors, or turn off to customize</comment>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    </field>
+                    <field id="link" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Link</label>
+                        <comment>Facebook link.</comment>
+                    </field>
+                    <field id="icon_background" translate="label comment" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Icon background</label>
+                        <comment>Facebook icon background in hex format.</comment>
+                        <frontend_model>TemplateMonster\NewsletterPopup\Block\Adminhtml\System\Config\Field\ColorPicker</frontend_model>
+                        <depends>
+                            <field id="*/*/*/use_default_icon_colors">0</field>
+                        </depends>
+                    </field>
+                    <field id="icon_color" translate="label comment" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Icon color</label>
+                        <comment>Facebook icon color in hex format.</comment>
+                        <frontend_model>TemplateMonster\NewsletterPopup\Block\Adminhtml\System\Config\Field\ColorPicker</frontend_model>
+                        <depends>
+                            <field id="*/*/*/use_default_icon_colors">0</field>
+                        </depends>
+                    </field>
+                    <field id="icon_background_hover" translate="label comment" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Icon background hover</label>
+                        <comment>Facebook icon background hover in hex format.</comment>
+                        <frontend_model>TemplateMonster\NewsletterPopup\Block\Adminhtml\System\Config\Field\ColorPicker</frontend_model>
+                        <depends>
+                            <field id="*/*/*/use_default_icon_colors">0</field>
+                        </depends>
+                    </field>
+                    <field id="icon_hover_color" translate="label comment" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Icon hover color</label>
+                        <comment>Facebook icon hover color in hex format.</comment>
+                        <frontend_model>TemplateMonster\NewsletterPopup\Block\Adminhtml\System\Config\Field\ColorPicker</frontend_model>
+                        <depends>
+                            <field id="*/*/*/use_default_icon_colors">0</field>
+                        </depends>
+                    </field>
+                    <depends>
+                        <field id="enabled_all">1</field>
+                    </depends>
+                </group>
+                <group id="twitter_settings" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Twitter settings</label>
+                    <field id="enabled" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Enabled</label>
+                        <comment>Turn on to enable the Twitter icon.</comment>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    </field>
+                    <field id="use_default_icon_colors" translate="label comment" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Use default icon colors</label>
+                        <comment>Turn on to use default icon colors, or turn off to customize</comment>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    </field>
+                    <field id="link" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Link</label>
+                        <comment>Twitter link.</comment>
+                    </field>
+                    <field id="icon_background" translate="label comment" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Icon background</label>
+                        <comment>Twitter icon background in hex format.</comment>
+                        <frontend_model>TemplateMonster\NewsletterPopup\Block\Adminhtml\System\Config\Field\ColorPicker</frontend_model>
+                        <depends>
+                            <field id="*/*/*/use_default_icon_colors">0</field>
+                        </depends>
+                    </field>
+                    <field id="icon_color" translate="label comment" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Icon color</label>
+                        <comment>Twitter icon color in hex format.</comment>
+                        <frontend_model>TemplateMonster\NewsletterPopup\Block\Adminhtml\System\Config\Field\ColorPicker</frontend_model>
+                        <depends>
+                            <field id="*/*/*/use_default_icon_colors">0</field>
+                        </depends>
+                    </field>
+                    <field id="icon_background_hover" translate="label comment" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Icon background hover</label>
+                        <comment>Twitter icon background hover in hex format.</comment>
+                        <frontend_model>TemplateMonster\NewsletterPopup\Block\Adminhtml\System\Config\Field\ColorPicker</frontend_model>
+                        <depends>
+                            <field id="*/*/*/use_default_icon_colors">0</field>
+                        </depends>
+                    </field>
+                    <field id="icon_hover_color" translate="label comment" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Icon hover color</label>
+                        <comment>Twitter icon hover color in hex format.</comment>
+                        <frontend_model>TemplateMonster\NewsletterPopup\Block\Adminhtml\System\Config\Field\ColorPicker</frontend_model>
+                        <depends>
+                            <field id="*/*/*/use_default_icon_colors">0</field>
+                        </depends>
+                    </field>
+                    <depends>
+                        <field id="enabled_all">1</field>
+                    </depends>
+                </group>
+                <group id="linkedin_settings" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>LinkedIn settings</label>
+                    <field id="enabled" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Enabled</label>
+                        <comment>Turn on to enable the Linkedin icon.</comment>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    </field>
+                    <field id="use_default_icon_colors" translate="label comment" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Use default icon colors</label>
+                        <comment>Turn on to use default icon colors, or turn off to customize</comment>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    </field>
+                    <field id="link" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Link</label>
+                        <comment>LinkedIn link.</comment>
+                    </field>
+                    <field id="icon_background" translate="label comment" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Icon background</label>
+                        <comment>LinkedIn icon background in hex format.</comment>
+                        <frontend_model>TemplateMonster\NewsletterPopup\Block\Adminhtml\System\Config\Field\ColorPicker</frontend_model>
+                        <depends>
+                            <field id="*/*/*/use_default_icon_colors">0</field>
+                        </depends>
+                    </field>
+                    <field id="icon_color" translate="label comment" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Icon color</label>
+                        <comment>LinkedIn icon color in hex format.</comment>
+                        <frontend_model>TemplateMonster\NewsletterPopup\Block\Adminhtml\System\Config\Field\ColorPicker</frontend_model>
+                        <depends>
+                            <field id="*/*/*/use_default_icon_colors">0</field>
+                        </depends>
+                    </field>
+                    <field id="icon_background_hover" translate="label comment" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Icon background hover</label>
+                        <comment>LinkedIn icon background hover in hex format.</comment>
+                        <frontend_model>TemplateMonster\NewsletterPopup\Block\Adminhtml\System\Config\Field\ColorPicker</frontend_model>
+                        <depends>
+                            <field id="*/*/*/use_default_icon_colors">0</field>
+                        </depends>
+                    </field>
+                    <field id="icon_hover_color" translate="label comment" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Icon hover color</label>
+                        <comment>LinkedIn icon hover color in hex format.</comment>
+                        <frontend_model>TemplateMonster\NewsletterPopup\Block\Adminhtml\System\Config\Field\ColorPicker</frontend_model>
+                        <depends>
+                            <field id="*/*/*/use_default_icon_colors">0</field>
+                        </depends>
+                    </field>
+                    <depends>
+                        <field id="enabled_all">1</field>
+                    </depends>
+                </group>
+                <group id="google_settings" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Google+ settings</label>
+                    <field id="enabled" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Enabled</label>
+                        <comment>Turn on to enable the Google+ icon.</comment>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    </field>
+                    <field id="use_default_icon_colors" translate="label comment" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Use default icon colors</label>
+                        <comment>Turn on to use default icon colors, or turn off to customize.</comment>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    </field>
+                    <field id="link" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Link</label>
+                        <comment>Google+ link.</comment>
+                    </field>
+                    <field id="icon_background" translate="label comment" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Icon background</label>
+                        <comment>Google+ icon background in hex format.</comment>
+                        <frontend_model>TemplateMonster\NewsletterPopup\Block\Adminhtml\System\Config\Field\ColorPicker</frontend_model>
+                        <depends>
+                            <field id="*/*/*/use_default_icon_colors">0</field>
+                        </depends>
+                    </field>
+                    <field id="icon_color" translate="label comment" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Icon color</label>
+                        <comment>Google+ icon color in hex format.</comment>
+                        <frontend_model>TemplateMonster\NewsletterPopup\Block\Adminhtml\System\Config\Field\ColorPicker</frontend_model>
+                        <depends>
+                            <field id="*/*/*/use_default_icon_colors">0</field>
+                        </depends>
+                    </field>
+                    <field id="icon_background_hover" translate="label comment" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Icon background hover</label>
+                        <comment>Google+ icon background hover in hex format.</comment>
+                        <frontend_model>TemplateMonster\NewsletterPopup\Block\Adminhtml\System\Config\Field\ColorPicker</frontend_model>
+                        <depends>
+                            <field id="*/*/*/use_default_icon_colors">0</field>
+                        </depends>
+                    </field>
+                    <field id="icon_hover_color" translate="label comment" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Icon hover color</label>
+                        <comment>Google+ icon hover color in hex format.</comment>
+                        <frontend_model>TemplateMonster\NewsletterPopup\Block\Adminhtml\System\Config\Field\ColorPicker</frontend_model>
+                        <depends>
+                            <field id="*/*/*/use_default_icon_colors">0</field>
+                        </depends>
+                    </field>
+                    <depends>
+                        <field id="enabled_all">1</field>
+                    </depends>
+                </group>
+                <group id="youtube_settings" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Youtube settings</label>
+                    <field id="enabled" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Enabled</label>
+                        <comment>Turn on to enable the Youtube icon.</comment>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    </field>
+                    <field id="use_default_icon_colors" translate="label comment" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Use default icon colors</label>
+                        <comment>Turn on to use default icon colors, or turn off to customize</comment>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    </field>
+                    <field id="link" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Link</label>
+                        <comment>Youtube link.</comment>
+                    </field>
+                    <field id="icon_background" translate="label comment" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Icon background</label>
+                        <comment>Youtube icon background in hex format.</comment>
+                        <frontend_model>TemplateMonster\NewsletterPopup\Block\Adminhtml\System\Config\Field\ColorPicker</frontend_model>
+                        <depends>
+                            <field id="*/*/*/use_default_icon_colors">0</field>
+                        </depends>
+                    </field>
+                    <field id="icon_color" translate="label comment" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Icon color</label>
+                        <comment>Youtube icon color in hex format.</comment>
+                        <frontend_model>TemplateMonster\NewsletterPopup\Block\Adminhtml\System\Config\Field\ColorPicker</frontend_model>
+                        <depends>
+                            <field id="*/*/*/use_default_icon_colors">0</field>
+                        </depends>
+                    </field>
+                    <field id="icon_background_hover" translate="label comment" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Icon background hover</label>
+                        <comment>Youtube icon background hover in hex format.</comment>
+                        <frontend_model>TemplateMonster\NewsletterPopup\Block\Adminhtml\System\Config\Field\ColorPicker</frontend_model>
+                        <depends>
+                            <field id="*/*/*/use_default_icon_colors">0</field>
+                        </depends>
+                    </field>
+                    <field id="icon_hover_color" translate="label comment" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Icon hover color</label>
+                        <comment>Youtube icon hover color in hex format.</comment>
+                        <frontend_model>TemplateMonster\NewsletterPopup\Block\Adminhtml\System\Config\Field\ColorPicker</frontend_model>
+                        <depends>
+                            <field id="*/*/*/use_default_icon_colors">0</field>
+                        </depends>
+                    </field>
+                    <depends>
+                        <field id="enabled_all">1</field>
+                    </depends>
+                </group>
+                <group id="vimeo_settings" translate="label" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Vimeo settings</label>
+                    <field id="enabled" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Enabled</label>
+                        <comment>Turn on to enable the Vimeo icon.</comment>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    </field>
+                    <field id="use_default_icon_colors" translate="label comment" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Use default icon colors</label>
+                        <comment>Turn on to use default icon colors, or turn off to customize</comment>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    </field>
+                    <field id="link" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Link</label>
+                        <comment>Vimeo link.</comment>
+                    </field>
+                    <field id="icon_background" translate="label comment" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Icon background</label>
+                        <comment>Vimeo icon background in hex format.</comment>
+                        <frontend_model>TemplateMonster\NewsletterPopup\Block\Adminhtml\System\Config\Field\ColorPicker</frontend_model>
+                        <depends>
+                            <field id="*/*/*/use_default_icon_colors">0</field>
+                        </depends>
+                    </field>
+                    <field id="icon_color" translate="label comment" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Icon color</label>
+                        <comment>Vimeo icon color in hex format.</comment>
+                        <frontend_model>TemplateMonster\NewsletterPopup\Block\Adminhtml\System\Config\Field\ColorPicker</frontend_model>
+                        <depends>
+                            <field id="*/*/*/use_default_icon_colors">0</field>
+                        </depends>
+                    </field>
+                    <field id="icon_background_hover" translate="label comment" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Icon background hover</label>
+                        <comment>Vimeo icon background hover in hex format.</comment>
+                        <frontend_model>TemplateMonster\NewsletterPopup\Block\Adminhtml\System\Config\Field\ColorPicker</frontend_model>
+                        <depends>
+                            <field id="*/*/*/use_default_icon_colors">0</field>
+                        </depends>
+                    </field>
+                    <field id="icon_hover_color" translate="label comment" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Icon hover color</label>
+                        <comment>Vimeo icon hover color in hex format.</comment>
+                        <frontend_model>TemplateMonster\NewsletterPopup\Block\Adminhtml\System\Config\Field\ColorPicker</frontend_model>
+                        <depends>
+                            <field id="*/*/*/use_default_icon_colors">0</field>
+                        </depends>
+                    </field>
+                    <depends>
+                        <field id="enabled_all">1</field>
+                    </depends>
+                </group>
+                <group id="pinterest_settings" translate="label" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Pinterest settings</label>
+                    <field id="enabled" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Enabled</label>
+                        <comment>Turn on to enable the Pinterest icon.</comment>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    </field>
+                    <field id="use_default_icon_colors" translate="label comment" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Use default icon colors</label>
+                        <comment>Turn on to use default icon colors, or turn off to customize</comment>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    </field>
+                    <field id="link" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Link</label>
+                        <comment>Pinterest link.</comment>
+                    </field>
+                    <field id="icon_background" translate="label comment" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Icon background</label>
+                        <comment>Pinterest icon background in hex format.</comment>
+                        <frontend_model>TemplateMonster\NewsletterPopup\Block\Adminhtml\System\Config\Field\ColorPicker</frontend_model>
+                        <depends>
+                            <field id="*/*/*/use_default_icon_colors">0</field>
+                        </depends>
+                    </field>
+                    <field id="icon_color" translate="label comment" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Icon color</label>
+                        <comment>Pinterest icon color in hex format.</comment>
+                        <frontend_model>TemplateMonster\NewsletterPopup\Block\Adminhtml\System\Config\Field\ColorPicker</frontend_model>
+                        <depends>
+                            <field id="*/*/*/use_default_icon_colors">0</field>
+                        </depends>
+                    </field>
+                    <field id="icon_background_hover" translate="label comment" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Icon background hover</label>
+                        <comment>Pinterest icon background hover in hex format.</comment>
+                        <frontend_model>TemplateMonster\NewsletterPopup\Block\Adminhtml\System\Config\Field\ColorPicker</frontend_model>
+                        <depends>
+                            <field id="*/*/*/use_default_icon_colors">0</field>
+                        </depends>
+                    </field>
+                    <field id="icon_hover_color" translate="label comment" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Icon hover color</label>
+                        <comment>Pinterest icon hover color in hex format.</comment>
+                        <frontend_model>TemplateMonster\NewsletterPopup\Block\Adminhtml\System\Config\Field\ColorPicker</frontend_model>
+                        <depends>
+                            <field id="*/*/*/use_default_icon_colors">0</field>
+                        </depends>
+                    </field>
+                    <depends>
+                        <field id="enabled_all">1</field>
+                    </depends>
+                </group>
+                <group id="instagram_settings" translate="label" type="text" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Instagram settings</label>
+                    <field id="enabled" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Enabled</label>
+                        <comment>Turn on to enable the Instagram icon.</comment>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    </field>
+                    <field id="use_default_icon_colors" translate="label comment" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Use default icon colors</label>
+                        <comment>Turn on to use default icon colors, or turn off to customize</comment>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    </field>
+                    <field id="link" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Link</label>
+                        <comment>Instagram link.</comment>
+                    </field>
+                    <field id="icon_background" translate="label comment" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Icon background</label>
+                        <comment>Instagram icon background in hex format.</comment>
+                        <frontend_model>TemplateMonster\NewsletterPopup\Block\Adminhtml\System\Config\Field\ColorPicker</frontend_model>
+                        <depends>
+                            <field id="*/*/*/use_default_icon_colors">0</field>
+                        </depends>
+                    </field>
+                    <field id="icon_color" translate="label comment" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Icon color</label>
+                        <comment>Instagram icon color in hex format.</comment>
+                        <frontend_model>TemplateMonster\NewsletterPopup\Block\Adminhtml\System\Config\Field\ColorPicker</frontend_model>
+                        <depends>
+                            <field id="*/*/*/use_default_icon_colors">0</field>
+                        </depends>
+                    </field>
+                    <field id="icon_background_hover" translate="label comment" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Icon background hover</label>
+                        <comment>Instagram icon background hover in hex format.</comment>
+                        <frontend_model>TemplateMonster\NewsletterPopup\Block\Adminhtml\System\Config\Field\ColorPicker</frontend_model>
+                        <depends>
+                            <field id="*/*/*/use_default_icon_colors">0</field>
+                        </depends>
+                    </field>
+                    <field id="icon_hover_color" translate="label comment" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Icon hover color</label>
+                        <comment>Instagram icon hover color in hex format.</comment>
+                        <frontend_model>TemplateMonster\NewsletterPopup\Block\Adminhtml\System\Config\Field\ColorPicker</frontend_model>
+                        <depends>
+                            <field id="*/*/*/use_default_icon_colors">0</field>
+                        </depends>
+                    </field>
+                    <depends>
+                        <field id="enabled_all">1</field>
+                    </depends>
+                </group>
+                <group id="foursquare_settings" translate="label" type="text" sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Foursquare settings</label>
+                    <field id="enabled" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Enabled</label>
+                        <comment>Turn on to enable the Foursquare icon.</comment>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    </field>
+                    <field id="use_default_icon_colors" translate="label comment" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Use default icon colors</label>
+                        <comment>Turn on to use default icon colors, or turn off to customize</comment>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    </field>
+                    <field id="link" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Link</label>
+                        <comment>Foursquare link.</comment>
+                    </field>
+                    <field id="icon_background" translate="label comment" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Icon background</label>
+                        <comment>Foursquare icon background in hex format.</comment>
+                        <frontend_model>TemplateMonster\NewsletterPopup\Block\Adminhtml\System\Config\Field\ColorPicker</frontend_model>
+                        <depends>
+                            <field id="*/*/*/use_default_icon_colors">0</field>
+                        </depends>
+                    </field>
+                    <field id="icon_color" translate="label comment" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Icon color</label>
+                        <comment>Foursquare icon color in hex format.</comment>
+                        <frontend_model>TemplateMonster\NewsletterPopup\Block\Adminhtml\System\Config\Field\ColorPicker</frontend_model>
+                        <depends>
+                            <field id="*/*/*/use_default_icon_colors">0</field>
+                        </depends>
+                    </field>
+                    <field id="icon_background_hover" translate="label comment" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Icon background hover</label>
+                        <comment>Foursquare icon background hover in hex format.</comment>
+                        <frontend_model>TemplateMonster\NewsletterPopup\Block\Adminhtml\System\Config\Field\ColorPicker</frontend_model>
+                        <depends>
+                            <field id="*/*/*/use_default_icon_colors">0</field>
+                        </depends>
+                    </field>
+                    <field id="icon_hover_color" translate="label comment" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Icon hover color</label>
+                        <comment>Foursquare icon hover color in hex format.</comment>
+                        <frontend_model>TemplateMonster\NewsletterPopup\Block\Adminhtml\System\Config\Field\ColorPicker</frontend_model>
+                        <depends>
+                            <field id="*/*/*/use_default_icon_colors">0</field>
+                        </depends>
+                    </field>
+                    <depends>
+                        <field id="enabled_all">1</field>
+                    </depends>
+                </group>
+                <group id="tumblr_settings" translate="label" type="text" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Tumblr settings</label>
+                    <field id="enabled" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Enabled</label>
+                        <comment>Turn on to enable the Tumblr icon.</comment>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    </field>
+                    <field id="use_default_icon_colors" translate="label comment" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Use default icon colors</label>
+                        <comment>Turn on to use default icon colors, or turn off to customize</comment>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    </field>
+                    <field id="link" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Link</label>
+                        <comment>Tumblr link.</comment>
+                    </field>
+                    <field id="icon_background" translate="label comment" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Icon background</label>
+                        <comment>Tumblr icon background in hex format.</comment>
+                        <frontend_model>TemplateMonster\NewsletterPopup\Block\Adminhtml\System\Config\Field\ColorPicker</frontend_model>
+                        <depends>
+                            <field id="*/*/*/use_default_icon_colors">0</field>
+                        </depends>
+                    </field>
+                    <field id="icon_color" translate="label comment" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Icon color</label>
+                        <comment>Tumblr icon color in hex format.</comment>
+                        <frontend_model>TemplateMonster\NewsletterPopup\Block\Adminhtml\System\Config\Field\ColorPicker</frontend_model>
+                        <depends>
+                            <field id="*/*/*/use_default_icon_colors">0</field>
+                        </depends>
+                    </field>
+                    <field id="icon_background_hover" translate="label comment" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Icon background hover</label>
+                        <comment>Tumblr icon background hover in hex format.</comment>
+                        <frontend_model>TemplateMonster\NewsletterPopup\Block\Adminhtml\System\Config\Field\ColorPicker</frontend_model>
+                        <depends>
+                            <field id="*/*/*/use_default_icon_colors">0</field>
+                        </depends>
+                    </field>
+                    <field id="icon_hover_color" translate="label comment" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Icon hover color</label>
+                        <comment>Tumblr icon hover color in hex format.</comment>
+                        <frontend_model>TemplateMonster\NewsletterPopup\Block\Adminhtml\System\Config\Field\ColorPicker</frontend_model>
+                        <depends>
+                            <field id="*/*/*/use_default_icon_colors">0</field>
+                        </depends>
+                    </field>
+                    <depends>
+                        <field id="enabled_all">1</field>
+                    </depends>
+                </group>
+                <group id="rss_settings" translate="label" type="text" sortOrder="110" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>RSS settings</label>
+                    <field id="enabled" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Enabled</label>
+                        <comment>Turn on to enable the RSS icon.</comment>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    </field>
+                    <field id="use_default_icon_colors" translate="label comment" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Use default icon colors</label>
+                        <comment>Turn on to use default icon colors, or turn off to customize</comment>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    </field>
+                    <field id="link" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Link</label>
+                        <comment>RSS link.</comment>
+                    </field>
+                    <field id="icon_background" translate="label comment" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Icon background</label>
+                        <comment>RSS icon background in hex format.</comment>
+                        <frontend_model>TemplateMonster\NewsletterPopup\Block\Adminhtml\System\Config\Field\ColorPicker</frontend_model>
+                        <depends>
+                            <field id="*/*/*/use_default_icon_colors">0</field>
+                        </depends>
+                    </field>
+                    <field id="icon_color" translate="label comment" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Icon color</label>
+                        <comment>RSS icon color in hex format.</comment>
+                        <frontend_model>TemplateMonster\NewsletterPopup\Block\Adminhtml\System\Config\Field\ColorPicker</frontend_model>
+                        <depends>
+                            <field id="*/*/*/use_default_icon_colors">0</field>
+                        </depends>
+                    </field>
+                    <field id="icon_background_hover" translate="label comment" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Icon background hover</label>
+                        <comment>RSS icon background hover in hex format.</comment>
+                        <frontend_model>TemplateMonster\NewsletterPopup\Block\Adminhtml\System\Config\Field\ColorPicker</frontend_model>
+                        <depends>
+                            <field id="*/*/*/use_default_icon_colors">0</field>
+                        </depends>
+                    </field>
+                    <field id="icon_hover_color" translate="label comment" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Icon hover color</label>
+                        <comment>RSS icon hover color in hex format.</comment>
+                        <frontend_model>TemplateMonster\NewsletterPopup\Block\Adminhtml\System\Config\Field\ColorPicker</frontend_model>
+                        <depends>
+                            <field id="*/*/*/use_default_icon_colors">0</field>
+                        </depends>
+                    </field>
+                    <depends>
+                        <field id="enabled_all">1</field>
+                    </depends>
+                </group>
+            </group>
+        </section>
+    </system>
+</config>

@@ -1,0 +1,113 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="templatemonster" translate="label" sortOrder="90">
+            <label>TemplateMonster</label>
+        </tab>
+        <section id="catalogimagesgrid" translate="label" type="text" sortOrder="150" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>Catalog Images Grid</label>
+            <tab>templatemonster</tab>
+            <resource>TemplateMonster_CatalogImagesGrid::config_catalogimagesgrid</resource>
+            <group id="general" translate="label" type="text" sortOrder="10"
+                   showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General</label>
+                <field id="enable" translate="label comment" type="select"
+                       sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable</label>
+                    <comment>Enable/Disable module entirely</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                </field>
+            </group>
+            <group id="category_page" translate="label" type="text" sortOrder="20"
+                   showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Category Page</label>
+                <field id="enable" translate="label comment" type="select"
+                       sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable for Category page</label>
+                    <comment>Enable/Disable Catalog Image Grid for Categories</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                </field>
+                <field id="use_image" translate="label comment" type="select"
+                       sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Use Image</label>
+                    <source_model>TemplateMonster\CatalogImagesGrid\Model\Config\Source\UseImage</source_model>
+                    <comment>Select Image type for categories</comment>
+                </field>
+                <field id="enable_image_categories" translate="label comment" type="select"
+                       sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Category Images</label>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                    <comment>Enable/Disable Images for Categories</comment>
+                </field>
+                <field id="enable_image_subcategories" translate="label comment" type="select"
+                       sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Subcategory Images</label>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                    <comment>Enable/Disable Images for SubCategories</comment>
+                </field>
+                <field id="image_width" translate="label comment" type="text"
+                       sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Image Width</label>
+                    <comment>Set Image width in px.</comment>
+                    <validate>validate-greater-than-zero</validate>
+                    <depends>
+                        <field id="use_image" separator=",">category_image,thumbnail_image</field>
+                    </depends>
+                </field>
+                <field id="icon_size" translate="label comment" type="text"
+                       sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Font Icon size</label>
+                    <comment>Set Icon size in px.</comment>
+                    <validate>validate-greater-than-zero</validate>
+                    <depends>
+                        <field id="use_image">font_icon</field>
+                    </depends>
+                </field>
+                <field id="columns_count" translate="label comment" type="text"
+                       sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Columns count</label>
+                    <validate>validate-greater-than-zero</validate>
+                    <comment>Set columns count. If empty, 4 columns will be displayed</comment>
+                </field>
+                <field id="amount_categories" translate="label comment" type="text"
+                       sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Count of categories to show</label>
+                    <validate>validate-zero-or-greater</validate>
+                    <comment>Set categories count. If empty, categories will not be displayed</comment>
+                </field>
+                <field id="amount_subcategories" translate="label comment" type="text"
+                       sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Count of subcategories to show</label>
+                    <validate>validate-zero-or-greater</validate>
+                    <comment>Set subcategories count. If empty, subcategories will not be displayed</comment>
+                </field>
+                <field id="view_more" translate="label comment" type="select"
+                       sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show "View More" button</label>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                    <comment>Enable/Disable "View More" button, which refers to the parent category</comment>
+                </field>
+                <field id="show_before_grid" translate="label comment" type="select"
+                       sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show Before Products Grid</label>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                    <comment>Enable/Disable Catalog Image Grid before product listing</comment>
+                </field>
+                <field id="show_after_grid" translate="label comment" type="select"
+                       sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show After Products Grid</label>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                    <comment>Enable/Disable Catalog Image Grid after product listing</comment>
+                </field>
+
+                <!--field id="where_to_show" translate="label comment" type="select"
+                       sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Where to show</label>
+                    <source_model>TemplateMonster\CatalogImagesGrid\Model\Config\Source\WhereShow</source_model>
+                </field-->
+
+            </group>
+        </section>
+    </system>
+</config>

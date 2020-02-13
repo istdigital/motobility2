@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Magento\Theme\Block\Html\Topmenu" type="TemplateMonster\Megamenu\Block\Html\Topmenu" />
+    <preference for="Magento\Catalog\Plugin\Block\Topmenu" type="TemplateMonster\Megamenu\Plugin\Block\Topmenu" />
+    <type name="TemplateMonster\Megamenu\Controller\Adminhtml\Category\Image\Upload">
+        <arguments>
+            <argument name="imageUploader" xsi:type="object">Magento\Catalog\CategoryImageUpload</argument>
+        </arguments>
+    </type>
+    <type name="Magento\Catalog\Model\Category\DataProvider">
+        <plugin name="addMmImage" type="TemplateMonster\Megamenu\Model\Plugin\Category\DataProvider" />
+    </type>
+</config>

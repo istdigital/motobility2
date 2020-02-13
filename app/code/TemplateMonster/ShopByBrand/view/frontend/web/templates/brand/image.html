@@ -1,0 +1,17 @@
+<div class="product-brand">
+    <% if (data.showName) { %>
+    <h4 class="product-brand-name">
+        <a href="<%- data.brand.url %>">
+            <span><%- data.brand.name %></span>
+        </a>
+    </h4>
+    <% } %>
+
+    <% if (data.showLogo) { %>
+    <div class="product-brand-logo">
+        <a href="<%- data.brand.url %>">
+            <img src="<%- data.brand.image %>" alt="" />
+        </a>
+    </div>
+    <% } %>
+</div>

@@ -1,0 +1,138 @@
+<div class="home-section-5">
+    <div class="container">
+        <div class="product info detailed">
+            <div class="product data items" data-mage-init='{"tabs":{"openedState":"active"}}'>
+                <div class="data item title"
+                     data-role="collapsible" id="tab-label-featured-products">
+                    <a class="data switch"
+                       tabindex="-1"
+                       data-toggle="trigger"
+                       href="#featured-products"
+                       id="tab-label-featured-products-title">
+                        <?= __("Featured") ?>
+                    </a>
+                </div>
+                <div class="data item content"
+                	aria-labelledby="tab-label-featured-products-title" 
+                	id="homeFeatured" 
+                	data-role="content"
+                	data-bind="scope:'homeFeatured'">
+
+                	<div class="row">
+                		<div class="col-md-3 col-sm-3  ph-item">
+                			<div class="ph-picture"></div>
+                			<div class="col-md-12">
+    	            			<div class="row"><div class="col-md-12 ph-medium"></div><div class="col-md-3 ph-medium"></div></div>
+                			</div>
+                		</div>
+                		<div class="col-md-3 col-sm-3 hidden-xs ph-item">
+                			<div class="ph-picture"></div>
+                			<div class="col-md-12">
+    	            			<div class="row"><div class="col-md-12 ph-medium"></div><div class="col-md-3 ph-medium"></div></div>
+                			</div>
+                		</div>
+                		<div class="col-md-3 col-sm-3 hidden-xs ph-item">
+                			<div class="ph-picture"></div>
+                			<div class="col-md-12">
+    	            			<div class="row"><div class="col-md-12 ph-medium"></div><div class="col-md-3 ph-medium"></div></div>
+                			</div>
+                		</div>
+                		<div class="col-md-3 col-sm-3 hidden-xs ph-item">
+                			<div class="ph-picture"></div>
+                			<div class="col-md-12">
+    	            			<div class="row"><div class="col-md-12 ph-medium"></div><div class="col-md-3 ph-medium"></div></div>
+                			</div>
+                		</div>
+                	</div>
+
+                    <!-- ko template: getTemplate() --><!-- /ko -->
+    			    <script type="text/x-magento-init">
+    			    {
+    			        "#homeFeatured": {
+    			            "Magento_Ui/js/core/app": {
+    			               "components": {
+    			                    "homeFeatured": {
+    			                        "type": "home_featured_products",
+    			                        "component": "TemplateMonster_FeaturedProduct/js/products",
+    			                        "template" : "TemplateMonster_FeaturedProduct/products"
+    			                        }
+    			                    }
+    			                }
+    			            }
+    			    }
+    			    </script>
+                </div>
+
+                <div class="data item title"
+                     data-role="collapsible" id="tab-label-new-products">
+                    <a class="data switch"
+                       tabindex="-1"
+                       data-toggle="trigger"
+                       href="#new-products"
+                       id="tab-label-new-products-title">
+                        <?= __("New Arrivals") ?>
+                    </a>
+                </div>
+                <div class="data item content" 
+                     aria-labelledby="tab-label-new-products-title" 
+                     id="homeNew" 
+                     data-bind="scope:'homeNew'"
+                     data-role="content">
+                    <!-- ko template: getTemplate() --><!-- /ko -->
+                    <script type="text/x-magento-init">
+                    {
+                        "#homeNew": {
+                            "Magento_Ui/js/core/app": {
+                               "components": {
+                                    "homeNew": {
+                                        "type": "home_new_products",
+                                        "component": "TemplateMonster_FeaturedProduct/js/products",
+                                        "template" : "TemplateMonster_FeaturedProduct/products"
+                                        }
+                                    }
+                                }
+                            }
+                    }
+                    </script>
+                </div>
+
+
+
+                <div class="data item title"
+                     data-role="collapsible" id="tab-label-sale-products">
+                    <a class="data switch"
+                       tabindex="-1"
+                       data-toggle="trigger"
+                       href="#sale-products"
+                       id="tab-label-sale-products-title">
+                        <?= __("On Sale") ?>
+                    </a>
+                </div>
+                <div class="data item content" 
+                     aria-labelledby="tab-label-sale-products-title" 
+                     id="homeSale" 
+                     data-bind="scope:'homeSale'"
+                     data-role="content">
+                    <!-- ko template: getTemplate() --><!-- /ko -->
+                    <script type="text/x-magento-init">
+                    {
+                        "#homeSale": {
+                            "Magento_Ui/js/core/app": {
+                               "components": {
+                                    "homeSale": {
+                                        "type": "home_sale_products",
+                                        "component": "TemplateMonster_FeaturedProduct/js/products",
+                                        "template" : "TemplateMonster_FeaturedProduct/products"
+                                        }
+                                    }
+                                }
+                            }
+                    }
+                    </script>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>

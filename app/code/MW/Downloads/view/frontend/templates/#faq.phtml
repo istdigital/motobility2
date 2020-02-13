@@ -1,0 +1,37 @@
+<?php
+$itemsJsonData = $block->getDataOneColumnJson();
+?>
+
+<div class="downloads-container">
+    <div class="downloads-list" data-bind="scope: 'downloads-grid'">
+
+        <!-- ko template: getTemplate() --><!-- /ko -->
+
+    </div>
+</div>
+
+<script type="text/x-magento-init">
+{
+    "*": {
+        "Magento_Ui/js/core/app": {
+            "components": {
+                "downloads-grid": {
+                    "component": "MW_Downloads/js/downloads/grid"
+                }
+            }
+        }
+    }
+}
+</script>
+
+<?php if(!$block->isAjaxPageType()){ ?>
+<script type="text/x-magento-init">
+{
+    "*": {
+        "MW_Downloads/js/downloads/grid": {
+            "items": <?php /* @escapeNotVerified */ echo $itemsJsonData; ?>
+        }
+    }
+}
+</script>
+<?php } ?>

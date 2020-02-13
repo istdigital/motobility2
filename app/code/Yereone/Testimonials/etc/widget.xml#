@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Widget:etc/widget.xsd">
+    <widget id="yereone_testimonials" class="Yereone\Testimonials\Block\Widget\Testimonial">
+        <label translate="true">Yereone Testimonials</label>
+        <description>Testimonial widget</description>
+        <parameters>
+            <parameter name="widget_title" xsi:type="text" visible="true">
+                <label translate="true">Widget title</label>
+            </parameter>
+            <parameter name="layout_type" xsi:type="select" visible="true" source_model="Yereone\Testimonials\Model\Config\Source\Widget\Layout">
+                <label translate="true">Layout</label>
+            </parameter>
+            <parameter name="order_by" xsi:type="select" visible="true" source_model="Yereone\Testimonials\Model\Config\Source\Widget\OrderBy">
+                <label translate="true">Order By</label>
+            </parameter>
+            <parameter name="slidesToShow" xsi:type="text" visible="true">
+                <label translate="true">Slides to show</label>
+                <depends>
+                    <parameter name="layout_type" value="slider" />
+                </depends>
+                <value>1</value>
+            </parameter>
+            <parameter name="slidesToScroll" xsi:type="text" visible="true">
+                <label translate="true">Slides to scroll</label>
+                <depends>
+                    <parameter name="layout_type" value="slider" />
+                </depends>
+                <value>1</value>
+            </parameter>
+            <parameter name="speed" xsi:type="text" visible="true">
+                <label translate="true">Speed</label>
+                <depends>
+                    <parameter name="layout_type" value="slider" />
+                </depends>
+                <value>300</value>
+            </parameter>
+            <parameter name="infinite" xsi:type="select" visible="true" source_model="Magento\Config\Model\Config\Source\Yesno">
+                <label translate="true">Infinite</label>
+                <depends>
+                    <parameter name="layout_type" value="slider" />
+                </depends>
+            </parameter>
+            <parameter name="arrows" xsi:type="select" visible="true" source_model="Magento\Config\Model\Config\Source\Yesno">
+                <label translate="true">Arrows</label>
+                <depends>
+                    <parameter name="layout_type" value="slider" />
+                </depends>
+            </parameter>
+            <parameter name="dots" xsi:type="select" visible="true" source_model="Magento\Config\Model\Config\Source\Yesno">
+                <label translate="true">Dots</label>
+                <depends>
+                    <parameter name="layout_type" value="slider" />
+                </depends>
+            </parameter>
+            <parameter name="responsive" xsi:type="select" visible="true" source_model="Magento\Config\Model\Config\Source\Yesno">
+                <label translate="true">Responsive</label>
+                <depends>
+                    <parameter name="layout_type" value="slider" />
+                </depends>
+            </parameter>
+            <parameter name="slides_to_show_desctop" xsi:type="text" visible="true">
+                <label translate="true">Desktop Slides to show</label>
+                <depends>
+                    <parameter name="layout_type" value="slider" />
+                    <parameter name="responsive" value="1" />
+                </depends>
+                <value>3</value>
+            </parameter>
+            <parameter name="slides_to_scroll_desctop" xsi:type="text" visible="true">
+                <label translate="true">Desktop Slides to scroll</label>
+                <depends>
+                    <parameter name="layout_type" value="slider" />
+                    <parameter name="responsive" value="1" />
+                </depends>
+                <value>3</value>
+            </parameter>
+            <parameter name="slides_to_show_tablet" xsi:type="text" visible="true">
+                <label translate="true">Tablet Slides to show</label>
+                <depends>
+                    <parameter name="layout_type" value="slider" />
+                    <parameter name="responsive" value="1" />
+                </depends>
+                <value>2</value>
+            </parameter>
+            <parameter name="slides_to_scroll_tablet" xsi:type="text" visible="true">
+                <label translate="true">Tablet Slides to scroll</label>
+                <depends>
+                    <parameter name="layout_type" value="slider" />
+                    <parameter name="responsive" value="1" />
+                </depends>
+                <value>2</value>
+            </parameter>
+            <parameter name="slides_to_show_mobile" xsi:type="text" visible="true">
+                <label translate="true">Mobile Slides to show</label>
+                <depends>
+                    <parameter name="layout_type" value="slider" />
+                    <parameter name="responsive" value="1" />
+                </depends>
+                <value>1</value>
+            </parameter>
+            <parameter name="slides_to_scroll_mobile" xsi:type="text" visible="true">
+                <label translate="true">Mobile Slides to scroll</label>
+                <depends>
+                    <parameter name="layout_type" value="slider" />
+                    <parameter name="responsive" value="1" />
+                </depends>
+                <value>1</value>
+            </parameter>
+            <parameter name="autoplay" xsi:type="select" visible="true" source_model="Magento\Config\Model\Config\Source\Yesno">
+                <label translate="true">Autoplay</label>
+                <depends>
+                    <parameter name="layout_type" value="slider" />
+                </depends>
+            </parameter>
+            <parameter name="autoplaySpeed" xsi:type="text" visible="true">
+                <label translate="true">Autoplay Speed</label>
+                <depends>
+                    <parameter name="layout_type" value="slider" />
+                    <parameter name="autoplay" value="1" />
+                </depends>
+                <value>2000</value>
+            </parameter>
+            <parameter name="pagination" xsi:type="select" visible="true" source_model="Magento\Config\Model\Config\Source\Yesno">
+                <label translate="true">Pagination</label>
+                <depends>
+                    <parameter name="layout_type" value="grid" />
+                </depends>
+            </parameter>
+            <parameter name="per_page" xsi:type="text" visible="true">
+                <label translate="true">Testimonials per Page</label>
+                <depends>
+                    <parameter name="layout_type" value="grid" />
+                    <parameter name="pagination" value="1" />
+                </depends>
+                <value>4</value>
+            </parameter>
+            <parameter name="title" xsi:type="select" visible="true"  source_model="Magento\Config\Model\Config\Source\Yesno">
+                <label translate="true">Show Title</label>
+            </parameter>
+            <parameter name="rating" xsi:type="select" visible="true"  source_model="Magento\Config\Model\Config\Source\Yesno">
+                <label translate="true">Show Rating</label>
+            </parameter>
+            <parameter name="author" xsi:type="select" visible="true"  source_model="Magento\Config\Model\Config\Source\Yesno">
+                <label translate="true">Show Author</label>
+            </parameter>
+            <parameter name="job" xsi:type="select" visible="true"  source_model="Magento\Config\Model\Config\Source\Yesno">
+                <label translate="true">Show Job</label>
+            </parameter>
+            <parameter name="city" xsi:type="select" visible="true"  source_model="Magento\Config\Model\Config\Source\Yesno">
+                <label translate="true">Show City</label>
+            </parameter>
+            <parameter name="creation_time" xsi:type="select" visible="true"  source_model="Magento\Config\Model\Config\Source\Yesno">
+                <label translate="true">Show Creation Time</label>
+            </parameter>
+            <parameter name="company" xsi:type="select" visible="true"  source_model="Magento\Config\Model\Config\Source\Yesno">
+                <label translate="true">Show Company</label>
+            </parameter>
+            <parameter name="image" xsi:type="select" visible="true"  source_model="Magento\Config\Model\Config\Source\Yesno">
+                <label translate="true">Show Author Image</label>
+                <description translate="true">Recommended to upload square pictures</description>
+            </parameter>
+            <parameter name="image_style" xsi:type="select" visible="true" source_model="Yereone\Testimonials\Model\Config\Source\Widget\ImageStyle">
+                <label translate="true">Image Style</label>
+                <depends>
+                    <parameter name="image" value="1" />
+                </depends>
+            </parameter>
+            <parameter name="social" xsi:type="select" visible="true"  source_model="Magento\Config\Model\Config\Source\Yesno">
+                <label translate="true">Show Social</label>
+                <description translate="true">To display social icons, 'Enable Font Awesome' to yes if you don't have it on your store (Yereone->Testimonial->Configuration)</description>
+            </parameter>
+        </parameters>
+    </widget>
+    <widget id="yereone_testimonials_form" class="Yereone\Testimonials\Block\Widget\TestimonialForm">
+        <label translate="true">Yereone Testimonial Form</label>
+        <description>Testimonial form widget</description>
+        <parameters>
+            <parameter name="widget_title" xsi:type="text" visible="true">
+                <label translate="true">Widget title</label>
+            </parameter>
+            <parameter name="company" xsi:type="select" visible="true"  source_model="Magento\Config\Model\Config\Source\Yesno">
+                <label translate="true">Show Company</label>
+            </parameter>
+            <parameter name="job" xsi:type="select" visible="true"  source_model="Magento\Config\Model\Config\Source\Yesno">
+                <label translate="true">Show Job</label>
+            </parameter>
+            <parameter name="city" xsi:type="select" visible="true"  source_model="Magento\Config\Model\Config\Source\Yesno">
+                <label translate="true">Show City</label>
+            </parameter>
+            <parameter name="image" xsi:type="select" visible="true"  source_model="Magento\Config\Model\Config\Source\Yesno">
+                <label translate="true">Show Author Image</label>
+            </parameter>
+            <parameter name="rating" xsi:type="select" visible="true"  source_model="Magento\Config\Model\Config\Source\Yesno">
+                <label translate="true">Show Rating</label>
+            </parameter>
+            <parameter name="social" xsi:type="select" visible="true"  source_model="Magento\Config\Model\Config\Source\Yesno">
+                <label translate="true">Show Social</label>
+            </parameter>
+            <parameter name="recaptcha" xsi:type="select" visible="true"  source_model="Magento\Config\Model\Config\Source\Yesno">
+                <label translate="true">Show Google reCAPTCHA</label>
+                <description translate="true">To display Google reCAPTCHA, 'Enable google reCAPTCHA' to yes and fill reCAPTCHA Site key (Yereone->Testimonial->Configuration)</description>
+            </parameter>
+        </parameters>
+    </widget>
+</widgets>

@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="website_save_after">
+        <observer name="magento_to_switcher_website_change" instance="TemplateMonster\LayoutSwitcher\Observer\MagentoToSwitcherChange"/>
+    </event>
+    <event name="admin_system_config_changed_section_layout_switcher">
+        <observer name="switcher_to_magento_website_change" instance="TemplateMonster\LayoutSwitcher\Observer\SwitcherToMagentoChange"/>
+    </event>
+</config>

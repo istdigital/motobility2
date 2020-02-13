@@ -1,0 +1,50 @@
+<aside class="modal-<%= data.type %> <%= data.modalClass %>
+       <% if(data.responsive){ %><%= data.responsiveClass %><% } %>
+       <% if(data.innerScroll){ %><%= data.innerScrollClass %><% } %>"
+       data-role="modal"
+       data-type="<%= data.type %>"
+       tabindex="0">
+    <div data-role="focusable-start" tabindex="0"></div>
+    <div class="modal-inner-wrap"
+         data-role="focusable-scope">
+        <header class="modal-header">
+            <% if(data.title.length > 0){ %>
+            <h1 class="modal-title"
+                data-role="title"><%= data.title %></h1>
+            <% } %>
+            <button
+                    class="action-close"
+                    data-role="closeBtn"
+                    type="button">
+                <span><%= data.closeText %></span>
+            </button>
+        </header>
+        <div class="modal-content" data-role="content">
+            <% if(data.content.length > 0){ %>
+            <div class="content-text">
+                <%= data.content %>
+            </div>
+            <% } %>
+        </div>
+        <footer class="modal-footer">
+            <% if(data.buttons.length > 0){ %>
+                <div class="buttons-container">
+                    <% _.each(data.buttons, function(button) { %>
+                    <button
+                            class="<%= button.class %>"
+                            type="button"
+                            data-role="action"><span><%= button.text %></span></button>
+                    <% }); %>
+                </div>
+            <% } %>
+            <% if(data.socialLinks.length > 0){ %>
+                <div class="modal-social">
+                    <% _.each(data.socialLinks, function(link) { %>
+                    <a href="<%= link.href %>" class="fa fa-fw fa-<%= link.type %>" title="<%=link.title %>" target="_blank"></a>
+                    <% }); %>
+                </div>
+            <% } %>
+        </footer>
+    </div>
+    <div data-role="focusable-end" tabindex="0"></div>
+</aside>

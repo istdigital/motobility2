@@ -1,0 +1,123 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="templatemonster" translate="label" sortOrder="90">
+            <label>TemplateMonster</label>
+        </tab>
+        <section id="shopbybrand" translate="label" type="text" sortOrder="260" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>Shop By Brand</label>
+            <tab>templatemonster</tab>
+            <resource>TemplateMonster_ShopByBrand::config_shopbybrand</resource>
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General</label>
+                <field id="enabled" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable</label>
+                    <comment>Enable/Disable.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                </field>
+                <field id="show_top_link" translate="label comment" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Display Top Link</label>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                    <comment>Enable/Disable link in top menu.</comment>
+                </field>
+                <field id="number" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Number of Brands to Show</label>
+                    <comment>Set number of brands to show in top menu.</comment>
+                </field>
+            </group>
+            <group id="brand" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Brand Page</label>
+                <field id="layout" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Layout</label>
+                    <source_model>Magento\Cms\Model\Page\Source\PageLayout</source_model>
+                    <comment>Select Layout for brand page.</comment>
+                </field>
+                <field id="show_banner" translate="label comment" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Display Brand Banner</label>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                    <comment>Turn on to display brand banner on the brand page.</comment>
+                </field>
+                <field id="show_logo" translate="label comment" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Display Brand Logo </label>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                    <comment>Turn on to display brand logo on the brand page.</comment>
+                </field>
+                <field id="show_description" translate="label comment" type="select" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Display Brand Description</label>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                    <comment>Turn on to display brand description on the brand page.</comment>
+                </field>
+                <!--<field id="display_featured_product" translate="label comment" type="select" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">-->
+                    <!--<label>Display Featured Products</label>-->
+                    <!--<source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>-->
+                <!--</field>-->
+            </group>
+            <group id="product" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Product Page</label>
+                <field id="show_name" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Display Brand Name</label>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                    <comment>Turn on to display name on the product page.</comment>
+                </field>
+                <field id="show_logo" translate="label comment" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Display Brand Logo</label>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                    <comment>Turn on to display logo on the product page.</comment>
+                </field>
+                <field id="brand_logo_width" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Brand Logo Width</label>
+                    <comment>Brand logo width on the product page.</comment>
+                </field>
+                <field id="selector" translate="label comment" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Selector</label>
+                    <comment>Selector on the product page after which to insert logo .</comment>
+                </field>
+            </group>
+            <group id="brand_listing" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Brand Listing Page</label>
+                <field id="show_name" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Display Brand Name</label>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                    <comment>Turn on to display name on the brand listing page.</comment>
+                </field>
+                <field id="show_logo" translate="label comment" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Display Brand Logo</label>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                    <comment>Turn on to display logo on the brand listing page.</comment>
+                </field>
+                <field id="show_short_description" translate="label comment" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Display Short Description</label>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                    <comment>Turn on to display short description on the brand listing page.</comment>
+                </field>
+                <!--<field id="display_featured_products" translate="label comment" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">-->
+                    <!--<label>Display Featured Products </label>-->
+                    <!--<source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>-->
+                <!--</field>-->
+            </group>
+            <group id="brand_sidebar" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Brand Sidebar</label>
+                <field id="enabled" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                    <comment>Turn on to enable brand sidebar block.</comment>
+                </field>
+                <field id="show_name" translate="label comment" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Display Brand Name</label>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                    <comment>Turn on to display name in the brand sidebar block.</comment>
+                </field>
+                <field id="show_logo" translate="label comment" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Display Brand Logo</label>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                    <comment>Turn on to display logo in the brand sidebar block.</comment>
+                </field>
+                <field id="quantity" translate="label comment" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Quantity to Show</label>
+                    <comment>Brand quantity to display name in the brand sidebar block.</comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

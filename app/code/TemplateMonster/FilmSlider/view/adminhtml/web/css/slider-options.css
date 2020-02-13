@@ -1,0 +1,93 @@
+/**
+ * Copyright © 2015 TemplateMonster. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+#slider_tabs_main_section_content,
+#slider_items_tabs_main_section_content {
+    padding: 0;
+    margin: 0;
+}
+.entry-edit{
+    overflow: hidden;
+    padding: 0;
+}
+.entry-edit legend {
+    position: relative;
+    overflow: hidden;
+    padding: 1.9rem 0 1.9rem 0;
+    margin: 0;
+    font-size: 17px;
+    border-top: 1px solid #ccc;
+    cursor: pointer;
+}
+
+.entry-edit legend:first-child {
+    border-top: 0;
+}
+
+.entry-edit legend::after {
+   content: "\e616";
+   font-family: "Admin Icons";
+   position: absolute;
+   top: 30%;
+   font-weight: 400;
+   right: 8px;
+   font-size: 1.7rem;
+}
+
+.entry-edit legend[aria-selected="true"]::after{
+    content: "\e615";
+}
+
+.entry-edit fieldset.fieldset{
+    padding: 5px 1px 20px;
+}
+
+.entry-edit .admin__fieldset > .admin__field {
+    margin: 20px 0;
+}
+.entry-edit .admin__fieldset > .admin__field button{
+  margin: 5px 5px 0 0;
+}
+
+.entry-edit .admin__fieldset > .admin__field > .admin__field-label{
+  width: 20%;
+  padding-right: 30px;
+  margin-left: 0;
+}
+
+.entry-edit .admin__fieldset > .admin__field > .admin__field-control{
+  width: 60%;
+}
+
+.entry-edit #slider_base_fieldset_layer_sortable .admin__field-label{
+  display: none;
+}
+.entry-edit #slider_base_fieldset_layer_sortable .admin__field-control{
+  margin-left: 0;
+  width: 100%;
+}
+
+.entry-edit .admin__fieldset #sortable li{
+  list-style: none;
+  padding: 10px 10px; border:solid 1px #ccc;
+  background-color: #f6f6f6;
+  margin-bottom: 2px;
+  cursor: move;
+}
+
+.entry-edit .admin__fieldset #sortable li.selected{
+  background-color: #e7e7e7;
+}
+#slider_items_tabs ul {
+    display: flex;
+    flex-wrap: wrap;
+}
+#slider_items_tabs ul li {
+    width: 100%;
+    order: 1;
+}
+#slider_items_tabs ul [data-ui-id="filmslider-item-page-edit-tabs-tab-item-add-new-slide"] {
+    order: 0;
+}

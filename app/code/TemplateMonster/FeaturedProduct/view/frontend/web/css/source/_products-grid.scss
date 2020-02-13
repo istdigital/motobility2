@@ -1,0 +1,144 @@
+/*
+ * 	Featured Product by TemplateMonster 2016
+ *	v1.0.0
+ */
+
+// import
+@import '_variables.scss';
+@import '_mixins.scss';
+
+/* Main Styles */
+
+.block.widget.featured {
+    .products-grid .product-items{
+        .product-item-photo {
+            display: block;
+            text-align: center;
+        }
+    }
+
+    .block-content .products-grid .product-items {
+        margin:0 -15px;
+
+        .product-item {
+            margin-left: 0;
+            margin-right: 0;
+            padding:0 15px;
+        }
+    }
+}
+
+
+// Carousel and Tabs
+.block.featured {
+
+    overflow: hidden;
+    .block-content .products-grid {
+        &.is-carousel {
+            margin: 0 -15px;
+        }
+        .product-items.owl-carousel{
+            margin: 0;
+
+            .owl-wrapper-outer {
+                padding: 10px 0 0;
+            }
+        }
+    }
+
+    &[role="tablist"]{
+        .block-title{
+            display: inline-block;
+            width: auto;
+            margin-right: 15px;
+
+            strong {
+                margin-bottom: 0;
+                cursor: pointer;
+            }
+
+            &:before {
+                display: none;
+            }
+            &:after {
+
+            }
+
+            &.active {
+                strong {
+                    color: #ccc;
+                }
+            }
+        }
+        .block-content {
+          float: right;
+          margin-left: -100%;
+          padding: 3rem 0 0;
+          width: 100%;
+        }
+
+        @media (max-width: 767px) {
+            .block-title {
+                display: block;
+                width: 100%;
+            }
+            .block-content {
+                float: none;
+                margin-left: 0;
+            }
+        }
+    }
+
+
+    [role="tablist"]{
+        text-align: right;
+
+        .category-title{
+            display: inline-block;
+            width: auto;
+            padding: 0;
+            margin:0 0 20px;
+
+            strong {
+                margin-bottom: 0;
+                padding-left: 15px;
+                cursor: pointer;
+                font-size: 18px;
+                font-weight: normal;
+            }
+
+            &:before {
+                display: none;
+            }
+            &:after {
+
+            }
+
+            &.active {
+                strong {
+                    color: #ccc;
+                }
+            }
+        }
+        .category-content {
+            text-align: left;
+            float: right;
+            margin-left: -100%;
+            padding: 70px 0 0;
+            width: 100%;
+        }
+
+        @media (max-width: 767px) {
+            .category-title {
+                display: block;
+                width: 100%;
+
+            }
+            .category-content{
+                float: none;
+                margin-left: 0;
+                padding-top: 20px;
+            }
+        }
+    }
+}

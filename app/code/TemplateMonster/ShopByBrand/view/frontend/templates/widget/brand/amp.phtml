@@ -1,0 +1,57 @@
+<?php
+    $brands = $block->getBrandCollection();
+    $helper = $this->helper('TemplateMonster\ShopByBrand\Helper\Data');
+
+    $widgetTitle = $block->getTitle();
+    $brandLogoWidth = $block->getBrandsLogoWidth();
+    $brandLogoHeight = $block->getBrandsLogoHeight();
+    $brandCarouselHeight = $block->getBrandsCarouselHeight();
+    $isCarousel = $block->getShowCarousel();
+    $visibleItems = $block->getBrandsPerView();
+    $itemWidth = $block->getItemWidth();
+    $cssClass = $block->getCssClass();
+?>
+
+<div class="block widget brands <?php /* @escapeNotVerified */ echo $cssClass; ?>">
+
+    <div class="block-title">
+        <strong role="heading" aria-level="2"><?php /* @escapeNotVerified */ echo __($widgetTitle); ?></strong>
+    </div>
+    <div class="block-content">
+        <?php if ($isCarousel): ?>
+            <amp-carousel id="brand-carousel"
+                class="brandlist"
+                height="<?= $brandCarouselHeight ?>"
+                type="carousel"
+                layout="fixed-height">
+        <?php else: ?>
+            <div class="brandlist">
+        <?php endif; ?>
+
+        <?php foreach ($brands as $brand):?>
+            <div class="inner">
+                <?php if ($brand->getImageLogoName()): ?>
+                    <a class="brand-logo" href="<?php echo $brand->getUrl() ?>">
+                        <amp-img src="<?php echo $helper->resizeImageUrl($brand->getImageLogoName(), $brandLogoWidth); ?>" 
+                            alt="<?php echo $block->escapeHtml($brand->getName()) ?>" 
+                            width="<?=  $brandLogoWidth ?>" 
+                            height="<?=  $brandLogoHeight ?>">
+                        </amp-img>
+                    </a>
+                <?php endif; ?>
+                <?php if($block->getShowBrandTitle()): ?>
+                    <h4 class="brand-name">
+                        <a class="brand-logo" href="<?php echo $brand->getUrl() ?>"><?php echo $brand->getName(); ?></a>
+                    </h4>
+                <?php endif; ?>
+            </div>
+        <?php endforeach;?>
+
+        <?php if ($isCarousel): ?>
+            </amp-carousel>
+        <?php else: ?>
+            </div>
+        <?php endif; ?>
+    </div>
+</div>
+

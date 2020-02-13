@@ -1,0 +1,163 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+  <system>
+    <section id="payment">
+      <group id="cryozonic_stripe" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+        <label>Stripe Payments by Cryozonic</label>
+        <comment>Accept online payments in Magento 2 using the Stripe Payment Gateway. If you do not yet have a Stripe account, please &lt;a href="https://manage.stripe.com/register" target="_blank"&gt;click here&lt;/a&gt; to register.</comment>
+        <field id="active" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+          <label>Enabled</label>
+          <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+        </field>
+        <field id="title" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+          <label>Title</label>
+          <comment><![CDATA[This is the payment method title used at the checkout page]]></comment>
+        </field>
+        <field id="stripe_mode" translate="label" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+          <label>Mode</label>
+          <comment><![CDATA[Set this to live when you are ready to accept payments]]></comment>
+          <source_model>Cryozonic\StripePayments\Model\Adminhtml\Source\Mode</source_model>
+        </field>
+        <field id="stripe_test_sk" translate="label" type="obscure" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+          <label>Test Secret Key</label>
+          <comment>
+            <![CDATA[<a target="_blank" href="https://dashboard.stripe.com/account/apikeys">Your Stripe Account</a> &gt; API Keys &gt; Test Secret Key]]>
+          </comment>
+          <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
+          <depends>
+            <field id="stripe_mode">test</field>
+          </depends>
+        </field>
+        <field id="stripe_test_pk" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+          <label>Test Publishable Key</label>
+          <comment>
+            <![CDATA[<a target="_blank" href="https://dashboard.stripe.com/account/apikeys">Your Stripe Account</a> &gt; API Keys &gt; Test Publishable Key]]>
+          </comment>
+          <depends>
+            <field id="stripe_mode">test</field>
+          </depends>
+        </field>
+        <field id="stripe_live_sk" translate="label" type="obscure" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
+          <label>Live Secret Key</label>
+          <comment>
+            <![CDATA[<a target="_blank" href="https://dashboard.stripe.com/account/apikeys">Your Stripe Account</a> &gt; API Keys &gt; Live Secret Key]]>
+          </comment>
+          <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
+          <depends>
+            <field id="stripe_mode">live</field>
+          </depends>
+        </field>
+        <field id="stripe_live_pk" translate="label" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+          <label>Live Publishable Key</label>
+          <comment>
+            <![CDATA[<a target="_blank" href="https://dashboard.stripe.com/account/apikeys">Your Stripe Account</a> &gt; API Keys &gt; Live Publishable Key]]>
+          </comment>
+          <depends>
+            <field id="stripe_mode">live</field>
+          </depends>
+        </field>
+        <field id="apple_pay_checkout" translate="label" type="select" sortOrder="86" showInDefault="1" showInWebsite="1" showInStore="1">
+          <label>Apple Pay</label>
+          <comment>
+            <![CDATA[Enable Apple Pay, Google Pay and Microsoft Pay on the checkout page.]]>
+          </comment>
+          <source_model>Cryozonic\StripePayments\Model\Adminhtml\Source\Enabled</source_model>
+        </field>
+        <field id="apple_pay_location" translate="label" type="select" sortOrder="88" showInDefault="1" showInWebsite="1" showInStore="1">
+          <label>Apple Pay Button Location</label>
+          <comment>
+            <![CDATA[Where should we display the Apple Pay button?]]>
+          </comment>
+          <source_model>Cryozonic\StripePayments\Model\Adminhtml\Source\ApplePayLocation</source_model>
+          <depends>
+            <field id="apple_pay_checkout">1</field>
+          </depends>
+        </field>
+        <field id="payment_action" translate="label" type="select" sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="1">
+          <label>Payment Action</label>
+          <source_model>Cryozonic\StripePayments\Model\Adminhtml\Source\PaymentAction</source_model>
+        </field>
+        <field id="expired_authorizations" translate="label" type="select" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+          <label>Expired Authorizations</label>
+          <comment>
+            <![CDATA[Authorizations will typically expire after 7 days. What should we do if an admin tries to capture an expired authorization?]]>
+          </comment>
+          <source_model>Cryozonic\StripePayments\Model\Adminhtml\Source\ExpiredAuthorizations</source_model>
+          <depends>
+            <field id="payment_action">authorize</field>
+          </depends>
+        </field>
+
+        <field id="automatic_invoicing" translate="label" type="select" sortOrder="105" showInDefault="1" showInWebsite="1" showInStore="1">
+          <label>Automatic Invoicing</label>
+          <comment>
+            <![CDATA[For Authorize Only orders, should we automatically create an invoice in Pending status right after the order?]]>
+          </comment>
+          <source_model>Cryozonic\StripePayments\Model\Adminhtml\Source\Enabled</source_model>
+          <depends>
+            <field id="payment_action">authorize</field>
+          </depends>
+        </field>
+
+        <field id="radar_risk_level" translate="label" type="select" sortOrder="110" showInDefault="1" showInWebsite="1" showInStore="1">
+          <label>Stripe Radar</label>
+          <comment>
+            <![CDATA[When enabled, elevated risk orders will be placed under review.]]>
+          </comment>
+          <source_model>Cryozonic\StripePayments\Model\Adminhtml\Source\StripeRadar</source_model>
+        </field>
+        <field id="ccsave" translate="label" type="select" sortOrder="120" showInDefault="1" showInWebsite="1" showInStore="1">
+          <label>Save Customer Cards</label>
+          <comment>
+            <![CDATA[Enable this if you want to save customer cards on Stripe's servers so that they don't have to enter the details of the same card twice]]>
+          </comment>
+          <source_model>Cryozonic\StripePayments\Model\Adminhtml\Source\CcSave</source_model>
+        </field>
+
+        <field id="statement_descriptor" translate="label" type="text" sortOrder="125" showInDefault="1" showInWebsite="1" showInStore="1">
+          <label>Optional Statement Descriptor</label>
+        </field>
+
+        <field id="use_store_currency" translate="label" type="select" sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="1">
+          <label>Pay in store currency</label>
+          <comment>Choose "Yes" to use store view currency instead of base currency.</comment>
+          <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+        </field>
+        <field id="order_status" translate="label" type="select" sortOrder="140" showInDefault="1" showInWebsite="1" showInStore="1">
+          <label>New Order Status</label>
+          <comment>Leave this empty to let Magento decide.</comment>
+          <source_model>Magento\Sales\Model\Config\Source\Order\Status</source_model>
+        </field>
+        <!-- <field id="card_autodetect" translate="label" type="select" sortOrder="150" showInDefault="1" showInWebsite="1" showInStore="1">
+          <label>Show Accepted Card Icons</label>
+          <source_model>Cryozonic\StripePayments\Model\Adminhtml\Source\CcAutoDetect</source_model>
+        </field>
+        <field id="cctypes" translate="label" type="multiselect" sortOrder="160" showInDefault="1" showInWebsite="1" showInStore="1">
+          <label>Accepted Card Types</label>
+          <source_model>Cryozonic\StripePayments\Model\Adminhtml\Source\CcType</source_model>
+          <depends>
+            <field id="card_autodetect">1</field>
+          </depends>
+        </field> -->
+        <field id="receipt_email" translate="label" type="select" sortOrder="170" showInDefault="1" showInWebsite="1" showInStore="1">
+          <label>Enable Stripe email receipts</label>
+          <comment>Let Stripe send customized email receipts for successful payments and refunds.</comment>
+          <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+        </field>
+        <field id="allowspecific" translate="label" type="allowspecific" sortOrder="180" showInDefault="1" showInWebsite="1" showInStore="1">
+         <label>Payment From Applicable Countries</label>
+         <source_model>Magento\Payment\Model\Config\Source\Allspecificcountries</source_model>
+       </field>
+       <field id="specificcountry" translate="label" type="multiselect" sortOrder="190" showInDefault="1" showInWebsite="1" showInStore="1">
+         <label>Payment From Specific Countries</label>
+         <source_model>Magento\Directory\Model\Config\Source\Country</source_model>
+       </field>
+       <field id="sort_order" translate="label" type="text" sortOrder="200" showInDefault="1" showInWebsite="1" showInStore="1">
+         <label>Sort Order</label>
+         <comment>Adjust this to move the payment method above or below other payment methods</comment>
+         <frontend_class>validate-number</frontend_class>
+       </field>
+     </group>
+   </section>
+ </system>
+</config>

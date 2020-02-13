@@ -1,0 +1,132 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page layout="1column" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="mage/gallery/gallery.css" media="all"/>
+    </head>
+    <referenceContainer name="columns" htmlClass="columns container layout_1"/>
+    <move element="page.main.title" destination="product.info.price" after="product.info.stock.sku"/>
+
+    <!-- <move element="product.info.overview" destination="content" after="product.info.media"/> -->
+
+    <referenceContainer name="product.info.main">
+    	<block class="Magento\Framework\View\Element\Template" name="rcalculator" template="Magento_Catalog::rcalculator.phtml" after="product.info.price">
+
+            <block class="MSP\ReCaptcha\Block\Frontend\ReCaptcha" name="msp-recaptcha" after="-"
+                   template="MSP_ReCaptcha::msp_recaptcha.phtml"
+                   cacheable="false"
+                   ifconfig="msp_securitysuite_recaptcha/frontend/enabled">
+
+                <arguments>
+                    <argument name="jsLayout" xsi:type="array">
+                        <item name="components" xsi:type="array">
+                            <item name="msp-recaptcha" xsi:type="array">
+                                <item name="component" xsi:type="string">MSP_ReCaptcha/js/reCaptcha</item>
+                                <item name="zone" xsi:type="string">contact</item>
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+            
+        </block>
+
+        <block class="Magento\Framework\View\Element\Template" name="ship.link" template="Magento_Catalog::sp.phtml" after="-"/>
+        
+    </referenceContainer>
+
+    <referenceBlock name="product.info.stock.sku" remove="true"/>
+    <referenceBlock name="product.info.overview" remove="true"/>
+
+    <referenceContainer name="product.info.details">
+
+        <block class="Magento\Catalog\Block\Product\View\Description" name="product.info.description" as="description" template="Magento_Catalog::product/view/attribute.phtml" group="detailed_info">
+                    <arguments>
+                        <argument name="at_call" xsi:type="string">getDescription</argument>
+                        <argument name="at_code" xsi:type="string">description</argument>
+                        <argument name="css_class" xsi:type="string">description</argument>
+                        <argument name="at_label" xsi:type="string">none</argument>
+                        <argument name="title" translate="true" xsi:type="string">Description</argument>
+                        <argument name="sort_order" xsi:type="string">10</argument>
+                    </arguments>
+                </block>
+
+        <block class="Magento\Catalog\Block\Product\View\Description" name="product.info.specifications" as="specifications" template="Magento_Catalog::product/view/attribute.phtml" group="detailed_info">
+            <arguments>
+                <argument name="at_call" xsi:type="string">getSpecifications</argument>
+                <argument name="at_code" xsi:type="string">specifications</argument>
+                <argument name="css_class" xsi:type="string">specifications</argument>
+                <argument name="at_label" xsi:type="string">none</argument>
+                <argument name="title" translate="true" xsi:type="string">Specifications</argument>
+                <argument name="sort_order" xsi:type="string">11</argument>
+            </arguments>
+        </block>
+
+        <block class="Magento\Catalog\Block\Product\View\Description" name="product.info.shipping_returns" as="shipping_returns" template="Magento_Catalog::product/view/attribute.phtml" group="detailed_info">
+            <arguments>
+                <argument name="at_call" xsi:type="string">getShippingReturns</argument>
+                <argument name="at_code" xsi:type="string">shipping_returns</argument>
+                <argument name="css_class" xsi:type="string">shipping_returns</argument>
+                <argument name="at_label" xsi:type="string">none</argument>
+                <argument name="title" translate="true" xsi:type="string">Shipping &amp; Returns</argument>
+                <argument name="sort_order" xsi:type="string">12</argument>
+            </arguments>
+        </block>
+
+        <block class="Magento\Catalog\Block\Product\View\Description" name="product.info.videos" as="videos" template="Magento_Catalog::product/view/attribute.phtml" group="detailed_info">
+            <arguments>
+                <argument name="at_call" xsi:type="string">getVideos</argument>
+                <argument name="at_code" xsi:type="string">videos</argument>
+                <argument name="css_class" xsi:type="string">videos</argument>
+                <argument name="at_label" xsi:type="string">none</argument>
+                <argument name="title" translate="true" xsi:type="string">Videos</argument>
+                <argument name="sort_order" xsi:type="string">33</argument>
+            </arguments>
+        </block>
+
+        
+        <block class="Magento\Catalog\Block\Product\View\Description" name="product.info.downloads" as="downloads" template="Magento_Catalog::product/view/attribute.phtml" group="detailed_info">
+            <arguments>
+                <argument name="at_call" xsi:type="string">getDownloads</argument>
+                <argument name="at_code" xsi:type="string">downloads</argument>
+                <argument name="css_class" xsi:type="string">downloads</argument>
+                <argument name="at_label" xsi:type="string">none</argument>
+                <argument name="title" translate="true" xsi:type="string">Downloads</argument>
+                <argument name="sort_order" xsi:type="string">34</argument>
+            </arguments>
+        </block>
+
+    
+
+    </referenceContainer>
+
+    <referenceContainer name="content">
+
+        <container name="product.info.main.wrap" htmlTag="div" htmlClass="product-info-main-wrap" before="-">
+
+        </container>
+
+        <block class="Magento\Catalog\Block\Product\View\Description" name="product.info.keyfeatured" template="Magento_Catalog::product/view/keyfeatured.phtml" after="product.info.media">
+            <arguments>
+                <argument name="at_call" xsi:type="string">getShortDescription</argument>
+                <argument name="at_code" xsi:type="string">short_description</argument>
+                <argument name="css_class" xsi:type="string">keyfeatures</argument>
+                <argument name="at_label" xsi:type="string">none</argument>
+                <argument name="title" translate="true" xsi:type="string">Overview</argument>
+                <argument name="add_attribute" xsi:type="string">itemprop="description"</argument>
+            </arguments>
+        </block>
+    </referenceContainer>
+
+    <move element="product.info.review" destination="product.info.main" after="rcalculator"/>
+    <move element="product.info.main" destination="product.info.main.wrap"/>
+    <move element="view.addto.wishlist" destination="product.info.addto" after="-"/>
+
+    <!-- <referenceContainer name="reviews.tab" remove="true" /> -->
+
+</page>

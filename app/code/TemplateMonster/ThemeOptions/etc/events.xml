@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="config_data_save_before">
+        <observer name="rename_color_scheme_config" instance="TemplateMonster\ThemeOptions\Observer\RenameColorSchemeConfig" />
+    </event>
+    <event name="layout_generate_blocks_after">
+        <observer name="block_switcher" instance="TemplateMonster\ThemeOptions\Observer\BlockSwitcher" />
+    </event>
+</config>

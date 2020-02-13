@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!--
+  ~ Mage-World
+  ~
+  ~  @category    Mage-World
+  ~  @package     MW
+  ~  @author      Mage-world Developer
+  ~
+  ~  @copyright   Copyright (c) 2018 Mage-World (https://www.mage-world.com/)
+  -->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="MW_Downloads::downloads" title="Easy Downloads" translate="title" module="MW_Downloads" sortOrder="99" resource="MW_Downloads::downloads"/>
+
+        <add id="MW_Downloads::downloads_category" title="Manage Downloads Category" translate="title" module="MW_Downloads" parent="MW_Downloads::downloads" sortOrder="10" resource="MW_Downloads::downloads_category" action="downloads/category/index"/>
+        <add id="MW_Downloads::faq_item" title="Manage Downloads" translate="title" module="MW_Downloads" parent="MW_Downloads::downloads" sortOrder="20" resource="MW_Downloads::faq_item" action="downloads/downloads/index"/>
+        <add id="MW_Downloads::setting" title="Settings" module="MW_Downloads" translate="title" parent="MW_Downloads::downloads" sortOrder="30" resource="MW_Downloads::setting" action="adminhtml/system_config/edit/section/downloads"/>
+    </menu>
+</config>

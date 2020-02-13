@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+            <resource id="Magento_Backend::admin">
+                <resource id="Magento_Backend::stores">
+                    <resource id="Magento_Backend::stores_settings">
+                        <resource id="Magento_Config::config">
+                            <resource id="TemplateMonster_Parallax::parallax_config" title="Parallax Config" sortOrder="20"/>
+                        </resource>
+                    </resource>
+                </resource>
+                <resource id="TemplateMonster_Base::modules" title="TemplateMonster" sortOrder="100">
+                    <resource id="TemplateMonster_Parallax::parallax" title="Parallax" sortOrder="100">
+                        <resource id="TemplateMonster_Parallax::parallax_block" title="Parallax Block" sortOrder="100">
+                            <resource id="TemplateMonster_Parallax::block_save" title="Parallax Block Save" sortOrder="100" />
+                            <resource id="TemplateMonster_Parallax::block_delete" title="Parallax Block Delete" sortOrder="200" />
+                        </resource>
+                        <resource id="TemplateMonster_Parallax::parallax_item" title="Parallax Item" sortOrder="100">
+                            <resource id="TemplateMonster_Parallax::item_save" title="Parallax Item Save" sortOrder="100" />
+                            <resource id="TemplateMonster_Parallax::item_delete" title="Parallax Item Delete" sortOrder="200" />
+                        </resource>
+                    </resource>
+                </resource>
+            </resource>
+        </resources>
+    </acl>
+</config>

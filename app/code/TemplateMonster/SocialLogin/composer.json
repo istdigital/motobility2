@@ -1,0 +1,14 @@
+{
+    "name" : "templatemonster/social-login",
+    "description": "Social Login",
+    "type": "magento2-module",
+    "version": "1.0.0-beta",
+    "autoload": {
+        "psr-4": {
+            "TemplateMonster\\SocialLogin\\": ""
+        },
+        "files": [
+            "registration.php"
+        ]
+    }
+}

@@ -1,0 +1,13 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <ajaxwishlist>
+            <general>
+                <enabled>1</enabled>
+                <show_spinner>1</show_spinner>
+                <show_success_message>1</show_success_message>
+                <success_message_text>Product {product.name} has been added to your wishlist.</success_message_text>
+            </general>
+        </ajaxwishlist>
+    </default>
+</config>

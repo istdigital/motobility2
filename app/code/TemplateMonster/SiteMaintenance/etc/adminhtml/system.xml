@@ -1,0 +1,128 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="templatemonster" translate="label" sortOrder="1000">
+            <label>TemplateMonster</label>
+        </tab>
+        <section id="site_maintenance" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>Site Maintenance</label>
+            <tab>templatemonster</tab>
+            <resource>TemplateMonster_SiteMaintenance::config_site_maintenance</resource>
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Page Configuration</label>
+                <field id="active" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Site Maintenance</label>
+                    <comment>Enable/Disable module</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="title" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Title</label>
+                </field>
+                <field id="add_ip" translate="label comment" type="button" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Allow frontend for current IP</label>
+                    <!--<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>-->
+                    <frontend_model>TemplateMonster\SiteMaintenance\Block\Adminhtml\System\Config\IpButton</frontend_model>
+                    <comment>Current IP will be added to whitelist</comment>
+                </field>
+                <field id="whitelist" translate="label comment" type="textarea" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>IP Whitelist</label>
+                    <comment>Separated with ","</comment>
+                </field>
+                <field id="logo" translate="label comment" type="image" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Logo</label>
+                    <backend_model>Magento\Config\Model\Config\Backend\Image</backend_model>
+                    <upload_dir config="system/filesystem/media" scope_info="1">logo</upload_dir>
+                    <base_url type="media" scope_info="1">logo</base_url>
+                    <comment><![CDATA[Allowed file types: jpeg, gif, png.]]></comment>
+                </field>
+                <field id="background_type" translate="label comment" type="select" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Background Type</label>
+                    <source_model>TemplateMonster\SiteMaintenance\Model\Config\Source\BackgroundType</source_model>
+                </field>
+                <field id="background_color" translate="label comment" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Background Color</label>
+                    <comment>Set Background color.</comment>
+                    <frontend_model>TemplateMonster\SiteMaintenance\Block\Adminhtml\System\Config\Field\ColorPicker</frontend_model>
+                </field>
+                <field id="background_image" translate="label comment" type="image" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Background Image</label>
+                    <backend_model>Magento\Config\Model\Config\Backend\Image</backend_model>
+                    <upload_dir config="system/filesystem/media" scope_info="1">background_image</upload_dir>
+                    <base_url type="media" scope_info="1">background_image</base_url>
+                    <depends>
+                        <field id="*/*/background_type">1</field>
+                    </depends>
+                    <comment><![CDATA[Allowed file types: jpeg, gif, png.]]></comment>
+                </field>
+                <field id="background_repeat" translate="label comment" type="select" sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Background Repeat</label>
+                    <source_model>TemplateMonster\SiteMaintenance\Model\Config\Source\BackgroundRepeat</source_model>
+                    <depends>
+                        <field id="*/*/background_type">1</field>
+                    </depends>
+                </field>
+                <field id="background_position" translate="label comment" type="select" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Background Position</label>
+                    <source_model>TemplateMonster\SiteMaintenance\Model\Config\Source\BackgroundPosition</source_model>
+                    <depends>
+                        <field id="*/*/background_type">1</field>
+                    </depends>
+                </field>
+                <field id="background_size" translate="label comment" type="select" sortOrder="110" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Background Size</label>
+                    <source_model>TemplateMonster\SiteMaintenance\Model\Config\Source\BackgroundSize</source_model>
+                    <depends>
+                        <field id="*/*/background_type">1</field>
+                    </depends>
+                </field>
+                <field id="background_attachment" translate="label comment" type="select" sortOrder="120" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Background Attachment</label>
+                    <source_model>TemplateMonster\SiteMaintenance\Model\Config\Source\BackgroundAttachment</source_model>
+                    <depends>
+                        <field id="*/*/background_type">1</field>
+                    </depends>
+                </field>
+                <field id="page_description" translate="label comment" type="editor" sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Page Description</label>
+                    <frontend_model>TemplateMonster\SiteMaintenance\Block\Adminhtml\System\Config\Editor</frontend_model>
+                </field>
+            </group>
+            <group id="timer" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Timer section</label>
+                <field id="active" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable</label>
+                    <comment>Enable/Disable</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="timer_text" translate="label comment" type="editor" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Timer Text</label>
+                    <frontend_model>TemplateMonster\SiteMaintenance\Block\Adminhtml\System\Config\Editor</frontend_model>
+                </field>
+                <field id="datetime" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Date/Time</label>
+                    <frontend_model>TemplateMonster\SiteMaintenance\Block\Adminhtml\System\Config\Field\DateTime</frontend_model>
+                </field>
+                <field id="format" translate="label comment" type="textarea" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Timer Format</label>
+                    <comment>Y: years, J: months, n: days to month, w: weeks, d: days to week, D: total days, H: hours, M: minutes, S: seconds, h: total hours, m: total minutes, s: total seconds. HTML can be used here</comment>
+                </field>
+            </group>
+            <group id="form" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Form settings</label>
+                <field id="active" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable</label>
+                    <comment>Enable/Disable</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="title" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Form Title</label>
+                </field>
+                <field id="text" translate="label comment" type="editor" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Form Text</label>
+                    <frontend_model>TemplateMonster\SiteMaintenance\Block\Adminhtml\System\Config\Editor</frontend_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

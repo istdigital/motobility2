@@ -1,0 +1,96 @@
+.cryozonic-saved-card {
+    margin-bottom: 0.7em;
+}
+.cryozonic-saved-card span.type {
+    font-weight: bold;
+}
+.cryozonic-saved-card span.exp {
+    float: right;
+}
+.cryozonic-saved-card span.cryozonic-stripe-fade {
+    color: #999;
+    font-weight: normal;
+}
+.cryozonic-saved-card label {
+    display: inline;
+}
+
+/* Admin and multishipping form styling */
+#payment_form_cryozonic_stripe.standard-form .payment-method.cryozonic-stripe {
+    margin-top: 20px;
+}
+#payment_form_cryozonic_stripe.standard-form .payment-method .cryozonic-saved-cards-section {
+    margin-bottom: 20px;
+}
+#payment_form_cryozonic_stripe.standard-form .payment-method.cryozonic-stripe label {
+    padding-left: 5px;
+}
+.sales-order_create-index #payment_form_cryozonic_stripe.standard-form:not(.stripe-new) > .field {
+    display: none;
+}
+#payment_form_cryozonic_stripe.standard-form #payment_form_cryozonic_stripe_payment:not(.stripe-new) .stripe-new {
+    display: none;
+}
+#payment_form_cryozonic_stripe.standard-form .payment-method #cryozonic_stripe_cc_save {
+    margin-right: 5px;
+}
+#payment_form_cryozonic_stripe.cryozonic-stripe.indent,
+.cryozonic-stripe.indent,
+.cryozonic-stripe .indent {
+    margin-left: 20px;
+    margin-top: 5px;
+}
+#payment_form_cryozonic_stripe.standard-form #payment_form_cryozonic_stripe_subscription.payment-method > div {
+    margin-bottom: 0.7em;
+}
+#payment_form_cryozonic_stripe.standard-form fieldset.payment-method.cryozonic-stripe.hide,
+#payment_form_cryozonic_stripe.standard-form fieldset.payment-method.cryozonic-stripe .hide {
+    display: none;
+}
+#payment_form_cryozonic_stripe.standard-form fieldset.payment-method.cryozonic-stripe #select_subscription {
+    margin: 10px 20px 20px 21px;
+}
+#payment_form_cryozonic_stripe.standard-form select {
+    width: auto;
+}
+fieldset.payment-method.cryozonic-stripe { border: 0; }
+
+/* Admin styling */
+#payment_form_cryozonic_stripe.admin__fieldset {
+    padding-top: 1em;
+}
+#payment_form_cryozonic_stripe.admin__fieldset #saved-cards {
+    margin-bottom: 20px;
+}
+
+/* Card Icons */
+.cryozonic-stripe span.type.Visa,
+.cryozonic-stripe span.type.visa { background: url(../img/visa.png) no-repeat; }
+
+.cryozonic-stripe span.type.American.Express,
+.cryozonic-stripe span.type.amex { background: url(../img/amex.png) no-repeat; }
+
+.cryozonic-stripe span.type.MasterCard,
+.cryozonic-stripe span.type.mastercard { background: url(../img/mastercard.png) no-repeat; }
+
+.cryozonic-stripe span.type.Discover,
+.cryozonic-stripe span.type.discover { background: url(../img/discover.png) no-repeat; }
+
+.cryozonic-stripe span.type.Diners,
+.cryozonic-stripe span.type.diners { background: url(../img/diners.png) no-repeat; }
+
+.cryozonic-stripe span.type.JCB,
+.cryozonic-stripe span.type.jcb { background: url(../img/jcb.png) no-repeat; }
+
+.cryozonic-stripe span.type.Visa, .cryozonic-stripe span.type.visa,
+.cryozonic-stripe span.type.American.Express, .cryozonic-stripe span.type.amex,
+.cryozonic-stripe span.type.MasterCard, .cryozonic-stripe span.type.mastercard,
+.cryozonic-stripe span.type.Discover, .cryozonic-stripe span.type.discover,
+.cryozonic-stripe span.type.Diners, .cryozonic-stripe span.type.diners,
+.cryozonic-stripe span.type.JCB, .cryozonic-stripe span.type.jcb {
+    padding-left: 40px;
+    background-position-y: -3px;
+    display: inline-block;
+    height: 22px;
+    background-size: 30px;
+}

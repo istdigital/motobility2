@@ -1,0 +1,43 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <virtualType name="TemplateMonster\LayoutSwitcher\Model\Layout\Config\Reader" type="Magento\Framework\Config\Reader\Filesystem">
+        <arguments>
+            <argument name="converter" xsi:type="object">TemplateMonster\LayoutSwitcher\Model\Layout\Config\Converter</argument>
+            <argument name="schemaLocator" xsi:type="object">TemplateMonster\LayoutSwitcher\Model\Layout\Config\SchemaLocator</argument>
+            <argument name="fileName" xsi:type="string">layouts.xml</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="TemplateMonster\LayoutSwitcher\Model\Config\Source\HeaderLayout" type="TemplateMonster\LayoutSwitcher\Model\Config\Source\Layout">
+        <arguments>
+            <argument name="type" xsi:type="string">header</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="TemplateMonster\LayoutSwitcher\Model\Config\Source\ListingLayout" type="TemplateMonster\LayoutSwitcher\Model\Config\Source\Layout">
+        <arguments>
+            <argument name="type" xsi:type="string">listing</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="TemplateMonster\LayoutSwitcher\Model\Config\Source\ProductLayout" type="TemplateMonster\LayoutSwitcher\Model\Config\Source\Layout">
+        <arguments>
+            <argument name="type" xsi:type="string">product</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="TemplateMonster\LayoutSwitcher\Model\Config\Source\FooterLayout" type="TemplateMonster\LayoutSwitcher\Model\Config\Source\Layout">
+        <arguments>
+            <argument name="type" xsi:type="string">footer</argument>
+        </arguments>
+    </virtualType>
+    <type name="TemplateMonster\LayoutSwitcher\Helper\Data">
+        <arguments>
+            <argument name="reader" xsi:type="object">TemplateMonster\LayoutSwitcher\Model\Layout\Config\Reader</argument>
+        </arguments>
+    </type>
+    <type name="Magento\Store\Model\StoreResolver\ReaderList">
+        <plugin name="multiple_websites_per_host" type="TemplateMonster\LayoutSwitcher\Model\StoreResolver\Plugin\ReaderList" />
+    </type>
+    <type name="TemplateMonster\LayoutSwitcher\Model\StoreResolver\Plugin\ReaderList">
+        <arguments>
+            <argument name="livedemoMode" xsi:type="init_parameter">TemplateMonster\LayoutSwitcher\Helper\Data::PARAM_MODE</argument>
+        </arguments>
+    </type>
+</config>

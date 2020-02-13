@@ -1,0 +1,98 @@
+<?php
+
+$cards = $this->getCards();
+$ccType = $block->getInfoData('cc_type');
+$ccExpMonth = $block->getInfoData('cc_exp_month');
+$ccExpYear = $block->getInfoData('cc_exp_year');
+
+if (empty($cards)): ?>
+<div class="message info empty">
+  <span><?php echo $block->escapeHtml(__('You do not have any saved cards yet.')); ?></span>
+</div>
+<?php else: ?>
+  <div class="table-wrapper cryozonic-stripe">
+    <table class="data table table-order-items history saved-cards" id="my-orders-table">
+      <caption class="table-caption"><?php echo $block->escapeHtml(__('Saved Cards')); ?></caption>
+      <thead>
+        <tr>
+          <th scope="col" class="col cards" colspan="3">
+            <?php echo $block->escapeHtml(__('Cards')); ?>
+          </th>
+          <th scope="col" class="col actions"><?php echo $block->escapeHtml(__('Actions')); ?></th>
+        </tr>
+      </thead>
+      <tbody>
+  <?php foreach ($cards as $card): ?>
+      <tr>
+        <td data-th="Brand" class="col brand">
+          <span class="type <?php echo $card->brand; ?>">
+            <?php echo $block->cardType($card->brand); ?>
+          </span>
+        </td>
+        <td data-th="Last 4" class="col last4">
+          ****&nbsp;<?php echo $card->last4; ?>
+        </td>
+        <td data-th="Expires" class="col exp">
+          <?php echo $card->exp_month; ?>/<?php echo $card->exp_year; ?>
+        </td>
+        <td data-th="Actions" class="col actions">
+          <a href="delete/<?php echo $card->id; ?>" class="cryozonic-stripe delete-card">
+            <?php echo $block->escapeHtml(__('Delete')); ?>
+          </a>
+        </td>
+      </tr>
+  <?php endforeach; ?>
+      </tbody>
+    </table>
+  </div>
+<?php endif; ?>
+
+<?php if (!$block->config->getSaveCards()) { return; } ?>
+<br>
+
+<form class="form new-saved-card" action="save/" method="post" id="payment_form_cryozonic_stripe_payment">
+  <input type="hidden" name="form_key" value="<?php echo $block->getFormKey() ?>" />
+  <fieldset class="fieldset payment-method stripe-new cryozonic-stripe">
+    <legend class="legend"><span><?php echo $block->escapeHtml(__('Add a new saved card')); ?></span></legend>
+    <br>
+
+<?php if ($this->verifyBillingAddress()): ?>
+
+  <?php echo $block->getLayout()->createBlock('Cryozonic\StripePayments\Block\StripeElements')->toHtml(); ?>
+
+  </fieldset>
+
+  <script type="text/javascript">
+    require(['jquery', 'jquery/ui'], function($){
+      $(document).ready(function()
+      {
+        var securityMethod = '<?php echo $block->config->getSecurityMethod(); ?>';
+        var stripeJsPublishableKey = '<?php echo $block->config->getPublishableKey(); ?>';
+        cryozonic.avsFields = <?php echo $this->getBillingAddress(); ?>;
+        if (securityMethod > 0)
+          initStripe(stripeJsPublishableKey, securityMethod);
+      });
+    });
+  </script>
+
+  <div class="actions-toolbar">
+    <div class="primary">
+      <button type="submit" title="Save" class="action save primary" onclick="return cryozonic.saveCard(this);">
+        <span>
+          <?php echo $block->escapeHtml(__('Save')); ?>
+        </span>
+      </button>
+    </div>
+  </div>
+
+</form>
+
+<?php else: ?>
+
+  <div class="message info empty">
+    <span><?php echo $block->escapeHtml(__('You must first add a full billing address before you can add saved cards.')); ?></span>
+  </div>
+
+  </fieldset>
+</form>
+<?php endif; ?>

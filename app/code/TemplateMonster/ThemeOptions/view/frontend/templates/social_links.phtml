@@ -1,0 +1,15 @@
+<?php /** @var \TemplateMonster\ThemeOptions\Block\SocialLinks $block */ ?>
+<style>
+    @media (min-width: 768px) {
+        ul.social-links.position-<?php echo $block->getPosition() ?> {
+            text-align: <?php echo $block->getAlign() ?: 'left'; ?>;
+        }
+    }
+</style>
+<ul class="social-links position-<?php echo $block->getPosition() ?> type-<?php echo $block->getType() ?>">
+    <?php foreach ($block->getAvailableSocialLinks() as $link): ?>
+        <li>
+            <?php echo $block->getRenderer()->setData($link)->toHtml(); ?>
+        </li>
+    <?php endforeach; ?>
+</ul>

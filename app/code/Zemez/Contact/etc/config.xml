@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <contact>
+            <email>
+                <thankyou_email_template>contact_email_thankyou_email_template</thankyou_email_template>
+            </email>
+            <captcha>
+                <sitekey>6LfWuLQUAAAAANtVa0U9b6R6uoSp_WrLvi8JEXHl</sitekey>
+                <serverkey>6LfWuLQUAAAAAKAzqnWHEtydIJOUo72yl5W7P-UE</serverkey>
+            </captcha>
+
+        </contact>
+    </default>
+</config>

@@ -1,0 +1,216 @@
+/*
+* @subsection   RD Navbar Toggles
+*
+* @description  Describes style declarations for RD Navbar navigation
+*/
+
+.rd-navbar-cart-floating {
+  display: none;
+}
+.rd-navbar-cart-toggle {
+  @include toggle-icons-via-rotation(auto, $font-ultra-small, $secondary-1, '\e74d', '\e935');
+  span {
+    padding-left: 28px;
+    text-align: left;
+    &:before,
+    &:after {
+      font-size: 23px;
+      font-family: $linearicons-icon;
+      margin-top: -2px;
+    }
+    &:after {
+      font-size: 16px;
+    }
+  }
+  .counter {
+    display: inline-block;
+    border-radius: 50%;
+    width: 23px;
+    height: 23px;
+    font-size: 12px;
+    color: $white;
+    text-align: center;
+    font-weight: normal;
+    transition: all 0.3s ease;
+    strong {
+      font-weight: normal;
+    }
+    .counter-label {
+      display: none;
+    }
+    &.empty {
+      background: $theme-item-bg;
+    }
+  }
+  &:hover {
+    .counter {
+      color: $white !important;
+    }
+  }
+  .loading-mask {
+    display: none;
+  }
+}
+.minicart-wrapper.active {
+  .rd-navbar-cart-toggle {
+      .counter {
+        color: $white !important;
+      }
+  }
+}
+
+@media (max-width: $screen-sm-min - 1) {
+  .rd-navbar-cart {
+    display: block;
+    position: fixed;
+    top: -100%;
+    right: 0;
+    left: 0;
+    z-index: 10;
+    opacity: 0;
+    transform: translate(-100%);
+  }
+  .minicart-wrapper.active {
+    .rd-navbar-cart  {
+      opacity: 1;
+      top: 70px;
+      transform: translate(0);
+      max-height: calc(100% - 70px);
+      overflow-x:auto;
+    }
+    .rd-navbar-cart-toggle span {
+      &:before {
+        opacity: 0;
+        visibility: hidden;
+        @include transform(rotate(90deg) scale(0));
+      }
+
+      &:after {
+        @include transform(rotate(0deg) scale(1));
+        opacity: 1;
+        visibility: visible;
+      }
+    }
+  }
+
+  .rd-navbar-cart-floating {
+    display: block;
+    transition: .3s all cubic-bezier(0.785, 0.135, 0.150, 0.860);
+    position: fixed;
+    bottom: 15px;
+    right: 15px;
+    z-index: 20;
+    color: #FFF;
+    overflow: hidden;
+    border-radius: 50%;
+    box-shadow: $rd-navbar-shadow-large, $rd-navbar-shadow-ambient;
+    width: 56px;
+    height: 56px;
+    outline: 1px solid transparent;
+    backface-visibility: hidden;
+
+    &:before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: $rd-navbar-accent-color;
+      @include transform(translate(-50%, -50%));
+    }
+
+    #top-cart-btn-checkout {
+      transition: .3s all cubic-bezier(0.785, 0.135, 0.150, 0.860);
+      position: relative;
+      display: block;
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 56px;
+      opacity: 0;
+      visibility: hidden;
+
+      &:before {
+        font-weight: 400;
+        font-size: 24px;
+        display: inline-block;
+        vertical-align: middle;
+        margin-right: 8px;
+      }
+    }
+
+    .rd-navbar-cart-toggle {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      @include transform(translate(-50%, -50%));
+
+      span {
+        height: 56px;
+        line-height: 56px;
+      }
+    }
+
+    &.active {
+      right: 0;
+      bottom: 0;
+      border-radius: 0;
+      width: 100%;
+
+      &:before {
+        @include transform(translate(-50%, -50%) scale(20));
+        background: $rd-navbar-accent-color-2;
+      }
+
+      #top-cart-btn-checkout {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .rd-navbar-cart-toggle {
+        visibility: hidden;
+        opacity: 0;
+      }
+    }
+  }
+  .rd-navbar-cart-fixed {
+    display: block;
+    transition: .3s all cubic-bezier(0.785, 0.135, 0.150, 0.860);
+    position: fixed;
+    top: 15px;
+    left: 150px;
+    z-index: 17;
+    overflow: visible;
+    height: 40px;
+    width: 61px;
+    outline: 1px solid transparent;
+    backface-visibility: hidden;
+    border-right: 1px solid $theme-line-1;
+    border-left: 1px solid $theme-line-1;
+    padding: 10px 8px 0px 8px;
+
+    .rd-navbar-cart-toggle {
+      display: block;
+      .loading-mask {
+        visibility: hidden;
+      }
+
+      .counter {
+        position: absolute;
+        right: 10px;
+        top:-6px;
+      }
+
+      .counter-label {
+        display: none;
+      }
+      .text {
+        font-size: 0;
+        padding: 0;
+        margin: 0;
+      }
+    }
+  }
+
+}

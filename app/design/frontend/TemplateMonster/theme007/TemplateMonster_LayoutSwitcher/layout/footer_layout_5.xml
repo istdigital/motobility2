@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+
+        <move element="footer" destination="page.wrapper" after="main.content"/>
+        <move element="form.subscribe" destination="footer" before="-"/>
+
+        <referenceContainer name="footer" htmlClass="page-footer layout_5"/>
+        <referenceContainer name="footer.grid-row">
+            <container name="footer.id.1" htmlClass="col-sm-4" htmlTag="div">
+                <block class="Magento\Theme\Block\Html\Header\Logo" name="logo2" />
+                <block class="Magento\Cms\Block\Block" name="footer_block_4" before="-">
+                    <arguments>
+                        <argument name="block_id" xsi:type="string">footer_block_4</argument>
+                    </arguments>
+                </block>
+            </container>
+            <container name="footer.id.2" htmlClass="col-sm-8 align-right" htmlTag="div">
+
+            </container>
+       </referenceContainer>
+
+        <move element="footer.grid-col1"      destination="footer.id.2" before="-"/>
+        <move element="footer.grid-col2"      destination="footer.id.2"  before="-"/>
+        <move element="copyright"      destination="footer.id.2"/>
+
+        <referenceContainer name="footer.grid-col1" htmlClass="list-ul"/>
+        <referenceContainer name="footer.grid-col2" htmlClass="list-ul"/>
+        <referenceContainer name="footer.grid-col3"  remove="true"/>
+    </body>
+</page>

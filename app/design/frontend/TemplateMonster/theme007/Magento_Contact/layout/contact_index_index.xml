@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <title>Contact Us</title>
+    </head>
+    <body>
+        <referenceContainer name="content">
+            <container name="contact.us.wrapper" htmlClass="row" htmlTag="div" before="-">
+
+                <container name="contact.us.info" htmlClass="col-md-12 contact-msg" htmlTag="div" before="-">
+                    <block class="Magento\Framework\View\Element\Template" name="contact" template="Magento_Contact::text.phtml">
+                    </block>
+                </container>
+
+                <container name="contact.us.info.wrapper" htmlClass="col-md-3" htmlTag="div">
+                    <block class="Magento\Framework\View\Element\Template" name="contactInfo" template="Magento_Contact::info.phtml">
+                    </block>
+                </container>
+
+                <container name="contact.us.form.wrapper" htmlClass="col-md-9" htmlTag="div" after="-">
+                    <block class="Magento\Contact\Block\ContactForm" name="contactForm" template="Magento_Contact::form.phtml">
+                        <container name="form.additional.info" label="Form Additional Info"/>
+                    </block>
+                </container>
+                <!-- <container name="contact.us.googlemap.wrapper" htmlClass="col-md-6" htmlTag="div" after="contact.us.form.wrapper">
+                    <block class="Magento\Framework\View\Element\Template" name="contact.us.googlemap" template="Magento_Contact::map.phtml"/>
+                </container> -->
+            </container>
+        </referenceContainer>
+    </body>
+</page>

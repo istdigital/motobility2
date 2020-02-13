@@ -1,0 +1,33 @@
+<div id="contactPopup" style="display: none;">
+  <div class="contact-form-wrap">
+  <div class="contact-form-popup">
+    <form class="form contact"
+        id="contact-form"
+        action="<?= $block->escapeUrl($block->getFormAction()) ?>" 
+        method="post"
+        data-bind="scope:'contactPopup'"
+        data-hasrequired='* Required Fields'
+        data-mage-init='{"validation":{}}'>
+        <!-- ko template: getTemplate() --><!-- /ko -->
+        <?= $this->getChildHtml('msp-recaptcha-contact') ?>
+      </form>
+  </div>
+</div>
+
+  
+
+  <script type="text/x-magento-init">
+  {
+      "#contactPopup": {
+          "Magento_Ui/js/core/app": {
+             "components": {
+                  "contactPopup": {
+                      "component" : "Magento_Contact/js/popup",
+                      "template" : "Magento_Contact/popup"
+                      }
+                  }
+              }
+          }
+  }
+  </script>
+</div>

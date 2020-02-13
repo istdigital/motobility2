@@ -1,0 +1,289 @@
+// Main Styles
+
+
+.sidebar .navigation{
+	background: none;
+	margin-bottom: 20px;
+	height: inherit;
+    left: auto;
+    overflow: inherit;
+    padding: 0;
+    position: relative;
+    top: 0;
+    width: 100%;
+    z-index: 3;
+
+    &:empty {
+	    display: none;
+	}
+
+	.rd-navbar-nav-wrap {
+		display: block;
+	}
+
+	> ul{
+		padding: 0;
+		border-bottom: none;
+	}
+
+	li.level0{
+		display: block;
+		border-bottom: solid 1px $menu-border;
+		margin: 0;
+		position: relative;
+
+		a.level-top{
+			display: block;
+		}
+	}
+
+	@media (max-width: $screen-sm-min - 1) {
+		> ul{
+			border: none;
+		}
+	}
+
+	.level0 .megamenu-wrapper{
+		width: 100% !important;
+		position: absolute;
+		padding: 20px 0;
+		background: $menu-bg;
+		box-shadow: $shadow-medium;
+	}
+
+	ul {
+	    margin-bottom: 0;
+	    margin-top: 0;
+	    padding: 0;
+	    position: relative;
+	}
+
+	li.level0 {
+	    border-top: medium none;
+	}
+	.level0 {
+	    display: inline-block;
+	    margin: 0 10px 0 0;
+	    position: relative;
+
+	    &:last-child {
+		    margin-right: 0;
+		    padding-right: 0;
+		}
+
+		> .level-top {
+		    box-sizing: border-box;
+		    color: $name-color;
+		    line-height: $menu-line-heigh;
+		    padding: 0 12px;
+		    position: relative;
+		    text-decoration: none;
+		}
+
+		> .level-top:hover, 
+		> .level-top.ui-state-focus {
+		    color: $name-color-hover;
+		    text-decoration: none;
+		}
+
+		&.active > .level-top, 
+		&.has-active > .level-top {
+		    border-color: $menu-border;
+		    border-style: solid;
+		    border-width: 0 0 3px;
+		    color: $name-color;
+		    display: block;
+		    text-decoration: none;
+		}
+
+		&.active > a:not(.ui-state-active) span:not(.ui-menu-icon), 
+		&.has-active > a:not(.ui-state-active) span:not(.ui-menu-icon) {
+	    	margin: 0;
+	    }
+
+		&.parent:hover > .submenu {
+		    overflow: visible !important;
+		}
+
+		.submenu {
+		    background: $menu-bg none repeat scroll 0 0;
+		    border: 1px solid $menu-border;
+		    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.19);
+		    display: none;
+		    font-weight: 400;
+		    left: 0;
+		    margin: 0 !important;
+		    min-width: 230px;
+		    position: absolute;
+		    z-index: 1;
+
+		    @media (max-width: $screen-sm-min - 1) {
+				 &:not(:first-child) ul {
+			    	padding-left: 15px;
+			    }
+			}
+
+		   
+
+		     > ul {
+			    margin-top: 11px;
+
+			    &::before, 
+			    &::after {
+				    content: "";
+				    display: block;
+				    overflow: hidden;
+				    position: absolute;
+				}
+
+				&::before {
+				    -moz-border-bottom-colors: none;
+				    -moz-border-left-colors: none;
+				    -moz-border-right-colors: none;
+				    -moz-border-top-colors: none;
+				    border-color: transparent transparent #fff;
+				    border-image: none;
+				    border-style: solid;
+				    border-width: 10px;
+				    color: #fff;
+				    height: 0;
+				    left: 20px;
+				    top: -20px;
+				    width: 0;
+				    z-index: 4;
+				}
+
+				&::after {
+				    -moz-border-bottom-colors: none;
+				    -moz-border-left-colors: none;
+				    -moz-border-right-colors: none;
+				    -moz-border-top-colors: none;
+				    border-color: transparent transparent $menu-border;
+				    border-image: none;
+				    border-style: solid;
+				    border-width: 11px;
+				    color: $menu-color;
+				    height: 0;
+				    left: 19px;
+				    top: -22px;
+				    width: 0;
+				    z-index: 3;
+				}
+			}
+
+			a {
+			    color: $menu-color;
+			    display: block;
+			    line-height: inherit;
+			    padding: 8px 20px;
+
+			    &:hover,
+			    &.ui-state-focus {
+				    background: #e8e8e8 none repeat scroll 0 0;
+				    color: $menu-color;
+				    text-decoration: none;
+				}
+			}
+			.active > a {
+			    border-color: $menu-border;
+			    border-style: solid;
+			    border-width: 0 0 0 3px;
+			    color: $menu-color;
+			}
+		}
+
+		&.more {
+		    display: inline-block;
+		    position: relative;
+		    text-decoration: none;
+
+			&::after {
+			    color: inherit;
+			    content: "\f107";
+			    display: inline-block;
+			    font-family: "FontAwesome";
+			    font-size: 26px;
+			    font-weight: normal;
+			    line-height: inherit;
+			    overflow: hidden;
+			    text-align: center;
+			    vertical-align: middle;
+			}
+			&::before {
+			    display: none;
+			}
+			&::after {
+			    cursor: pointer;
+			    padding: 8px 12px;
+			    position: relative;
+			    z-index: 1;
+			}
+			&:hover > .submenu {
+			    overflow: visible !important;
+			}
+			& li {
+			    display: block;
+			}
+
+		}
+	}
+
+	@media (max-width: $screen-xs-min - 1) {
+		.level0 .submenu {
+			box-shadow: none;
+			border: none;
+		}
+		.parent .level-top {
+		    display: block;
+		    position: relative;
+		    text-decoration: none;
+		}
+		.parent .level-top::after {
+		    color: inherit;
+		    content: "\f107";
+		    display: inline-block;
+		    font-family: "FontAwesome";
+		    font-size: 20px;
+		    font-weight: normal;
+		    line-height: $menu-line-heigh;
+		    overflow: hidden;
+		    text-align: center;
+		    vertical-align: middle;
+		}
+		.parent .level-top::after {
+		    position: absolute;
+		    right: 7px;
+		    top: 0px;
+		}
+		.parent .level-top.ui-state-active::after {
+		    content: "\f105";
+		}
+	}
+
+	.navigation .level0 .submenu .submenu {
+	    // left: 100% !important;
+	    // top: 0 !important;
+	}
+	.navigation .level0 .submenu .submenu-reverse {
+	    // left: auto !important;
+	    // right: 100%;
+	}
+
+	@media (max-width: $screen-xs-min - 1) {
+		.submenu:not(:first-child) {
+	        font-weight: 400;
+	        line-height: 1.3;
+	        left: auto !important;
+	        overflow-x: hidden;
+	        padding: 0;
+	        position: relative !important;
+	        top: auto !important;
+	        transition: left .3s ease-out;   
+	    }
+
+	    .rd-navbar-dropdown{
+	    	width: 100%;
+	    }
+	}
+}
+

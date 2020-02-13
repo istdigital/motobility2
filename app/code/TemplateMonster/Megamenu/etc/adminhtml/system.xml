@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="templatemonster" class="templatemonster_tab" translate="label" sortOrder="1000">
+            <label>TemplateMonster</label>
+        </tab>
+        <section id="megamenu" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>Megamenu</label>
+            <tab>templatemonster</tab>
+            <resource>TemplateMonster_Megamenu::config_megamenu</resource>
+            <group id="config" translate="label" type="text" sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Megamenu Config</label>
+                <field id="megamenu_general_active" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Enable/Disable</label>
+                    <comment>Enable/Disable module</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                </field>
+                <field id="megamenu_general_show_left" translate="label comment" type="select" sortOrder="20" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Menu position</label>
+                    <source_model>TemplateMonster\Megamenu\Model\Config\Source\Vertical</source_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

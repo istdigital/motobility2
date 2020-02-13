@@ -1,0 +1,22 @@
+<div class="toolbar-sorter field sorter">
+    <label class="sorter-label label" for="sorter"><?php /* @escapeNotVerified */ echo __('Sort By') ?></label>
+    <div class="control">
+        <select name="blog_sorter" id="sorter" data-role="sorter" class="sorter-options" data-mage-init='{"selectize":{}}'>
+            <?php foreach ($block->getAvailableOrders() as $_key => $_order): ?>
+                <option value="<?php echo $_key; ?>"
+                    <?php echo $block->isOrderCurrent($_key) ? 'selected="selected"' : '';?>>
+                    <?php echo $block->escapeHtml(__($_order)) ?>
+                </option>
+            <?php endforeach; ?>
+        </select>
+    </div>
+<?php if ($block->getCurrentDirection() == 'desc'): ?>
+        <a title="<?php /* @escapeNotVerified */ echo __('Set Ascending Direction') ?>" href="#" class="action sorter-action sort-desc" data-role="direction-switcher" data-value="asc">
+            <span><?php /* @escapeNotVerified */ echo __('Set Ascending Direction') ?></span>
+        </a>
+    <?php else: ?>
+        <a title="<?php /* @escapeNotVerified */ echo __('Set Descending Direction') ?>" href="#" class="action sorter-action sort-asc" data-role="direction-switcher" data-value="desc">
+            <span><?php /* @escapeNotVerified */ echo __('Set Descending Direction') ?></span>
+        </a>
+    <?php endif; ?>
+</div>

@@ -1,0 +1,368 @@
+/*
+* @subsection   RD Navbar Toggles
+*
+* @description  Describes style declarations for RD Navbar navigation
+*/
+
+@media (max-width: $screen-sm-min - 1) {
+  .rd-navbar-nav {
+    display: none;
+  }
+}
+.rd-navbar-toggle {
+  display: none;
+}
+
+@media (max-width: $screen-sm-min - 1) {
+  .rd-navbar-toggle {
+    display: block;
+    border-right: 1px solid $theme-line-1;
+    width: 50px;
+    height: 40px;
+    position: fixed;
+    z-index: 17;
+    top: 14px;
+    left: 0;
+    span {
+      display: block;
+      transition: .3s all ease;
+      &:before,
+      &:after {
+        font-family: $linearicons-icon;
+        font-size: 27px;
+        vertical-align: middle;
+        display: block;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        -webkit-transform: translate(-50%, -50%);
+      }
+      &:after {
+        content: "\e92b";
+      }
+    }
+    &.active {
+      span {
+        &:before {
+          content: "\e935";
+          font-size: 20px;
+        }
+        &:after {
+          font-size: 0;
+        }
+      }
+    }
+    strong {
+      display: none;
+    }
+  }
+
+  .rd-navbar-nav-wrap {
+    @include rd-navbar-transition;
+    position: fixed;
+    top: -15px;
+    left: 0;
+    width: 320px;
+    padding: 112px 0 56px;
+    bottom: -56px;
+    background: $rd-navbar-accent-color;
+    box-shadow: $rd-navbar-shadow-medium;
+    z-index: 15;
+    @include transform(translateX(-105%));
+
+    &.active {
+      @include transform(translateX(0));
+    }
+
+    .welcome {
+      display: block;
+      font-size: $font-ultra-small;
+      border-top: 1px solid $theme-line-1;
+      border-bottom: 1px solid $theme-line-1;
+      padding: 30px 0;
+      margin: 20px 30px 0;
+    }
+  }
+
+  .rd-navbar-nav {
+    display: block;
+    overflow: auto;
+    font-size: 16px;
+    line-height: 26px;
+    text-align: left;
+    height: 100%;
+
+    &:before, &:after {
+      content: '';
+      display: block;
+      height: 8px;
+    }
+
+    > li {
+      margin-bottom: 15px;
+      padding: 0 60px 0 30px;
+      &:last-child {
+        margin-bottom: 0;
+      }
+      > a {
+        display: inline-block;
+        text-transform: uppercase;
+        font-weight: 600;
+        padding: 5px 0;
+      }
+    }
+    li {
+      &.opened {
+        > .rd-navbar-submenu-toggle {
+          &:before {
+            content: "\e939";
+          }
+        }
+      }
+    }
+  }
+
+  .rd-navbar-dropdown,
+  .rd-navbar-megamenu {
+    display: none;
+    .rd-navbar-dropdown {
+      padding-left: 15px;
+    }
+  }
+
+  .rd-navbar-submenu {
+    position: relative;
+    @include rd-navbar-transition;
+    li {
+      margin-bottom: 5px;
+      &:last-child {
+        margin-bottom: 0;
+      }
+      > a {
+        font-size: $font-ultra-small;
+        &:before {
+          font-family: $linearicons-icon;
+          content: "\e93c";
+          float: left;
+          font-size: 10px;
+          margin-right: 10px;
+        }
+      }
+      .rd-navbar-submenu-toggle {
+        right: 0;
+        &:before {
+          font-size: 12px;
+          line-height: 1;
+        }
+      }
+    }
+    &.opened {
+      > .rd-navbar-dropdown,
+      > .rd-navbar-megamenu {
+        display: block;
+        padding: 20px 0;
+      }
+    }
+  }
+
+  .rd-navbar-submenu-toggle {
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    right: 15px;
+    cursor: pointer;
+    &:before {
+      font-family: $linearicons-icon;
+      content: "\e93a";
+      padding: 4px 8px;
+      display: block;
+    }
+  }
+}
+@media (min-width: $screen-sm-min) {
+  .layout_3 {
+    .rd-navbar-nav {
+      text-align: left;
+      border: 0;
+      padding: 0;
+      margin: 0;
+    }
+  }
+}
+
+@media (min-width: $screen-sm-min) {
+  .layout_4 {
+    .navigation {
+      width: 22.3333%;
+      position: relative;
+    }
+    .rd-navbar-toggle {
+      display: block;
+      height: 60px;
+      width: 100%;
+      color: #fff;
+      text-transform: uppercase;
+      text-align: left;
+      padding-left: 30px;
+      strong {
+        font-weight: 500;
+        display: inline-block;
+      }
+      &:before {
+        font-family: $linearicons-icon;
+        content: "\e93a";
+        margin-right: 25px;
+        float: right;
+      }
+      &:hover {
+        opacity: 0.8;
+      }
+      &.active {
+        &:before {
+          content: "\e939";
+        }
+      }
+    }
+    .rd-navbar-nav-wrap {
+      position: absolute;
+      display: none;
+      &.active {
+        display: block;
+      }
+    }
+    .rd-navbar-nav {
+      border: 1px solid $theme-line-1;
+      padding: 0 29px;
+      background: #fff;
+      margin: 0;
+      > li {
+        display: block;
+        float: none;
+        text-align: left;
+        margin: 0;
+        border-bottom: 1px solid $theme-line-1;
+        &:last-child {
+          border-bottom: 0;
+        }
+        > a {
+          padding: 17px 0;
+          &::after {
+            display: none;
+          }
+        }
+        @media (min-width: $screen-lg-min) {
+          .rd-navbar-dropdown {
+            left: 231px;
+            top: 0;
+            margin: 0;
+            @media (min-width: $screen-xl-min) {
+              left: 271px;
+              width: 290px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.rd-navbar-nav-fixed.rd-navbar-static {
+  .layout_4 {
+    .navigation {
+      top: 0;
+      width: 48%;
+    }
+    .rd-navbar-submenu-toggle {
+      display: inline-block;
+      position: absolute;
+      top: 13px;
+      right: -8px;
+      cursor: pointer;
+      &:before {
+        font-family: $linearicons-icon;
+        content: "\e93a";
+        padding: 4px 8px;
+        display: block;
+        font-size: 10px;
+      }
+    }
+    .rd-navbar-dropdown,
+    .rd-navbar-megamenu {
+      display: none;
+      position: relative;
+      top: 0 !important;
+      width: 100%;
+      padding: 0 0 20px 20px;
+      box-shadow: none;
+    }
+    li.parent {
+      position: relative;
+      span::after {
+        display: none;
+      }
+    }
+    li.opened {
+      > .megamenu-wrapper {
+        padding-left: 0;
+      }
+      > .rd-navbar-dropdown,
+      > .rd-navbar-megamenu {
+        display: block;
+        right: 0;
+        .container {
+          padding: 0;
+          min-width: inherit;
+        }
+        .row {
+          margin: 0;
+          [class*="col-"] {
+            padding: 0;
+            @include flex-basis(100%);
+            border: 0;
+            @media (min-width: $screen-sm-min) and (max-width: $screen-lg-min - 1) {
+              > ul {
+                margin-bottom: 20px;
+              }
+              &:last-child {
+                ul {
+                  margin-bottom: 0;
+                }
+
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .container-full {
+      max-width: inherit;
+      min-width: inherit;
+      padding: 0;
+      .row {
+        margin: 0;
+        display: block;
+        > div {
+          padding: 0;
+          width: 100%;
+          max-width: inherit;
+          border: 0;
+          > ul {
+            margin-bottom: 25px;
+          }
+          &:last-child {
+            ul {
+              margin-bottom: 0;
+            }
+
+          }
+        }
+      }
+    }
+    .navigation .static-block,
+    .navigation .product {
+      display: none;
+    }
+  }
+}

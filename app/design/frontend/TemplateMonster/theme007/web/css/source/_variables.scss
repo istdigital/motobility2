@@ -1,0 +1,111 @@
+//
+// Grid system
+// --------------------------------------------------
+
+$column-count: 12;
+$column-width: 70px;
+$gutter-width: 30px;
+$column-width-xl: 67px;
+$gutter-width-xl: 50px;
+
+$row-ws: 0;
+
+$container-xs: 300px;
+$container-sm: 720px + $gutter-width;
+$container-md: 940px + $gutter-width;
+$container-lg: $column-count*$column-width + $gutter-width*($column-count);
+$container-xl: $column-count*$column-width-xl + $gutter-width-xl*($column-count);
+
+// Layouts
+$layout-boxed-width: 1920px;
+
+// Resolutions
+$screen-xs-min: 480px;
+$screen-sm-min: 768px;
+$screen-md-min: 992px;
+$screen-lg-min: 1200px;
+$screen-xl-min: 1354px;
+
+// Fonts
+$default-font-family: 'Poppins', sans-serif;
+$default-font-weight: 400;
+$default-font-size: 16px;
+$default-line-height: 24px;
+
+$font-size-small : 14px;
+$font-ultra-small : 12px;
+
+// Icons
+$default-icon-family: 'Material Icons';
+$fa: 'FontAwesome';
+$linearicons-icon: 'Linearicons';
+
+// Colors
+$white: #FFF;
+$black: #000;
+$red: #d73105;
+$default: #888888;
+
+$bg-light: #ffffff;
+$bg-dark: #f6f6f6;
+
+$primary: #32d0b1;
+$accent: $primary;
+$secondary-1: #000;
+$secondary-2: #fd516a;
+$contrast: $white;
+
+$theme-line-1: #eae9e9;
+
+$table-border: #dadada;
+
+$border-color: #eae9e9;
+
+$header-color: $contrast;
+$header-bg: #f0f0f0;
+$header-bg-line: #000;
+
+$content-color: $default;
+$content-bg: #ffffff;
+
+$theme-item-bg: #f0f0f0;
+
+$footer-color: $content-color;
+$footer-bg: #fff;
+
+$modal-popup__box-shadow: (transparentize($black, .8));
+$theme-shadow:0 5px 27px rgba(0, 0, 0, 0.09);
+
+//Indents
+$indent-base: 2rem;
+$indent-large:  $indent-base * 2;
+$indent-small:  $indent-base / 2;
+
+//Links
+$link-regular:  #000;
+$link-hover:    #32d0b1;
+$link-active:   #3e3d3d;
+$link-alt:      $default;
+
+//Transition
+$default-transition: .3s ease;
+
+//
+//  Form Variables
+//  ---------------------------------------------
+
+//Inputs
+$input-padding-hor:     20px;
+$input-padding-vert:    6px;
+
+$input-font-size:       12px;
+$input-line-height:     $default-line-height;
+
+
+$input-bg-color:        #f6f6f6;
+
+//Buttons
+$button-padding-vert:   13px;
+$button-padding-hor:    22px;
+
+$button-bg-color:       $white;

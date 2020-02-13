@@ -1,0 +1,16 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Newsletter\Controller\Subscriber\NewAction">
+        <plugin name="newsletter_new_ajax" type="TemplateMonster\NewsletterPopup\Controller\Subscriber\Plugin" sortOrder="100" />
+    </type>
+    <type name="TemplateMonster\NewsletterPopup\Block\Adminhtml\System\Edit\Plugin">
+        <arguments>
+            <argument name="sections" xsi:type="array">
+                <item name="0" xsi:type="string">newsletter_popup</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Config\Block\System\Config\Edit">
+        <plugin name="addResetButton" type="TemplateMonster\NewsletterPopup\Block\Adminhtml\System\Edit\Plugin" sortOrder="100" />
+    </type>
+</config>

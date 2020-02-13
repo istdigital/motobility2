@@ -1,0 +1,16 @@
+<!--
+ @category    Mana
+ @package     Manadev_Core
+ @copyright   Copyright (c) http://www.manadev.com
+ @license     http://www.manadev.com/license  Proprietary License
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Backend\Model\Menu\Config\Reader">
+        <plugin name="Manadev\Core" type="Manadev\Core\Plugins\MenuConfigReaderModel"/>
+    </type>
+    <type name="Magento\Framework\Indexer\Config\Reader">
+        <plugin name="Manadev\Core" type="Manadev\Core\Plugins\IndexerConfigReaderModel"/>
+    </type>
+
+    <preference for="Magento\Config\Model\Config\Structure\Reader" type="Manadev\Core\Preferences\SystemConfigReader"/>
+</config>

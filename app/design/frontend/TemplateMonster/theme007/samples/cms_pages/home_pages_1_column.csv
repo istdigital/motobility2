@@ -1,0 +1,6 @@
+page_id,title,page_layout,meta_keywords,meta_description,identifier,content_heading,content,creation_time,update_time,is_active,sort_order,layout_update_xml,custom_theme,custom_root_template,custom_layout_update_xml,custom_theme_from,custom_theme_to,meta_title
+2,Magetique,1column,,,home,,,2016-07-27 02:32:46,2016-12-09 03:14:52,1,0,"<!--
+    <referenceContainer name=""right"">
+        <action method=""unsetChild""><argument name=""alias"" xsi:type=""string"">right.reports.product.viewed</argument></action>
+        <action method=""unsetChild""><argument name=""alias"" xsi:type=""string"">right.reports.product.compared</argument></action>
+    </referenceContainer>-->",NULL,NULL,NULL,NULL,NULL,

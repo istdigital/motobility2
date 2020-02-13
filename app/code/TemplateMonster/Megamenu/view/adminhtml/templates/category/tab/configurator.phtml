@@ -1,0 +1,31 @@
+<div id="mm_configurator">
+    <input type="hidden" id="mm_configurated_data" name="<?php echo $this->getFieldName(); ?>" data-form-part="category_form">
+    <div id="mm_content">
+    </div>
+    <button id="mm_add_row" class="mm_add" type="button">Add row</button>
+</div>
+<script type="text/x-magento-init">
+{
+    "#mm_configurator": {
+		"tm_configurator": {
+		    "url":  "<?php echo $this->getUrl('megamenu/category/block', ['_current' => true]); ?>",
+            "data":"<?php echo $this->getConfiguredValue()?addslashes($this->getConfiguredValue()):'{}'; ?>",
+            "staticBlocks":"<?php echo $this->getStaticBlocksJson(); ?>",
+            "level":<?php echo $this->getCategoryLevel(); ?>,
+            "adminFrontName":"<?php echo $this->getFrontName(); ?>",
+            "baseUrl":"<?php echo $block->getBaseUrl(); ?>"
+		}
+    }
+}
+</script>
+
+<script>
+    require([
+        'jquery',
+        'mage/apply/main'
+    ], function ($, mage) {
+        $(function () {
+            mage.apply();
+        });
+    });
+</script>

@@ -1,0 +1,124 @@
+<?php /** @var \TemplateMonster\LayoutSwitcher\Block\Switcher $block */ ?>
+
+<aside class="layout-switcher" id="customization_tool" data-mage-init='{"customizationTool": {}}'>
+    <form action="<?php echo $block->getFormActionUrl() ?>" method="post">
+        <?php echo $block->getBlockHtml('formkey'); ?>
+
+        <i class="fa fa-cogs" id="ls-icon"></i>
+        <section class="section ls-title">
+            <h3><?php echo __('Customization Tool') ?></h3>
+        </section>
+
+        <?php echo $block->getChildHtml('color_scheme') ?>
+
+        <section>
+            <div class="inner">
+                <label for="theme">Theme:</label>
+                <div class="select-container">
+                    <select id="theme" name="theme">
+                        <?php foreach ($block->getThemeOptions() as $option): ?>
+                            <option value="<?php echo $option['value'] ?>"<?php if ($block->isCurrentTheme($option['value'])): ?> selected<?php endif; ?>
+                                    data-website-id="<?php echo $option['website_id'] ?>"
+                                    data-base-url="<?php echo $block->getBaseUrlByWebsiteId($option['website_id']); ?>">
+                            <?php echo $option['label'] ?>
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+            </div>
+
+            <div class="inner">
+                <label for="homepage">Homepage:</label>
+                <div class="select-container" id="homepage-wrapper">
+                    <select id="homepage" name="homepage">
+                        <?php foreach ($block->getHomepageOptions() as $option): ?>
+                            <option value="<?php echo $option['value'] ?>"<?php if ($block->isCurrentHomepage($option['value'])): ?> selected<?php endif; ?> data-website-id="<?php echo $option['website_id'] ?>">
+                                <?php echo $option['label'] ?>
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+            </div>
+
+            <?php $layoutTypes = $block->getLayoutTypes(); $count = count($layoutTypes) - 1; $i = 0; ?>
+
+            <?php foreach ($layoutTypes as $layoutType): ?>
+            <div class="inner<?php if ($i++ === $count): ?> last<?php endif; ?>">
+                <label for="<?php echo $layoutType ?>-layout"><?php echo ucfirst($layoutType) ?> Layout:</label>
+                <div class="select-container">
+                    <select id="<?php echo $layoutType ?>-layout" name="<?php echo $layoutType ?>_layout">
+                    <?php foreach ($block->getLayoutOptions($layoutType) as $id => $data): ?>
+                        <option value="<?php echo $id ?>"<?php if ($block->isCurrentLayout($layoutType, $id)): ?> selected<?php endif; ?>>
+                            <?php echo $data['label'] ?>
+                        </option>
+                    <?php endforeach; ?>
+                    </select>
+                </div>
+            </div>
+            <?php endforeach; ?>
+        </section>
+
+        <section class="buttons">
+            <button type="submit" name="apply" class="apply" value="apply"><span><?php echo __('Apply') ?></span></button>
+            <button type="button" name="reset" class="reset" value="reset" data-post-action='<?php echo $block->getResetPostAction() ?>'><span><?php echo __('Reset') ?></span></button>
+        </section>
+    </form>
+</aside>
+<script>
+    require([
+        'jquery',
+        'Magento_Ui/js/modal/confirm',
+        'mage/dataPost'
+    ], function ($, confirm, dataPost) {
+        $(function () {
+            var defaultLayouts = <?php echo $block->getThemeDefaultLayoutsJson() ?>;
+
+            var switcher = $('.layout-switcher');
+            var homepage = $('#homepage', switcher).clone(true);
+
+            $('.reset', switcher).click(function (e) {
+                var self = this;
+                confirm({
+                    title: 'Reset confirmation',
+                    content: 'Are you sure you want to reset customization settings?',
+                    actions: {
+                        confirm: function () {
+                            var params = $(self).data('post-action');
+                            dataPost().postData(params);
+                        }
+                    }
+                });
+            });
+
+            $('#theme', switcher).change(function(e) {
+                // filter color schemes
+                var code = $(this).val();
+                $('.color-scheme', switcher).hide().filter(function() {
+                    return $(this).data('website') === code;
+                }).show().filter('.selected').click();
+
+                // filter store views
+                var id = $(this).find(':selected').data('website-id');
+                $('#homepage-wrapper').find('select').remove().end().html(homepage.clone(true)).find('option').filter(function() {
+                   return $(this).data('website-id') !== id;
+                }).remove();
+
+                // set form action
+                var baseUrl = $(this).find(':selected').data('base-url');
+                var form = $(this).parents('form');
+                form[0].action = baseUrl + '<?php echo $block->getActionUrl() ?>';
+
+                // set default layouts
+                var layouts = defaultLayouts[code];
+                $.each(layouts, function(type) {
+                   var id = '#' + type + '-layout';
+                   var value = layouts[type];
+
+                    $(id).find('option').removeProp('selected').filter(function() {
+                        return $(this).val() === value;
+                    }).prop('selected', true).parent().change();
+                });
+            }).change();
+        });
+    });
+</script>

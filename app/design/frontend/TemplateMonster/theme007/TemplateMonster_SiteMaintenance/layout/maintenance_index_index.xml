@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="empty" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <remove src='TemplateMonster_SiteMaintenance::css/module.css' />
+    </head>
+    <body>
+
+        <!--<referenceContainer name="maintenance.main" />-->
+
+        <referenceContainer name="maintenance.wrapper">
+            <block class="Magento\Theme\Block\Html\Header\Logo" name="logo3" before="-"/>
+            <container name="maintenance.container.wrapper" htmlClass="sm-container-wrapper" htmlTag="div">
+                <container name="maintenance.container" htmlClass="container" htmlTag="div" />
+            </container>
+        </referenceContainer>
+        <referenceContainer name="maintenance.wrapper">
+            <block class="Magento\Theme\Block\Html\Footer" name="copyright_2" template="html/copyright.phtml"/>
+        </referenceContainer>
+        <move element="maintenance.main" destination="maintenance.container" />
+    </body>
+</page>

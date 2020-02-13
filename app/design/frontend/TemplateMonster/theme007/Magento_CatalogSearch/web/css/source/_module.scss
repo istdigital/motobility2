@@ -1,0 +1,25 @@
+@media (min-width: $screen-sm-min) {
+    .form.search.advanced{
+        .group{
+            &.range{
+                @include make-flex();
+                @include make-row();
+                .field{
+                    @include make-col();
+                }
+            }
+        }
+    }
+}
+.found,
+.summary {
+    margin-bottom: 10px;
+    font-size: $font-size-small;
+    strong {
+        color: $black;
+    }
+}
+
+.catalogsearch-advanced-result .message.notice > div:after {
+    display: none;
+}

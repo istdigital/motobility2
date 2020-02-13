@@ -1,0 +1,37 @@
+<?php
+/**
+ *
+ * Copyright © 2015 TemplateMonster. All rights reserved.
+ * See COPYING.txt for license details.
+ *
+ */
+
+?>
+
+<script>
+    require([
+        "jquery",
+        "featuredProductWidget",
+        "featuredProductWidgetTabs"
+    ], function($){
+
+        var wysiwygWidgetSelector = "#widget_options > div[id*='FeaturedProduct']";
+        var classicWidgetSelector = "#widget_instace_tabs_properties_section_content";
+
+        $(classicWidgetSelector + ', ' + wysiwygWidgetSelector).widgetTabs({
+            "widgetInstance": "featured_products",
+            "wysiwygWidgetInstance": "TemplateMonster\\FeaturedProduct\\Block\\FeaturedProduct\\Widget\\Product",
+            "tabSections": {
+                "General": ["widget_status", "product_types", "json_data", "product_ids", "categories", "css_class", "cache_lifetime", "template"],
+                "View":    ["product_image_width", "product_image_height", "product_name_length", "number_per_view",
+                            "show_carousel", "number_to_display", "number_per_row", "use_arrows", "prev_button",
+                            "next_button", "use_pagination"],
+                "Labels":  ["show_label"],
+                "Banner":  ["is_banner", "banner_content"],
+                "Gallery": ["hover_type", "carousel_slides_count", "gallery_slides_count", "thumb_width", "thumb_height"]
+            }
+        });
+        $(classicWidgetSelector + ', ' + wysiwygWidgetSelector).featuredProductWidget();
+    });
+</script>
+

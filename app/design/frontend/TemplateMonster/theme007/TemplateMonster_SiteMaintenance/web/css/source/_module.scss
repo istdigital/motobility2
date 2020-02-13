@@ -1,0 +1,136 @@
+.sm-wrapper {
+  padding: 30px 0;
+  position: relative;
+  @include make-flex;
+  @include flex-direction(column);
+  .logo {
+    display: table;
+    margin: 0 auto 30px;
+  }
+  .copyright {
+    text-align: center;
+    display: block;
+    font-size: 12px;
+    margin-top: 30px;
+  }
+}
+.sm-container-wrapper {
+  @include flex(1 0 auto);
+  box-shadow: 0 5px 27px rgba(0, 0, 0, 0.09) inset;
+  padding: 0 20px;
+
+}
+.sm-main {
+  text-align: center;
+  max-width: 780px;
+  margin: 0 auto;
+  color: #fff;
+  padding: 180px 0;
+}
+.sm-title {
+  font-weight: 500;
+  line-height: 1;
+}
+#sm-content-block {
+  margin-bottom: 65px;
+  .sm-title {
+    font-size: 65px;
+    margin-bottom: 40px;
+    font-weight: 800;
+  }
+  .sm-description {
+    font-size: 16px;
+    line-height: 28px;
+  }
+}
+#sm-subscription-block {
+  .sm-title {
+    font-size: 35px;
+    margin-bottom: 40px;
+  }
+}
+.sm-content {
+  max-width: 450px;
+  margin: 0 auto;
+  .sm-button {
+    @include button-block;
+    @include button-block__primary;
+  }
+}
+.sm-subscription {
+  @include make-flex;
+  input {
+    margin-right: 10px;
+    height: 50px;
+  }
+}
+#sm-timer-block{
+  margin-bottom: 50px;
+}
+#sm-timer {
+  @include make-flex;
+  @include justify-content(center);
+  font-size: 75px;
+  font-weight: 500;
+  line-height: 1;
+  > div {
+    min-width: 125px;
+    position: relative;
+    margin: 0 8px;
+
+  }
+  span {
+    display: block;
+    font-size: 18px;
+    font-weight: normal;
+    margin-top: 8px;
+  }
+  b {
+    position: absolute;
+    top:20%;
+    right: -17%;
+  }
+}
+
+@media (max-width: $screen-sm-min - 1) {
+  #sm-content-block {
+    margin-bottom: 30px;
+  }
+  #sm-content-block .sm-title{
+    font-size: 30px;
+    margin-bottom: 25px;
+  }
+  #sm-content-block .sm-description {
+    font-size: 14px;
+    line-height: 20px;
+  }
+  #sm-subscription-block .sm-title {
+    font-size: 20px;
+    margin-bottom: 15px;
+  }
+  #sm-timer {
+    font-size: 26px;
+    > div {
+      min-width: 30px;
+    }
+    span {
+      font-size: 14px;
+
+    }
+    b {
+      right: -16px;
+    }
+  }
+}
+@media (max-width: $screen-xs-min - 1) {
+  .sm-main {
+    padding: 50px 0;
+  }
+  .sm-subscription {
+    display: block;
+  }
+  .sm-button {
+    width: 100%;
+    margin-top: 10px;
+  }
+}

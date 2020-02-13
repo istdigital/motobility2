@@ -1,0 +1,29 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+?>
+<?php /* @var $block \Magento\ProductAlert\Block\Product\View */?>
+<div class="product alert <?= $block->getHtmlClass() ?>">
+	<strong><?= __("Sorry, this product is currently sold out.") ?></strong>
+	<p><?= __("Click the button below to be notified as soon as the item is back in stock. Or, <a href='#similar_items' id='similar_items'><b>Click here</b></a> for similar items.") ?></p>
+	<div class="actions">
+	    <button
+	    	class="action primary alert"
+	       title="<?= $block->escapeHtml(__($block->getSignupLabel())) ?>">
+	        <?= $block->escapeHtml(__("BACK IN STOCK REMINDER")) ?>
+	    </button>
+    </div>
+</div>
+
+<script type="text/javascript">
+	require(['jquery'], function($){ 
+		$("#similar_items").click(function(e){
+			e.preventDefault();
+			if($(".breadcrumbs li.item.0 a")){
+				window.location.href = $(".breadcrumbs li.item.0 a").attr("href");
+			}
+		});
+	})
+</script>

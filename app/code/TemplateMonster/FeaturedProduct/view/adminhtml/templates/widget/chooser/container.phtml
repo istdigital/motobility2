@@ -1,0 +1,26 @@
+<?php
+/**
+ *
+ * Copyright © 2015 TemplateMonster. All rights reserved.
+ * See COPYING.txt for license details.
+ *
+ */
+?>
+<?php
+/**
+ * Container for product link widget chooser
+ *
+ * @see \Magento\Catalog\Block\Adminhtml\Product\Widget\Chooser\Container
+ */
+$productsIds = $block->getStringValue();
+?>
+<div class="columns">
+    <input id="<?php echo $block->escapeHtml($block->getIdForJs()) ?>_products_ids"
+           class="products_ids"
+           type="hidden"
+           name="products_ids"
+           value="<?php echo $productsIds; ?>">
+
+    <div class="side-col"><?php echo $block->getTreeHtml() ?></div>
+    <div class="main-col"><?php echo $block->getGridHtml() ?></div>
+</div>

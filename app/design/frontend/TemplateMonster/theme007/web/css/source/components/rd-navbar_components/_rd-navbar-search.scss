@@ -1,0 +1,260 @@
+/*
+* @subsection   RD Navbar Search
+*
+* @description  Describes style declarations for RD Navbar search
+*/
+.rd-navbar-search-toggle {
+  display: block;
+  font-family: $fa;
+  width: 38px;
+  height: 38px;
+  line-height: 38px;
+  font-size: 22px;
+  position: relative;
+  z-index: 18;
+  text-align: center;
+  transition: all 0s ease;
+  @media (min-width: $screen-xs-min) {
+    width: 69px;
+    border-left: 1px solid $theme-line-1;
+    text-align: right;
+    margin-left: 12px;
+  }
+  &:before,
+  &:after {
+    display: inline-block;
+    transition: .3s all ease;
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 0;
+  }
+  &:before {
+    font-family: $linearicons-icon;
+    content: "\e922";
+    @include transform(rotate(0deg) scale(1));
+
+  }
+  &:after {
+    font-family: $linearicons-icon;
+    content: "\e935";
+    @include transform(rotate(-90deg) scale(0));
+  }
+  &.active {
+    &:after {
+      @include transform(rotate(0deg) scale(1));
+    }
+    &:before {
+      @include transform(rotate(-90deg) scale(0));
+    }
+  }
+}
+
+.rd-navbar-search {
+  position: absolute;
+  left: 15px;
+  right: 80px;
+  top: 0;
+  z-index: -1;
+  @media (min-width: $container-xl) {
+    left: 25px;
+  }
+  form {
+    button[type="submit"] {
+      background: none;
+      height: 48px;
+      width: 44px;
+      font-size: 23px;
+      line-height: 50px;
+      margin: 0;
+      padding: 0;
+      position: absolute;
+      right: 1px;
+      top: 1px;
+      border: 0;
+      &:before {
+        font-family: $linearicons-icon;
+        content: "\e922";
+      }
+      &:hover {
+      }
+      span {
+        display: none;
+      }
+    }
+  }
+  .form-group {
+    z-index: 17;
+    transition: .1s all cubic-bezier(0.785, 0.135, 0.150, 0.860);
+    visibility: hidden;
+    opacity: 0;
+    box-shadow: 0 5px 27px rgba(0, 0, 0, 0.09);
+
+    input {
+      width: 100%;
+      height: 50px;
+      min-height: inherit;
+      display: block;
+      line-height: normal;
+      border: 1px solid $theme-line-1;
+      padding-right: 60px;
+      padding-left: 30px;
+    }
+  }
+  &.active {
+    z-index: 20;
+    .form-group {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+}
+
+.field.search {
+  margin: 0;
+}
+
+.layout_1 {
+  @media (max-width: $screen-lg-min) {
+    .rd-navbar-search-toggle {
+      width: 45px;
+    }
+  }
+}
+
+.layout_2 {
+  @media (min-width: $screen-sm-min) {
+    .rd-navbar-search-toggle {
+      border: 0;
+      width: 45px;
+      height: 24px;
+      line-height: 26px;
+    }
+    .rd-navbar-search {
+      left: 0;
+      right: 40px;
+    }
+  }
+  @media (min-width: $screen-lg-min) {
+    .rd-navbar-search-toggle {
+      &.active {
+        position: absolute;
+        right: 0;
+        top: 8px;
+        line-height: 36px;
+      }
+    }
+  }
+  @media (min-width: $screen-sm-min) and (max-width: $screen-lg-min - 1) {
+    .rd-navbar-search-toggle {
+      position: absolute;
+      right: 4px;
+      top: -39%;
+    }
+    .rd-navbar-search {
+      top: -54%;
+    }
+  }
+}
+
+.layout_3 {
+  @media (min-width: $screen-sm-min) {
+    .rd-navbar-search-toggle {
+      float: right;
+      border: 0;
+      width: 42px;
+      line-height: 42px;
+    }
+    .rd-navbar-search {
+      left: 0;
+      right: 40px;
+      top:-7px;
+    }
+  }
+}
+
+.layout_4 {
+  @media (min-width: $screen-sm-min) {
+    .rd-navbar-search {
+      position: relative;
+      left: 0;
+      top: 0;
+      z-index: 2;
+      width: 48%;
+      margin-bottom: 0;
+      .form-group {
+        opacity: 1;
+        visibility: visible;
+        position: relative;
+        z-index: auto;
+        box-shadow: none;
+        border: 5px solid;
+        input {
+          height: 50px;
+          border: 0;
+          background: #fff;
+          padding-right: 80px;
+        }
+      }
+      form {
+        button[type="submit"] {
+          width: 66px;
+          border-left: 1px solid $theme-line-1;
+        }
+      }
+      @media (min-width: $screen-lg-min) {
+        width: 74%;
+      }
+    }
+    .rd-navbar-search-toggle {
+      display: none;
+    }
+  }
+
+}
+
+.layout_5 {
+  @media (min-width: $screen-sm-min) {
+    .rd-navbar-search-toggle {
+      margin: 0;
+      border: 0;
+      color: #fff;
+    }
+    .rd-navbar-search {
+      right: 45px;
+      left: 0;
+      top:7px;
+    }
+  }
+}
+
+@media (max-width: $screen-sm-min - 1) {
+  .rd-navbar-search-toggle {
+    display: block;
+    position: fixed;
+    top: 15px;
+    left: 50px;
+    width: 50px;
+    height: 40px;
+    z-index: 18;
+    font-size: 20px;
+    text-align: center;
+    margin: 0;
+    border: 0;
+  }
+  .field.search {
+    margin: 0;
+  }
+
+  .rd-navbar-search {
+    display: block;
+    z-index: 16;
+    .form-group {
+      position: fixed;
+      top: 70px;
+      left: 0;
+      right: 10px;
+    }
+
+  }
+}

@@ -1,0 +1,139 @@
+//
+//  Table
+//  ---------------------------------------------
+
+table {
+  &.table {
+    width: 100%;
+    border-collapse: collapse;
+
+    tr.row {
+      display: table-row;
+      margin: 0;
+
+      .col {
+        padding-right: 0;
+      }
+    }
+    td {
+      vertical-align: middle;
+    }
+    th, td {
+      padding: 10px;
+      @media (min-width: $screen-sm-min) {
+        border-right: solid 1px $table-border;
+      }
+      @media (min-width: $screen-lg-min) {
+        padding: 30px;
+      }
+
+      &:last-child {
+        border-right: 0;
+      }
+      &:first-child {
+        padding-left: 0;
+      }
+    }
+    th {
+      color: $black;
+    }
+
+    thead {
+      border-top: solid 1px $table-border;
+      border-bottom: solid 1px $table-border;
+      th {
+        @extend .text-left;
+        @extend .bold;
+        color: $black;
+        &:last-child {
+          border-right: 0;
+        }
+      }
+    }
+    tbody {
+      font-size: $font-ultra-small;
+      th, td {
+        @media (min-width: $screen-sm-min) {
+          border-bottom: solid 1px $table-border;
+        }
+      }
+      @media (min-width: $screen-lg-min) {
+        .price {
+          font-size: 20px;
+        }
+      }
+    }
+    tfoot {
+      border-bottom: solid 1px $table-border;
+      @media (min-width: $screen-lg-min) {
+        th, td {
+          padding-top: 10px;
+          padding-bottom: 10px;
+        }
+        tr:first-child {
+          th, td {
+            padding-top: 40px;
+          }
+        }
+        tr:last-child {
+          th, td {
+            padding-bottom: 40px;
+          }
+        }
+      }
+      @media (min-width: $screen-lg-min) {
+        .price {
+          font-size: 20px;
+        }
+      }
+    }
+
+    .col.name {
+      font-size: $font-size-small;
+      strong {
+        font-weight: normal;
+      }
+    }
+
+
+    @media (max-width: $screen-sm-min) {
+      th {
+        display: none;
+      }
+      td {
+        width: 100%;
+        padding: 10px 0;
+        display: block;
+        &:before {
+          font-weight: bold;
+          display: block;
+          border-bottom: solid 1px $table-border;
+          content: attr(data-th);
+          margin-bottom: 10px;
+        }
+      }
+    }
+  }
+  &.table-bordered {
+    border-top: 2px solid;
+    border-left: 1px solid $table-border;
+    th,
+    td {
+      border-right: 1px solid $table-border;
+      border-bottom: 1px solid $table-border;
+    }
+  }
+  &.data-table {
+    width: 100%;
+    th,
+    td {
+      padding: 20px;
+      vertical-align: middle;
+    }
+    th {
+      background: $bg-light;
+      text-transform: uppercase;
+      color: $black;
+    }
+  }
+}

@@ -1,0 +1,141 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="templatemonster">
+            <label>TemplateMonster</label>
+        </tab>
+        <section id="social_sharing" translate="label" type="text" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Social Sharing</label>
+            <tab>templatemonster</tab>
+            <resource>TemplateMonster_SocialSharing::social_sharing_config</resource>
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General</label>
+                <field id="enabled" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enabled</label>
+                    <comment>Turn on to enable the module.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="profile_id" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Profile Id</label>
+                    <comment>AddThis identifier.</comment>
+                </field>
+            </group>
+            <group id="look_and_feel" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Look &amp; Feel</label>
+                <field id="style" translate="label comment" type="radios" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Style</label>
+                    <source_model>TemplateMonster\SocialSharing\Model\Config\Source\Style</source_model>
+                </field>
+                <field id="custom_button" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <depends>
+                        <field id="style">custom_button</field>
+                    </depends>
+                    <label>Custom Button</label>
+                    <comment>Custom button image url.</comment>
+                    <validate>url2</validate>
+                </field>
+                <field id="custom_code" translate="label comment" type="textarea" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <depends>
+                        <field id="style">custom_code</field>
+                    </depends>
+                    <label>Custom Code</label>
+                    <comment>Custom html code to display.</comment>
+                </field>
+            </group>
+            <group id="custom_metadata" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Custom Metadata</label>
+                <field id="url" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Url</label>
+                    <comment>Custom page url to share.</comment>
+                    <validate>url2</validate>
+                </field>
+                <field id="title" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Title</label>
+                    <comment>Custom page title to share.</comment>
+                </field>
+                <field id="description" translate="label comment" type="textarea" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Description</label>
+                    <comment>Custom page description to share.</comment>
+                </field>
+            </group>
+            <group id="custom_service" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Custom Sharing Service</label>
+                <field id="name" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Name</label>
+                    <comment>Custom sharing service name.</comment>
+                </field>
+                <field id="url" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Url</label>
+                    <comment>Custom sharing service url.</comment>
+                    <validate>url2</validate>
+                </field>
+                <field id="icon" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Icon</label>
+                    <comment>Custom sharing service icon url.</comment>
+                    <validate>url2</validate>
+                </field>
+            </group>
+            <group id="api" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Api Configuration Options</label>
+                <field id="exclude_services" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Exclude Services</label>
+                    <comment>Services to exclude from all menus. For example, setting this to 'facebook,myspace' would hide Facebook and MySpace on all our menus.</comment>
+                </field>
+                <field id="compact_menu_services" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Compact Menu Services</label>
+                    <comment>Services to use in the compact menu. For example, setting this to 'print,email,favorites' would result in only those three services appearing.</comment>
+                </field>
+                <field id="expanded_menu_services" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Expanded Menu Service</label>
+                    <comment>Services to use in the expanded menu. Useful if very few services are desired — specifying a long list via services_exclude could be tiresome, and wouldn’t catch a new service added later. For example, setting this to 'bebo,misterwong,netvibes' would result in only those three services appearing in the expanded menu.</comment>
+                </field>
+                <field id="compact_menu_hover" translate="label comment" type="select" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Compact Menu Hover</label>
+                    <comment>Turn off to not to show the compact menu upon mousing over the regular button. Instead, it will be revealed upon clicking the button.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="delay" translate="label comment" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Delay</label>
+                    <comment>Delay, in milliseconds, before compact menu appears when mousing over a regular button. Capped at 500 ms.</comment>
+                </field>
+                <field id="compact_menu_direction" translate="label comment" type="select" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Compact Menu Direction</label>
+                    <comment>Normally, we show the compact menu in the direction of the user’s browser that has the most space. Change to customize the default behaviour.</comment>
+                    <source_model>TemplateMonster\SocialSharing\Model\Config\Source\CompactMenuDirection</source_model>
+                </field>
+                <field id="new_window" translate="label comment" type="select" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>New Window</label>
+                    <comment>If true, clicking the AddThis button will open a new window to a page supporting sharing without JavaScript.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="menu_language" translate="label comment" type="select" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Menu Language</label>
+                    <comment>Force the menu to use a particular language.</comment>
+                    <source_model>TemplateMonster\SocialSharing\Model\Config\Source\MenuLanguage</source_model>
+                </field>
+                <field id="offset_top" translate="label comment" type="text" sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Offset Top</label>
+                    <comment>Number of pixels to offset the top of the compact menu from its parent element.</comment>
+                </field>
+                <field id="offset_left" translate="label comment" type="text" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Offset Left</label>
+                    <comment>Number of pixels to offset the left of the compact menu from its parent element.</comment>
+                </field>
+                <field id="load_addthis_css" translate="label comment" type="select" sortOrder="110" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Load AddThis CSS</label>
+                    <comment>Turn off to not load our standard CSS file, allowing you to style everything yourself.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="track_clickbacks" translate="label comment" type="select" sortOrder="120" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Track Clickbacks</label>
+                    <comment>Turn on to allow us to append a variable to your URLs upon sharing. We’ll use this to track how many people come back to your content via links shared with AddThis.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="google_analytics_id" translate="label comment" type="text" sortOrder="140" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Google Analytics Id</label>
+                    <comment>Turn on to enable the module.</comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

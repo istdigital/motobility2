@@ -1,0 +1,29 @@
+
+//
+//  Fotorama
+//  ---------------------------------------------
+
+.gallery-placeholder{
+    .loading-mask{
+        padding: 0 0 50%;
+        position: absolute;
+        display: none;
+    }
+    
+    .fotorama-hidden, 
+    .fotorama--hidden, 
+    .fotorama__load {
+        left: -99999px;
+        position: absolute;
+        top: -99999px;
+        z-index: -1000;
+        display: none;
+    }
+}
+
+.fotorama-item{
+    .fotorama__stage{
+        margin-bottom: $indent-small;
+    }
+}
+

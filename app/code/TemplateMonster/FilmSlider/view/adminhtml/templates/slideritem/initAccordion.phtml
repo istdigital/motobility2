@@ -1,0 +1,51 @@
+<script type="text/x-magento-init">
+    {"#slider_items_tabs_main_section_content": {
+        "sliderInitAccordion": <?php /* @escapeNotVerified */ echo $block->getJsLayout();?>
+    }}
+</script>
+<script>
+    require(['jquery','jquery/colorpicker/js/colorpicker'], function($) {
+        $(function() {
+            var colorPickerBack = $('#slider_layer_text_back_color')
+                .attr('autocomplete', 'off')
+                .css('backgroundColor', function() {
+                    return $(this).val();
+                });
+
+            var colorPickerText = $('#slider_layer_text_color')
+                .attr('autocomplete', 'off')
+                .css('backgroundColor', function() {
+                    return $(this).val();
+                });
+
+            colorPickerBack.ColorPicker({
+                onChange: function (hsb, hex, rgb) {
+                    var color = '#' + hex;
+                    colorPickerBack.val(color).css('backgroundColor', color);
+                    colorPickerBack.trigger('change');
+                }
+            });
+
+            colorPickerText.ColorPicker({
+                onChange: function (hsb, hex, rgb) {
+                    var color = '#' + hex;
+                    colorPickerText.val(color).css('backgroundColor', color);
+                    colorPickerText.trigger('change');
+                }
+            });
+
+//            colorPickerBack.keypress(false);
+//            colorPickerText.keypress(false);
+        });
+    });
+</script>
+<style>
+    .field-color-picker {
+        cursor: pointer;
+        background: url('<?php echo $this->getViewFileUrl("TemplateMonster_FilmSlider::images/colorpicker.png"); ?>')
+                    no-repeat right;
+    }
+    .field-color-picker::-ms-clear {
+        display: none;
+    }
+</style>

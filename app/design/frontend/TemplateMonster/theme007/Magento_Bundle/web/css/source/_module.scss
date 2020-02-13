@@ -1,0 +1,223 @@
+//
+//  Bundle product view
+//  _____________________________________________
+/* Bundle */
+
+.page-product-bundle,
+.modal-popup.quick-view {
+  .price-box {
+    @include make-flex;
+    font-size: 20px;
+    font-weight: 700;
+
+    .price-from {
+      padding-right: .3em;
+      &:after {
+        content: '-';
+      }
+    }
+  }
+  .layout_3 {
+    .price-box {
+      @include justify-content(center);
+    }
+  }
+
+  .bundle-actions {
+    padding-top: 2.65vw;
+    border-top: 1px solid $border-color;
+  }
+  .box-tocart .primary {
+    min-width: 250px;
+  }
+  .product-social-links {
+    padding-bottom: 2.65vw;
+    border-bottom: 1px solid $border-color;
+  }
+
+  button.back.customization {
+    margin-bottom: 24px;
+    color: #000;
+    text-decoration: underline;
+    &:hover {
+      text-decoration: none;
+    }
+  }
+  #bundle-slide {
+    margin-bottom: 16px;
+    @include button-block;
+  }
+  .bundle-options-wrapper {
+    .fieldset-bundle-options__wrapper .field.option {
+      @include flex-basis(100%);
+    }
+  }
+  .product-options-wrapper {
+    .field {
+      display: block;
+    }
+    .qty-holder .label {
+      font-weight: bold;
+    }
+    .label {
+      @include flex-basis(100%);
+    }
+  }
+}
+
+.bundle-options-wrapper .legend,
+.block-bundle-summary > .title {
+  font-size: 18px;
+  line-height: 20px;
+  font-weight: 700;
+  color: $primary;
+  margin-bottom: 24px;
+}
+
+//
+//  Options
+//  ---------------------------------------------
+
+.bundle-options-container .product-add-form > form {
+
+  @media (min-width: $screen-md-min) {
+    @include make-flex;
+    @include justify-content(space-between);
+    .bundle-options-wrapper {
+      @include flex-basis(48%);
+    }
+    .block-bundle-summary {
+      @include flex-basis(40%);
+    }
+  }
+
+  .block-bundle-summary {
+    border: 1px solid $border-color;
+    padding: 15px;
+  }
+}
+
+.bundle-options-container {
+  @include make-col();
+  margin-top: 32px;
+  order: 3;
+  width: 100%;
+  .product-add-form {
+    display: none;
+  }
+}
+
+//
+//  Summary
+//  ---------------------------------------------
+
+.block-bundle-summary {
+  .product-image-container {
+    display: inline-block;
+    max-width: 100%;
+    margin-bottom: 32px;
+  }
+  .product-image-wrapper {
+    background: $bg-light;
+    display: block;
+    height: 0;
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+
+    img {
+      bottom: 0;
+      display: block;
+      height: auto;
+      left: 0;
+      margin: auto;
+      max-width: 100%;
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+  }
+
+  .product.name {
+    @extend .heading-1;
+    margin: 0;
+    padding: 0;
+    text-align: left;
+    font-size: 22px;
+  }
+
+  .product-details .price-box {
+    margin-bottom: 0;
+  }
+
+  .stock {
+    margin-bottom: 20px;
+  }
+
+  .bundle-summary {
+    margin-bottom: 24px;
+
+    .subtitle {
+      font-size: 18px;
+      height: 20px;
+      font-weight: 700;
+      color: $primary;
+      display: inline-block;
+      margin-bottom: 8px;
+    }
+
+    .items li {
+      border-bottom: 1px solid $border-color;
+      padding-bottom: 8px;
+      margin-bottom: 7px;
+      &:last-child {
+        border-bottom: 0;
+      }
+
+      .label {
+        font-weight: 700;
+        font-size: 13px;
+        margin-right: 8px;
+      }
+    }
+  }
+}
+
+.page-product-grouped,
+.modal-popup.quick-view {
+  .table-wrapper.grouped {
+    margin-bottom: 25px;
+    .table-caption {
+      text-align: left;
+      margin-bottom: 10px;
+    }
+    .price-box {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.page-product-downloadable,
+.modal-popup.quick-view {
+  .items.samples {
+    margin-bottom: 20px;
+    a {
+      text-decoration: underline;
+      &:hover {
+        text-decoration: none;
+      }
+    }
+  }
+  .downloads.downloads-no-separately {
+    display: inline-block;
+    .label {
+      @include flex-basis(inherit);
+    }
+  }
+  .product-social-links {
+    margin-top: 25px;
+  }
+  .links-title {
+    display: none;
+  }
+}

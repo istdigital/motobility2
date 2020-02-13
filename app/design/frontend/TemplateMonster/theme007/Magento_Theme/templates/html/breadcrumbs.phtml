@@ -1,0 +1,46 @@
+<?php
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$request = $objectManager->get('Magento\Framework\App\Action\Context')->getRequest();
+?>
+<?php if ($crumbs && is_array($crumbs)) : ?>
+<div class="breadcrumbs">
+    <div class="container">
+        <ul class="items">
+            <?php $i = 0; foreach ($crumbs as $crumbName => $crumbInfo) : ?>
+
+                <?php if ($i == 1 &&  ($request->getFullActionName() == 'catalog_category_view' || $request->getFullActionName() == 'catalog_product_view') ) :?>
+                    <li class="item lifestyle">
+                        <a href="<?= $this->getUrl('lifestyle') ?>" title="<?= __("Lifestyle") ?>">
+                            <?= __("Lifestyle") ?>
+                        </a>
+                    </li>
+                <?php endif; ?>
+                 
+                <li class="item <?php echo $crumbName ?>">
+                <?php if ($crumbInfo['link']) : ?>
+                    <a href="<?php echo $crumbInfo['link'] ?>" title="<?php echo $block->escapeHtml($crumbInfo['title']) ?>">
+                        <?php if($i==0): ?>
+                            <i class="icon-home"></i>
+                        <?php else: ?>
+                            <?php echo $block->escapeHtml($crumbInfo['label']) ?>
+                        <?php endif; ?>
+                    </a>
+                <?php elseif ($crumbInfo['last']) : ?>
+                    <strong><?php echo $block->escapeHtml($crumbInfo['label']) ?></strong>
+                <?php else: ?>
+                    <?php echo $block->escapeHtml($crumbInfo['label']) ?>
+                <?php endif; ?>
+                </li>
+            <?php $i++; endforeach; ?>
+        </ul>
+    </div>
+</div>
+<?php endif; ?>

@@ -1,0 +1,55 @@
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<!--@subject {{trans "Notify of Repayment"}} @-->
+
+{{template config_path="design/email/header_template"}}
+
+<p>Dear Admin,</p>
+
+<table>
+	<tr>
+		<td>Name</td><td>{{var data.name}}</td>
+	</tr>
+	<tr>
+		<td>Email</td><td>{{var data.email}}</td>
+	</tr>
+	<tr>
+		<td>Phone</td><td>{{var data.phone}}</td>
+	</tr>
+	<tr>
+		<td>Suburb</td><td>{{var data.suburb}}</td>
+	</tr>
+	<tr>
+		<td>Message</td><td>{{var data.message}}</td>
+	</tr>
+	<tr>
+		<td>Product Name</td><td>{{var data.product_name}}</td>
+	</tr>
+</table>
+<table>
+	<tr>
+		<td>Price</td><td>{{var data.price}}</td>
+	</tr>
+	<tr>
+		<td>Application_fee</td><td>{{var data.application_fee}}</td>
+	</tr>
+	<tr>
+		<td>Deposit</td><td>{{var data.deposit}}</td>
+	</tr>
+	<tr>
+		<td>Subtotal</td><td>{{var data.sub_total}}</td>
+	</tr>
+	<tr>
+		<td>Payment_charge</td><td>{{var data.payment_charge}}</td>
+	</tr>
+	<tr>
+		<td>Term</td><td>{{var data.term}}</td>
+	</tr>
+</table>
+
+
+{{template config_path="design/email/footer_template"}}

@@ -1,0 +1,22 @@
+<?php if ($this->getNameInLayout() == 'catalog.topnav'): ?>
+    <?php $columnsLimit = $block->getColumnsLimit() ?: 0; ?>
+    <?php $_menu = $block->getHtml('level-top', 'submenu', $columnsLimit) ?>
+    <!-- Top Nav -->
+    <nav class="navigation <?php echo $this->_helper->isVertical() ? ' mobile-only' : ' tm-top-navigation' ?>" data-action="navigation">
+        <ul data-mage-init='{"megamenu":{"menus": "li > ul:not(.mm-submenu), .megamenu-wrapper","responsive":true, "expanded":true, "position":{"my":"left top","at":"left bottom"}, "differentPositionMenus":".megamenu-wrapper", "differentPosition":{"my":"left top","at":"left bottom","of":".navigation"}}}'>
+            <?php /* @escapeNotVerified */ echo $_menu; ?>
+        </ul>
+    </nav>
+
+<?php endif;
+if($this->getNameInLayout() == 'catalog.sidebarnav' && $this->_helper->isVertical()): ?>
+    <?php $columnsLimit = $block->getColumnsLimit() ?: 0; ?>
+    <?php $_menu = $block->getHtml('level-top', 'submenu', $columnsLimit) ?>
+    <!-- Sidebar Nav -->
+    <nav class="navigation desktop-only" data-action="navigation">
+        <ul data-mage-init='{"megamenu":{"menus": "li > ul:not(.mm-submenu), .megamenu-wrapper", "responsive":true, "expanded":true, "position":{"my":"left top","at":"right top"}}}'>
+            <?php echo $_menu; ?>
+        </ul>
+    </nav>
+
+<?php endif; ?>

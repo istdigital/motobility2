@@ -1,0 +1,14 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="cms_page_render">
+        <observer name="handleUpdateInstructions" instance="Manadev\Core\Observers\HandleUpdateInstructions"/>
+    </event>
+    <event name="controller_action_predispatch">
+        <observer name="updateVersionNumbers" instance="Manadev\Core\Observers\UpdateVersionNumbers"/>
+    </event>
+    <event name="controller_front_send_response_before">
+        <observer name="Manadev\Core\Observers\OutputProfilerStats" instance="Manadev\Core\Observers\OutputProfilerStats"/>
+    </event>
+    <event name="layout_generate_blocks_after">
+        <observer name="executeAfterLayoutLoadedCallbacks" instance="Manadev\Core\Observers\ExecuteAfterLayoutLoadedCallbacks"/>
+    </event>
+</config>

@@ -1,0 +1,10 @@
+<!-- ko foreach: { data: posts, as: 'post' } -->
+<div class="col-md-4 col-sm-4">
+	<a class="post-inner" data-bind="attr:{href:post.url}">
+		<span data-bind="text: post.publish_date"></span>
+		<h5 data-bind="text: post.name"></h5>
+		<img data-bind="attr:{src:post.image}"/>
+		<p data-bind="text: post.short_description"></p>
+	</a>
+</div>
+<!-- /ko -->​

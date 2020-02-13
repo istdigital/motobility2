@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="content">
+            <block class="Magento\Framework\View\Element\Template"
+                   name="category.grid"
+                   template="TemplateMonster_CatalogImagesGrid::catalog/image_grid.phtml"
+                   before="category.products"
+                   ifconfig="catalogimagesgrid/category_page/show_before_grid"
+            />
+            <block class="Magento\Framework\View\Element\Template"
+                   name="category.grids"
+                   template="TemplateMonster_CatalogImagesGrid::catalog/image_grid.phtml"
+                   after="category.products"
+                   ifconfig="catalogimagesgrid/category_page/show_after_grid"
+            />
+        </referenceContainer>
+    </body>
+</page>

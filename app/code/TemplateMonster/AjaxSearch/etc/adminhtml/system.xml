@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="templatemonster" translate="label" sortOrder="90">
+            <label>TemplateMonster</label>
+        </tab>
+        <section id="ajaxsearch" translate="label" type="text" sortOrder="120" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>Ajax Catalog Search</label>
+            <tab>templatemonster</tab>
+            <resource>TemplateMonster_AjaxSearch::config_ajaxsearch</resource>
+            <group id="ajaxsearch" translate="label" type="text" sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Catalog Search Ajax Config</label>
+                <field id="ajaxsearch_default_active" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Default Search Ajax</label>
+                    <comment>Enable/Disable</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                </field>
+                <field id="ajaxsearch_category_active" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Category Search Ajax</label>
+                    <comment>If Enable Make Sure That "Use Flat Catalog Category" is Active</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                </field>
+                <field id="ajaxsearch_product_active" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Product Search Ajax</label>
+                    <comment>If Enable Make Sure That "Use Flat Catalog Product" is Active</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                </field>
+                <field id="ajaxsearch_default_number" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Default Search Ajax Num. Result</label>
+                    <validate>validate-digits</validate>
+                </field>
+                <field id="ajaxsearch_category_number" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Category Search Ajax Num. Result</label>
+                    <validate>validate-digits</validate>
+                </field>
+                <field id="ajaxsearch_product_number" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Product Search Ajax Num. Result</label>
+                    <validate>validate-digits</validate>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

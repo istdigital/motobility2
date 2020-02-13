@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<page layout="1column" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+	<head>
+        <css src="Zemez_StockAlert::css/magnific-popup.css"/>
+    </head>
+    <body>
+    	<referenceBlock name="productalert.stock">
+            <action method="setTemplate">
+                <argument name="template" xsi:type="string">Zemez_StockAlert::product/view.phtml</argument>
+            </action>
+        </referenceBlock>
+        <referenceContainer name="before.body.end">
+            <block
+            class="Magento\Catalog\Block\Product\View"
+            name="stock_alert"
+            template="Zemez_StockAlert::popup.phtml"/>
+        </referenceContainer>
+    </body>
+</page>

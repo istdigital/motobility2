@@ -1,0 +1,109 @@
+//
+//  List
+//  ---------------------------------------------
+
+.products-list {
+  .item.product-item {
+    border-bottom: 1px solid $theme-line-1;
+    margin-bottom: 50px;
+    padding-bottom: 50px;
+    &:last-child {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+  }
+  .product-item-info {
+    @include make-flex();
+    @include make-row();
+    @include flex-wrap(wrap);
+  }
+
+
+  //Image
+  .product-item-photo {
+    position: relative;
+  }
+  .photo.product-item-photo {
+    display: block;
+  }
+  .product-image-container {
+  }
+  .product-item-photo-wrap {
+    @include make-col();
+    @include flex-basis(100%);
+    text-align: center;
+    margin-bottom: $indent-small;
+  }
+
+  //Details
+  .product-item-details {
+    @include make-col();
+    @include flex-basis(100%);
+  }
+  .price-container {
+    margin-bottom: 8px;
+  }
+  .product-item-name {
+    display: block;
+    font-weight: normal;
+    margin-bottom: 10px;
+  }
+  .product-item-description {
+    line-height: 21px;
+    font-size: $font-ultra-small;
+    margin-bottom: 18px;
+    .more {
+      display: none;
+    }
+  }
+  .product-item-actions {
+    @include align-items(center);
+    padding-top: 10px;
+    .actions-primary {
+      padding-right: 25px;
+    }
+  }
+  .product-reviews-summary {
+    padding-top: 19px;
+    .add {
+      display: none;
+    }
+  }
+  div[class^="swatch-opt-"] {
+    margin-bottom: 15px;
+  }
+
+  .smart-labels .main-labels {
+    display: none !important;
+  }
+}
+
+@media (min-width: $screen-xs-min) {
+  .products-list {
+    .product-item-info {
+      @include flex-wrap(nowrap);
+    }
+    .product-item-photo-wrap {
+      @include flex-basis(49%);
+      margin-bottom: 0;
+    }
+    .product-item-details {
+      @include flex-basis(100%);
+    }
+  }
+}
+@media (min-width: $screen-xs-min) and (max-width: $screen-md-min - 1){
+  .products-list {
+    .product-item-photo-wrap {
+      @include flex-basis(100%);
+    }
+  }
+}
+@media (max-width: $screen-lg-min - 1) {
+  .products-list {
+    .actions-secondary {
+      padding-top: 20px;
+    }
+  }
+}
+

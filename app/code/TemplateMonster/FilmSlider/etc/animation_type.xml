@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:TemplateMonster_FilmSlider:etc/animation_type.xsd">
+    <animation code="layer-classes">
+        <value label="Layer Classes">
+            <item value="" label=" "/>
+             <item value="sp-static" label="visible all the time, not animated"/>
+             <item value="sp-black" label="transparent background,color white"/>
+             <item value="sp-white" label="transparent background,color black"/>
+             <item value="sp-padding" label="10 pixel padding"/>
+             <item value="sp-rounded" label="corners rounded"/>
+        </value>
+    </animation>
+    <animation code="data-position">
+        <value label="Position of Layer">
+            <item value="topLeft" label="Top Left"/>
+            <item value="topCenter" label="Top Center"/>
+            <item value="topRight" label="Top Right"/>
+            <item value="bottomLeft" label="Bottom Left"/>
+            <item value="bottomCenter" label="Bottom Center"/>
+            <item value="bottomRight" label="Bottom Right"/>
+            <item value="centerLeft" label="Center Left"/>
+            <item value="centerRight" label="Center Right"/>
+            <item value="centerCenter" label="Center Center"/>
+        </value>
+    </animation>
+    <animation code="data-show-transition">
+        <value label="Show transition(layer will move)">
+            <item value="left" label="Left"/>
+            <item value="right" label="Right"/>
+            <item value="up" label="Up"/>
+            <item value="down" label="Down"/>
+        </value>
+    </animation>
+    <animation code="data-hide-transition">
+        <value label="Hide transition(layer will move)">
+            <item value="left" label="Left"/>
+            <item value="right" label="Right"/>
+            <item value="up" label="Up"/>
+            <item value="down" label="Down"/>
+        </value>
+    </animation>
+</config>

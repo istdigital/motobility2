@@ -1,0 +1,327 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2016 TemplateMonster. All rights reserved.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="templatemonster">
+            <label>TemplateMonster</label>
+        </tab>
+        <section id="google_map" translate="label" type="text" sortOrder="200" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Google Map</label>
+            <tab>templatemonster</tab>
+            <resource>TemplateMonster_GoogleMap::config_googlemap</resource>
+            <group id="general" translate="label" type="text" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General</label>
+                <field id="api_key" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>API key</label>
+                    <comment>Input Google API key.</comment>
+                </field>
+            </group>
+            <group id="home" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Home page map settings</label>
+                <field id="active" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable/Disable</label>
+                    <comment>Enable/Disable map in home page</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                </field>
+                <field id="coordinates" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Coordinates</label>
+                    <comment>Set map center coordinates, latitude then longitude. You can copy them from the google map link. Fox example: 40.5899796,-73.8820439</comment>
+                    <validate>required-entry</validate>
+                    <depends>
+                        <field id="active">1</field>
+                    </depends>
+                </field>
+                <field id="zoom" translate="label comment" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Zoom</label>
+                    <comment>Specify zoom level. 18 is a maximum zoom.</comment>
+                    <validate>validate-zoom</validate>
+                    <depends>
+                        <field id="active">1</field>
+                    </depends>
+                </field>
+                <field id="map_type" translate="label comment" type="select" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Map Type</label>
+                    <comment>Select map type</comment>
+                    <source_model>TemplateMonster\GoogleMap\Model\Config\Source\Type</source_model>
+                    <depends>
+                        <field id="active">1</field>
+                    </depends>
+                </field>
+                <field id="width" translate="label comment" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Map width</label>
+                    <comment>Set map width</comment>
+                    <validate>validate-width required-entry</validate>
+                    <depends>
+                        <field id="active">1</field>
+                    </depends>
+                </field>
+                <field id="height" translate="label comment" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Map height</label>
+                    <comment>Set map height</comment>
+                    <validate>validate-height required-entry</validate>
+                    <depends>
+                        <field id="active">1</field>
+                    </depends>
+                </field>
+                <field id="styles" translate="label comment" type="textarea" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Styles</label>
+                    <comment>Google map styles. Can be taken from snazzymaps.com. Will affect only Roadmap map type. </comment>
+                    <validate>validate-styles</validate>
+                    <depends>
+                        <field id="active">1</field>
+                    </depends>
+                </field>
+                <field id="ui" translate="label comment" type="select" sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Disable UI</label>
+                    <comment>Disable Google Map user interface elements</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="active">1</field>
+                    </depends>
+                </field>
+                <field id="scrollwheel" translate="label comment" type="select" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Scrollwheel</label>
+                    <comment>If false, disables scrollwheel zooming on the map</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="active">1</field>
+                    </depends>
+                </field>
+                <field id="draggable" translate="label comment" type="select" sortOrder="110" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Draggable</label>
+                    <comment>If false, prevents the map from being dragged</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="active">1</field>
+                    </depends>
+                </field>
+                <field id="show_on" translate="label comment" type="select" sortOrder="120" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show on</label>
+                    <comment>Show map after footer/before footer</comment>
+                    <source_model>TemplateMonster\GoogleMap\Model\Config\Source\Show</source_model>
+                    <depends>
+                        <field id="active">1</field>
+                    </depends>
+                </field>
+                <field id="markers" translate="label tooltip" sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Markers</label>
+                    <frontend_model>TemplateMonster\GoogleMap\Block\Adminhtml\System\Config\Form\Field\Markers</frontend_model>
+                    <backend_model>Magento\Config\Model\Config\Backend\Serialized\ArraySerialized</backend_model>
+                    <depends>
+                        <field id="active">1</field>
+                    </depends>
+                    <tooltip>
+                        <![CDATA[
+                        1. <strong>Image.</strong> Marker image filename (e.g. marker.png) It should be placed in "pub/media/googlemap" directory. <br />
+                        2. <strong>Coordinates.</strong> Set coordinates of marker. You can copy them from the google map link. Fox example: 40.5899796,-73.8820439<br />
+                        3. <strong>Infowindow.</strong> Add content to infowindow displayed on marker click.
+                        ]]>
+                    </tooltip>
+                    <comment>Please check info tooltip to the right. </comment>
+                </field>
+            </group>
+            <group id="contacts" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Contacts page map settings</label>
+                <field id="active" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable/Disable</label>
+                    <comment>Enable/Disable  map in contact page</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                </field>
+                <field id="coordinates" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Coordinates</label>
+                    <comment>Set map center coordinates. You can copy them from the google map link. Fox example: 40.5899796,-73.8820439</comment>
+                    <validate>required-entry</validate>
+                    <depends>
+                        <field id="active">1</field>
+                    </depends>
+                </field>
+                <field id="zoom" translate="label comment" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Zoom</label>
+                    <comment>Specify zoom level. 18 is a maximum zoom.</comment>
+                    <validate>validate-zoom</validate>
+                    <depends>
+                        <field id="active">1</field>
+                    </depends>
+                </field>
+                <field id="map_type" translate="label comment" type="select" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Map Type</label>
+                    <comment>Select map type</comment>
+                    <source_model>TemplateMonster\GoogleMap\Model\Config\Source\Type</source_model>
+                    <depends>
+                        <field id="active">1</field>
+                    </depends>
+                </field>
+                <field id="width" translate="label comment" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Map width</label>
+                    <comment>Set map width</comment>
+                    <validate>validate-width required-entry</validate>
+                    <depends>
+                        <field id="active">1</field>
+                    </depends>
+                </field>
+                <field id="height" translate="label comment" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Map height</label>
+                    <comment>Set map height</comment>
+                    <validate>validate-height required-entry</validate>
+                    <depends>
+                        <field id="active">1</field>
+                    </depends>
+                </field>
+                <field id="styles" translate="label comment" type="textarea" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Styles</label>
+                    <comment>Google map styles. Can be taken from snazzymaps.com</comment>
+                    <validate>validate-styles</validate>
+                    <depends>
+                        <field id="active">1</field>
+                    </depends>
+                </field>
+                <field id="ui" translate="label comment" type="select" sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Disable UI</label>
+                    <comment>Disable Google Map user interface elements</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="active">1</field>
+                    </depends>
+                </field>
+                <field id="scrollwheel" translate="label comment" type="select" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Scrollwheel</label>
+                    <comment>If false, disables scrollwheel zooming on the map</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="active">1</field>
+                    </depends>
+                </field>
+                <field id="draggable" translate="label comment" type="select" sortOrder="110" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Draggable</label>
+                    <comment>If false, prevents the map from being dragged</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="active">1</field>
+                    </depends>
+                </field>
+                <field id="markers" translate="label tooltip" sortOrder="120" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Markers</label>
+                    <frontend_model>TemplateMonster\GoogleMap\Block\Adminhtml\System\Config\Form\Field\Markers</frontend_model>
+                    <backend_model>Magento\Config\Model\Config\Backend\Serialized\ArraySerialized</backend_model>
+                    <depends>
+                        <field id="active">1</field>
+                    </depends>
+                    <tooltip>
+                        <![CDATA[
+                        1. <strong>Image.</strong> Marker image filename (e.g. marker.png) It should be placed in "pub/media/googlemap" directory. <br />
+                        2. <strong>Coordinates.</strong> Set coordinates of marker. You can copy them from the google map link. Fox example: 40.5899796,-73.8820439<br />
+                        3. <strong>Infowindow.</strong> Add content to infowindow displayed on marker click.
+                        ]]>
+                    </tooltip>
+                </field>
+            </group>
+            <group id="footer" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Footer map settings</label>
+                <field id="active" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable/Disable</label>
+                    <comment>Enable/Disable map in footer</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                </field>
+                <field id="coordinates" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Coordinates</label>
+                    <comment>Set map center coordinates. You can copy them from the google map link. Fox example: 40.5899796,-73.8820439</comment>
+                    <validate>required-entry</validate>
+                    <depends>
+                        <field id="active">1</field>
+                    </depends>
+                </field>
+                <field id="zoom" translate="label comment" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Zoom</label>
+                    <comment>Specify zoom level. 18 is a maximum zoom.</comment>
+                    <validate>validate-zoom</validate>
+                    <depends>
+                        <field id="active">1</field>
+                    </depends>
+                </field>
+                <field id="map_type" translate="label comment" type="select" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Map Type</label>
+                    <comment>Select map type</comment>
+                    <source_model>TemplateMonster\GoogleMap\Model\Config\Source\Type</source_model>
+                    <depends>
+                        <field id="active">1</field>
+                    </depends>
+                </field>
+                <field id="width" translate="label comment" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Map width</label>
+                    <comment>Set map width</comment>
+                    <validate>validate-width required-entry</validate>
+                    <depends>
+                        <field id="active">1</field>
+                    </depends>
+                </field>
+                <field id="height" translate="label comment" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Map height</label>
+                    <comment>Set map height</comment>
+                    <validate>validate-height required-entry</validate>
+                    <depends>
+                        <field id="active">1</field>
+                    </depends>
+                </field>
+                <field id="styles" translate="label comment" type="textarea" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Styles</label>
+                    <comment>Google map styles. Can be taken from snazzymaps.com</comment>
+                    <validate>validate-styles</validate>
+                    <depends>
+                        <field id="active">1</field>
+                    </depends>
+                </field>
+                <field id="ui" translate="label comment" type="select" sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Disable UI</label>
+                    <comment>Disable Google Map user interface elements</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="active">1</field>
+                    </depends>
+                </field>
+                <field id="scrollwheel" translate="label comment" type="select" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Scrollwheel</label>
+                    <comment>If false, disables scrollwheel zooming on the map</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="active">1</field>
+                    </depends>
+                </field>
+                <field id="draggable" translate="label comment" type="select" sortOrder="110" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Draggable</label>
+                    <comment>If false, prevents the map from being dragged</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="active">1</field>
+                    </depends>
+                </field>
+                <field id="selector" translate="label comment" type="text" sortOrder="120" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Selector</label>
+                    <comment>HTML selector(class, id) inside footer. Google map will be displayed after this selector.</comment>
+                    <validate>required-entry</validate>
+                    <depends>
+                        <field id="active">1</field>
+                    </depends>
+                </field>
+                <field id="markers" translate="label tooltip" sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Markers</label>
+                    <frontend_model>TemplateMonster\GoogleMap\Block\Adminhtml\System\Config\Form\Field\Markers</frontend_model>
+                    <backend_model>Magento\Config\Model\Config\Backend\Serialized\ArraySerialized</backend_model>
+                    <depends>
+                        <field id="active">1</field>
+                    </depends>
+                    <tooltip>
+                        <![CDATA[
+                        1. <strong>Image.</strong> Marker image filename (e.g. marker.png) It should be placed in "pub/media/googlemap" directory. <br />
+                        2. <strong>Coordinates.</strong> Set coordinates of marker. You can copy them from the google map link. Fox example: 40.5899796,-73.8820439<br />
+                        3. <strong>Infowindow.</strong> Add content to infowindow displayed on marker click.
+                        ]]>
+                    </tooltip>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

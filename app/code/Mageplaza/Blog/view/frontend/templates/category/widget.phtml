@@ -1,0 +1,44 @@
+<?php
+/**
+ * Mageplaza
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mageplaza.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mageplaza.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mageplaza
+ * @package     Mageplaza_Blog
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
+ * @license     https://www.mageplaza.com/LICENSE.txt
+ */
+
+//$tree = $block->getTree();
+$cats = $block->getSidebarCategoryCollection();
+
+if ($cats->count()) :
+    ?>
+    <div class="mp-sidebar mpcss">
+    	<ul class="block-content menu-categories">
+	    	<?php foreach($cats as $cat): ?>
+	    		<li class="category-item">
+	    			<a class="list-categories <?= $this->isActive($cat->getCategoryId()) ?>" href="<?= $this->getCategoryUrl($cat->getUrlKey()) ?>">
+	    				<?= $cat->getName() ?>
+	    				<span>(<?= $cat->getPostCount() ?>)</span>
+	    			</a>
+	    		</li>
+	    	<?php endforeach; ?>
+    	</ul>
+        <?php #echo $block->getCategoryTreeHtml($tree) ?>
+    </div>
+    <!-- <script type="text/javascript">
+        require(['Mageplaza_Blog/js/categorytree'], function () {
+        });
+    </script> -->
+<?php endif; ?>

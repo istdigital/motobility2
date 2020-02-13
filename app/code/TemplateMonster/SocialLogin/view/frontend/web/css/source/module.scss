@@ -1,0 +1,102 @@
+/*
+*   Social Login
+*/
+
+// Local vars
+
+$button-width: 270px;
+$button-border-radius: 2px;
+$button-padding: 5px 6px;
+$button-font-size: 14px;
+$icon-font-size: 18px;
+$line-height: 40px;
+
+$button-color: #ffffff;
+$facbook-bg: #3b5999;
+$twitter-bg: #00b6f1;
+$instagram-bg: #7c4e3a;
+$gplus-bg: #e04a39;
+
+// Main Styles
+
+.block-social-login {
+    
+    ul {
+        margin: 20px 0 0;
+        padding: 0;
+        list-style: none;
+
+        li {
+            margin-bottom: 8px;
+
+            a {
+                display: inline-block;
+                text-decoration: none;
+                overflow: hidden;
+                position: relative;
+                -webkit-transition: 0.2s;
+                -moz-transition: 0.2s;
+                -o-transition: 0.2s;
+                transition: 0.2s;
+                box-sizing: border-box;
+                font-size: $button-font-size;
+                line-height: $line-height;
+                color: $button-color;
+                border-radius: $button-border-radius;
+                min-width: $button-width;
+                min-width: $button-width;
+                padding: $button-padding;
+
+                i.fa {
+                    font-style: normal;
+                    display: inline-block;
+                    width: 43px;
+                    text-align: center;
+                    border-right: solid 1px;
+                    border-right-color: rgba(#fff, 0.1);
+                    font-size: $icon-font-size;
+                    line-height: $line-height;
+                }
+
+                &.facebook {
+                    background: $facbook-bg;
+                }
+                &.twitter {
+                    background: $twitter-bg;
+                }
+                &.instagram {
+                    background: $instagram-bg;
+                }
+                &.google-plus {
+                    background: $gplus-bg;
+                }
+
+                .label {
+                    padding-left: 25px;
+                }
+
+                &::after {
+                    background: #fff;
+                    content: "";
+                    height: 155px;
+                    left: -75px;
+                    opacity: .2;
+                    position: absolute;
+                    top: -50px;
+                    transform: rotate(35deg);
+                    transition: all 550ms cubic-bezier(0.19, 1, 0.22, 1);
+                    width: 50px;
+                    z-index: 10;
+                }
+
+                &:hover {
+                    opacity: .8;
+                    &::after {
+                        left: 120%;
+                        transition: all 550ms cubic-bezier(0.19, 1, 0.22, 1);
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,51 @@
+<?php
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+?>
+<?php
+/** @var $block \Magento\Framework\View\Element\Template */
+/** @var $helper \Magento\Search\Helper\Data */
+$helper = $this->helper('Magento\Search\Helper\Data');
+?>
+<button class="rd-navbar-search-toggle" data-rd-navbar-toggle=".rd-navbar-search"><span></span></button>
+<div class="block block-search rd-navbar-search">
+    <div class="block-title"><strong><?php echo __('Search'); ?></strong></div>
+    <div class="block-content form-group">
+        <form class="form minisearch rd-navbar-search-form" id="search_mini_form" action="<?php echo $helper->getResultUrl() ?>" method="get">
+              <div class="field search">
+                  <label class="label" for="search" data-role="minisearch-label">
+                      <span><?php echo __('Search'); ?></span>
+                  </label>
+                  <div class="control rd-navbar-search-form-input">
+                      <input id="search"
+                             data-mage-init='{"quickSearch":{
+                                  "formSelector":"#search_mini_form",
+                                  "url":"<?php echo $block->getUrl('search/ajax/suggest'); ?>",
+                                  "destinationSelector":"#search_autocomplete"}
+                             }'
+                             type="text"
+                             name="<?php echo $helper->getQueryParamName() ?>"
+                             value="<?php echo $helper->getEscapedQueryText() ?>"
+                             placeholder="<?php echo __('Search'); ?>"
+                             class="input-text"
+                             maxlength="<?php echo $helper->getMaxQueryLength();?>"
+                             role="combobox"
+                             aria-haspopup="false"
+                             aria-autocomplete="both"
+                             autocomplete="off"/>
+                      <div id="search_autocomplete" class="search-autocomplete"></div>
+                      <?php echo $block->getChildHtml() ?>
+                  </div>
+              </div>
+              <div class="actions">
+                  <button type="submit"
+                          title="<?php echo $block->escapeHtml(__('Search')) ?>"
+                          class="action search rd-navbar-search-form-submit">
+                      <span><?php echo __('Go'); ?></span>
+                  </button>
+              </div>
+        </form>
+    </div>
+</div>

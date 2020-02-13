@@ -1,0 +1,30 @@
+<?php
+/**
+ * NOTICE OF LICENSE
+ * This source file is subject to the General Public License (GPL 2.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/GPL-2.0
+ *
+ * DISCLAIMER
+ * Do not edit or add to this file if you wish to upgrade the module to newer
+ * versions in the future.
+ *
+ * @copyright 2002-2016 TemplateMonster
+ * @license http://opensource.org/licenses/GPL-2.0 General Public License (GPL 2.0)
+ */
+
+?>
+<?php if ($this->isAvailable()) : ?>
+    <div class="timer-wrapper">
+    <div id="timer<?php echo $this->getProduct()->getId(); ?>"></div>
+    </div>
+    <script type="text/x-magento-init">
+    { "#timer<?php echo $this->getProduct()->getId(); ?>": {"countdowntimer":{
+    "format": "<?php echo $this->getFormat(); ?>",
+    "end_date": "<?php echo $this->getEndDate(); ?>",
+    "selector": "<?php echo $this->getSelector(); ?>",
+    "area": "<?php echo $this->getConfigArea(); ?>"
+    } } }
+    </script>
+<?php endif; ?>

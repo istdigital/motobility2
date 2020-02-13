@@ -1,0 +1,224 @@
+<?php
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<?php
+/**
+ * Template for displaying new products widget
+ *
+ * @var $block \TemplateMonster\FeaturedProduct\Block\FeaturedProduct\Widget\Product\
+ */
+if ($exist = ($block->getProductCollections())) {
+    $type = 'widget-new-grid';
+
+    $mode = 'list';
+    $widgetTypes = $block->getTypes();
+
+    $image = 'new_products_content_widget_grid';
+    $textData = $block->getTextData();
+    $productCollections = $block->getProductCollections();
+    $isCarousel = $block->getShowCarousel();
+    $pagination = $block->getUsePagination() ?: 'false';
+    $navigation = $block->getUseArrows() ?: 'true';
+    $prevCssClass = $block->getPrevButton() ?: '';
+    $nextCssClass = $block->getNextButton() ?: '';
+    $visibleCarousel = $block->getNumberToDisplay() ?: 4;
+    $productItemWidth = $block->getItemWidth();
+    $cssClass = $block->getCssClass();
+    $isBanner = $block->getIsBanner();
+
+    $categoryTabs = $block->isCategoryPrimaryTabs();
+    $productTypeTabs = $block->isProductTypePrimaryTabs();
+    $blockLabel = $block->getShowLabel();
+
+    $showReviews = [
+        'new_product'         => false,
+        'sale_product'        => false,
+        'viewed_product'      => false,
+        'bestseller_product' => false,
+        'rated_product'       => true,
+        'manual_product'      => false,
+        'all_product'         => true
+    ];
+
+    $showWishlist = true;
+    $showCompare = true;
+    $showCart = true;
+    $templateType = \Magento\Catalog\Block\Product\ReviewRendererInterface::SHORT_VIEW;
+    $description = false;
+
+}
+?>
+
+<?php ?>
+
+<?php if ($exist):?>
+    <div <?php if(count($productCollections) > 1): ?>data-mage-init='{"featuredTab":{}}' <?php endif; ?> class="block widget featured <?php echo $mode . ' ' . $cssClass; ?>">
+
+        <?php if($block->getIsBanner()): ?>
+            <div class="featured-banner">
+                <?php echo $block->filterContent($block->getBannerContent()); ?>
+            </div>
+        <?php endif; ?>
+
+        <?php $categoryNames = $block->getCategoryNames(); ?>
+        <?php foreach ($productCollections as $primary => $secondaries): ?>
+
+
+            <?php if($categoryTabs): ?>
+                <?php $title = $categoryNames[$primary]; ?>
+            <?php else: ?>
+                <?php $productType = $primary; ?>
+                <?php $data = $textData[$primary]; ?>
+                <?php $title = $data['title']; ?>
+            <?php endif; ?>
+
+            <div class="block-title" data-role="collapsible">
+                <strong aria-level="2"><?php echo $title; ?></strong>
+            </div>
+
+
+            <div class="block-content<?php echo $productItemWidth ? ' custom-columns' : '' ?> " data-role="content">
+
+                <?php if(!empty($secondaries)): ?>
+
+                    <div <?php if(count($secondaries) > 1 && count($productCollections) == 1): ?> data-mage-init='{"featuredTab":{}}' <?php endif; ?>>
+
+                        <?php foreach ($secondaries as $secondary => $products): ?>
+
+                            <?php if($categoryTabs): ?>
+                                <?php $productType = $secondary; ?>
+                                <?php $data = $textData[$productType]; ?>
+                                <?php $title = $data['title']; ?>
+                            <?php else: ?>
+                                <?php $title = array_key_exists($secondary, $categoryNames) ? $categoryNames[$secondary] : ''; ?>
+                            <?php endif; ?>
+
+                            <?php if(count($productCollections) == 1 && count($secondaries) > 1): ?>
+                                <div class="category-title" data-role="collapsible">
+                                    <strong aria-level="2"><?php echo $title; ?></strong>
+                                </div>
+                                <div class="category-content" data-role="content">
+                            <?php endif; ?>
+
+
+                            <?php if(count($products) == 0): ?>
+                                <div class="not-found"><?php echo __('Products not found.'); ?></div>
+                            <?php else: ?>
+                                <div class="products-<?php /* @escapeNotVerified */ echo $mode ?> <?php /* @escapeNotVerified */ echo $type.' '.$mode .' '. ($isCarousel ? 'is-carousel':''); ?>">
+                                    <div class="product-items<?php echo $isCarousel ? ' owl-carousel' : ''; ?>"
+                                        <?php if ($isCarousel): ?>
+                                            data-mage-init='{"featuredCarousel": {
+                                                "responsive": { "1199": { "items" : "<?php  echo $visibleCarousel; ?>" }},
+                                                "dots": <?php echo $pagination; ?>,
+                                                "nav": <?php echo $navigation; ?>,
+                                                "prevCssClass": "<?php echo $prevCssClass; ?>",
+                                                "nextCssClass": "<?php echo $nextCssClass; ?>"
+                                            }}'
+                                        <?php endif; ?>>
+                                        <?php $iterator = 1; ?>
+
+                                        <?php foreach ($products as $_item): ?>
+
+                                            <?php /* @escapeNotVerified */ echo($iterator++ == 1) ? '<div class="product-item"' . ' ' . $productItemWidth . '>'
+                                                : '</div><div class="product-item"' . ' ' . $productItemWidth . '>' ?>
+                                            <?php /* @escapeNotVerified */ echo ($blockLabel && !empty($data['label'])) ? '<span class="product-label">' . $block->getProductsLabel($_item, $data['label']) . '</span>' : ''; ?>
+                                            <div class="product-item-info">
+                                                <a href="<?php /* @escapeNotVerified */ echo $block->getProductUrl($_item) ?>" class="product-item-photo">
+                                                    <?php echo $block->getImage($_item, $image)->toHtml(); ?>
+                                                </a>
+                                                <div class="product-item-details">
+                                                    <strong class="product-item-name">
+                                                        <a title="<?php echo $block->escapeHtml($_item->getName()) ?>"
+                                                           href="<?php /* @escapeNotVerified */ echo $block->getProductUrl($_item) ?>"
+                                                           class="product-item-link">
+                                                            <?php echo $block->truncateProductName($_item->getName()); ?>
+                                                        </a>
+                                                    </strong>
+                                                    <?php echo /* @escapeNotVerified */ $block->getProductPriceHtml($_item, $type); ?>
+                                                    <?php if ($templateType): ?>
+                                                        <?php echo $block->getReviewsSummaryHtml($_item, $templateType, $showReviews[$productType]) ?>
+                                                    <?php endif; ?>
+
+                                                    <?php if ($showWishlist || $showCompare || $showCart): ?>
+                                                        <div class="product-item-actions">
+                                                            <?php if ($showCart): ?>
+                                                                <div class="actions-primary">
+                                                                    <?php if ($_item->isSaleable()): ?>
+                                                                        <?php if ($_item->getTypeInstance()->hasRequiredOptions($_item)): ?>
+                                                                            <button class="action tocart primary"
+                                                                                    data-mage-init='{"redirectUrl":{"url":"<?php /* @escapeNotVerified */ echo $block->getAddToCartUrl($_item) ?>"}}'
+                                                                                    type="button" title="<?php /* @escapeNotVerified */ echo __('Add to Cart') ?>">
+                                                                                <span><?php /* @escapeNotVerified */ echo __('Add to Cart') ?></span>
+                                                                            </button>
+                                                                        <?php else: ?>
+                                                                            <?php
+                                                                            $postDataHelper = $this->helper('Magento\Framework\Data\Helper\PostHelper');
+                                                                            $postData = $postDataHelper->getPostData($block->getAddToCartUrl($_item), ['product' => $_item->getEntityId()])
+                                                                            ?>
+                                                                            <button class="action tocart primary"
+                                                                                    data-post='<?php /* @escapeNotVerified */ echo $postData; ?>'
+                                                                                    type="button" title="<?php /* @escapeNotVerified */ echo __('Add to Cart') ?>">
+                                                                                <span><?php /* @escapeNotVerified */ echo __('Add to Cart') ?></span>
+                                                                            </button>
+                                                                        <?php endif; ?>
+                                                                    <?php else: ?>
+                                                                        <?php if ($_item->getIsSalable()): ?>
+                                                                            <div class="stock available"><span><?php /* @escapeNotVerified */ echo __('In stock') ?></span></div>
+                                                                        <?php else: ?>
+                                                                            <div class="stock unavailable"><span><?php /* @escapeNotVerified */ echo __('Out of stock') ?></span></div>
+                                                                        <?php endif; ?>
+                                                                    <?php endif; ?>
+                                                                </div>
+                                                            <?php endif; ?>
+                                                            <?php if ($showWishlist || $showCompare): ?>
+                                                                <div class="actions-secondary" data-role="add-to-links">
+                                                                    <?php if ($this->helper('Magento\Wishlist\Helper\Data')->isAllow() && $showWishlist): ?>
+                                                                        <a href="#"
+                                                                           data-post='<?php /* @escapeNotVerified */ echo $block->getAddToWishlistParams($_item); ?>'
+                                                                           class="action towishlist" data-action="add-to-wishlist"
+                                                                           title="<?php /* @escapeNotVerified */ echo __('Add to Wish List') ?>">
+                                                                            <span><?php /* @escapeNotVerified */ echo __('Add to Wish List') ?></span>
+                                                                        </a>
+                                                                    <?php endif; ?>
+                                                                    <?php if ($block->getAddToCompareUrl() && $showCompare): ?>
+                                                                        <?php $compareHelper = $this->helper('Magento\Catalog\Helper\Product\Compare');?>
+                                                                        <a href="#" class="action tocompare"
+                                                                           data-post='<?php /* @escapeNotVerified */ echo $compareHelper->getPostDataParams($_item);?>'
+                                                                           title="<?php /* @escapeNotVerified */ echo __('Add to Compare') ?>">
+                                                                            <span><?php /* @escapeNotVerified */ echo __('Add to Compare') ?></span>
+                                                                        </a>
+                                                                    <?php endif; ?>
+                                                                </div>
+                                                            <?php endif; ?>
+                                                        </div>
+                                                    <?php endif; ?>
+                                                </div>
+                                            </div>
+                                            <?php echo($iterator == count($products)+1) ? '</div>' : '' ?>
+                                        <?php endforeach ?>
+
+                                    </div>
+                                </div>
+                            <?php endif; ?>
+
+                            <?php if(count($productCollections) == 1 && count($secondaries) > 1): ?>
+                                </div>
+                            <?php endif; ?>
+                        <?php endforeach ?>
+                    </div>
+
+
+                <?php else: ?>
+                    <div class="not-found"><?php /* @escapeNotVerified */ echo __('Products not found.'); ?></div>
+                <?php endif; ?>
+            </div>
+        <?php endforeach; ?>
+
+    </div>
+<?php endif;?>

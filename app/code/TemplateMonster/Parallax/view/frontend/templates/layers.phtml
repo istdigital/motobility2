@@ -1,0 +1,78 @@
+<?php /** @var $block TemplateMonster\Parallax\Block\Widget\Parallax */ ?>
+<?php echo $block->getChildHtml('configure') ?>
+
+<?php
+    $parallax = $block->getParallaxBlock();
+    $layers = $parallax->getEnabledItemsCollection();
+?>
+
+<style>
+    .rd-parallax-inner {
+        min-height: 200px;
+    }
+    <?php if ($parallax->isFullWidth()): ?>
+    .parallax-<?php echo $parallax->getBlockId(); ?> {
+        margin-left: calc(50% - 50vw + 9px);
+        margin-right: calc(50% - 50vw + 9px);
+    }
+    <?php endif; ?>
+</style>
+
+<div class="parallax-container parallax-<?php echo $parallax->getBlockId(); ?>">
+    <section class="rd-parallax <?php echo $parallax->getCssClass(); ?>"
+             data-agent=".parallax-<?php echo $parallax->getBlockId(); ?>"
+             data-on="false"
+             data-md-on="true"
+             style="visibility: visible;">
+        <?php foreach ($layers as $layer): ?>
+            <?php if ($layer->isText()): ?>
+                <div class="rd-parallax-layer <?php echo $layer->getCssClass() ?>"
+                     data-speed="<?php echo $layer->getLayoutSpeed() ?>"
+                     data-offset="<?php echo $layer->getOffset() ?>"
+                     data-fade="<?php echo ($layer->isFade() ? 'true' : 'false') ?>"
+                     data-direction="<?php echo ($layer->isInverse() ? 'inverse' : 'normal') ?>"
+                     data-type="html">
+                    <div class="text-layout">
+                        <?php echo $layer->getText(); ?>
+                    </div>
+                </div>
+            <?php elseif ($layer->isImage()): ?>
+                <div class="rd-parallax-layer <?php echo $layer->getCssClass() ?>"
+                     data-speed="<?php echo $layer->getLayoutSpeed() ?>"
+                     data-offset="<?php echo $layer->getOffset() ?>"
+                     data-fade="<?php echo ($layer->isFade() ? 'true' : 'false') ?>"
+                     data-direction="<?php echo ($layer->isInverse() ? 'inverse' : 'normal') ?>"
+                     data-type="media">
+                    <img src="<?php echo $block->getImageUrl($layer->getImage()); ?>" class="image-layout" alt="" />
+                </div>
+            <?php elseif ($layer->isBackgroundImage()): ?>
+                <div class="rd-parallax-layer <?php echo $layer->getCssClass() ?>"
+                     data-speed="<?php echo $layer->getLayoutSpeed() ?>"
+                     data-offset="<?php echo $layer->getOffset() ?>"
+                     data-fade="<?php echo ($layer->isFade() ? 'true' : 'false') ?>"
+                     data-direction="<?php echo ($layer->isInverse() ? 'inverse' : 'normal') ?>"
+                     data-type="media"
+                     data-url="<?php echo $block->getImageUrl($layer->getImage()); ?>"></div>
+            <?php elseif ($layer->isBackgroundVideo()): ?>
+                <div class="rd-parallax-layer
+                     <?php echo $layer->isStaticVideo() ? 'static-video-layer' : '' ?>
+                     <?php echo $layer->getCssClass() ?>"
+                     data-speed="<?php echo $layer->getLayoutSpeed() ?>"
+                     data-offset="<?php echo $layer->getOffset() ?>"
+                     data-fade="<?php echo ($layer->isFade() ? 'true' : 'false') ?>"
+                     data-direction="<?php echo ($layer->isInverse() ? 'inverse' : 'normal') ?>"
+                     data-type="media">
+                    <?php if ($layer->isStaticVideo()): ?>
+                        <div class="static-video"
+                            data-poster="<?php echo $block->getImageUrl($layer->getImage()); ?>"
+                            data-mp4="<?php echo $block->getVideoUrl($layer->getVideoMp4()) ?>"
+                            data-webm="<?php echo $block->getVideoUrl($layer->getVideoWebM()) ?>"></div>
+
+                    <?php elseif ($layer->isYoutubeVideo()): ?>
+                        <div class="youtube-video" data-video-id="<?php echo $layer->getVideoId() ?>"></div>
+                    <?php endif; ?>
+                </div>
+            <?php endif; ?>
+        <?php endforeach; ?>
+    </section>
+</div>

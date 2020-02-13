@@ -1,0 +1,44 @@
+
+.panel-container-wrap {
+  border-bottom: 1px solid $theme-line-1;
+}
+
+.panel-container-wrap .welcome {
+  font-size: $font-ultra-small;
+}
+
+.rd-navbar-static .rd-navbar-collapse a {
+  font-size: $font-ultra-small;
+}
+
+.header-switchers {
+  font-size: $font-ultra-small;
+}
+
+.header-switchers .actions .action {
+  font-size: $font-ultra-small;
+}
+
+.header-info {
+  font-size: $font-size-small;
+  background: $header-bg-line;
+}
+
+/* END General Settings  */
+
+/* Main Theme Settings  */
+//.sidebar .block .block-title {
+//  background-color: #ffffff;
+//}
+
+/* END Main Theme Settings  */
+
+/* Desktop */
+@media screen and (min-width: 1200px) {
+  .products-grid .product-item {
+    //-webkit-flex-basis: 33.333333333333%;
+    //-ms-flex-preferred-size: 33.333333333333%;
+    //flex-basis: 33.333333333333%;
+    //max-width: 33.333333333333%;
+  }
+}

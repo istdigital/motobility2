@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd" layout="admin-2columns-left">
+    <body>
+        <referenceContainer name="content">
+            <block class="TemplateMonster\Parallax\Block\Adminhtml\Block\Edit" name="parallax_block_edit"/>
+        </referenceContainer>
+        <referenceContainer name="left">
+            <block class="TemplateMonster\Parallax\Block\Adminhtml\Block\Edit\Tabs" name="parallax_block_edit_tabs">
+                <block class="TemplateMonster\Parallax\Block\Adminhtml\Block\Edit\Tab\General" name="parallax_block_edit_tab_general" />
+                <action method="addTab">
+                    <argument name="name" xsi:type="string">general</argument>
+                    <argument name="block" xsi:type="string">parallax_block_edit_tab_general</argument>
+                </action>
+                <block class="TemplateMonster\Parallax\Block\Adminhtml\Block\Edit\Tab\Item" name="parallax_block_edit_tab_item" />
+                <action method="addTab">
+                    <argument name="name" xsi:type="string">item</argument>
+                    <argument name="block" xsi:type="string">parallax_block_edit_tab_item</argument>
+                </action>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

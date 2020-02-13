@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <countdown_timer>
+            <general>
+                <catalog_page>
+                    <enabled>1</enabled>
+                    <format>%D days %H:%M:%S</format>
+                    <selector>.product-item-name</selector>
+                </catalog_page>
+                <product_page>
+                    <enabled>1</enabled>
+                    <format>%D days %H:%M:%S</format>
+                    <selector>.old-price</selector>
+                </product_page>
+                <widget>
+                    <enabled>1</enabled>
+                    <format>%D days %H:%M:%S</format>
+                    <selector>.product-item-name</selector>
+                </widget>
+            </general>
+        </countdown_timer>
+    </default>
+</config>

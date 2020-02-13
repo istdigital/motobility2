@@ -1,0 +1,25 @@
+<?php /** @var TemplateMonster\SocialLogin\Block\Account\SocialLogin $block */ ?>
+<div class="block block-social-login">
+    <div class="block-title">
+        <strong id="block-social-login-heading" role="heading" aria-level="2"><?php echo __('Login Using Social Accounts') ?></strong>
+    </div>
+    <div class="block-content" aria-labelledby="block-social-login-heading">
+        <p>
+            <?php echo __('You can login using one of the social accounts provided below.') ?>
+        </p>
+        <ul>
+            <?php if ($block->hasProviders()): ?>
+                <?php foreach ($block->getProviders() as $provider): ?>
+                    <li>
+                        <a href="#" data-post='<?php echo $block->getGrantPostData($provider) ?>' class="<?php echo $block->getProviderCode($provider) ?>">
+                            <i class="fa fa-<?php echo $block->getProviderCode($provider) ?>"></i>
+                            <span class="label"><?php echo __('Sign in with') . ' ' . $block->getProviderLabel($provider) ?></span>
+                        </a>
+                    </li>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <li>There are no available social providers.</li>
+            <?php endif; ?>
+        </ul>
+    </div>
+</div>

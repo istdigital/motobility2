@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<!--<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Magento/Config/etc/system_file.xsd">-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="mana" translate="label" sortOrder="200">
+            <label>MANAdev</label>
+        </tab>
+        <section id="mana_core" translate="label" type="text" sortOrder="10000" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Developer</label>
+            <tab>mana</tab>
+            <resource>Manadev_Core::global_configuration</resource>
+            <group id="compatibility" translate="label" type="text" sortOrder="10050" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Compatibility</label>
+                <field id="include_css" translate="label" type="select" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Include frontend CSS styles of Manadev extensions as separate file</label>
+                    <comment>Turn on this setting if your theme LESS files doesn't include //@magento_import 'source/_module.less';</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+            <group id="debug" translate="label" type="text" sortOrder="10100" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Show More Internal Information</label>
+                <field id="product_list_select" translate="label" type="select" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Display SELECT Statement of Product List Block in Hidden DIV</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="profiler" translate="label" type="select" sortOrder="10000" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Collect and Display Performance Metrics</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+            <group id="log" translate="label" type="text" sortOrder="10200" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Detailed Logs for Troubleshooting</label>
+                <field id="layout_xml" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Layout XML</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

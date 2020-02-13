@@ -1,0 +1,39 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+/** @var Magento\Customer\Block\Account\Customer $block */
+?>
+
+<li class="customer-account logged">
+    <a class="my-account"
+          role="link"
+          tabindex="0"
+          data-mage-init='{"dropdown":{}}'
+          data-toggle="dropdown"
+          data-trigger-keypress-button="true"
+          data-bind="scope: 'customer'">
+        <span data-bind="text: customer().fullname"></span>
+    </a>
+    <script type="text/x-magento-init">
+    {
+        "*": {
+            "Magento_Ui/js/core/app": {
+                "components": {
+                    "customer": {
+                        "component": "Magento_Customer/js/view/customer"
+                    }
+                }
+            }
+        }
+    }
+    </script>
+    <?php if($block->getChildHtml()):?>
+    <ul class="customer-menu" data-target="dropdown">
+        <?= $block->getChildHtml() ?>
+    </ul>
+    <?php endif; ?>
+</li>

@@ -1,0 +1,189 @@
+
+.form-login {
+  .actions-toolbar {
+    flex-direction: row-reverse;
+  }
+}
+
+.form-create-account,
+.form-edit-account,
+.form-address-edit {
+  .fieldset {
+    margin-bottom: $indent-base;
+  }
+  .actions-toolbar {
+    flex-direction: row-reverse;
+    .secondary {
+    }
+  }
+}
+
+//
+//  Account main
+//  _____________________________________________
+
+body.account {
+  //Block styling
+  .page-title {
+    padding-bottom: 43px;
+    border-bottom: 1px solid $theme-line-1;
+    margin-bottom: 65px;
+  }
+  .block-title {
+    position: relative;
+    margin-bottom: 47px;
+    .action {
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+  }
+  //Box styling
+  .box {
+    address {
+      margin-bottom: 1rem;
+    }
+  }
+}
+
+.block-dashboard-info,
+.block-dashboard-addresses {
+  margin-bottom: 40px;
+  .block-title {
+    margin-bottom: 50px;
+    font-size: 26px;
+  }
+}
+
+.account {
+  .legend {
+    margin-bottom: $indent-small;
+    display: block;
+    text-transform: uppercase;
+    font-weight: 600;
+    position: relative;
+  }
+}
+
+.order-items {
+  margin-bottom: 30px;
+}
+
+.account-nav {
+  .item {
+    margin-bottom: 1px;
+    &:last-child {
+      margin-bottom: 0;
+    }
+    &.current {
+      strong {
+        font-weight: normal;
+      }
+    }
+  }
+}
+
+.login-container {
+  .field.note {
+    border-bottom: 1px solid $theme-line-1;
+    margin-bottom: 2em;
+    padding-bottom: 2em;
+  }
+  @media (min-width: $screen-md-min) {
+    .field {
+      @include make-flex;
+      @include align-items(center);
+    }
+    .label {
+      @include flex-basis(10%);
+    }
+    .control {
+      @include flex-basis(90%);
+    }
+  }
+  .block-customer-login {
+    border-bottom: 1px solid $theme-line-1;
+    padding-bottom: 30px;
+    margin-bottom: 50px;
+  }
+  .block__title {
+    margin-bottom: 25px;
+  }
+  .block-social-login {
+    border-bottom: 1px solid $theme-line-1;
+    padding-bottom: 25px;
+    ul {
+      @include make-flex;
+      @include flex-wrap(wrap);
+      @include make-row();
+      li {
+        @include make-col();
+        @include flex-basis(50%);
+        @media (max-width: $screen-sm-min - 1) {
+          @include flex-basis(100%);
+        }
+        a {
+          width: 100%;
+        }
+      }
+    }
+  }
+  .tooltip.wrapper {
+    position: relative;
+    .tooltip.content {
+      position: absolute;
+      width: 250px;
+      top:100%;
+      left: 0;
+      background: #fff;
+      box-shadow:0 0 10px rgba(0,0,0,0.18);
+      padding: 15px;
+      font-size: 13px;
+      display: none;
+    }
+    &:hover {
+      .tooltip.content {
+        display: block;
+      }
+    }
+  }
+}
+.form.password.forget {
+  max-width: 905px;
+  margin: 0 auto;
+  .field.note {
+    border-bottom: 1px solid $theme-line-1;
+    margin-bottom: 2em;
+    padding-bottom: 2em;
+  }
+}
+
+
+.popup-authentication .modal-inner-wrap {
+  max-width: 900px;
+  width: 98%;
+  .action-close {
+    display: block;
+  }
+  .block__content {
+    text-align: left;
+    > p {
+      color: #000;
+    }
+    ul {
+      margin-bottom: 20px;
+    }
+  }
+  .block-customer-login {
+    border-top: 1px solid $theme-line-1;
+    padding-top: 30px;
+  }
+  .form-login {
+    text-align: left;
+  }
+  .block__title {
+    font-size: 1.17rem;
+    color: #000;
+    margin-bottom: 15px;
+  }
+}

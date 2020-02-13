@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <yereone_testimonials>
+            <general> 
+                <page_title>Our Testimonials</page_title>
+                <meta_title>Our Testimonials</meta_title>
+                <meta_keywords>Our Testimonials</meta_keywords>
+                <meta_description>Our Testimonials</meta_description>
+            </general>
+            <email>
+                <user_email_template>yereone_testimonials_email_user_email_template</user_email_template>
+                <user_email_sender>general</user_email_sender>
+                <admin_email_template>yereone_testimonials_email_admin_email_template</admin_email_template>
+                <admin_email_receiver>general</admin_email_receiver>
+            </email>
+        </yereone_testimonials>
+    </default>
+</config>

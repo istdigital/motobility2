@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-1column" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd">
+    <head>
+        <link src="Cryozonic_StripePayments::js/cryozonic_stripe.js" />
+        <css src="Cryozonic_StripePayments::css/cryozonic_stripe_base.css" />
+        <css src="Cryozonic_StripePayments::css/cryozonic_stripe_elements.css" />
+        <css src="Cryozonic_StripePayments::css/paymentfont.min.css" />
+    </head>
+</page>
+
+<!--
+    <action method="addCss"><stylesheet>cryozonic_stripe/css/savedcards.css</stylesheet></action>
+    <action method="addItem"><type>skin_js</type><name>cryozonic_stripe/js/savedcards.js</name></action>
+    <action method="addItem" ifconfig="payment/cryozonic_stripe/card_autodetect"><type>skin_js</type><name>cryozonic_stripe/js/cctype.js</name></action>
+    <action method="addCss" ifconfig="payment/cryozonic_stripe/card_autodetect"><stylesheet>cryozonic_stripe/css/cctype.css</stylesheet></action>
+ -->

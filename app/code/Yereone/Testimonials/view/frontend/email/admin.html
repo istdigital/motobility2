@@ -1,0 +1,29 @@
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<!--@subject {{trans "You have New Testimonial"}} @-->
+
+{{template config_path="design/email/header_template"}}
+
+<p>Dear Admin,</p>
+
+<table>
+	<tr>
+		<td>Name</td><td>{{var data.author}}</td>
+	</tr>
+	<tr>
+		<td>Email</td><td>{{var data.email}}</td>
+	</tr>
+	<tr>
+		<td>Phone</td><td>{{var data.telephone}}</td>
+	</tr>
+	<tr>
+		<td>Testimonial</td><td>{{var data.testimonial_content}}</td>
+	</tr>
+</table>
+
+
+{{template config_path="design/email/footer_template"}}

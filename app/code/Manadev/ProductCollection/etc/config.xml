@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!--
+ @category    Mana
+ @package     Manadev_ProductCollection
+ @copyright   Copyright (c) http://www.manadev.com
+ @license     http://www.manadev.com/license  Proprietary License
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <manadev_features>
+            <Manadev_ProductCollection>
+                <version>19.12.0220</version>
+                <title>Advanced Filterable Product Collection</title>
+                <sort_order>100</sort_order>
+            </Manadev_ProductCollection>
+        </manadev_features>
+        <mana_core>
+            <experimental>
+                <batch_filter_counting>1</batch_filter_counting>
+                <check_stock_status>1</check_stock_status>
+                <use_product_temp_table>1</use_product_temp_table>
+                <use_count_temp_table>1</use_count_temp_table>
+                <price_filter_tax_calculation>1</price_filter_tax_calculation>
+            </experimental>
+        </mana_core>
+    </default>
+</config>

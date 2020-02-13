@@ -1,0 +1,137 @@
+/* 
+ * 	Featured Product by TemplateMonster 2016
+ *	v1.0.0
+ */
+
+// import
+@import '_variables.scss';
+@import '_mixins.scss';
+@import '_owl.carousel2.scss';
+@import '_products-grid.scss';
+@import '_products-list.scss';
+@import '_products-sidebar.scss';
+@import '_hover-types.scss';
+
+/* Main Styles */
+
+
+.columns{
+  display: block !important;
+}
+.block.widget.featured {
+  .product-item{
+    position: relative;
+    max-width: 100%;
+
+    .product-item-info {
+      position: relative;
+    }
+
+    // label
+    .product-label{
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      z-index: 99;
+      font-size: $label-size;
+      color: $label-color;
+      background-color: $label-bg;
+      text-transform: uppercase;
+      padding: 5px 10px;
+      font-weight: 700;
+    }
+  }
+
+  .not-found {
+    padding: 0;
+    margin: 0;
+
+    @media (max-width: 767px) {
+      padding: 0 0 15px;
+      margin: -30px 0 0;
+    }
+
+  }
+
+  .testd {
+    display: none;
+  }
+}
+
+
+// Carousel
+.block.widget.featured .products-grid .owl-carousel .owl-item .product-item {
+  width: 100%;
+}
+
+.block.featured {
+  float: none;
+
+  .loader > div {
+    position: relative; 
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: url(../images/loader.gif) center 100px no-repeat;
+      z-index:-1;
+    }
+  }
+
+  .block-content {
+
+    .owl-carousel{
+
+      // controls
+      .owl-nav {
+        position: absolute;
+        top: -30px;
+        right: 10px;
+
+        .owl-prev,
+        .owl-next{
+          @include font-icon();
+          display: inline-block;
+          padding: 0 7px;
+          cursor: pointer;
+          &:before{
+            font-size: 36px;
+            line-height: 40px;
+            color: $secondary;
+            @include transition(.3s ease);
+          }
+          &:hover{
+            &:before{
+              color: $primary;
+            }
+          }
+        }
+      }
+
+      .owl-dots {
+        text-align: center;
+
+        .owl-dot{
+          width: 12px;
+          height: 12px;
+          display: inline-block;
+          margin: 5px;
+          -webkit-border-radius: 50%;
+          -moz-border-radius: 50%;
+          border-radius: 50%;
+          background: $secondary;
+
+          &.active{
+            background: $primary;
+          }
+        }
+      }
+
+    }
+  }
+}
+

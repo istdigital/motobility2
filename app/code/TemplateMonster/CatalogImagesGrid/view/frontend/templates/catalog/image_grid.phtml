@@ -1,0 +1,101 @@
+<?php
+
+/** @var \TemplateMonster\CatalogImagesGrid\Helper\CategoryImage $helper */
+$helper = $this->helper('TemplateMonster\CatalogImagesGrid\Helper\CategoryImage');
+$category = $helper->getCategory();
+
+if (!$helper->isEnableModule() || !$helper->isEnableOnCategoryPage() || !$category->getGridActivate()): return; endif;
+
+$showImageInCategory = $helper->getEnableImageCategory();
+$showImageInSubcategory = $helper->getEnableImageSubcategory();
+$categoryToShow = $helper->getAmountOfCategory();
+$subCategoryToShow = $helper->getAmountOfSubcategory();
+$imageType = $helper->getImageType();
+$imageWidth = $helper->getImageWidth();
+$categories = $helper->getChildrens($category);
+$columnsCount = $helper->getColumnsCount();
+$iconSize = $helper->getIconSize();
+$viewMore = $helper->isViewMore();
+$html = '';
+
+?>
+
+<style>
+    .catalog-category-view .category-grid {
+        display: -webkit-flex;
+        display: -moz-flex;
+        display: -ms-flex;
+        display: -o-flex;
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .category-grid.columns-<?php echo $columnsCount ?> > li{
+        -moz-flex-basis: <?php echo $helper->getColumnsWidth($columnsCount) ?>;
+        -ms-flex-basis: <?php echo $helper->getColumnsWidth($columnsCount) ?>;
+        flex-basis: <?php echo $helper->getColumnsWidth($columnsCount) ?>;
+    }
+
+    <?php if ($imageType == 'font_icon' && $iconSize): ?>
+        .category-grid .category-icon.size-<?php echo $iconSize; ?>::before {
+            font-size: <?php echo $iconSize; ?>px;
+        }
+    <?php endif; ?>
+</style>
+<?php
+
+//Root category foreach
+$categoryNum = 1;
+$html .=  "<div class='catalog-image-grid category-id-" . $category->getId() . "'>";
+$html .=  "<ul class='category-grid columns-{$columnsCount}'>";
+foreach ($categories as $rootCategory):
+    if ($categoryNum <= $categoryToShow):
+        $categoryNum++;
+        $categoryFontIcon = $rootCategory->getIconClass();
+        $html .= "<li><div class='grid-inner'>";
+        $html .= "<a href='{$rootCategory->getUrl()}' class='category-link'>";
+        if ($showImageInCategory && $categoryFontIcon && $imageType == 'font_icon'):
+            $html .= "<i class='category-icon size-{$iconSize} {$categoryFontIcon}'></i>";
+        endif;
+        $html .= '<span class="category-name">'."{$rootCategory->getName()}".'</span>';
+        if ($showImageInCategory && $helper->getImageByType($rootCategory,$imageType)):
+            $html .= "<span class='category-image'>";
+            $html .= "<img alt='' width='{$imageWidth}' src='{$helper->getImageByType($rootCategory,$imageType)}'>";
+            $html .= "</span>";
+        endif;
+        $html .= "</a>";
+
+        //Subcategory foreach
+        $subCategoryNum = 0;
+        $subCategories = $helper->getChildrens($rootCategory);
+        $html .=  "<ul class='subcategory-grid'>";
+        foreach ($subCategories as $subCategory):
+            $subCategoryFontIcon = $subCategory->getIconClass();
+            $subCategoryNum++;
+            if ($subCategoryNum <= $subCategoryToShow):
+                $html .= "<li><a href='{$subCategory->getUrl()}' class='subcategory-link'>";
+                if ($showImageInSubcategory && $helper->getImageByType($subCategory,$imageType)):
+                    $html .= "<span class='subcategory-image'>";
+                    $html .= "<img alt='' src='{$helper->getImageByType($subCategory,$imageType)}'>";
+                    $html .= "</span>";
+                endif;
+                if ($showImageInSubcategory && $subCategoryFontIcon && $imageType == 'font_icon'):
+                    $html .= "<i class='category-icon size-{$iconSize} {$subCategoryFontIcon}'></i>";
+                endif;
+                $html .= '<span class="subcategory-name">'."{$subCategory->getName()}".'</span>';
+                $html .= "</a></li>";
+            endif;
+        endforeach;
+        $html .=  "</ul>";
+        if ($viewMore && $subCategoryNum > $subCategoryToShow):
+            $html .= "<a href='{$rootCategory->getUrl()}' class='button-more'><span>";
+            $html .=  __('View more');
+            $html .= "</span></a>";
+        endif;
+        $html .= "</div></li>";
+    endif;
+endforeach;
+$html .= "</ul>";
+$html .=  "</div>";
+echo $html;
+
+

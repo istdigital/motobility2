@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="empty" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="TemplateMonster_SiteMaintenance::css/module.css" />
+    </head>
+    <body>
+        <referenceContainer name="after.body.start">
+            <block class="TemplateMonster\SiteMaintenance\Block\Styles"
+                   template="dynamic-styles.phtml"
+                   name="site.maintenance.options.styles" />
+        </referenceContainer>
+        <referenceContainer name="root">
+            <container name="maintenance.wrapper" htmlClass="sm-wrapper" htmlTag="div" before="-">
+                <container name="maintenance.main" htmlClass="sm-main" htmlTag="div" before="-">
+                    <block class="TemplateMonster\SiteMaintenance\Block\Page\Content" name="site.maintenance.content"
+                           template="TemplateMonster_SiteMaintenance::page/content.phtml">
+                    </block>
+                    <block class="TemplateMonster\SiteMaintenance\Block\Page\Timer" name="site.maintenance.timer"
+                           template="TemplateMonster_SiteMaintenance::page/timer.phtml">
+                    </block>
+                    <block class="TemplateMonster\SiteMaintenance\Block\Page\Subscription" name="site.maintenance.subscription"
+                           template="TemplateMonster_SiteMaintenance::page/subscription.phtml">
+                    </block>
+                </container>
+            </container>
+        </referenceContainer>
+        <referenceContainer name="page.wrapper" remove="true"/>
+    </body>
+</page>

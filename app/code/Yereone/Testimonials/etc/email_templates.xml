@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Email:etc/email_templates.xsd">
+
+    <template id="yereone_testimonials_email_admin_email_template" label="Testimonials Admin Alert Email" file="admin.html" type="html" module="Yereone_Testimonials" area="frontend"/>
+
+    <template id="yereone_testimonials_email_user_email_template" label="Testimonials User Alert Email" file="thankyou.html" type="html" module="Yereone_Testimonials" area="frontend"/>
+
+</config>

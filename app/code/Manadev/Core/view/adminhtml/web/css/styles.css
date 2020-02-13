@@ -1,0 +1,29 @@
+/**
+ * @copyright   Copyright (c) http://www.manadev.com
+ * @license     http://www.manadev.com/license  Proprietary License
+ */
+
+@font-face {
+    font-family: 'MANAdev'; /*a name to be used later*/
+    src: url(../fonts/manadev.woff); /*URL to font*/
+}
+.admin__menu .level-0.item-manadev > a:before {
+    font-family: MANAdev;
+    content: '\e900';
+    display: block;
+    font-size: 2.2rem;
+    height: 2.2rem;
+    margin-bottom: .3rem;
+}
+
+.manadev-admin-field .admin__field-control {
+    margin-right: 10px;
+}
+
+.manadev-admin-field .field-service {
+    padding: 10px 10px 0 0;
+}
+
+.mana-disabled {
+    color: graytext;
+}

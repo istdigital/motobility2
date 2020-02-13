@@ -1,0 +1,43 @@
+<?php
+$dwnData = $block->getDownloadsCollection();
+?>
+<div class="downloads-container">
+    <div class="toolbar-products row">
+        <div class="col-xs-6 result-wrap">
+            <p class="count_results"><?= $block->getCollection()->count() ?> Results</p>
+        </div>
+        <div class="col-xs-6 result-fbtn">
+            <button
+                type="button"
+                class="action filter-toggle"
+                data-trigger="filter"
+                style="display: none;">
+                <span><?php echo __('Filter'); ?></span>
+            </button>
+        </div>
+    </div>
+    
+    <?php if($dwnData->count()): ?>
+    <div class="downloads-list" data-mage-init='{"loader": {}}'>
+        <?php foreach($dwnData as $downloads): ?>
+            <div class="row">
+                <div class="col-md-10 col-sm-8 content-wrap">
+                    <h4><?= $downloads->getTitle() ?></h4>
+                    <span><?= $downloads->getCategoryName() ?></span>
+                    
+                    <p class="tags-before"><?= str_replace(",", "&nbsp;&nbsp;", $downloads->getTags()) ?></p>
+                    <p><?= $downloads->getSize() ?></p>
+                </div>
+                <div class="col-md-2 col-sm-4 link-wrap">
+                    <a download href="<?= $this->getDownloadUrl($downloads->getDocument()) ?>">
+                        <?= __("Download") ?>
+                    </a>
+                </div>
+            </div>
+        <?php endforeach; ?>
+    </div>
+    <div class="post-bottom-toolbar"><?php echo $block->getPagerHtml() ?></div>
+    <?php else: ?>
+    <div class="message info empty"><div>Sorry!, No downloads found.</div></div>
+    <?php endif  ?>
+</div>

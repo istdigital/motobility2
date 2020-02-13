@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="TemplateMonster\CatalogImagesGrid\Plugin\Backend\Block\Widget\Form\Element\Dependence">
+        <arguments>
+            <argument name="fieldName" xsi:type="string">image_width</argument>
+            <argument name="fieldNameFrom" xsi:type="string">image_type</argument>
+            <argument name="separator" xsi:type="string">,</argument>
+        </arguments>
+    </type>
+    <type name="Magento\Backend\Block\Widget\Form\Element\Dependence">
+        <plugin name="multipleValuesDependence" type="TemplateMonster\CatalogImagesGrid\Plugin\Backend\Block\Widget\Form\Element\Dependence" sortOrder="100" />
+    </type>
+</config>

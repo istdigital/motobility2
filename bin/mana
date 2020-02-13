@@ -1,0 +1,74 @@
+#!/usr/bin/env php
+<?php
+
+use Symfony\Component\Process\Process;
+
+if (PHP_SAPI !== 'cli') {
+    echo 'bin/mana must be run as a CLI application' . "\n";
+    exit(1);
+}
+
+if (!function_exists('proc_open')) {
+    echo 'proc_open() function should be enabled in your environment.' . "\n";
+    exit(1);
+}
+
+require_once dirname($argv[0]) . '/../app/autoload.php';
+
+function run($command) {
+    $process = new Process($command, null, null, null, null);
+    $process->run(function ($type, $buffer) {
+        echo $buffer;
+    });
+}
+
+function path_is_dir($path) {
+    return substr($path, -strlen('/')) === '/';
+}
+
+function delete_path($cwd, $path, $excludes = [], $deleteOnlyChildren = false) {
+    if (isset($excludes[$path])) {
+        return false;
+    }
+
+    $absolutePath = $cwd . '/' . $path;
+    if (path_is_dir($absolutePath)) {
+        $absolutePath = substr($absolutePath, 0, strlen($absolutePath) - 1);
+
+        if (!is_dir($absolutePath)) {
+            return true;
+        }
+
+        $deleted = true;
+        foreach (new DirectoryIterator($absolutePath) as $fileInfo) {
+            if ($fileInfo->isDot()) {
+                continue;
+            }
+
+            $childPath = $path . $fileInfo->getBasename() . ($fileInfo->isDir() ? '/' : '');
+            if (!delete_path($cwd, $childPath, $excludes)) {
+                $deleted = false;
+            }
+        }
+
+        if ($deleted && !$deleteOnlyChildren) {
+            rmdir($absolutePath);
+        }
+
+        return $deleted;
+    }
+    else {
+        unlink($absolutePath);
+        return true;
+    }
+}
+
+delete_path(dirname(dirname($argv[0])), 'var/generation/', [], true);
+delete_path(dirname(dirname($argv[0])), 'var/di/', [], true);
+delete_path(dirname(dirname($argv[0])), 'var/view_preprocessed/', [], true);
+delete_path(dirname(dirname($argv[0])), 'pub/static/', ['pub/static/.htaccess' => true], true);
+
+$mage = (isset($argv[1]) ? $argv[1] : 'php') . ' bin/magento';
+run("$mage setup:upgrade");
+run("$mage cache:clean");
+run("$mage mana:post-install \"$mage\"");

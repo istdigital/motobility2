@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <update id="TemplateMonster_Base::modules" title="Template Monster" module="TemplateMonster_Parallax" sortOrder="30" resource="TemplateMonster_Base::modules" />
+        <add id="TemplateMonster_Parallax::parallax" title="Parallax" module="TemplateMonster_Parallax" sortOrder="30" resource="TemplateMonster_Parallax::parallax" parent="TemplateMonster_Base::modules" />
+        <add id="TemplateMonster_Parallax::parallax_block" title="Parallax Block" module="TemplateMonster_Parallax" sortOrder="30" resource="TemplateMonster_Parallax::parallax_block" parent="TemplateMonster_Parallax::parallax" action="parallax/block" />
+    </menu>
+</config>

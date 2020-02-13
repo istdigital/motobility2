@@ -1,0 +1,42 @@
+<?php /** @var \TemplateMonster\AjaxCatalog\Block\PriceSlider $block */ ?>
+
+<?php $filterItems = $this->getFilterItems(); ?>
+<ol class="items">
+    <?php foreach ($filterItems as $filterItem): ?>
+        <li class="item">
+            <?php if ($filterItem->getCount() > 0): ?>
+                <a href="<?php echo $block->escapeUrl($filterItem->getUrl()) ?>">
+                    <i class="icon-check-empty"></i>
+                    <span class="item-label"><?php /* @escapeNotVerified */ echo str_replace(".00", '', $filterItem->getLabel()) ?></span>
+                    <?php if (false && $this->helper('\Magento\Catalog\Helper\Data')->shouldDisplayProductCountOnLayer()): ?>
+                        <span class="count"><?php /* @escapeNotVerified */ echo $filterItem->getCount()?></span>
+                    <?php endif; ?>
+                </a>
+            <?php else:?>
+
+                <i class="icon-check-empty"></i>
+                <span class="item-label"><?php /* @escapeNotVerified */ echo str_replace(".00", '', $filterItem->getLabel()) ?></span>
+                <?php if (false && $this->helper('\Magento\Catalog\Helper\Data')->shouldDisplayProductCountOnLayer()): ?>
+                    <span class="count"><?php /* @escapeNotVerified */ echo $filterItem->getCount()?></span>
+                <?php endif; ?>
+            <?php endif; ?>
+        </li>
+    <?php endforeach ?>
+</ol>
+
+<div class="price-slider">
+    <!-- <div id="slider-range" data-mage-init='{"priceRangeSlider": <?php echo $block->getOptionsJson(); ?>}'></div> -->
+    <form action="" class="slider-fields"
+        data-mage-init='{"priceRangeSlider": <?php echo $block->getOptionsJson(); ?>}'
+    >
+        <div class="slider-input">
+            <input type="text" id="minPrice" name="minPrice" size="3" value="<?php #echo $block->getMinPrice() ?>"  placeholder="Min"/>
+            <input type="text" id="maxPrice" name="maxPrice" size="3" value="<?php #echo $block->getMaxPrice() ?>" placeholder="Max"/>
+            <a href="<?php echo $block->getCurrentUri() ?>" class="action primary" id="slider-range_submit">
+                <?php echo __('Set') ?>
+            </a>
+        </div>
+    </form>
+</div>
+
+

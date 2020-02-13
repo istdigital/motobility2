@@ -1,0 +1,35 @@
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="jquery/fileUploader/css/jquery.fileupload-ui.css"/>
+        <css src="TemplateMonster_FilmSlider::css/slider-options.css"/>
+    </head>
+    <update handle="editor"/>
+    <body>
+        <referenceContainer name="content">
+            <block class="TemplateMonster\FilmSlider\Block\Adminhtml\Slider\Edit" name="filmslider_page_edit"/>
+        </referenceContainer>
+        <referenceContainer name="left">
+            <block class="TemplateMonster\FilmSlider\Block\Adminhtml\Slider\Edit\Tabs"
+                   name="filmslider_page_edit_tabs">
+                <block class="TemplateMonster\FilmSlider\Block\Adminhtml\Slider\Edit\Tab\Main"
+                       name="filmslider_page_edit_tab_main"/>
+                <block class="TemplateMonster\FilmSlider\Block\Adminhtml\Slider\Edit\Tab\Slides"
+                       name="filmslider_page_edit_tab_slider_item"/>
+                <action method="addTab">
+                    <argument name="name" xsi:type="string">main_section</argument>
+                    <argument name="block" xsi:type="string">filmslider_page_edit_tab_main</argument>
+                </action>
+                <action method="addTab">
+                    <argument name="name" xsi:type="string">slider_items_list</argument>
+                    <argument name="block" xsi:type="string">filmslider_page_edit_tab_slider_item</argument>
+                </action>
+            </block>
+        </referenceContainer>
+        <referenceContainer name="before.body.end">
+            <block class="Magento\Framework\View\Element\Template"
+                   template="TemplateMonster_FilmSlider::slider/initAccordion.phtml"
+                   name="film.slider.init.accordion">
+            </block>
+        </referenceContainer>
+    </body>
+</page>

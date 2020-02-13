@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="top.container">
+            <container name="layout_switcher">
+                <block class="TemplateMonster\LayoutSwitcher\Block\Switcher" name="layout_switcher.controls">
+                    <block class="TemplateMonster\LayoutSwitcher\Block\Switcher\ColorScheme" name="layout_switcher.controls.color_scheme" as="color_scheme" />
+                </block>
+            </container>
+        </referenceContainer>
+    </body>
+</page>

@@ -1,0 +1,59 @@
+<?php
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<?php $url = $block->getReviewsUrl() . '#reviews'; ?>
+<?php $urlForm = $block->getReviewsUrl() . '#review-form'; ?>
+<?php if ($block->getReviewsCount()): ?>
+    <?php $rating = $block->getRatingSummary(); ?>
+    <div class="product-reviews-summary short<?php echo !$rating ? ' no-rating' : ''?>" itemprop="reviewRating" itemscope itemtype="//schema.org/Rating">
+        <?php if ($rating):?>
+            <div class="rating-summary">
+                <span class="label"><span><?php /* @escapeNotVerified */ echo __('Rating') ?>:</span></span>
+
+                <meta itemprop="worstRating" content = "1"/>
+                <meta itemprop="bestRating" content = "100"/>
+                <meta itemprop="ratingValue" content = "<?php /* @escapeNotVerified */ echo $rating ?>"/>
+                <?php $half_star_id = round( (int)$rating / 20 ); ?>
+<!--                <meta itemprop="worstRating" content="--><?php //echo $half_star_id; ?><!--"/>-->
+                <div class="rating-result__stars">
+                    <?php for($i = 0; $i < 5; $i++){
+                        echo '<span class="icon-star"></span>';
+                    } ?>
+                </div>
+
+                <div class="rating-result__text">
+                    <div style="width:<?php /* @escapeNotVerified */ echo $rating; ?>%">
+                        <?php
+                        for($i = 0; $i < 5; $i++){
+                            echo '<span class="icon-star"></span>';
+                        } ?>
+                    </div>
+                </div>
+            </div>
+        <?php endif;?>
+        <div class="reviews-actions">
+            <a class="view" itemprop="reviewCount" href="<?php /* @escapeNotVerified */ echo $url ?>"><?php /* @escapeNotVerified */ echo $block->getReviewsCount() ?>&nbsp;<span><?php /* @escapeNotVerified */ echo($block->getReviewsCount() == 1) ? __('Review') : __('Reviews') ?></span></a>
+        </div>
+    </div>
+<?php elseif ($block->getDisplayIfEmpty()): ?>
+    <div class="product-reviews-summary short empty">
+        <div class="rating-result__stars">
+            <span class="icon-star"></span>
+            <span class="icon-star"></span>
+            <span class="icon-star"></span>
+            <span class="icon-star"></span>
+            <span class="icon-star"></span>
+        </div>
+        <div class="reviews-actions">
+            <a href="<?php /* @escapeNotVerified */ echo $urlForm; ?>">
+                <?php /* @escapeNotVerified */ echo __('Be the first to review this product') ?>
+            </a>
+        </div>
+    </div>
+<?php endif; ?>

@@ -1,0 +1,18 @@
+<?php
+/** @var $block \Cryozonic\StripeExpress\Block\Button */
+?>
+
+<?php if ($block->isEnabled("minicart")) : ?>
+<div class="stripeexpress-minicart">
+    <div id="payment-request-button-minicart" class="payment-request-button">&nbsp;</div>
+    <script>
+        require(['jquery', 'cryozonic_stripeexpress'], function(jQuery, stripeexpress) {
+            jQuery(document).ready(function() {
+                stripeexpress.initStripeExpress('#payment-request-button-minicart', '<?php echo $block->getPublishableKey(); ?>', <?php echo \Zend_Json::encode($block->getApplePayParams()); ?>, <?php echo \Zend_Json::encode($block->getButtonConfig()); ?>, function (paymentRequestButton, paymentRequest, params, prButton) {
+                    stripeexpress.initMiniCartWidget(paymentRequestButton, paymentRequest, params, prButton);
+                });
+            });
+        });
+    </script>
+</div>
+<?php endif; ?>

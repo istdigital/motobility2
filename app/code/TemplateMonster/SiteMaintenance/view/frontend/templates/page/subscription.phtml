@@ -1,0 +1,30 @@
+<?php
+/**
+ * Copyright © 2016 TemplateMonster. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+$title = $this->helper->getFormTitle();
+$text = $this->getText();
+
+?>
+<?php if ($this->isActive()) : ?>
+<div id="sm-subscription-block">
+    <?php echo $title ? "<div class='sm-title'>" . $title . "</div>" : "" ?>
+    <?php echo $text ? "<div class='sm-text'>" . $text . "</div>" : "" ?>
+    <div class="sm-content">
+        <form action="<?php echo $block->getFormActionUrl() ?>"
+              class="sm-subscription"
+              method="post"
+              data-mage-init='{"validation": {"errorClass": "mage-error"}}'>
+            <input name="email" type="email" id="newsletter"
+                           placeholder="<?php echo __('Enter your email address') ?>"
+                           data-validate="{required:true, 'validate-email':true}"/>
+                <button class="sm-button" title="<?php echo __('Subscribe') ?>" type="submit">
+                    <span><?php echo __('Subscribe') ?></span>
+                </button>
+        </form>
+    </div>
+</div>
+<?php endif; ?>
+

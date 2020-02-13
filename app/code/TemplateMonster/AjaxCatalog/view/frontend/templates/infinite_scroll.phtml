@@ -1,0 +1,13 @@
+<?php /** @var \TemplateMonster\AjaxCatalog\Block\InfiniteScroll $block */ ?>
+
+<?php if($block->isEnabled()): ?>
+    <div class="infiniteScroll_wrap">
+        <div id="infinite_loadMoreAnchor"
+             data-pages="<?php echo $block->getPagesToShow(); ?>">
+        </div>
+
+        <div class="actions" style="display:none">
+            <button class="action primary"><span><?php echo __('Show More'); ?></span></button>
+        </div>
+    </div>
+<?php endif; ?>

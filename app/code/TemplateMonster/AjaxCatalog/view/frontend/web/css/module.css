@@ -1,0 +1,17 @@
+/**
+*   TM_AjaxCatalog
+*/
+.swatch-option-tooltip {
+  visibility: hidden; }
+  @media (min-width: 1024px) {
+    .swatch-option-tooltip {
+      visibility: visible; } }
+
+.slider-fields {
+  display: flex;
+  flex-wrap: wrap; }
+  .slider-fields .slider-input {
+    margin: 1em 0;
+    flex-basis: 100%; }
+
+/*# sourceMappingURL=module.css.map */

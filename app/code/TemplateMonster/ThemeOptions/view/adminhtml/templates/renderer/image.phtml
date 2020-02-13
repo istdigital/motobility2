@@ -1,0 +1,2 @@
+<?php /** @var \TemplateMonster\ThemeOptions\Block\Widget\Grid\Column\Renderer\Image $block */ ?>
+<% var path = "<?php echo $block->getIconsBaseUrl() ?>", input = "<?php echo $block->getInputName() ?>", preview = "<a class=thumb href=" + path + image + " target=_blank><img src=" + path + image + " width=32px height=32px /></a>", hidden = "<input type=hidden name=" + input + "[" + _id + "][image] value=" + image + " />", upload = "<div class=upload-image><b>+</b><input type=file name=" + input + "[" + _id + "][upload] /></div>"; print(image ? preview + hidden : upload); %>

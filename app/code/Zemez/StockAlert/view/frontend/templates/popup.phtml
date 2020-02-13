@@ -1,0 +1,128 @@
+<?php
+$helper = $this->helper('Zemez\StockAlert\Helper\Data');
+$_product = $block->getProduct();
+?>
+
+
+<?php if (!$_product->getIsSalable()): ?>
+<div id="thanks-popup" class="white-popup-block mfp-hide">
+	<table>
+		<tr>
+			<td align="center">
+				<?= $helper->getThankyouText(); ?>
+			</td>
+		</tr>
+		<tr>
+			<td align="center" class="actions">
+				<button class="action primary" type="button" title="<?= __('Close') ?>">
+					<span><?= __('Close') ?></span>
+				</button>
+			</td>
+		</tr>
+	</table>
+</div>
+
+
+<form id="stock-alert-form" class="white-popup-block mfp-hide"
+	method="post"
+    data-hasrequired="<?= $block->escapeHtmlAttr(__('* Required Fields')) ?>"
+    data-mage-init='{"validation":{}}'>
+	<table border="0">
+		<tr>
+			<td align="center">
+				<?= $helper->getPopupText(); ?>
+			</td>
+		</tr>
+		<tr>
+			<td align="center">
+				<div class="pblock">
+					<?php $productImage = $block->getImage($_product, 'cart_page_product_thumbnail'); ?>
+					<img src="<?= $productImage->getImageUrl(); ?>"/>
+					<strong><?= /* @escapeNotVerified */ $_product->getName() ?></strong>
+					<br/>
+					<span><?= /* @escapeNotVerified */ $_product->getAttributeText('brand_id') ?></span>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<input type="text" id="name" name="name" placeholder="<?= __("Full Name *") ?>" data-validate="{required:true}" />
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<input type="text" name="email" placeholder="<?= __("Email *") ?>" data-validate="{required:true, 'validate-email':true}" />
+			</td>
+		</tr>
+		<tr>
+			<td class="field choice">
+				<input checked="checked" type="checkbox" class="checkbox" name="is_subscribe" id="is_subscribe_p" value="1" />
+				<label for="is_subscribe_p" class="label">
+					<span><?= $helper->getNewsletterText(); ?></span>
+				</label>
+			</td>
+		</tr>
+		<tr>
+			<td align="center" class="actions">
+				<button class="action primary" type="submit" title="<?= __('Submit') ?>">
+					<span><?= __('Submit') ?></span>
+				</button>
+				<input type="hidden" name="product_name" value="<?= $_product->getName() ?>" />
+				<input type="hidden" name="product_sku" value="<?= $_product->getSku() ?>" />
+				<input type="hidden" name="product_id" value="<?= $_product->getId() ?>" />
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<p class="error"></p>
+			</td>
+		</tr>
+	</table>
+</form>
+<script type="text/javascript">
+	require(['jquery', 'magnific'], function($){ 
+		$("#thanks-popup button").click(function(){$.magnificPopup.close();});
+
+	
+
+		$("#stock-alert-form button[type='submit']").click(function(e){
+			e.preventDefault();
+			if ($('#stock-alert-form').valid()){
+				jQuery.ajax({
+				    url: "<?= $this->getUrl('stockalert/index/post') ?>",
+				    type: 'POST',
+				    data: $( "#stock-alert-form" ).serialize(),
+				    dataType: 'json',
+				    showLoader: true
+				}).done(function (data) {
+					$('#stock-alert-form').trigger("reset");
+					$('#stock-alert-form #is_subscribe').next().removeClass( "themeicon-check_box" ).addClass( "themeicon-check_box_outline_blank" );
+
+					$.magnificPopup.open({
+					    items: { src: '#thanks-popup' },
+					    type: 'inline',
+					    preloader: false,
+					});
+				    return true;
+				}).fail(function($xhr){
+					var data = $xhr.responseJSON;
+					$("#stock-alert-form .error").html(data.message);
+					setTimeout(function(){$("#stock-alert-form .error").html('')}, 5000);
+				});
+			}
+		});
+
+		$(".product.alert.stock button.action.alert").click(function(e){
+			e.preventDefault();
+			$.magnificPopup.open({
+			    items: {
+			        src: '#stock-alert-form' 
+			    },
+			    type: 'inline',
+			    focus: '#name',
+			    preloader: false,
+			});
+		});
+	});
+</script>
+<?php endif; ?>

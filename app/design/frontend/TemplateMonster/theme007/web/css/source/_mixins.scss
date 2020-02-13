@@ -1,0 +1,424 @@
+/*
+*  Mixins
+* _____________________________________________
+*
+* Note: Some of described mixins in this file requires the ie conditional comments
+*
+* For IE < 9
+* <!--[if lt IE 9]>
+*    <html class='lt-ie9'>
+* <![endif]-->
+*/
+@import "components/_grid-system.scss";
+
+//
+//  Buttons
+//  ---------------------------------------------
+
+@mixin button-block() {
+    background: $button-bg-color;
+    padding: 11px 19px 12px;
+    font-size: $font-size-small;
+    line-height: 20px;
+    font-weight: 600;
+    text-transform: uppercase;
+    display: inline-block;
+    border: 2px solid $theme-line-1;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    transform: translateZ(0);
+    &:hover {
+        color: $white;
+    }
+    span {
+        vertical-align: sub;
+    }
+    @media (min-width: $screen-sm-min) and(max-width: $screen-md-min - 1) {
+        font-size: $font-ultra-small;
+    }
+}
+
+@mixin button-block__primary() {
+    color: $white;
+}
+
+@mixin keyframes($name) {
+    @-webkit-keyframes #{$name} {
+        @content;
+    }
+    @keyframes #{$name} {
+        @content;
+    }
+}
+
+@mixin clip($x1, $x2, $y1, $y2) {
+    clip: rect($y1, $x2, $y2, $x1);
+}
+
+
+/*
+* Background-rgba
+*/
+@mixin background($rgb, $opacity) {
+    background: rgba($rgb, $opacity);
+
+    .lt-ie9 & {
+        background: none;
+        -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#{ie-hex-str(rgba($rgb, $opacity))}', endColorstr='#{ie-hex-str(rgba($rgb, $opacity))}')";
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#{ie-hex-str(rgba($rgb, $opacity))}', endColorstr='#{ie-hex-str(rgba($rgb, $opacity))}');
+        zoom: 1;
+    }
+}
+
+/*
+* Transform Origin
+*/
+@mixin transform-origin($trfm-o) {
+    -webkit-transform-origin: $trfm-o;
+    transform-origin: $trfm-o;
+}
+
+/*
+* Transform
+*/
+@mixin transform($trfm) {
+    -webkit-transform: $trfm;
+    transform: $trfm;
+}
+
+/*
+* Triangle
+*/
+@mixin triangle($dir, $w, $h, $clr) {
+    width: 0;
+    height: 0;
+    border-style: solid;
+
+    @if $dir == top {
+        border-width: 0 ceil($w/2) $h ceil($w/2);
+        border-color: transparent transparent $clr transparent;
+    } @else if $dir == bottom {
+        border-width: $h ceil($w/2) 0 ceil($w/2);
+        border-color: $clr transparent transparent transparent;
+    } @else if $dir == left {
+        border-width: ceil($h/2) $w ceil($h/2) 0;
+        border-color: transparent $clr transparent transparent;
+    } @else if $dir == right {
+        border-width: ceil($h/2) 0 ceil($h/2) $w;
+        border-color: transparent transparent transparent $clr;
+    } @else if $dir == top_left {
+        border-width: $w $w 0 0;
+        border-color: $clr transparent transparent transparent;
+    } @else if $dir == top_right {
+        border-width: 0 $w $w 0;
+        border-color: transparent $clr transparent transparent;
+    } @else if $dir == bottom_right {
+        border-width: 0 0 $w $w;
+        border-color: transparent transparent $clr transparent;
+    } @else if $dir == bottom_left {
+        border-width: $w 0 0 $w;
+        border-color: transparent transparent transparent $clr;
+    }
+}
+
+/*
+* Font Icon
+*/
+
+@mixin font-icon($icon:'\e5c7', $font-family:$default-icon-family) {
+    line-height: inherit;
+    &:before {
+        content: $icon;
+        display: inline-block;
+        font-family: $font-family;
+        font-weight: 400;
+        text-rendering: auto;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        transform: translate(0, 0);
+    }
+}
+
+@mixin font-icon__before($icon:'\e5c7', $font-family:$default-icon-family) {
+    content: $icon;
+    display: inline-block;
+    font-family: $font-family;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    transform: translate(0, 0);
+}
+
+
+/*
+* Clearfix
+*/
+@mixin clearfix {
+    &:before,
+    &:after {
+        display: table;
+        content: "";
+        line-height: 0;
+    }
+
+    &:after {
+        clear: both;
+    }
+}
+
+/*
+*  Spinner
+*/
+@mixin custom-spinner($radius: 90px){
+    box-sizing: border-box;
+    text-align: center;
+    width: $radius;
+    height: $radius;
+    line-height: $radius;
+    text-transform: uppercase;
+    -o-text-transform: uppercase;
+    -ms-text-transform: uppercase;
+    -webkit-text-transform: uppercase;
+    -moz-text-transform: uppercase;
+
+    &:before,
+    &:after{
+        opacity: 0;
+        box-sizing: border-box;
+        -o-box-sizing: border-box;
+        -ms-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        content: "\0020";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 60px;
+        border-width: 3px;
+        border-style: solid;
+    }
+    &:before {
+        z-index: 2;
+        animation: cssload-gogoloader 2.3s infinite;
+        -o-animation: cssload-gogoloader 2.3s infinite;
+        -ms-animation: cssload-gogoloader 2.3s infinite;
+        -webkit-animation: cssload-gogoloader 2.3s infinite;
+        -moz-animation: cssload-gogoloader 2.3s infinite;
+    }
+    &:after {
+        z-index: 1;
+        animation: cssload-gogoloader 2.3s infinite 1.15s;
+        -o-animation: cssload-gogoloader 2.3s infinite 1.15s;
+        -ms-animation: cssload-gogoloader 2.3s infinite 1.15s;
+        -webkit-animation: cssload-gogoloader 2.3s infinite 1.15s;
+        -moz-animation: cssload-gogoloader 2.3s infinite 1.15s;
+    }
+
+    @keyframes cssload-gogoloader {
+        0% {
+            transform: scale(0);
+            opacity: 0;
+        }
+        50% {
+            opacity: 1;
+        }
+        100% {
+            transform: scale(1);
+            opacity: 0;
+        }
+    }
+    @-o-keyframes cssload-gogoloader {
+        0% {
+            -o-transform: scale(0);
+            opacity: 0;
+        }
+        50% {
+            opacity: 1;
+        }
+        100% {
+            -o-transform: scale(1);
+            opacity: 0;
+        }
+    }
+    @-ms-keyframes cssload-gogoloader {
+        0% {
+            -ms-transform: scale(0);
+            opacity: 0;
+        }
+        50% {
+            opacity: 1;
+        }
+        100% {
+            -ms-transform: scale(1);
+            opacity: 0;
+        }
+    }
+    @-webkit-keyframes cssload-gogoloader {
+        0% {
+            -webkit-transform: scale(0);
+            opacity: 0;
+        }
+        50% {
+            opacity: 1;
+        }
+        100% {
+            -webkit-transform: scale(1);
+            opacity: 0;
+        }
+    }
+    @-moz-keyframes cssload-gogoloader {
+        0% {
+            -moz-transform: scale(0);
+            opacity: 0;
+        }
+        50% {
+            opacity: 1;
+        }
+        100% {
+            -moz-transform: scale(1);
+            opacity: 0;
+        }
+    }
+}
+
+/*
+* Usefull Functions
+*/
+
+@function str-replace($string, $search, $replace: '') {
+    $index: str-index($string, $search);
+
+    @if $index {
+        @return str-slice($string, 1, $index - 1) + $replace + str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
+    }
+
+    @return $string;
+}
+
+@function rem($px-size) {
+    @if ($debug) {
+        @return $px-size;
+    } @else {
+        @return str-replace(#{($px-size/100)}, px, rem);
+    }
+}
+
+@function remove($list, $value, $recursive: false) {
+    $result: ();
+
+    @for $i from 1 through length($list) {
+        @if type-of(nth($list, $i)) == list and $recursive {
+            $result: append($result, remove(nth($list, $i), $value, $recursive));
+        } @else if nth($list, $i) != $value {
+            $result: append($result, nth($list, $i));
+        }
+    }
+
+    @return $result;
+}
+
+@function sort($list) {
+    $sortedlist: ();
+    @while length($list) > 0 {
+        $value: nth($list, 1);
+        @each $item in $list {
+            @if $item < $value {
+                $value: $item;
+            }
+        }
+        $sortedlist: append($sortedlist, $value, 'space');
+        $list: remove($list, $value);
+    }
+    @return $sortedlist;
+}
+
+@function average($list) {
+    $sum: 0;
+
+    @each $i in $list {
+        $sum: $sum + $i;
+    }
+
+    @return $sum / length($list);
+}
+
+@function headings() {
+    @return "h1, h2, h3, h4, h5, h6, .heading-1, .heading-2, .heading-3, .heading-4,.heading-5, .heading-6";
+}
+
+@function cols($resolution) {
+    $selector: ();
+    @each $j in 1, 2, 3, 4, 6, 12 {
+        $selector: append($selector, "> .col-#{$resolution}-#{$j}:nth-child(n + #{(12/$j)+1})", comma);
+    }
+
+    $selector: append($selector, "> .col-#{$resolution}-8.col-#{$resolution}-preffix-2");
+
+    @return $selector;
+}
+
+@function cols-full($resolution) {
+    $selector: ();
+    @for $j from 1 through 12 {
+        $selector: append($selector, "> .col-#{$resolution}-#{$j}:nth-child(n)", comma);
+    }
+
+    @return $selector;
+}
+
+@mixin make-flow-offset($lg-offset, $md-offset: $lg-offset, $sm-offset: $md-offset, $xs-offset: $sm-offset) {
+    & > * + * {
+        margin-top: $xs-offset;
+    }
+
+    html:not(.lt-ie10) & {
+        @media (min-width: $screen-xs-min) {
+            #{cols-full("xs")} {
+                margin-top: 0;
+            }
+        }
+
+        @media (min-width: $screen-xs-min) {
+            #{cols("xs")} {
+                margin-top: $xs-offset;
+            }
+        }
+
+        @media (min-width: $screen-sm-min) {
+            #{cols-full("sm")} {
+                margin-top: 0;
+            }
+        }
+
+        @media (min-width: $screen-sm-min) {
+            #{cols("sm")} {
+                margin-top: $sm-offset;
+            }
+        }
+
+        @media (min-width: $screen-md-min) {
+            #{cols-full("md")} {
+                margin-top: 0;
+            }
+        }
+
+        @media (min-width: $screen-md-min) {
+            #{cols("md")} {
+                margin-top: $md-offset;
+            }
+        }
+
+        @media (min-width: $screen-lg-min) {
+            #{cols-full("lg")} {
+                margin-top: 0;
+            }
+        }
+
+        @media (min-width: $screen-lg-min) {
+            #{cols("lg")} {
+                margin-top: $lg-offset;
+            }
+        }
+    }
+}

@@ -1,0 +1,22 @@
+<div class="mpblog-search">
+    <div class="field search">
+        <div class="control">
+            <input
+                   type="text"
+                   name="query"
+                   value="<?php echo $this->getRequest()->getParam('query') ?>"
+                   placeholder="<?php echo __('Search'); ?>"
+                   class="input-text downloads-search"
+                   role="combobox"
+                   aria-haspopup="false"
+                   aria-autocomplete="both"
+                   autocomplete="off"
+            />
+        </div>
+    </div>
+    <div class="actions">
+        <button type="submit" title="<?php echo __('Search') ?>" class="action search">
+            
+        </button>
+    </div>
+</div>

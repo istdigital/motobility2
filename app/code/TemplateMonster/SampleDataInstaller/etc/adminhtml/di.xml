@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <virtualType name="TemplateMonster\SampleDataInstaller\Block\System\Config\Form\ImportCmsPages" type="TemplateMonster\SampleDataInstaller\Block\System\Config\Form\Import">
+        <arguments>
+            <argument name="data" xsi:type="array">
+                <item  name="import_type" xsi:type="string">cms_page</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="TemplateMonster\SampleDataInstaller\Block\System\Config\Form\ImportCmsBlocks" type="TemplateMonster\SampleDataInstaller\Block\System\Config\Form\Import">
+        <arguments>
+            <argument name="data" xsi:type="array">
+                <item  name="import_type" xsi:type="string">cms_block</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="TemplateMonster\SampleDataInstaller\Block\System\Config\Form\ImportWidgets" type="TemplateMonster\SampleDataInstaller\Block\System\Config\Form\Import">
+        <arguments>
+            <argument name="data" xsi:type="array">
+                <item  name="import_type" xsi:type="string">widget</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="TemplateMonster\SampleDataInstaller\Model\Source\CmsPageSamples" type="TemplateMonster\SampleDataInstaller\Model\Source\Samples">
+        <arguments>
+            <argument name="directory" xsi:type="string">cms_pages</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="TemplateMonster\SampleDataInstaller\Model\Source\CmsBlockSamples" type="TemplateMonster\SampleDataInstaller\Model\Source\Samples">
+        <arguments>
+            <argument name="directory" xsi:type="string">cms_blocks</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="TemplateMonster\SampleDataInstaller\Model\Source\WidgetSamples" type="TemplateMonster\SampleDataInstaller\Model\Source\Samples">
+        <arguments>
+            <argument name="directory" xsi:type="string">widgets</argument>
+        </arguments>
+    </virtualType>
+    <type name="Magento\Widget\Model\Widget\Instance">
+        <plugin name="processed_widget_parameters" type="TemplateMonster\SampleDataInstaller\Plugin\Widget\Model\Widget\InstancePlugin" />
+    </type>
+</config>

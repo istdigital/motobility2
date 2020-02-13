@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:TemplateMonster_LayoutSwitcher:etc/layouts.xsd">
+    <layout id="header_layout_1" label="Header Layout 1" type="header" />
+    <layout id="header_layout_2" label="Header Layout 2" type="header" />
+    <layout id="header_layout_3" label="Header Layout 3" type="header" />
+    <layout id="header_layout_4" label="Header Layout 4" type="header" />
+    <layout id="header_layout_5" label="Header Layout 5" type="header" />
+
+    <layout id="listing_layout_1" label="Listing Layout 1" type="listing" />
+    <layout id="listing_layout_2" label="Listing Layout 2" type="listing" />
+    <layout id="listing_layout_3" label="Listing Layout 3" type="listing" depends="catalog_category_view"/>
+    <layout id="listing_layout_4" label="Listing Layout 4" type="listing" />
+
+    <layout id="product_layout_1" label="Product Layout 1" type="product" depends="catalog_product_view,checkout_cart_configure" />
+    <layout id="product_layout_2" label="Product Layout 2" type="product" depends="catalog_product_view,checkout_cart_configure" />
+    <layout id="product_layout_3" label="Product Layout 3" type="product" depends="catalog_product_view,checkout_cart_configure" />
+
+    <layout id="footer_layout_1" label="Footer Layout 1" type="footer" />
+    <layout id="footer_layout_2" label="Footer Layout 2" type="footer" />
+    <layout id="footer_layout_3" label="Footer Layout 3" type="footer" />
+    <layout id="footer_layout_4" label="Footer Layout 4" type="footer" />
+    <layout id="footer_layout_5" label="Footer Layout 5" type="footer" />
+</config>

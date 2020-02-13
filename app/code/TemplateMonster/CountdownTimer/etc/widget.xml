@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Widget:etc/widget_file.xsd">
+    <widget id="products_list">
+        <parameters>
+            <parameter name="template" xsi:type="select">
+                <options>
+                    <option name="list_countdown" value="TemplateMonster_CountdownTimer::product/widget/content/grid-with-countdown.phtml">
+                        <label translate="true">Products Grid Template With Countdown</label>
+                    </option>
+                </options>
+            </parameter>
+        </parameters>
+        <containers>
+            <container name="content">
+                <template name="list_countdown" value="list_countdown" />
+            </container>
+            <container name="content.top">
+                <template name="list_countdown" value="list_countdown" />
+            </container>
+            <container name="content.bottom">
+                <template name="list_countdown" value="list_countdown" />
+            </container>
+        </containers>
+    </widget>
+</widgets>

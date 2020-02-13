@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Yereone_Testimonials::testimonial" title="Testimonial" module="Yereone_Testimonials" sortOrder="20" parent="Yereone_Core::core" resource="Yereone_Core::config"/>
+        <add id="Yereone_Testimonials::config" title="Configuration" module="Yereone_Testimonials" action="adminhtml/system_config/edit/section/yereone_testimonials" parent="Yereone_Testimonials::testimonial" sortOrder="10" resource="Yereone_Core::config"/>
+        <add id="Yereone_Testimonials::testimonialadd" title="Add Testimonial" module="Yereone_Testimonials" sortOrder="20" parent="Yereone_Testimonials::testimonial" action="testimonial/testimonial/new" resource="Yereone_Core::config"/>
+        <add id="Yereone_Testimonials::testimonialgrid" title="Testimonial Manager" module="Yereone_Testimonials" sortOrder="30" parent="Yereone_Testimonials::testimonial" action="testimonial/testimonial" resource="Yereone_Core::config"/>
+    </menu>
+</config>

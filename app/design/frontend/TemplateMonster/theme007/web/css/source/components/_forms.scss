@@ -1,0 +1,351 @@
+//
+//  Form styles
+//  _____________________________________________
+
+fieldset,
+.fieldset {
+  outline: none;
+    .field{
+        select{
+            width: 100%;
+        }
+        .select2-container{
+            max-width: 100%;
+        }
+    }
+}
+
+//Form layout
+.field {
+  margin-bottom: 30px;
+  position: relative;
+
+  &.additional,
+  &.choice {
+    margin-bottom: 0;
+  }
+
+  .label,
+  label {
+    margin-right: $gutter-width;
+    line-height: $input-line-height;
+    padding: $input-padding-vert 0;
+    display: inline-block;
+    font-size: $font-ultra-small;
+    font-weight: 600;
+  }
+
+  .checkbox {
+    margin: .75rem .5rem 0 0;
+  }
+
+  input.qty {
+    width: 6rem;
+  }
+
+  &.required {
+    transition: $default-transition;
+    &._error {
+      margin-bottom: 2*$indent-small;
+    }
+    div.mage-error {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+    }
+
+    .control {
+      position: relative;
+
+      &._with-tooltip input.input-text + div.mage-error {
+        top: auto;
+      }
+
+      .field-tooltip.toggle {
+        top: -22px;
+      }
+    }
+
+    input.input-text {
+      &.mage-error {
+        //margin-bottom: 20px;
+      }
+    }
+
+    &.comment textarea.input-text {
+      &.mage-error {
+      }
+    }
+  }
+}
+
+//Typography
+.legend,
+legend {
+  font-size: 1rem;
+  font-weight: 600;
+  + br {
+    display: none;
+  }
+}
+
+.control {
+  .nested {
+    margin-top: $indent-small;
+    .field {
+      margin-bottom: 0;
+    }
+  }
+}
+
+input[type="text"],
+.input-text,
+input[type="email"],
+input[type="password"],
+input[type="number"],
+select,
+textarea {
+  display: block;
+  width: 100%;
+  padding: $input-padding-vert $input-padding-hor;
+  font-size: $input-font-size;
+  line-height: $input-line-height;
+  min-height: 2*$input-line-height + 2;
+  background: $input-bg-color;
+  border:0;
+
+  &.mage-error {
+    box-shadow: 0 0 3px rgba(255,0,0, 1) inset;
+    font-style: normal;
+  }
+
+  &::-webkit-input-placeholder {
+    opacity: 1;
+    transition: opacity .3s ease;
+  }
+  &::-moz-placeholder {
+    opacity: 1;
+    transition: opacity .3s ease;
+  }
+  &:-moz-placeholder {
+    opacity: 1;
+    transition: opacity .3s ease;
+  }
+  &:-ms-input-placeholder {
+    opacity: 1;
+    transition: opacity .3s ease;
+  }
+  &:focus::-webkit-input-placeholder {
+    opacity: .5;
+    transition: opacity .3s ease;
+  }
+  &:focus::-moz-placeholder {
+    opacity: .5;
+    transition: opacity .3s ease;
+  }
+  &:focus:-moz-placeholder {
+    opacity: .5;
+    transition: opacity .3s ease;
+  }
+  &:focus:-ms-input-placeholder {
+    opacity: .5;
+    transition: opacity .3s ease;
+  }
+}
+
+select {
+  height: $input-line-height;
+  outline: none;
+  option {
+    outline: none;
+  }
+}
+
+
+textarea {
+  max-width: 100%;
+}
+
+p.required {
+  color: $red;
+}
+
+//Inline form
+.form-inline {
+  @include make-flex();
+  .control {
+    input,
+    select,
+    textarea {
+      width: auto;
+    }
+  }
+}
+
+.field.required > .label::after,
+.field._required > .label::after,
+.fieldset > .field.required > .label::after,
+.fieldset > .fields > .field.required > .label::after {
+  color: $red;
+  content: "*";
+  font-size: 12px;
+  margin: 0 0 0 5px;
+}
+
+// Checkbox
+.radio,
+input[type="checkbox"],
+input[type="radio"] {
+  display: inline-block;
+  width: auto;
+  height: $input-line-height;
+  margin: $input-padding-vert $input-padding-vert 0 0;
+}
+
+.field.choice {
+  position: relative;
+
+  input[type=checkbox],
+  input[type=radio] {
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+  }
+
+  input[type=checkbox],
+  input[type=radio] {
+    + .label {
+      font-size: 16px;
+      line-height: 18px;
+      &:before {
+        display: inline-block;
+        width: 18px;
+        height: 18px;
+        font-family: $default-icon-family;
+        font-style: normal;
+        vertical-align: baseline;
+        text-align: center;
+        padding-right: 3px;
+        font-weight: normal;
+      }
+
+      span {
+        display: inline-block;
+      }
+    }
+  }
+
+  input[type=checkbox] + .label {
+    &:before {
+      content: "\e835";
+    }
+  }
+  input[type=checkbox]:checked + .label:before {
+    content: "\e834";
+  }
+  input[type=checkbox]:disabled:checked + .label:before {
+    content: "\e834";
+    pointer-events: none;
+    opacity: .6;
+  }
+  input[type=radio] + .label {
+    &:before {
+      content: '\e836';
+    }
+  }
+  input[type=radio]:checked + .label:before {
+    content: "\e837";
+  }
+  input[type=checkbox]:disabled:checked + .label:before {
+    content: "\e837";
+    pointer-events: none;
+    opacity: .6;
+  }
+  input[type=checkbox],
+  input[type=radio] {
+    &:disabled + .label:before {
+      pointer-events: none;
+      opacity: .6;
+    }
+  }
+}
+
+//
+//  Button styles
+//  ---------------------------------------------
+
+//Block buttons
+.actions .action,
+.actions-toolbar .action,
+.box-actions .action,
+.product-item-actions .action,
+.checkout.methods .action {
+  @include button-block(); //@mixin source/_mixins.scss
+}
+
+//Primary Buttons
+.actions-primary .action,
+.primary .action,
+.action.primary,
+.checkout.methods .primary {
+  @include button-block__primary(); //@mixin source/_mixins.scss
+}
+
+//Icon buttons
+a.action {
+  &.delete,
+  &.edit,
+  &.change-password {
+    font-size: 20px;
+    display: inline-block;
+    padding: $button-padding-vert $button-padding-hor;
+    border: 0;
+    font-weight: normal;
+    span {
+      display: none;
+    }
+  }
+
+  &.delete {
+    font-family: $linearicons-icon;
+    &:before {
+      content: "\e92a";  //e753
+    }
+  }
+  &.edit {
+    font-family: $linearicons-icon;
+    &:before {
+      content: "\e60d";
+    }
+  }
+}
+.block-minicart {
+  a.action.delete:before {
+    content: "\e753";
+  }
+}
+
+.actions-toolbar {
+  @include make-flex();
+  margin: 0 -0.25rem;
+  .action {
+    margin: 0 0.25rem;
+    display: inline-block;
+  }
+}
+
+//
+//  Messages styles
+//  ---------------------------------------------
+
+.mage-error:not(input):not(textarea) {
+  font-size: .75rem;
+  line-height: 1rem;
+  font-style: italic;
+  color: #F11F17;
+  padding: 5px;
+  background: #fff;
+  z-index:1;
+  box-shadow:0 0 5px rgba(0,0,0,0.11);
+}

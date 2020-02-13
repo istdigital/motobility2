@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <ajaxcatalog>
+            <general>
+                <ajaxcatalog_layer_active>1</ajaxcatalog_layer_active>
+                <ajaxcatalog_viewmode_active>1</ajaxcatalog_viewmode_active>
+                <ajaxcatalog_listorder_active>1</ajaxcatalog_listorder_active>
+                <ajaxcatalog_sortby_active>1</ajaxcatalog_sortby_active>
+                <ajaxcatalog_pagination_active>1</ajaxcatalog_pagination_active>
+                <ajaxcatalog_shownumber_active>1</ajaxcatalog_shownumber_active>
+                <ajaxcatalog_show_price_slider>1</ajaxcatalog_show_price_slider>
+                <ajaxcatalog_infinite_scroll>1</ajaxcatalog_infinite_scroll>
+                <ajaxcatalog_infinite_pages>2</ajaxcatalog_infinite_pages>
+            </general>
+        </ajaxcatalog>
+    </default>
+</config>

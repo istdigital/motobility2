@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @copyright   Copyright (c) http://www.manadev.com
+ * @license     http://www.manadev.com/license  Proprietary License
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="mana_indicators"/>
+    <update handle="mana_content"/>
+    <body>
+        <referenceContainer name="before.body.end">
+            <block class="Manadev\Core\Blocks\SessionScript" name="mana.session"
+                template="Manadev_Core::session.phtml" />
+        </referenceContainer>
+    </body>
+</page>

@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <!-- top header -->
+        <referenceContainer name="rd.navbar" htmlClass="layout_5">
+        </referenceContainer>
+
+        <move element="header" destination="panel.container.wrap" before="-"/> <!-- Welcome message -->
+        <move element="header.switchers" destination="panel.container.wrap" after="header"/>
+        <move element="rd.navbar.collapse" destination="panel.container.wrap" after="-"/> <!-- Top links -->
+        <referenceContainer name="header.panel.grid-container">
+            <container name="panel.container.wrap" htmlClass="panel-container-wrap" htmlTag="div"/>
+        </referenceContainer>
+        <!-- end -->
+
+
+        <!-- center header -->
+        <move element="header.panel" destination="rd.navbar" after="header_info"/>
+        <referenceContainer name="header-wrapper.grid-container">
+            <container name="header.center.wrap" htmlClass="header-center-wrap" htmlTag="div" before="-" />
+
+            <container name="header.bottom.wrap.bg" htmlClass="header-bottom-wrap-bg" htmlTag="div" after="header.center.wrap">
+                <container name="header.bottom.wrap" htmlClass="header-bottom-wrap" htmlTag="div"/>
+            </container>
+        </referenceContainer>
+        <move element="logo"  destination="header.center.wrap"/>
+        <move element="catalog.topnav" destination="header.bottom.wrap"/>
+        <move element="minicart" destination="header.center.wrap" />
+        <move element="top.search"         destination="header.bottom.wrap" after="-" />
+        <referenceContainer name="main.content"  htmlClass="page-main fix-indent-2" />
+
+    </body>
+</page>

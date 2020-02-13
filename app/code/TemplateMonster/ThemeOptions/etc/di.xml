@@ -1,0 +1,96 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <virtualType name="TemplateMonster\ThemeOptions\Model\ColorScheme\Config\Reader" type="Magento\Framework\Config\Reader\Filesystem">
+        <arguments>
+            <argument name="converter" xsi:type="object">TemplateMonster\ThemeOptions\Model\ColorScheme\Config\Converter</argument>
+            <argument name="schemaLocator" xsi:type="object">TemplateMonster\ThemeOptions\Model\ColorScheme\Config\SchemaLocator</argument>
+            <argument name="fileName" xsi:type="string">color_schemes.xml</argument>
+        </arguments>
+    </virtualType>
+    <type name="TemplateMonster\ThemeOptions\Helper\ColorScheme">
+        <arguments>
+            <argument name="reader" xsi:type="object">TemplateMonster\ThemeOptions\Model\ColorScheme\Config\Reader</argument>
+        </arguments>
+    </type>
+    <type name="TemplateMonster\ThemeOptions\Controller\Adminhtml\Settings\Export">
+        <arguments>
+            <argument name="writer" xsi:type="object">Magento\ImportExport\Model\Export\Adapter\Csv</argument>
+        </arguments>
+    </type>
+    <type name="TemplateMonster\ThemeOptions\Block\Adminhtml\System\Edit\Plugin">
+        <arguments>
+            <argument name="sections" xsi:type="array">
+                <item name="0" xsi:type="string">theme_options</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Config\Block\System\Config\Edit">
+        <plugin name="addResetButton" type="TemplateMonster\ThemeOptions\Block\Adminhtml\System\Edit\Plugin" sortOrder="100" />
+    </type>
+    <type name="Magento\Theme\Block\Html\Header\Logo">
+        <plugin name="logoSettings" type="TemplateMonster\ThemeOptions\Plugin\Theme\Block\Html\Header\LogoPlugin" sortOrder="300" />
+    </type>
+    <type name="Magento\Theme\Block\Html\Header">
+        <plugin name="welcomeMessage" type="TemplateMonster\ThemeOptions\Plugin\Theme\Block\Html\HeaderPlugin" sortOrder="400" />
+    </type>
+    <type name="Magento\Cms\Model\Page">
+        <plugin name="pageSettings" type="TemplateMonster\ThemeOptions\Plugin\Cms\Model\PagePlugin" sortOrder="500" />
+    </type>
+    <type name="Magento\Theme\Model\Favicon\Favicon">
+        <plugin name="favicon" type="TemplateMonster\ThemeOptions\Plugin\Theme\Model\Favicon\FaviconPlugin" sortOrder="600" />
+    </type>
+    <type name="Magento\Theme\Block\Html\Footer">
+        <plugin name="copyright" type="TemplateMonster\ThemeOptions\Plugin\Theme\Block\Html\FooterPlugin" sortOrder="700" />
+    </type>
+    <type name="Magento\Reports\Block\Product\Widget\Compared">
+        <plugin name="compared" type="TemplateMonster\ThemeOptions\Plugin\Reports\Block\Product\Widget\ComparedPlugin" sortOrder="800" />
+    </type>
+    <type name="Magento\Reports\Block\Product\Widget\Viewed">
+        <plugin name="compared" type="TemplateMonster\ThemeOptions\Plugin\Reports\Block\Product\Widget\ViewedPlugin" sortOrder="900" />
+    </type>
+    <type name="Magento\Catalog\Block\Product\AbstractProduct">
+        <plugin name="show_swatches" type="TemplateMonster\ThemeOptions\Plugin\Catalog\Block\Product\AbstractProductPlugin" sortOrder="1000" />
+    </type>
+    <type name="Magento\Catalog\Block\Product\ProductList\Item\AddTo\Compare">
+        <plugin name="show_compare" type="TemplateMonster\ThemeOptions\Plugin\Catalog\Block\Product\ProductList\Item\AddTo\ComparePlugin" sortOrder="1100" />
+    </type>
+    <type name="Magento\Wishlist\Block\Catalog\Product\ProductList\Item\AddTo\Wishlist">
+        <plugin name="show_wishlist" type="TemplateMonster\ThemeOptions\Plugin\Wishlist\Block\Catalog\Product\ProductList\Item\AddTo\WishlistPlugin" sortOrder="1200" />
+    </type>
+    <type name="Magento\Catalog\Block\Product\View">
+        <plugin name="show_product_review" type="TemplateMonster\ThemeOptions\Plugin\Catalog\Block\Product\ViewPlugin" sortOrder="-1" />
+    </type>
+    <type name="Magento\Catalog\Block\Product\ListProduct">
+        <plugin name="show_product_review" type="TemplateMonster\ThemeOptions\Plugin\Catalog\Block\Product\ListProductPlugin" sortOrder="-1" />
+    </type>
+    <type name="Magento\Catalog\Block\Product\View\AddTo\Compare">
+        <plugin name="show_product_compare" type="TemplateMonster\ThemeOptions\Plugin\Catalog\Block\Product\View\AddTo\ComparePlugin"  sortOrder="1400" />
+    </type>
+    <type name="Magento\Wishlist\Block\Catalog\Product\View\AddTo\Wishlist">
+        <plugin name="show_product_wishlist" type="TemplateMonster\ThemeOptions\Plugin\Wishlist\Block\Catalog\Product\View\AddTo\WishlistPlugin" sortOrder="1500" />
+    </type>
+    <type name="Magento\Config\Model\Config\Loader">
+        <plugin name="loader" type="TemplateMonster\ThemeOptions\Plugin\Config\Model\Config\LoaderPlugin" />
+    </type>
+    <type name="Magento\Catalog\Block\Product\ProductList\Upsell">
+        <plugin name="upsellPlugin" type="TemplateMonster\ThemeOptions\Plugin\Catalog\Block\Product\ProductList\UpsellPlugin" sortOrder="-1" />
+    </type>
+    <type name="Magento\Catalog\Block\Product\ProductList\Related">
+        <plugin name="relatedPlugin" type="TemplateMonster\ThemeOptions\Plugin\Catalog\Block\Product\ProductList\RelatedPlugin" sortOrder="-1" />
+    </type>
+    <type name="Magento\Catalog\Block\Product\View\Description">
+        <plugin name="tabsPlugin" type="TemplateMonster\ThemeOptions\Plugin\Catalog\Block\Product\View\DescriptionPlugin" sortOrder="-1" />
+    </type>
+    <type name="Magento\Framework\Config\View">
+        <plugin name="image_dimensions" type="TemplateMonster\ThemeOptions\Plugin\Block\Config\ViewPlugin" />
+    </type>
+    <type name="Magento\Catalog\Block\Product\View\Gallery">
+        <plugin name="magnifierPlugin" type="TemplateMonster\ThemeOptions\Plugin\Catalog\Block\Product\View\GalleryPlugin" />
+    </type>
+    <type name="Magento\Catalog\Block\Product\ImageBlockBuilder">
+        <plugin name="catalog_image_resize" type="TemplateMonster\ThemeOptions\Plugin\Catalog\Block\Product\ImageBlockBuilderPlugin" sortOrder="1600" />
+    </type>
+    <type name="Magento\ConfigurableProduct\Block\Product\View\Type\Configurable">
+        <plugin name="configurablePlugin" type="TemplateMonster\ThemeOptions\Plugin\ConfigurableProduct\Block\Product\View\Type\ConfigurablePlugin" />
+    </type>
+</config>

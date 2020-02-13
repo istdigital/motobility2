@@ -1,0 +1,17 @@
+/**
+*   TM_AjaxCatalog
+*/
+
+// Local vars
+$screen-res: 1024px;
+
+// Main Styles
+.swatch-option-tooltip {
+    visibility: hidden; 
+
+    @media (min-width: $screen-res) {
+        visibility: visible;
+    }
+}
+
+@import '_price-slider.scss';

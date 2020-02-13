@@ -1,0 +1,224 @@
+<div class="contact-form-wrap" style="display: none;">
+	<div class="contact-form-popup">
+		<form class="form contact"
+	      data-bind="attr:{action:postUrl}"
+	      id="contact-form"
+	      method="post"
+	      data-hasrequired='* Required Fields'
+	      data-mage-init='{"validation":{}}'>
+
+	      	<input type="hidden" name="product_name" data-bind="attr:{value:_productName}"/>
+	      	<input type="hidden" name="product_id" data-bind="attr:{value:_productID}"/>
+	      	<input type="hidden" name="price" data-bind="attr:{value:_price}"/>
+	      	<input type="hidden" name="deposit" data-bind="attr:{value:_deposit}"/>
+	      	<input type="hidden" name="term" data-bind="attr:{value:_term}"/>
+	      	<input type="hidden" name="sub_total" data-bind="attr:{value:subtotal}"/>
+	      	<input type="hidden" name="application_fee" value="75" />
+	      	<input type="hidden" name="payment_charge" value="2.5" />
+	      	<input type="hidden" name="total" data-bind="attr:{value:total}"/>
+
+			<div class="container contact-form-popup">
+
+
+				<button type="button" class="close" data-bind="event:{click:closeContactPopup}"></button>
+		      	<div class="row">
+			      	<div class="col-md-12 text-left">
+						<h2>Get in touch</h2>
+						<p>For any online enquiries please don’t hesitate to get in touch via the web form below, or email us directly. For any urgent matters, please contact us directly on 08 9242 7333</p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="field name required col-md-12">
+						<label class="label" for="name"><span data-bind="i18n:'Name'"></span></label>
+						<div class="control">
+							<input type="text" name="name" id="name" class="input-text" data-validate="{required:true}"/>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="field email required col-md-6 col-sm-6">
+						<label class="label" for="email"><span data-bind="i18n:'Email'"></span></label>
+						<div class="control">
+							<input type="text" name="email" id="email" class="input-text" data-validate="{required:true,'validate-email':true}"/>
+						</div>
+					</div>
+					<div class="field suburb required col-md-6 col-sm-6">
+						<label class="label" for="suburb"><span data-bind="i18n:'Suburb'"></span></label>
+						<div class="control">
+							<input type="text" name="suburb" id="suburb" class="input-text" data-validate="{required:true}"/>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="field telephone col-md-12">
+						<label class="label" for="phone"><span data-bind="i18n:'Mobile'"></span></label>
+						<div class="control">
+							<input type="text" name="phone" id="phone" class="input-text"/>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="field comment required col-md-12">
+						<label class="label" for="message"><span data-bind="i18n:'Message'"></span></label>
+						<div class="control">
+							<textarea name="message" id="message" class="input-text" cols="5" rows="3" data-validate="{required:true}"></textarea>
+						</div>
+					</div>
+				</div>
+
+				<div class="row actions">
+					<div class="field name col-md-12">
+						<button type="submit" 
+						data-bind="click:submitForm"
+						title="Submit" 
+						class="action submit primary">
+			                <span data-bind="i18n:'Submit'"></span>
+			            </button>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+
+<div class="rcalculator-form-wrap" style="display: none;">
+	<div class="rcalculator-form">
+		<div class="rcalculator-form-inner">
+			<button type="button" class="close" data-bind="event:{click:closePopup}">
+			</button>
+			<div class="row _header">
+				<div class="col-md-12 text-center">
+					<img data-bind="attr:{src:rlogo}"/>
+					<h2>Repayment Calculator</h2>
+				</div>
+			</div>
+			<div class="row _body">
+				<div class="col-md-12">
+					<div class="row">
+						<div class="col-md-6 col-sm-6 col-xs-6">
+							<label>Price</label>
+							<span>RRP of item being purchased</span>
+						</div>
+						<div class="col-md-6 dollar col-sm-6 col-xs-6">
+							<input id="price" type="text" data-bind="textInput:_price,event: { keyup: Calculate },click: clearPrice" placeholder="0.00" />
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12 text-right">
+							<label class="sym">+</label>
+						</div>
+					</div>
+					
+					<div class="row">
+						<div class="col-md-6 col-sm-6 col-xs-6">
+							<label>Application Fee</label>
+							<span>Supplier processing fee</span>
+						</div>
+						<div class="col-md-6 dollar col-sm-6 col-xs-6">
+							<input id="fee" type="text" disabled="disabled" readonly data-bind="attr:{value:fee}" />
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-md-10 text-right col-sm-10 col-xs-10">
+							<p data-bind="visible:error" class="error">Deposit amount is not 10% of the Price.</p>
+						</div>
+						<div class="col-md-2 text-right col-sm-2 col-xs-2">
+							<label class="sym">-</label>
+						</div>
+						
+					</div>
+					<div class="row">
+						<div class="col-md-6 col-sm-6 col-xs-6">
+							<label>Deposit</label>
+							<span>Must be at least 10% of ‘Price’</span>
+						</div>
+						<div class="col-md-6 dollar col-sm-6 col-xs-6">
+							<input id="deposit" type="text" 
+							data-bind="textInput:_deposit, disable: isDepositDisable, event: { keyup: Calculate }" 
+							placeholder="0.00"/>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12 text-right">
+							<label class="sym">&#247;</label>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6 col-sm-6 col-xs-6">
+							<label>Term</label>
+							<span>Length of Repayments</span>
+						</div>
+						<div class="col-md-6 col-sm-6 col-xs-6">
+							<select id='term' data-bind="value: _term, disable: isTermDisable, event: { change: Calculate }" data-mage-init='{"selectize":{}}'>
+				                <option value="0">Select Term</option>
+				                <option value="26">12 months</option>
+				                <option value="39">18 months</option>
+				                <option value="52">24 months</option>
+							</select>
+						</div>
+					</div>
+					<div class="row sub-total">
+						<div class="col-md-12">
+							<div class="border-line">
+								<div class="row">
+									<div class="col-md-6 col-sm-4 col-xs-6">
+										<label>Sub Total</label>
+									</div>
+									<div class="col-md-2 col-sm-2 col-xs-2">
+										<h3>$</h3>
+									</div>
+									<div class="col-md-4 text-right col-sm-4 col-xs-4">
+										<h3 id="subtotal" data-bind="text:subtotal"></h3>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row p-charge ">
+						<div class="col-md-12">
+							<div class="border-line">
+								<div class="row">
+									<div class="col-md-6 col-sm-4 col-xs-6">
+										<label>Payment Charge</label>
+									</div>
+									<div class="col-md-2 col-sm-2 col-xs-2">
+										<h3>$</h3>
+									</div>
+									<div class="col-md-4 text-right col-sm-4 col-xs-4">
+										<h3 data-bind="text:payment_charge"></h3>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						
+					</div>
+					<div class="row">
+						<div class="col-md-6 col-sm-4 col-xs-6">
+							<h3>Total</h3>
+							<span>Paid fortnightly</span>
+						</div>
+						<div class="col-md-2 col-sm-2 col-xs-2">
+							<h3>$</h3>
+						</div>
+						<div class="col-md-4 text-right col-sm-4 col-xs-4">
+							<h3 id="total" data-bind="text:total"></h3>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row _footer">
+				<div class="col-md-8 col-sm-8">
+					This tool is intended as a guide.<br>For a full written quote, please <a data-bind="attr:{href:contactUrl}" title="Get in touch">get in touch</a>
+				</div>
+				<div class="col-md-4 col-sm-4 text-center actions">
+					<button type="button" title="Get in touch" class="action primary"
+					data-bind="disable: isContactDisable,event:{click:openContactPopup}">
+		                <span>Get in touch</span>
+		            </button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

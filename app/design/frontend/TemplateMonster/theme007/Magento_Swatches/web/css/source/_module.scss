@@ -1,0 +1,291 @@
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+.swatch-attribute-label {
+  font-weight: bold;
+  position: relative;
+  &.required {
+    padding-right: 10px;
+  }
+}
+
+.swatch-attribute-label[data-required="1"]:after {
+  content: '*';
+  color: red;
+  position: absolute;
+  right: -11px;
+  top: -2px;
+  font-weight: bold;
+  font-size: 1em;
+}
+
+.swatch-attribute-selected-option {
+  padding-left: 17px;
+  display: none;
+}
+
+.swatch-option {
+  min-width: 24px;
+  max-width: 90px;
+  min-height: 24px;
+  float: left;
+  margin: 0 7px 5px 0;
+  text-align: center;
+  cursor: pointer;
+  position: relative;
+  border: 1px solid $border-color;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: $default-transition;
+
+  &.text {
+    background: $white;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 20px;
+    padding: 5px 12px;
+    min-width: 22px;
+    margin-right: 7px;
+    &.selected {
+      background-color: #FFF !important;
+    }
+  }
+
+  &.color {
+    min-height: 24px;
+  }
+
+  &.selected,
+  &:not(.disabled):hover {
+    border-color: darken($border-color, 30%);
+    background: $bg-light;
+  }
+  &.selected {
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+  }
+
+  .disabled {
+    cursor: default;
+
+    &:after {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      background: -moz-linear-gradient(to left top, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 42%, rgba(255, 255, 255, 1) 43%, rgba(255, 255, 255, 1) 46%, rgba(255, 82, 22, 1) 47%, rgba(255, 82, 22, 1) 53%, rgba(255, 255, 255, 1) 54%, rgba(255, 255, 255, 1) 57%, rgba(255, 255, 255, 0) 58%, rgba(255, 255, 255, 0) 100%);
+      background: -webkit-gradient(linear, left top, right bottom, color-stop(0%, rgba(255, 255, 255, 0)), color-stop(42%, rgba(255, 255, 255, 0)), color-stop(43%, rgba(255, 255, 255, 1)), color-stop(46%, rgba(255, 255, 255, 1)), color-stop(47%, rgba(255, 82, 22, 1)), color-stop(53%, rgba(255, 82, 22, 1)), color-stop(54%, rgba(255, 255, 255, 1)), color-stop(57%, rgba(255, 255, 255, 1)), color-stop(58%, rgba(255, 255, 255, 0)), color-stop(100%, rgba(255, 255, 255, 0)));
+      background: -webkit-linear-gradient(to left top, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 42%, rgba(255, 255, 255, 1) 43%, rgba(255, 255, 255, 1) 46%, rgba(255, 82, 22, 1) 47%, rgba(255, 82, 22, 1) 53%, rgba(255, 255, 255, 1) 54%, rgba(255, 255, 255, 1) 57%, rgba(255, 255, 255, 0) 58%, rgba(255, 255, 255, 0) 100%);
+      background: -o-linear-gradient(to left top, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 42%, rgba(255, 255, 255, 1) 43%, rgba(255, 255, 255, 1) 46%, rgba(255, 82, 22, 1) 47%, rgba(255, 82, 22, 1) 53%, rgba(255, 255, 255, 1) 54%, rgba(255, 255, 255, 1) 57%, rgba(255, 255, 255, 0) 58%, rgba(255, 255, 255, 0) 100%);
+      background: -ms-linear-gradient(to left top, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 42%, rgba(255, 255, 255, 1) 43%, rgba(255, 255, 255, 1) 46%, rgba(255, 82, 22, 1) 47%, rgba(255, 82, 22, 1) 53%, rgba(255, 255, 255, 1) 54%, rgba(255, 255, 255, 1) 57%, rgba(255, 255, 255, 0) 58%, rgba(255, 255, 255, 0) 100%);
+      background: linear-gradient(to left top, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 42%, rgba(255, 255, 255, 1) 43%, rgba(255, 255, 255, 1) 46%, rgba(255, 82, 22, 1) 47%, rgba(255, 82, 22, 1) 53%, rgba(255, 255, 255, 1) 54%, rgba(255, 255, 255, 1) 57%, rgba(255, 255, 255, 0) 58%, rgba(255, 255, 255, 0) 100%);
+      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00ffffff', endColorstr='#00ffffff', GradientType=1);
+    }
+  }
+}
+
+.clearfix:after {
+  content: "";
+  visibility: hidden;
+  display: block;
+  height: 0;
+  clear: both;
+}
+
+.swatch-attribute.size .swatch-option,
+.swatch-attribute.manufacturer .swatch-option {
+  background: rgb(240, 240, 240);
+  color: rgb(148, 148, 148);
+
+  &.selected {
+    color: black;
+    background: #fff;
+    border: 1px solid #fff;
+  }
+}
+
+.swatch-option-tooltip {
+  visibility: hidden;
+
+  @media (min-width: $screen-sm-min) {
+    max-width: 140px;
+    max-height: 100%;
+    min-height: 20px;
+    min-width: 40px;
+    position: absolute;
+    padding: 5px;
+    background: #fff;
+    color: rgb(148, 148, 148);
+    border: 1px solid #adadad;
+    display: none;
+    visibility: visible;
+    z-index: 999;
+    text-align: center;
+  }
+}
+
+.swatch-option-tooltip,
+.swatch-option-tooltip-layered {
+  .corner {
+    position: absolute;
+    bottom: 1px;
+    height: 8px;
+
+    &::after {
+      content: '';
+      position: relative;
+      top: 0px;
+      left: -15px;
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 7px 7.5px 0 7.5px;
+      border-color: #fff transparent transparent transparent;
+      font-size: 1px;
+    }
+
+    &::before {
+      content: '';
+      position: relative;
+      top: 2px;
+      left: 0;
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 8px 8.5px 0 8.5px;
+      border-color: #adadad transparent transparent transparent;
+      font-size: 1px;
+    }
+  }
+}
+
+@media (min-width: $screen-sm-min) {
+  .swatch-option-tooltip .image,
+  .swatch-option-tooltip-layered .image {
+    display: block;
+    height: 130px;
+    width: 130px;
+    margin: 0 auto;
+  }
+}
+
+.swatch-option-tooltip .title {
+  max-width: 140px;
+  min-height: 20px;
+  max-height: 200px;
+  color: rgb(40, 40, 40);
+  text-align: center;
+  display: block;
+  overflow: hidden;
+}
+
+.swatch-opt {
+  margin: 20px 0;
+}
+
+.swatch-more {
+  display: inline-block;
+  margin: 2px 0;
+  text-decoration: none !important;
+  position: static;
+  z-index: 1;
+}
+
+/* Layered Features */
+.swatch-option-link-layered {
+  position: relative;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.sidebar .swatch-option-link-layered {
+  position: static;
+}
+
+.swatch-option-tooltip-layered {
+  width: 140px;
+  position: absolute;
+  background: #fff;
+  color: rgb(148, 148, 148);
+  border: 1px solid #adadad;
+  display: none;
+  z-index: 999;
+  left: -47px;
+}
+
+.swatch-visual-tooltip-layered {
+  height: 160px;
+  top: -170px;
+}
+
+.swatch-textual-tooltip-layered {
+  height: 30px;
+  top: -40px;
+}
+
+.swatch-option-link-layered:hover > .swatch-option-tooltip-layered {
+  display: block;
+}
+
+.swatch-attribute-options .swatch-option-tooltip-layered .title {
+  width: 100%;
+  height: 20px;
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  color: rgb(40, 40, 40);
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.swatch-option-disabled:after {
+  content: '';
+  position: absolute;
+  width: 42px;
+  height: 2px;
+  background: red;
+  transform: rotate(-30deg);
+  -o-transform: rotate(-30deg);
+  -moz-transform: rotate(-30deg);
+  -ms-transform: rotate(-30deg);
+  -webkit-transform: rotate(-30deg);
+  z-index: 995;
+  left: -4px;
+  top: 10px;
+}
+
+.swatch-option-disabled {
+  outline: none !important;
+  cursor: default;
+  border: 0;
+}
+
+/* Bugfix for Add To Cart button */
+div[class^="swatch-opt-"] {
+  margin-bottom: 10px;
+}
+
+.swatch-option-loading {
+  content: url("../images/loader-2.gif");
+}
+
+.products-grid,
+.product-list,
+.product-info-main {
+  .product-item .swatch-attribute-options {
+    @include make-flex;
+    @include justify-content(flex-start);
+    @include flex-wrap(wrap);
+  }
+  &.layout_2 {
+    @media (min-width: $screen-md-min) {
+      .product-item .swatch-attribute-options {
+        @include justify-content(center);
+      }
+    }
+
+  }
+}

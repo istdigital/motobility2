@@ -1,0 +1,17 @@
+{
+  "name" : "templatemonster/ajax-compare",
+  "autoload": {
+    "psr-4": {"TemplateMonster\\AjaxCompare\\":""},
+    "files": [ "registration.php" ]
+  },
+  "description": "Ajax Compare",
+  "require": {
+    "magento/module-catalog": "*"
+  },
+  "type": "magento2-module",
+  "version": "1.1.0",
+    "extra": {
+        "isStandalone": "false",
+        "magentoVersion": "v2.2.0"
+    }
+}

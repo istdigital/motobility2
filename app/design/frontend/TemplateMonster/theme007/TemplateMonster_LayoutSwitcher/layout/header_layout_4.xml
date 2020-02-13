@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="rd.navbar" htmlClass="layout_4" />
+        <!-- Header Panel -->
+        <referenceContainer name="header.panel.grid-container">
+            <container name="panel.container.wrap" htmlClass="panel-container-wrap" htmlTag="div"/>
+            <container name="panel.container.wrap.bottom" htmlClass="panel-container-wrap-bottom" htmlTag="div"/>
+        </referenceContainer>
+        <move element="header" destination="panel.container.wrap" before="-"/> <!-- Welcome message -->
+        <move element="header.switchers" destination="panel.container.wrap" after="header"/>
+
+        <move element="rd.navbar.collapse" destination="panel.container.wrap.bottom"/> <!-- Top links -->
+        <move element="minicart" destination="panel.container.wrap.bottom"/>
+        <move element="logo"  destination="panel.container.wrap.bottom"  after="-" />
+
+        <referenceContainer name="header-wrapper.grid-container" htmlClass="container container-flex" />
+        <move element="catalog.topnav" destination="header-wrapper.grid-container"/>
+        <!--<referenceBlock name="catalog.topnav">-->
+            <!--<block class="Magento\Theme\Block\Html\Header" name="header2" as="header2" before="-">-->
+                <!--<arguments>-->
+                    <!--<argument name="show_part" xsi:type="string">welcome</argument>-->
+                <!--</arguments>-->
+            <!--</block>-->
+        <!--</referenceBlock>-->
+        <referenceContainer name="main.content"  htmlClass="page-main page-shadow" />
+
+    </body>
+</page>

@@ -1,0 +1,81 @@
+.page-messages {
+  margin-bottom: $indent-base;
+}
+
+.page-messages.messages {
+  margin: 0;
+}
+
+.messages {
+  position: fixed;
+  top: 70px;
+  right: 10px;
+  max-width: 90%;
+  z-index: 4;
+  font-size: $font-ultra-small;
+
+  @media (min-width: $screen-sm-min) {
+    top: 10px;
+    max-width: 100%;
+  }
+}
+
+.message {
+  padding: 0.8rem 3.5rem 0.8rem 1rem;
+  margin-bottom: 30px;
+  border: 1px solid transparent;
+  border-radius: 2px;
+  position: relative;
+  cursor: pointer;
+  font-size: $font-size-small;
+
+  > div:after {
+    font-family: $linearicons-icon;
+    content: '\e935';
+    font-size: 20px;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    line-height: 1;
+    text-align: center;
+    padding: 5px;
+
+  }
+  &:hover {
+    > div:after {
+        opacity: 0.5;
+    }
+  }
+  &.notice {
+    div:after {
+      display: none;
+    }
+  }
+}
+
+.message-info,
+.message-notice,
+.message.notice,
+.message.info {
+  color: #31708f;
+  background-color: #d9edf7;
+  border-color: #bce8f1;
+}
+
+.message-warning {
+  color: #8a6d3b;
+  background-color: #fcf8e3;
+  border-color: #faebcc;
+}
+
+.message-error {
+  color: #a94442;
+  background-color: #f2dede;
+  border-color: #ebccd1;
+}
+
+.message-success {
+  color: #3c763d;
+  background-color: #dff0d8;
+  border-color: #d6e9c6;
+}

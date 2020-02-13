@@ -1,0 +1,20 @@
+<?php
+$categories = $block->getCategories();
+$categoriesJsonData = $block->getCategoriesJsData();
+$isAjaxType = $block->isAjaxPageType();
+
+?>
+<?php if(count($categories)): ?>
+<div class="mp-sidebar mpcss">
+    <ul class="block-content menu-categories">
+        <?php foreach($categories as $category): ?>
+            <li class="category-item">
+                <a href="<?= $this->getUrl('downloads',['_query' => ['query'=>isset($_GET['query']) ? $_GET['query'] : null, 'cat'=>$category->getCategoryId(), 'p'=> isset($_GET['p']) ? $_GET['p'] : 0 ]]) ?>" class="<?= isset($_GET['cat']) && $_GET['cat'] == $category->getCategoryId() ? 'active' : null ?>">
+                    <?= $category->getName(); ?>
+                    <span>(<?= !empty($category->getTotal()) ? $category->getTotal() : 0 ; ?>)</span>
+                </a>
+            </li>
+        <?php endforeach; ?>
+    </ul>
+</div>
+<?php endif; ?>

@@ -1,0 +1,39 @@
+
+<script>
+    require(
+        [
+            'jquery',
+            'loader'
+        ],function($){
+
+            function fetchData(v){
+                $('.faq-list').trigger('processStart');
+                $.get("<?php echo $this->getUrl('easyfaq/index/search'); ?>"+"?query="+v+"&cat="+'<?= $this->getRequest()->getParam('cat') ?>', function(res){
+                    var res = JSON.parse(res);
+                    $(".faq-container").replaceWith(res.results.replace("/index/search/",""));
+
+                    $(".mp-sidebar.mpcss").replaceWith(res.sidebar);
+                    $('.loading-mask').hide();
+                }).fail(function() {
+                    $('.loading-mask').hide();
+                });
+            }
+
+            $(".faq-container .filter-toggle").click(function(){
+                $('.modal-slide.filter-slide').addClass("_show");
+            })
+            
+            $(document).keydown(function(e) {
+              if (e.keyCode == 27) {
+                $("input.faq-search").val("");
+                fetchData('');
+              }
+            });
+
+            $('input.faq-search').keyup(function(e){
+                if (e.keyCode != 27){
+                    fetchData(e.target.value)
+                }    
+            });
+        });
+</script>

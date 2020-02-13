@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+
+<layout xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_layout.xsd">
+    <update handle="empty"/>
+    <referenceContainer name="columns">
+        <container name="main.columns.grid-row" htmlClass="row" htmlTag="div">
+            <container name="main.columns.grid-main" htmlClass="col-sm-12 grid-main" htmlTag="div" before="-"/>
+        </container>
+    </referenceContainer>
+</layout>

@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd" layout="1column">
+    <body>
+        <referenceContainer name="content">
+            <container name="parallax">
+                <block class="TemplateMonster\Parallax\Block\Configure" name="parallax.configure" as="parallax_configure" template="configure.phtml" />
+                <block class="TemplateMonster\Parallax\Block\Layers" name="parallax.layers" as="parallax_layers" template="layers.phtml">
+                    <action method="setBlockId">
+                        <argument name="value" xsi:type="string">1</argument>
+                    </action>
+                </block>
+            </container>
+        </referenceContainer>
+    </body>
+</page>

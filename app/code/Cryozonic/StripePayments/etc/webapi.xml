@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+    <route url="/V1/cryozonic/stripepayments/service" method="GET">
+        <service class="Cryozonic\StripePayments\Api\ServiceInterface" method="redirect_url"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route url="/V1/cryozonic/stripepayments/get_payment_intent" method="POST">
+        <service class="Cryozonic\StripePayments\Api\ServiceInterface" method="get_payment_intent"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+</routes>

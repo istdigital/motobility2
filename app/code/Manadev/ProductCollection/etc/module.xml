@@ -1,0 +1,13 @@
+<!--
+ @category    Mana
+ @package     Manadev_ProductCollection
+ @copyright   Copyright (c) http://www.manadev.com
+ @license     http://www.manadev.com/license  Proprietary License
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
+    <module name="Manadev_ProductCollection" setup_version="1">
+        <sequence>
+            <module name="Manadev_Core"/>
+        </sequence>
+    </module>
+</config>

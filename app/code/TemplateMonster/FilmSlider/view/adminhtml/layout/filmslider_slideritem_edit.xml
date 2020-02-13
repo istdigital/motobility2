@@ -1,0 +1,83 @@
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="jquery/fileUploader/css/jquery.fileupload-ui.css"/>
+        <css src="TemplateMonster_FilmSlider::css/slider-options.css"/>
+        <css src="jquery/colorpicker/css/colorpicker.css" />
+        <remove src="Magento_Backend::js/bootstrap/editor.js"/>
+        <link src="TemplateMonster_FilmSlider::js/bootstrap/editor.js"/>
+        <!--link src="jquery/colorpicker/js/colorpicker.js" /-->
+    </head>
+    <update handle="editor"/>
+    <body>
+        <referenceContainer name="content">
+            <block class="TemplateMonster\FilmSlider\Block\Adminhtml\SliderItem\Edit"
+                   name="filmslider_item_page_edit"/>
+        </referenceContainer>
+        <referenceContainer name="left">
+            <block class="TemplateMonster\FilmSlider\Block\Adminhtml\SliderItem\Edit\Tabs"
+                   name="filmslider_item_page_edit_tabs">
+                <block class="TemplateMonster\FilmSlider\Block\Adminhtml\SliderItem\Edit\Tab\Main"
+                       name="filmslider_item_page_edit_tab_main"/>
+                <action method="addTab">
+                    <argument name="name" xsi:type="string">main_section</argument>
+                    <argument name="block" xsi:type="string">filmslider_item_page_edit_tab_main</argument>
+                    <argument name="afterTabId" xsi:type="string">add_new_slide</argument>
+                </action>
+            </block>
+        </referenceContainer>
+        <referenceContainer name="before.body.end">
+            <block class="TemplateMonster\FilmSlider\Block\Adminhtml\SliderItem\Widget\EditPage"
+                   template="TemplateMonster_FilmSlider::slideritem/editpage.phtml"
+                   name="film.slider.slide.editpage"/>
+            <block class="Magento\Framework\View\Element\Template"
+                   template="TemplateMonster_FilmSlider::slideritem/editpage/canvas.phtml"
+                   name="film.slider.slide.canvas"/>
+            <block class="TemplateMonster\FilmSlider\Block\Adminhtml\SliderItem\Widget\EditPage\Item\Image"
+                   template="TemplateMonster_FilmSlider::slideritem/editpage/image.phtml"
+                   name="film.slider.slide.image"/>
+            <block class="TemplateMonster\FilmSlider\Block\Adminhtml\SliderItem\Widget\EditPage\Item\MobileImage"
+                   template="TemplateMonster_FilmSlider::slideritem/editpage/mobile_image.phtml"
+                   name="film.slider.slide.mobile_image"/>
+
+            <block class="TemplateMonster\FilmSlider\Block\Adminhtml\SliderItem\Widget\EditPage\Item\Video"
+                   template="TemplateMonster_FilmSlider::slideritem/editpage/video.phtml"
+                   name="film.slider.slide.video"/>
+
+            
+
+            <block class="Magento\Framework\View\Element\Template"
+                   template="TemplateMonster_FilmSlider::slideritem/editpage/layer/width.phtml"
+                   name="film.slider.slide.layer.width"/>
+            <block class="Magento\Framework\View\Element\Template"
+                   template="TemplateMonster_FilmSlider::slideritem/editpage/layer/height.phtml"
+                   name="film.slider.slide.layer.height"/>
+            <block class="Magento\Framework\View\Element\Template"
+                   template="TemplateMonster_FilmSlider::slideritem/editpage/layer/text.phtml"
+                   name="film.slider.slide.layer.text"/>
+            <block class="TemplateMonster\FilmSlider\Block\Adminhtml\SliderItem\Widget\EditPage\Layer\Image"
+                   template="TemplateMonster_FilmSlider::slideritem/editpage/layer/image.phtml"
+                   name="film.slider.slide.layer.image"/>
+            <block class="Magento\Framework\View\Element\Template"
+                   template="TemplateMonster_FilmSlider::slideritem/initAccordion.phtml"
+                   name="film.slide.init.accordion"/>
+            <block class="TemplateMonster\FilmSlider\Block\Adminhtml\SliderItem\Widget\EditPage\Layer\Items"
+                   template="TemplateMonster_FilmSlider::slideritem/editpage/layer/items.phtml"
+                   name="film.slider.slide.layer.items"/>
+            <block class="Magento\Framework\View\Element\Template"
+                   template="TemplateMonster_FilmSlider::slideritem/editpage/sortable.phtml"
+                   name="film.slider.slide.sortable"/>
+            <block class="Magento\Framework\View\Element\Template"
+                   template="TemplateMonster_FilmSlider::slideritem/editpage/button/remove.phtml"
+                   name="film.slider.slide.button.remove"/>
+            <block class="TemplateMonster\FilmSlider\Block\Adminhtml\SliderItem\Widget\EditPage\Button\Update"
+                   template="TemplateMonster_FilmSlider::slideritem/editpage/button/update.phtml"
+                   name="film.slider.slide.button.update"/>
+            <block class="Magento\Framework\View\Element\Template"
+                   template="TemplateMonster_FilmSlider::slideritem/editpage/button/duplicate.phtml"
+                   name="film.slider.slide.button.duplicate"/>
+            <block class="Magento\Framework\View\Element\Template"
+                   template="TemplateMonster_FilmSlider::slideritem/editpage/button/remove-all.phtml"
+                   name="film.slider.slide.button.remove.all"/>
+        </referenceContainer>
+    </body>
+</page>

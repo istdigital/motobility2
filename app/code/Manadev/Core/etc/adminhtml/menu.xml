@@ -1,0 +1,17 @@
+<!--
+ @category    Mana
+ @package     Manadev_Core
+ @copyright   Copyright (c) http://www.manadev.com
+ @license     http://www.manadev.com/license  Proprietary License
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Manadev_Core::manadev" title="MANAdev" module="Manadev_Core" sortOrder="55" resource="Manadev_Core::manadev"/>
+
+        <add id="Manadev_Core::general" title="General" module="Manadev_Core" sortOrder="100" resource="Manadev_Core::general" parent="Manadev_Core::manadev" />
+
+        <add id="Manadev_Core::extension_control" title="Installed MANAdev Extensions" module="Manadev_Core"
+             sortOrder="100" resource="Manadev_Core::extension_control" parent="Manadev_Core::general"
+             action="mana_core/extensionControl/"/>
+    </menu>
+</config>

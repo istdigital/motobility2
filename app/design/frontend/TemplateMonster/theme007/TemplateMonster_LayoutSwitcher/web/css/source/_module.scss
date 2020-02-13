@@ -1,0 +1,25 @@
+.layout-switcher {
+  z-index: 3;
+  .select-container {
+    select {
+      min-height: 30px;
+    }
+    &::after {
+      top: 3px;
+    }
+  }
+  label {
+    padding-bottom: 0;
+  }
+  section .inner {
+    padding-bottom: 15px;
+  }
+
+  form {
+    @media  (max-height: 800px) {
+      overflow-y: scroll;
+      max-height: 400px;
+
+    }
+  }
+}

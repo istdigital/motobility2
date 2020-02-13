@@ -1,0 +1,70 @@
+// Import
+
+@import '_vars.scss';
+@import '_mixins.scss';
+@import 'grid/_grid.scss';
+
+@import '_topNav.scss';
+@import '_sidebarNav.scss';
+
+// Main Styles
+
+nav.navigation[role="navigation"]{
+	position: relative;
+	margin-top: 1px;
+
+	*,
+	*:before,
+	*:after {
+	  box-sizing: border-box;
+	  -webkit-box-sizing: border-box;
+	  -moz-box-sizing: border-box;
+	}
+
+	@media (min-width: $screen-sm-min) {
+		.row{
+			margin-bottom: 20px;
+		}
+
+		ul.vm-static,
+		ul.vm-easing {
+			margin-left: 10px;
+		}
+		ul.vm-pop-up {
+			position: absolute;
+			z-index: 9;
+			top: 100%;
+			left: 0;
+			width: 100%;
+			background: #fff;
+			box-shadow: 1px 1px 5px #cccccc;
+		}
+	}
+
+	@media (max-width: $screen-sm-min - 1) {
+		
+		li.level-top .megamenu-wrapper, 
+		a.level-top .megamenu-wrapper {
+			padding: 0;
+			background: none;
+		}
+
+		[class*="col-"]{
+          padding: 0;
+        }
+	}
+
+	&.mobile-only,
+	&.desktop-only{
+		visibility: hidden;
+		opacity: 0;
+		display: none;
+	}
+
+	&.active {
+		visibility: visible;
+		opacity: 1;
+		display: block;
+	}
+
+}

@@ -1,0 +1,17 @@
+{
+  "name" : "templatemonster/shop-by-brand",
+  "description": "Shop By Brand",
+  "type": "magento2-module",
+  "version": "1.0.8",
+  "autoload": {
+    "psr-4": {"TemplateMonster\\ShopByBrand\\":""},
+    "files": [ "registration.php" ]
+  },
+  "require": {
+    "magento/module-catalog": "*"
+  },
+    "extra": {
+        "isStandalone": "false",
+        "magentoVersion": "v2.1.6"
+    }
+}

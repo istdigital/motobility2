@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ @category    Mana
+ @package     Manadev_LayeredNavigation
+ @copyright   Copyright (c) http://www.manadev.com
+ @license     http://www.manadev.com/license  Proprietary License
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Mview/etc/mview.xsd">
+    <view id="mana_filter_attribute" class="Manadev\LayeredNavigation\Indexers\AttributeBasedFilterIndexer" group="indexer">
+        <subscriptions>
+            <table name="eav_attribute" entity_column="attribute_id" />
+            <table name="catalog_eav_attribute" entity_column="attribute_id" />
+        </subscriptions>
+    </view>
+    <!--<view id="mana_filter_config" class="Manadev\LayeredNavigation\Indexer\Filter\StoreConfiguration" group="indexer">
+        <subscriptions>
+            <table name="core_config_data" entity_column="config_id" />
+        </subscriptions>
+    </view>-->
+</config>

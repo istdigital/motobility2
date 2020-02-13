@@ -1,0 +1,24 @@
+.mage-new-video-dialog .admin__scope-old .admin__field.field-video_on_hover .admin__field-label {
+    cursor: pointer;
+    left: 0;
+    margin-left: 26%;
+    padding-left: 45px;
+    position: absolute;
+    width: 250px;
+}
+.mage-new-video-dialog .admin__scope-old .admin__field.field-video_on_hover .admin__field-control {
+    float: left;
+    margin-left: 80px;
+    position: relative;
+    width: calc(100% * 0.25 - 30px);
+}
+.mage-new-video-dialog .admin__scope-old .admin__field.field-video_on_hover .admin__field-control input {
+    float: right;
+}
+.mage-new-video-dialog .admin__scope-old .admin__field.field-video_on_hover .admin__field-label span {
+    float: left;
+}
+
+.mage-new-video-dialog .admin__scope-old .admin__field.field-video_on_hover .admin__field-label::before {
+    content: none;
+}

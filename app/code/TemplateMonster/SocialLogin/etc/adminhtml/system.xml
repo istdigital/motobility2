@@ -1,0 +1,194 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="templatemonster">
+            <label>TemplateMonster</label>
+        </tab>
+        <section id="social_login" translate="label" type="text" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Social Login</label>
+            <tab>templatemonster</tab>
+            <resource>TemplateMonster_SocialLogin::social_login_config</resource>
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General</label>
+                <field id="enabled" translate="label comment" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enabled</label>
+                    <comment>Turn on to enable the module.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+            <group id="providers" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Social Providers</label>
+                <group id="google" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Google+ Options</label>
+                    <field id="enabled" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <depends>
+                            <field id="*/general/enabled">1</field>
+                        </depends>
+                        <label>Enabled</label>
+                        <comment>Turn on to enable the authorization using Google+.</comment>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    </field>
+                    <field id="client_id" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <depends>
+                            <field id="*/general/enabled">1</field>
+                            <field id="*/*/*/enabled">1</field>
+                        </depends>
+                        <label>Client id</label>
+                        <comment>Google+ client id.</comment>
+                        <validate>validate-no-empty</validate>
+                    </field>
+                    <field id="client_secret" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <depends>
+                            <field id="*/general/enabled">1</field>
+                            <field id="*/*/*/enabled">1</field>
+                        </depends>
+                        <label>Client secret</label>
+                        <comment>Google+ client secret.</comment>
+                        <validate>validate-no-empty</validate>
+                    </field>
+                    <field id="sort_order" translate="label comment" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <depends>
+                            <field id="*/general/enabled">1</field>
+                            <field id="*/*/*/enabled">1</field>
+                        </depends>
+                        <label>Sort order</label>
+                        <comment>Sort order of the Google+ icon on frontend.</comment>
+                        <validate>validate-greater-than-zero</validate>
+                    </field>
+                    <field id="redirect_uri" translate="label comment" type="link" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <depends>
+                            <field id="*/general/enabled">1</field>
+                            <field id="*/*/*/enabled">1</field>
+                        </depends>
+                        <label>Redirect Uri</label>
+                        <frontend_model>TemplateMonster\SocialLogin\Block\Adminhtml\System\Config\Field\RedirectUri\Google</frontend_model>
+                        <comment><![CDATA[Use this uri to configure your application on <a href="https://console.developers.google.com" target="_blank">Google Developers Console</a>.]]></comment>
+                    </field>
+                </group>
+                <group id="facebook" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Facebook Options</label>
+                    <field id="enabled" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <depends>
+                            <field id="*/general/enabled">1</field>
+                        </depends>
+                        <label>Enabled</label>
+                        <comment>Turn on to enable the authorization using Facebook.</comment>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    </field>
+                    <field id="client_id" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <depends>
+                            <field id="*/general/enabled">1</field>
+                            <field id="*/*/*/enabled">1</field>
+                        </depends>
+                        <label>Client id</label>
+                        <comment>Facebook client id.</comment>
+                        <validate>validate-no-empty</validate>
+                    </field>
+                    <field id="client_secret" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <depends>
+                            <field id="*/general/enabled">1</field>
+                            <field id="*/*/*/enabled">1</field>
+                        </depends>
+                        <label>Client secret</label>
+                        <comment>Facebook client secret.</comment>
+                        <validate>validate-no-empty</validate>
+                    </field>
+                    <field id="sort_order" translate="label comment" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <depends>
+                            <field id="*/general/enabled">1</field>
+                            <field id="*/*/*/enabled">1</field>
+                        </depends>
+                        <label>Sort order</label>
+                        <comment>Sort order of the Facebook icon on frontend.</comment>
+                        <validate>validate-greater-than-zero</validate>
+                    </field>
+                </group>
+                <group id="instagram" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Instagram Options</label>
+                    <field id="enabled" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <depends>
+                            <field id="*/general/enabled">1</field>
+                        </depends>
+                        <label>Enabled</label>
+                        <comment>Turn on to enable the authorization using Instagram.</comment>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    </field>
+                    <field id="client_id" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <depends>
+                            <field id="*/general/enabled">1</field>
+                            <field id="*/*/*/enabled">1</field>
+                        </depends>
+                        <label>Client id</label>
+                        <comment>Instagram client id.</comment>
+                        <validate>validate-no-empty</validate>
+                    </field>
+                    <field id="client_secret" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <depends>
+                            <field id="*/general/enabled">1</field>
+                            <field id="*/*/*/enabled">1</field>
+                        </depends>
+                        <label>Client secret</label>
+                        <comment>Instagram client secret.</comment>
+                        <validate>validate-no-empty</validate>
+                    </field>
+                    <field id="sort_order" translate="label comment" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <depends>
+                            <field id="*/general/enabled">1</field>
+                            <field id="*/*/*/enabled">1</field>
+                        </depends>
+                        <label>Sort order</label>
+                        <comment>Sort order of the Instagram icon on frontend.</comment>
+                        <validate>validate-greater-than-zero</validate>
+                    </field>
+                </group>
+                <group id="twitter" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Twitter Options</label>
+                    <field id="enabled" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <depends>
+                            <field id="*/general/enabled">1</field>
+                        </depends>
+                        <label>Enabled</label>
+                        <comment>Turn on to enable the authorization using Twitter.</comment>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    </field>
+                    <field id="client_id" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <depends>
+                            <field id="*/general/enabled">1</field>
+                            <field id="*/*/*/enabled">1</field>
+                        </depends>
+                        <label>Client id</label>
+                        <comment>Twitter client id.</comment>
+                        <validate>validate-no-empty</validate>
+                    </field>
+                    <field id="client_secret" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <depends>
+                            <field id="*/general/enabled">1</field>
+                            <field id="*/*/*/enabled">1</field>
+                        </depends>
+                        <label>Client secret</label>
+                        <comment>Twitter client secret.</comment>
+                        <validate>validate-no-empty</validate>
+                    </field>
+                    <field id="sort_order" translate="label comment" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <depends>
+                            <field id="*/general/enabled">1</field>
+                            <field id="*/*/*/enabled">1</field>
+                        </depends>
+                        <label>Sort order</label>
+                        <comment>Sort order of the Twitter icon on frontend.</comment>
+                        <validate>validate-greater-than-zero</validate>
+                    </field>
+                    <field id="redirect_uri" translate="label comment" type="link" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <depends>
+                            <field id="*/general/enabled">1</field>
+                            <field id="*/*/*/enabled">1</field>
+                        </depends>
+                        <label>Redirect Uri</label>
+                        <frontend_model>TemplateMonster\SocialLogin\Block\Adminhtml\System\Config\Field\RedirectUri\Twitter</frontend_model>
+                        <comment><![CDATA[Use this uri to configure your application on <a href="https://apps.twitter.com/" target="_blank">Twitter Apps</a>.]]></comment>
+                    </field>
+                </group>
+            </group>
+        </section>
+    </system>
+</config>

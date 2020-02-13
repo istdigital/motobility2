@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <!-- <css src='TemplateMonster_FeaturedProduct::fonts/font-awesome-4.5.0/css/font-awesome.min.css' /> -->
+        <css src='TemplateMonster_FeaturedProduct::css/module.css'/>
+        <css src="mage/gallery/gallery.css"/>
+    </head>
+</page>

@@ -1,0 +1,63 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/**
+ * Category left navigation
+ *
+ * @var $block \Magento\Catalog\Block\Navigation
+ */
+?>
+<?php if (!$block->getCategory()) {
+    return;
+} ?>
+<?php $_categories = $block->getCurrentChildCategories(); ?>
+<?php $_count = is_array($_categories) ? count($_categories) : $_categories->count(); ?>
+<?php if ($_count): ?>
+    <div class="block filter filter-wrapper">
+        <div class="block-title filter-title">
+            <strong><?= /* @escapeNotVerified */ __('Filters') ?></strong>
+        </div>
+        <div class="content">
+            <?php $accItems = 0; $openItems = '0'; ?>
+            <?php foreach ($block->getCategory() as $filter): ?>
+                <?php $accItems++; ?>
+                <?php $openItems .= ' '. $accItems; ?>
+            <?php endforeach; ?>
+            <strong class="block-subtitle filter-subtitle" role="heading"><?= /* @escapeNotVerified */ __('Shopping Options') ?></strong>
+            <div class="options filter-options" id="narrow-by-list2"  data-mage-init='{"accordion":{"openedState": "active", "collapsible": true, "animate": 200, "active": "<?php echo $openItems; ?>", "multipleCollapsible": true}}'>
+                <div data-role="collapsible" class="filter-options-item">
+                    <div data-role="title" class="filter-options-title"><?= /* @escapeNotVerified */ __('Category') ?></div>
+                    <div data-role="content" class="filter-options-content">
+                        <ol class="items">
+                            <?php foreach ($_categories as $_category): ?>
+                                <?php if ($_category->getIsActive()): ?>
+                                    <li class="item">
+                                        <a href="<?= /* @escapeNotVerified */ $block->getCategoryUrl($_category) ?>"<?php if ($block->isCategoryActive($_category)): ?> class="current"<?php endif; ?>>
+                                            <span class="item-label"><?= $block->escapeHtml($_category->getName()) ?></span>
+                                            <span class="count"><?= /* @escapeNotVerified */ $_category->getProductCount() ?></span>
+                                        </a>
+                                    </li>
+                                <?php endif; ?>
+                            <?php endforeach ?>
+                        </ol>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <script type="text/x-magento-init">
+{
+    ".filter-content": {
+        "Magento_LayeredNavigation/js/modal-filter": {}
+    }
+}
+</script>
+<?php endif; ?>

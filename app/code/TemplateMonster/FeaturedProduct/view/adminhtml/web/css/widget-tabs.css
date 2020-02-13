@@ -1,0 +1,57 @@
+/* Widget Tabs */
+
+.widget-tabs {
+    margin-top:10px;
+}
+.widget-tabs ul.tabs-titles {
+    list-style: none;
+    border-bottom: 1px solid #adadad;
+    white-space: nowrap;
+    width: 100%;
+}
+.widget-tabs ul.tabs-titles li{
+    display: inline-block;
+    background: #e3e3e3;
+    border: 0.1rem solid #adadad;
+    border-bottom: 0px;
+    letter-spacing: .0183em;
+    list-style: none;
+    margin-right: .4rem;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+.widget-tabs ul.tabs-titles li:hover{
+    background: #d6d6d6;
+}
+
+.widget-tabs ul.tabs-titles li a{
+    color: #41362f;
+    font-weight: 600;
+    box-sizing: border-box;
+    display: inline-block;
+    padding: 1.5rem 2.8rem 1.3rem;
+    text-decoration: none;
+    -moz-box-sizing: border-box;
+}
+
+.widget-tabs ul.tabs-titles li.ui-tabs-active a{
+    background: #fff;
+    border-top: 0.4rem solid #eb5202;
+    padding-top: 1.1rem;
+    border-bottom: solid 1px #fff;
+    position: relative;
+    margin-bottom: -1px;
+}
+
+.widget-tabs .admin__field > .admin__field-label {
+    display: inline-block;
+    width: calc( (100%) * 0.2 - 30px );
+
+}
+
+.widget-tabs .admin__field > .admin__field-control{
+    width: calc( (100%) * 0.5 - 30px );
+    display: inline-block;
+    margin-left: 30px;
+    vertical-align: top;
+}

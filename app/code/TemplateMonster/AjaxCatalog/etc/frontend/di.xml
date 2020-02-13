@@ -1,0 +1,88 @@
+<config  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Magento\Swatches\Block\LayeredNavigation\RenderLayered"
+                type="TemplateMonster\AjaxCatalog\Block\LayeredNavigation\RenderLayered"/>
+
+    <preference for="Magento\CatalogSearch\Model\Layer\Filter\Price"
+                type="TemplateMonster\AjaxCatalog\Model\Layer\Filter\Price"/>
+
+    <virtualType name="TemplateMonster\AjaxCatalog\Model\Layer\Filter\ItemFactory"
+                 type="Magento\Catalog\Model\Layer\Filter\ItemFactory">
+        <arguments>
+            <argument name="instanceName" xsi:type="string">TemplateMonster\AjaxCatalog\Model\Layer\Filter\Item</argument>
+        </arguments>
+    </virtualType>
+
+    <type name="Magento\Catalog\Controller\Category\View">
+        <plugin name="catalog_view_ajax"
+                type="TemplateMonster\AjaxCatalog\Plugin\Category\View"
+                sortOrder="100" />
+    </type>
+    <type name="TemplateMonster\ShopByBrand\Controller\Brand\View">
+        <plugin name="brand_view_ajax"
+                type="TemplateMonster\AjaxCatalog\Plugin\Brand\View"
+                sortOrder="100" />
+    </type>
+
+    <type name="Magento\CatalogSearch\Controller\Result\Index">
+        <plugin name="catalog_search_ajax"
+                type="TemplateMonster\AjaxCatalog\Plugin\CatalogSearch\Result"
+                sortOrder="100" />
+    </type>
+    <type name="Magento\CatalogSearch\Controller\Advanced\Result">
+        <plugin name="catalog_search_advance_ajax"
+                type="TemplateMonster\AjaxCatalog\Plugin\CatalogSearch\Advanced\Result"
+                sortOrder="100" />
+    </type>
+    <type name="Magento\Catalog\Block\Product\ProductList\Toolbar">
+        <plugin name="toolbar_ajax_plugin"
+                type="TemplateMonster\AjaxCatalog\Plugin\ProductList\Toolbar"
+                sortOrder="100" />
+    </type>
+
+    <type name="Magento\Catalog\Model\Config">
+        <plugin name="catalog_ajax_config" type="TemplateMonster\AjaxCatalog\Plugin\Catalog\Model\Config" />
+    </type>
+
+    <type name="TemplateMonster\Blog\Block\Post\PostList\Toolbar">
+        <plugin name="blog_toolbar_ajax_plugin"
+                type="TemplateMonster\AjaxCatalog\Plugin\Post\PostList\Toolbar"
+                sortOrder="90" />
+    </type>
+    
+    <type name="Magento\Catalog\Model\Layer\FilterList">
+        <plugin name="catalog_search_filter_attribute"
+                type="TemplateMonster\AjaxCatalog\Plugin\CatalogSearch\Model\Layer\Filter\Attribute"
+                sortOrder="100"/>
+    </type>
+
+    <type name="TemplateMonster\AjaxCatalog\Model\CatalogSearch\Layer\Filter\MultipleAttribute">
+        <arguments>
+            <argument name="filterItemFactory"
+                      xsi:type="object">TemplateMonster\AjaxCatalog\Model\Layer\Filter\ItemFactory</argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Swatches\Model\Plugin\ProductImage">
+        <arguments>
+            <argument name="swatchesHelperData"
+                      xsi:type="object">TemplateMonster\AjaxCatalog\Helper\Swatches\Data</argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Swatches\Block\LayeredNavigation\RenderLayered">
+        <plugin name="layer_filter_selected"
+                type="TemplateMonster\AjaxCatalog\Plugin\Swatches\Block\LayeredNavigation\RenderLayered"
+                sortOrder="100"/>
+    </type>
+
+    <type name="Magento\LayeredNavigation\Block\Navigation\FilterRenderer">
+        <plugin name="layer_filter_renderer"
+                type="TemplateMonster\AjaxCatalog\Plugin\LayeredNavigation\Block\Navigation\FilterRenderer"
+                sortOrder="100"/>
+    </type>
+
+    <!-- <type name="Magento\Catalog\Model\ResourceModel\Product\Collection">
+        <plugin name="multiple_attributes_support" type="TemplateMonster\AjaxCatalog\Plugin\Catalog\Model\ResourceModel\Product\Collection" />
+    </type> -->
+</config>

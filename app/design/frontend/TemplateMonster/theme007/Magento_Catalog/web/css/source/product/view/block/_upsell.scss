@@ -1,0 +1,83 @@
+//
+//  Upsell products
+//  ---------------------------------------------
+
+.block.upsell,
+.block.related,
+.block.crosssell {
+  @include order(4);
+  @include make-col();
+  @include flex-basis(100%);
+  overflow: hidden;
+  .block-actions button.action.select {
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  .block-title {
+    line-height: normal;
+    padding-right: 90px;
+
+    @media (min-width: $screen-sm-min) {
+      text-align: center;
+      font-size: 35px;
+      padding: 0;
+    }
+  }
+  .block-actions {
+    display: none;
+    @media (min-width: $screen-sm-min) {
+      text-align: center;
+      font-size: $font-ultra-small;
+    }
+  }
+  .products-grid {
+    padding: 0;
+
+    .product-items {
+      padding: 0;
+    }
+
+    .product-item {
+      @include flex-basis(100%);
+      margin-top: 0;
+      border: 0;
+      padding-bottom: 0;
+      margin-bottom: 0;
+    }
+    .product-reviews-summary {
+      padding-top: 0;
+    }
+  }
+  .owl-controls {
+    .owl-prev,
+    .owl-next {
+      padding: 0;
+      margin-left: 20px;
+      &::before,
+      &::before {
+        font-family: $linearicons-icon;
+        font-size: 22px;
+        color: inherit;
+        vertical-align: middle;
+      }
+    }
+    .owl-prev:before {
+      content: "\e93b";
+    }
+    .owl-next:before {
+      content: "\e93c";
+    }
+  }
+}
+.block.upsell,
+.block.crosssell {
+  .owl-controls {
+    top:-70px;
+    @media (max-width: $screen-sm-min) {
+      top:-81px;
+    }
+  }
+}
+
+

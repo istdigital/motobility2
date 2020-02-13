@@ -1,0 +1,75 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Manadev\Core\Logger">
+        <arguments>
+            <argument name="name" xsi:type="string">mana</argument>
+            <argument name="handlers"  xsi:type="array">
+                <item name="default" xsi:type="object">Manadev\Core\LoggerHandlers\DefaultHandler</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\Console\CommandList">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="manaExtensionStatusUpdateCommand" xsi:type="object">Manadev\Core\ConsoleCommands\ExtensionStatusUpdateCommand</item>
+                <item name="manaPostInstallCommand" xsi:type="object">Manadev\Core\ConsoleCommands\PostInstallCommand</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Manadev\Core\Registries\PageTypes">
+        <arguments>
+            <argument name="pageTypes" xsi:type="array">
+                <item name="catalog/category/view" xsi:type="object">Manadev\Core\PageTypes\CategoryPage</item>
+                <item name="catalogsearch/result/index" xsi:type="object">Manadev\Core\PageTypes\QuickSearchPage</item>
+                <item name="cms/page/view" xsi:type="object">Manadev\Core\PageTypes\CmsPage</item>
+                <item name="cms/index/index" xsi:type="object">Manadev\Core\PageTypes\HomePage</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Manadev\Core\Registries\PostInstallScripts">
+        <arguments>
+            <argument name="postInstallScripts" xsi:type="array">
+            </argument>
+        </arguments>
+    </type>
+
+    <!-- Plugins -->
+
+    <type name="Magento\Framework\DB\LoggerInterface">
+        <plugin name="Manadev\Core" type="Manadev\Core\Plugins\DbLogger" />
+    </type>
+    <type name="Magento\Catalog\Block\Product\ListProduct">
+        <plugin name="Manadev\Core\Plugins\ProductListBlock" type="Manadev\Core\Plugins\ProductListBlock" />
+    </type>
+    <type name="Magento\Framework\View\Design\FileResolution\Fallback\Resolver\Simple">
+        <plugin name="Manadev\Core" type="Manadev\Core\Plugins\ThemeFileResolver" />
+    </type>
+    <type name="Magento\Framework\View\Element\Template\File\Validator">
+        <plugin name="Manadev\Core" type="Manadev\Core\Plugins\TemplateFileValidator" />
+    </type>
+    <type name="Magento\Framework\View\Element\Template">
+        <plugin name="Manadev\Core\Plugins\ViewWithTemplate" type="Manadev\Core\Plugins\ViewWithTemplate"/>
+    </type>
+    <type name="Magento\Framework\App\Route\Config\Reader">
+        <plugin name="Manadev\Core" type="Manadev\Core\Plugins\RouteConfigReader" />
+    </type>
+    <type name="Magento\Framework\View\Layout\GeneratorPool">
+        <plugin name="Manadev\Core\Plugins\LayoutGeneratorPool" type="Manadev\Core\Plugins\LayoutGeneratorPool"/>
+    </type>
+    <type name="Magento\Config\Model\Config">
+        <plugin name="Manadev\Core\Plugins\ConfigModelPlugin" type="Manadev\Core\Plugins\ConfigModelPlugin" sortOrder="100"/>
+    </type>
+    <type name="Magento\Config\Model\Config\Structure">
+        <plugin name="Manadev\Core\Plugins\ConfigStructurePlugin" type="Manadev\Core\Plugins\ConfigStructurePlugin" sortOrder="100"/>
+    </type>
+    <type name="Magento\Framework\View\Layout">
+        <plugin name="Manadev\Core\Plugins\LayoutPlugin" type="Manadev\Core\Plugins\LayoutPlugin"/>
+    </type>
+    <type name="Magento\Framework\View\Model\Layout\Merge">
+        <plugin name="Manadev\Core\Plugins\LayoutMergePlugin" type="Manadev\Core\Plugins\LayoutMergePlugin"/>
+    </type>
+
+    <!-- Preferences -->
+
+    <preference for="Magento\Indexer\Model\Config\Data" type="Manadev\Core\Preferences\IndexerConfigData" />
+
+</config>

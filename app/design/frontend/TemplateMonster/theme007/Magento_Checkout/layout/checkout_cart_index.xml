@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="checkout.cart.items">
+            <referenceContainer name="checkout.cart.container" htmlTag="div" htmlClass="cart-container row">
+                <container name="cart.table" htmlTag="div" htmlClass="cart-table col-md-8"/>
+                <container name="cart.summary.wrapper" htmlTag="div" htmlClass="col-md-4"  after="cart.table">
+                    <referenceContainer name="cart.summary" htmlClass="cart-summary">
+                        <block class="Magento\Framework\View\Element\Template" name="checkout.cart.summary.title" before="-" template="Magento_Theme::text.phtml">
+                            <arguments>
+                                <argument translate="true" name="text" xsi:type="string">Summary</argument>
+                                <argument name="tag" xsi:type="string">strong</argument>
+                                <argument name="css_class" xsi:type="string">summary title</argument>
+                            </arguments>
+                        </block>
+                    </referenceContainer>
+                </container>
+            </referenceContainer>
+        </referenceContainer>
+        <move element="checkout.cart.form"              destination="cart.table" before="-"/>
+        <move element="checkout.cart.form.before"       destination="checkout.cart.container" before="cart.summary"/>
+        <move element="checkout.cart.widget"            destination="checkout.cart.container" after="checkout.cart.form"/>
+        <move element="checkout.cart.shipping"          destination="cart.summary" after="checkout.cart.summary.title"/>
+        <move element="checkout.cart.coupon"            destination="cart.summary" after="checkout.cart.shipping"/>
+        <move element="checkout.cart.totals.container"  destination="cart.summary"/>
+        <move element="checkout.cart.methods.bottom"    destination="cart.summary"/>
+        <move element="cart.summary"                    destination="cart.summary.wrapper" before="-"/>
+    </body>
+</page>

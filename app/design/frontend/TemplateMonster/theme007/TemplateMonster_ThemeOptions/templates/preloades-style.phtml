@@ -1,0 +1,18 @@
+<?php /**  */ ?>
+<?php
+$optionsHelper = $this->helper('TemplateMonster\ThemeOptions\Helper\Data');
+?>
+<style>
+
+    #page-preloader{
+        background-color: <?php echo $optionsHelper->getBodyBackgroundColor() ?: 'transparent' ?>;
+        <?php if ($optionsHelper->isBodyBackgroundImage()) : ?>
+            background-image: <?php echo $optionsHelper->getBodyBackgroundImage() ? 'url(' . $this->getBaseUrl() . 'pub/media/theme_options/' . $optionsHelper->getBodyBackgroundImage() . ')' : 'none' ?>;
+            background-size: <?php echo $optionsHelper->getBodyBackgroundImageSize(); ?>;
+            background-attachment: <?php echo $optionsHelper->getBodyBackgroundImageAttachment(); ?>;
+            background-position: <?php echo $optionsHelper->getBodyBackgroundImagePosition(); ?>;
+            background-repeat: <?php echo $optionsHelper->getBodyBackgroundImageRepeat(); ?>;
+        <?php endif; ?>
+    }
+
+</style>

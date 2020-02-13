@@ -1,0 +1,50 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Magento\CatalogSearch\Model\ResourceModel\Fulltext\Collection" type="Manadev\ProductCollection\Resources\Collections\FullTextProductCollection"/>
+    <preference for="Magento\CatalogSearch\Model\ResourceModel\Fulltext\SearchCollection" type="Manadev\ProductCollection\Resources\Collections\FullTextProductCollection"/>
+    <preference for="elasticsearchCategoryCollection" type="Manadev\ProductCollection\Resources\Collections\FullTextProductCollection"/>
+    <preference for="elasticsearchFulltextSearchCollection" type="Manadev\ProductCollection\Resources\Collections\FullTextProductCollection" />
+
+    <virtualType name="Manadev\ProductCollection\Resources\Collection\SearchCollection" type="Manadev\ProductCollection\Resources\Collections\FullTextProductCollection">
+        <arguments>
+            <argument name="searchRequestName" xsi:type="string">quick_search_container</argument>
+        </arguments>
+    </virtualType>
+
+
+    <type name="Manadev\ProductCollection\Registries\QueryEngines">
+        <arguments>
+            <argument name="queryEngines" xsi:type="array">
+                <item name="mysql" xsi:type="object">Manadev\ProductCollection\Resources\QueryEngineResource</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Manadev\ProductCollection\Registries\FilterResources">
+        <arguments>
+            <argument name="filterResources" xsi:type="array">
+                <item name="layered_category" xsi:type="object">Manadev\ProductCollection\Resources\Filters\LayeredFilters\CategoryFilterResource</item>
+                <item name="layered_decimal" xsi:type="object">Manadev\ProductCollection\Resources\Filters\LayeredFilters\DecimalFilterResource</item>
+                <item name="layered_dropdown" xsi:type="object">Manadev\ProductCollection\Resources\Filters\LayeredFilters\DropdownFilterResource</item>
+                <item name="layered_price" xsi:type="object">Manadev\ProductCollection\Resources\Filters\LayeredFilters\PriceFilterResource</item>
+                <item name="logical" xsi:type="object">Manadev\ProductCollection\Resources\Filters\LogicalFilterResource</item>
+                <item name="search" xsi:type="object">Manadev\ProductCollection\Resources\Filters\SearchFilterResource</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Manadev\ProductCollection\Registries\FacetResources">
+        <arguments>
+            <argument name="facetResources" xsi:type="array">
+                <item name="dropdown_standard" xsi:type="object">Manadev\ProductCollection\Resources\Facets\Dropdown\StandardFacetResource</item>
+                <item name="dropdown_optimized" xsi:type="object">Manadev\ProductCollection\Resources\Facets\Dropdown\OptimizedFacetResource</item>
+                <item name="dropdown_optimized_batch" xsi:type="object">Manadev\ProductCollection\Resources\Facets\Dropdown\OptimizedFacetBatchResource</item>
+                <item name="swatch_standard" xsi:type="object">Manadev\ProductCollection\Resources\Facets\Swatch\StandardFacetResource</item>
+                <item name="swatch_optimized" xsi:type="object">Manadev\ProductCollection\Resources\Facets\Swatch\OptimizedFacetResource</item>
+                <item name="category_child" xsi:type="object">Manadev\ProductCollection\Resources\Facets\Category\ChildFacetResource</item>
+                <item name="price_equalized_range" xsi:type="object">Manadev\ProductCollection\Resources\Facets\Price\EqualizedRangeFacetResource</item>
+                <item name="price_equalized_count" xsi:type="object">Manadev\ProductCollection\Resources\Facets\Price\EqualizedCountFacetResource</item>
+                <item name="price_manual_range" xsi:type="object">Manadev\ProductCollection\Resources\Facets\Price\ManualRangeFacetResource</item>
+                <item name="decimal_equalized_range" xsi:type="object">Manadev\ProductCollection\Resources\Facets\Decimal\EqualizedRangeFacetResource</item>
+            </argument>
+        </arguments>
+    </type>
+
+</config>

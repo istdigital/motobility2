@@ -1,0 +1,37 @@
+<?php
+/**
+ * Category sidebar
+ *
+ * @var $block Sebwite\Sidebar\Block\Sidebar
+ */
+// $currentCategory = $this->getCurrentCategory();
+// if($currentCategory && $currentCategory->hasChildren())
+// {
+//     return;
+// }
+ 
+ 
+$categories = $block->getCategories();
+?>
+<?php if(count($categories)): ?>
+<div class="mp-sidebar mpcss">
+    <ul>
+        <?php
+        // Loop through categories
+        foreach ( $categories as $category ) :
+            ?>
+            <li class="level0<?php echo($block->isActive($category) ? ' active' : ''); ?>">
+                <a href="<?php echo $category->getUrl(); ?>" title="<?php echo $category->getName(); ?>" class="<?php echo($block->isActive($category) ? ' active' : ''); ?>">
+                        <?php echo $category->getName(); ?>
+                    <?php 
+                    // $_objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+                    // $cat_obj = $_objectManager->create('Magento\Catalog\Model\Category')
+                    // ->load($category->getEntityId());
+                    ?>
+                    <span>(<?php echo $category->getProductCollection()->count(); ?>)</span>
+                </a>
+            </li>
+        <?php endforeach; ?>
+    </ul>
+</div>
+<?php endif; ?>

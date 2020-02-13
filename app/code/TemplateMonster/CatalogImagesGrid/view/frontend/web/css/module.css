@@ -1,0 +1,141 @@
+@charset "UTF-8";
+/**
+ * Copyright ┬⌐ 2016 TemplateMonster. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+.catalog-image-grid {
+  margin-bottom: 20px;
+  /************** Category **************/ }
+  .catalog-image-grid ul {
+    list-style: none;
+    padding: 0;
+    margin: 0; }
+    .catalog-image-grid ul img {
+      max-width: 100%; }
+  .catalog-image-grid .category-grid,
+  .catalog-image-grid .category-list {
+    overflow: hidden;
+    display: flex;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin: 0 -8px;
+    /************** SubCategory **************/ }
+    .catalog-image-grid .category-grid > li,
+    .catalog-image-grid .category-list > li {
+      padding: 0 8px;
+      margin: 0 0 20px;
+      box-sizing: border-box; }
+      @media (max-width: 767px) {
+        .catalog-image-grid .category-grid > li,
+        .catalog-image-grid .category-list > li {
+          -moz-flex-basis: 33.333%;
+          -ms-flex-basis: 33.333%;
+          flex-basis: 33.333%; } }
+      @media (max-width: 500px) {
+        .catalog-image-grid .category-grid > li,
+        .catalog-image-grid .category-list > li {
+          -moz-flex-basis: 50%;
+          -ms-flex-basis: 50%;
+          flex-basis: 50%; } }
+      @media (max-width: 350px) {
+        .catalog-image-grid .category-grid > li,
+        .catalog-image-grid .category-list > li {
+          -moz-flex-basis: 100%;
+          -ms-flex-basis: 100%;
+          flex-basis: 100%; } }
+      .catalog-image-grid .category-grid > li .grid-inner,
+      .catalog-image-grid .category-list > li .grid-inner {
+        box-sizing: border-box; }
+    .catalog-image-grid .category-grid .category-link,
+    .catalog-image-grid .category-list .category-link {
+      display: inline-block;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 24px;
+      color: #000000; }
+      .catalog-image-grid .category-grid .category-link:hover,
+      .catalog-image-grid .category-list .category-link:hover {
+        color: #7d7d7d; }
+      @media (max-width: 767px) {
+        .catalog-image-grid .category-grid .category-link,
+        .catalog-image-grid .category-list .category-link {
+          font-weight: 600;
+          font-size: 16px; } }
+      .catalog-image-grid .category-grid .category-link .category-name,
+      .catalog-image-grid .category-list .category-link .category-name {
+        display: inline-block;
+        margin-bottom: 10px; }
+      .catalog-image-grid .category-grid .category-link .category-image,
+      .catalog-image-grid .category-list .category-link .category-image {
+        display: block;
+        margin-bottom: 10px; }
+      .catalog-image-grid .category-grid .category-link .category-icon,
+      .catalog-image-grid .category-list .category-link .category-icon {
+        display: inline-block;
+        font-style: normal; }
+        .catalog-image-grid .category-grid .category-link .category-icon:before,
+        .catalog-image-grid .category-list .category-link .category-icon:before {
+          line-height: normal;
+          margin-right: 5px; }
+    .catalog-image-grid .category-grid .button-more,
+    .catalog-image-grid .category-list .button-more {
+      text-decoration: none;
+      font-size: 16px;
+      color: #1979c3; }
+      .catalog-image-grid .category-grid .button-more:hover,
+      .catalog-image-grid .category-list .button-more:hover {
+        color: #000000; }
+    .catalog-image-grid .category-grid .subcategory-grid,
+    .catalog-image-grid .category-list .subcategory-grid {
+      margin-bottom: 10px; }
+      .catalog-image-grid .category-grid .subcategory-grid > li,
+      .catalog-image-grid .category-list .subcategory-grid > li {
+        padding: 0;
+        margin: 0;
+        line-height: 30px; }
+      .catalog-image-grid .category-grid .subcategory-grid .subcategory-link,
+      .catalog-image-grid .category-list .subcategory-grid .subcategory-link {
+        display: inline-block;
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 18px;
+        color: #000000; }
+        .catalog-image-grid .category-grid .subcategory-grid .subcategory-link:hover,
+        .catalog-image-grid .category-list .subcategory-grid .subcategory-link:hover {
+          color: #7d7d7d; }
+        @media (max-width: 767px) {
+          .catalog-image-grid .category-grid .subcategory-grid .subcategory-link,
+          .catalog-image-grid .category-list .subcategory-grid .subcategory-link {
+            font-size: 14px; } }
+        .catalog-image-grid .category-grid .subcategory-grid .subcategory-link .subcategory-name,
+        .catalog-image-grid .category-grid .subcategory-grid .subcategory-link .subcategory-image,
+        .catalog-image-grid .category-list .subcategory-grid .subcategory-link .subcategory-name,
+        .catalog-image-grid .category-list .subcategory-grid .subcategory-link .subcategory-image {
+          display: inline-block; }
+        .catalog-image-grid .category-grid .subcategory-grid .subcategory-link .subcategory-image,
+        .catalog-image-grid .category-list .subcategory-grid .subcategory-link .subcategory-image {
+          vertical-align: middle;
+          margin-right: 10px; }
+          .catalog-image-grid .category-grid .subcategory-grid .subcategory-link .subcategory-image img,
+          .catalog-image-grid .category-list .subcategory-grid .subcategory-link .subcategory-image img {
+            vertical-align: middle; }
+        .catalog-image-grid .category-grid .subcategory-grid .subcategory-link .category-icon,
+        .catalog-image-grid .category-list .subcategory-grid .subcategory-link .category-icon {
+          display: inline-block;
+          font-style: normal; }
+          .catalog-image-grid .category-grid .subcategory-grid .subcategory-link .category-icon:before,
+          .catalog-image-grid .category-list .subcategory-grid .subcategory-link .category-icon:before {
+            line-height: normal;
+            margin-right: 5px; }
+  .catalog-image-grid .grid-wrapper {
+    overflow: hidden; }
+    .catalog-image-grid .grid-wrapper .category-image {
+      float: left;
+      width: 33%;
+      margin-right: 20px; }
+    .catalog-image-grid .grid-wrapper .subcategories {
+      overflow: hidden;
+      float: left; }
+
+/*# sourceMappingURL=module.css.map */

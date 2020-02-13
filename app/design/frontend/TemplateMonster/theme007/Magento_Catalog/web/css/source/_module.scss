@@ -1,0 +1,48 @@
+@import 'product/_list.scss';
+@import 'product/_toolbar.scss';
+@import 'product/_view.scss';
+@import 'product/compare/_list.scss';
+@import 'product/compare/_block.scss';
+@import 'product/list/_grid.scss';
+@import 'product/list/_list.scss';
+@import 'product/view/_fotorama.scss';
+@import 'product/view/block/_related.scss';
+@import 'product/view/block/_upsell.scss';
+@import 'product/view/block/_crosssell.scss';
+@import 'product/view/type/_downloadable.scss';
+
+//
+//  Icons
+//  ---------------------------------------------
+
+.towishlist,
+.tocompare {
+  position: relative;
+  span {
+    display: none;
+    
+  }
+}
+
+.product-social-links .mailto {
+  padding: 0 $indent-small/2;
+  @include font-icon('\e0be');
+}
+.action.tocompare,
+.action.towishlist {
+  font-weight: normal !important;
+}
+.towishlist {
+  &:before {
+    font-family: $linearicons-icon;
+    content: "\e68c";
+    text-indent: 1px;
+  }
+}
+
+.tocompare {
+  &:before {
+    font-family: $linearicons-icon;
+    content: "\e839";
+  }
+}

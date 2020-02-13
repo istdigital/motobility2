@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+
+<layout xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_layout.xsd">
+    <update handle="1column"/>
+
+    <!-- Columns (.container class assigned in empty.xml) -->
+    <referenceContainer name="columns">
+        <container name="main.columns.grid-row" htmlClass="row" htmlTag="div">
+            <container name="main.columns.grid-main" htmlClass="col-sm-6 grid-main" htmlTag="div" before="-"/>
+            <container name="main.columns.grid-left" htmlClass="col-sm-3 grid-left" htmlTag="div"
+                       after="main.columns.grid-main"/>
+            <container name="main.columns.grid-right" htmlClass="col-sm-3 grid-right" htmlTag="div"
+                       after="main.columns.grid-left"/>
+        </container>
+    </referenceContainer>
+    <move element="main" destination="main.columns.grid-main"/>
+    <move element="div.sidebar.main" destination="main.columns.grid-left"/>
+    <move element="div.sidebar.additional" destination="main.columns.grid-right"/>
+</layout>

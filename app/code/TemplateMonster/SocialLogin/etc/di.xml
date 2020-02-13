@@ -1,0 +1,25 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <virtualType name="TemplateMonster\SocialLogin\Model\Provider\Config\Reader" type="Magento\Framework\Config\Reader\Filesystem">
+        <arguments>
+            <argument name="converter" xsi:type="object">TemplateMonster\SocialLogin\Model\Provider\Config\Converter</argument>
+            <argument name="schemaLocator" xsi:type="object">TemplateMonster\SocialLogin\Model\Provider\Config\SchemaLocator</argument>
+            <argument name="fileName" xsi:type="string">social_providers.xml</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="TemplateMonster\SocialLogin\Block\Adminhtml\System\Config\Field\RedirectUri\Google" type="TemplateMonster\SocialLogin\Block\Adminhtml\System\Config\Field\RedirectUri">
+        <arguments>
+            <argument name="provider" xsi:type="string">google</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="TemplateMonster\SocialLogin\Block\Adminhtml\System\Config\Field\RedirectUri\Twitter" type="TemplateMonster\SocialLogin\Block\Adminhtml\System\Config\Field\RedirectUri">
+        <arguments>
+            <argument name="provider" xsi:type="string">twitter</argument>
+        </arguments>
+    </virtualType>
+    <type name="TemplateMonster\SocialLogin\Model\ResourceModel\Provider\Collection">
+        <arguments>
+            <argument name="reader" xsi:type="object">TemplateMonster\SocialLogin\Model\Provider\Config\Reader</argument>
+        </arguments>
+    </type>
+</config>

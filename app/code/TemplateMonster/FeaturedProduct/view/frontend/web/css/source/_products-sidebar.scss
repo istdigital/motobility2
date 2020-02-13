@@ -1,0 +1,196 @@
+/* 
+ * 	Featured Product by TemplateMonster 2016
+ *	v1.0.0
+ */
+
+// import
+@import '_variables.scss';
+@import '_mixins.scss';
+
+/* Main Styles */
+
+.sidebar {
+
+    // Carousel and Tabs
+    .block.widget.featured {
+
+        &[role="tablist"],
+        &[role="tabpanel"],
+        [role="tablist"],
+        [role="tabpanel"] {
+            .title[role="tab"],
+            .title[data-role="collapsible"] {
+                display: block;
+                width: 100%;
+                text-align: left;
+                font-size: 20px;
+                margin-bottom: 20px;
+
+                strong {
+                    line-height: 1.8rem;
+                }
+
+                &:before {
+                    top: 0px;
+                    display: inline-block;
+                }
+
+                &.active {}
+            }
+
+            .block-content {
+                float: none;
+                margin:  0 0 20px;
+                padding: 0;
+                width: 100%;
+
+
+                .product-items {
+                    display: block;
+
+                    .products-grid .product-item,
+                    .products-list .product-item{
+                        max-width: 100%;
+                    }
+
+                    .product-item-photo {
+                        position: relative;
+                    }
+
+                    .product-item-details {
+                        margin: 0;
+                    }
+                }
+
+                .product-item-info{
+                    margin: 0;
+                }
+                .product-item-info:hover,
+                .product-item-info.active{
+                    border: none;
+                    padding: 0;
+                    margin: 0;
+                    box-shadow: none;
+                }
+
+            }
+
+            .owl-controls{
+                position: relative;
+                top: 0;
+                right: 0;
+                padding:0 15px 20px;
+                text-align: center;
+
+
+            }
+
+            .category-title {
+                width: 100%;
+                text-align: left;
+
+                &::before {
+                    content: "\f107";
+                    display: inline-block;
+                    font-family: "FontAwesome";
+                    font-weight: 400;
+                    text-rendering: auto;
+                    transform: translate(0px, 0px);
+                }
+
+                &.active::before {
+                    content: "\f106";
+                }
+
+                strong{
+                    padding: 0;
+                    font-size: 16px;
+                }
+            }
+            .category-content {
+                float: none;
+                margin-left: 0;
+                padding: 20px 0 0;
+                text-align: left;
+                width: 100%;
+            }
+        }
+
+        .products-list .product-items{
+            padding-top: 20px;
+            .product-item {
+                float: none;
+                display: block;
+                margin-bottom: 45px;
+            }
+
+            .product-item-info {
+                display: block;
+                margin-left: 0;
+                margin-right: 0;
+            }
+
+            .rating-summary {
+                .label {
+                    display: none;
+                }
+            }
+
+            .product-item-details {
+                overflow: hidden;
+                display: block;
+            }
+            .product-item-photo{
+                position: relative;
+                display: inline-block;
+                float: left;
+                width:30%;
+                padding: 0 10px 10px 0;
+            }
+
+            .product-item-actions {
+                .actions-primary {
+                    display: block;
+                    margin-bottom: 5px;
+                }
+            }
+
+            .product-image-photo {
+                padding: 0;
+            }
+            .owl-wrapper-outer {
+                overflow: visible;
+            }
+            .product-label {
+                left: 0px;
+                right: auto;
+                top: -20px;
+            }
+        }
+
+        .not-found {
+            padding: 0 0 25px;
+            margin: -25px 0 0;
+
+            //@media (max-width: 767px) {
+            //    padding: 0 0 15px;
+            //    margin: 0 0 0;
+            //}
+
+        }
+    }
+
+    .sidebar-featured {
+        .collapsible-block {
+            margin-top: 0px;
+        }
+        .block {
+            margin-bottom: 0;
+
+            .block-title {
+                margin-bottom: 5px;
+            }
+        }
+    }
+}
+

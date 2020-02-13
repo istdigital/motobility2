@@ -1,0 +1,44 @@
+.map-title {
+  display: none;
+}
+.block-googlemap-home {
+  position: relative;
+  .map-title {
+    text-align: center;
+    background: #ffffff none repeat scroll 0 0;
+    border-radius: 50%;
+    box-shadow: 0 5px 27px rgba(0, 0, 0, 0.09);
+    cursor: pointer;
+    height: 64px;
+    line-height: 64px;
+    overflow: hidden;
+    transition: all 0.3s ease 0s;
+    width: 64px;
+    font-size: 0;
+    position: absolute;
+    z-index: 1;
+    left: 50%;
+    top:-50px;
+    display: none;
+    &:before {
+      font-family: $linearicons-icon;
+      content: "\e93a";
+      font-size: 30px;
+    }
+  }
+  //.elSlide {
+  //  visibility: hidden;
+  //  height: 0;
+  //}
+  //&.id-active {
+  //  padding-top: 94px;
+  //  margin-bottom: -94px;
+  //  .map-title:before {
+  //    content: "\e939";
+  //  }
+  //  .elSlide {
+  //    visibility: visible;
+  //    height: auto;
+  //  }
+  //}
+}

@@ -1,0 +1,5 @@
+<?php /** @var $block TemplateMonster\SocialSharing\Block\AddThisInit */ ?>
+<script type="text/javascript">
+    var addthis_config = <?php echo $block->getWidgetConfigurationOptions() ?>;
+</script>
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=<?php echo $block->getProfileId() ?>"></script>

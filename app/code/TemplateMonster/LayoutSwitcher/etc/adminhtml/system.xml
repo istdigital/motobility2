@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="templatemonster">
+            <label>TemplateMonster</label>
+        </tab>
+        <section id="layout_switcher" translate="label" type="text" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Layout Switcher</label>
+            <tab>templatemonster</tab>
+            <resource>TemplateMonster_LayoutSwitcher::layout_switcher_config</resource>
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General</label>
+                <field id="enabled" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Enabled</label>
+                    <comment>Turn on to enable the module.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="frontend_panel" translate="label comment" type="select" sortOrder="11" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Enabled Frontend Panel</label>
+                    <comment>Turn on to enable frontend panel.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="default_theme" translate="label comment" type="select" sortOrder="20" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Default theme</label>
+                    <comment>Theme to use by default.</comment>
+                    <source_model>TemplateMonster\LayoutSwitcher\Model\Config\Source\Website</source_model>
+                    <frontend_model>TemplateMonster\LayoutSwitcher\Block\Adminhtml\System\Config\Field\Layout</frontend_model>
+                </field>
+                <field id="default_homepage" translate="label comment" type="select" sortOrder="30" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Default homepage</label>
+                    <comment>Homepage to use by default.</comment>
+                    <source_model>TemplateMonster\LayoutSwitcher\Model\Config\Source\Store</source_model>
+                    <frontend_model>TemplateMonster\LayoutSwitcher\Block\Adminhtml\System\Config\Field\Homepage</frontend_model>
+                </field>
+                <field id="default_header_layout" translate="label comment" type="select" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Default header layout</label>
+                    <comment>Header layout to use by default.</comment>
+                    <source_model>TemplateMonster\LayoutSwitcher\Model\Config\Source\HeaderLayout</source_model>
+                    <frontend_model>TemplateMonster\LayoutSwitcher\Block\Adminhtml\System\Config\Field\Layout</frontend_model>
+                </field>
+                <field id="default_listing_layout" translate="label comment" type="select" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Default listing layout</label>
+                    <comment>Listing layout to use by default.</comment>
+                    <source_model>TemplateMonster\LayoutSwitcher\Model\Config\Source\ListingLayout</source_model>
+                    <frontend_model>TemplateMonster\LayoutSwitcher\Block\Adminhtml\System\Config\Field\Layout</frontend_model>
+                </field>
+                <field id="default_product_layout" translate="label comment" type="select" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Default product pages layout</label>
+                    <comment>Listing layout to use by default.</comment>
+                    <source_model>TemplateMonster\LayoutSwitcher\Model\Config\Source\ProductLayout</source_model>
+                    <frontend_model>TemplateMonster\LayoutSwitcher\Block\Adminhtml\System\Config\Field\Layout</frontend_model>
+                </field>
+                <field id="default_footer_layout" translate="label comment" type="select" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Default footer layout</label>
+                    <comment>Footer layout to use by default.</comment>
+                    <source_model>TemplateMonster\LayoutSwitcher\Model\Config\Source\FooterLayout</source_model>
+                    <frontend_model>TemplateMonster\LayoutSwitcher\Block\Adminhtml\System\Config\Field\Layout</frontend_model>
+                </field>
+                <field id="default_color_scheme" translate="label comment" type="select" sortOrder="80" showInDefault="0" showInWebsite="1" showInStore="0">
+                    <label>Default color scheme</label>
+                    <comment>Color scheme to use by default.</comment>
+                    <source_model>TemplateMonster\ThemeOptions\Model\Config\Source\ColorScheme</source_model>
+                    <frontend_model>TemplateMonster\ThemeOptions\Block\Adminhtml\System\Config\Field\ColorScheme</frontend_model>
+                    <if_module_enabled>TemplateMonster_ThemeOptions</if_module_enabled>
+                    <config_path>theme_options/general/color_scheme</config_path>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

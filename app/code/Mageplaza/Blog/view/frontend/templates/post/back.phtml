@@ -1,0 +1,5 @@
+<?php
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$redirectUrl  = $objectManager->get('\Magento\Framework\App\Response\RedirectInterface')->getRefererUrl();
+?>
+<a class="goback" href="<?= $redirectUrl ?>"><span class="icon-uniE943"></span><?= __("Back") ?></a>

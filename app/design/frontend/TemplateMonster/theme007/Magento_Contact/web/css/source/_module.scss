@@ -1,0 +1,93 @@
+
+.contact-index-index{
+    .page-title{
+        text-align: left;
+        margin-bottom: 50px;
+
+        span{
+            font-size: 35px;
+            line-height: 1;
+            font-weight: 600;
+            text-transform: none;
+        }
+    }
+
+    legend.legend {
+        padding-bottom: 25px;
+        border-bottom: 1px solid $border-color;
+        margin-bottom: 35px;
+        width: 100%;
+        font-weight: 400;
+        font-size: 20px;
+
+        .note{
+            padding-left: 10px;
+            font-size: 12px;
+            line-height: inherit;
+            vertical-align: baseline;
+        }
+    }
+
+    #contact-form{
+        margin-bottom: 50px;
+
+        @media (min-width: $screen-md-min) {
+            margin-bottom: 0;
+        }
+    }
+
+    fieldset.fieldset .field {
+        @include make-flex;
+        @include justify-content(space-between);
+        @include align-items(center);
+        @include flex-wrap(wrap);
+        margin-bottom: 30px;
+
+        > .label {
+            @include flex-basis(100%);
+            margin-right: 0;
+            &:after {
+                content: ':';
+                margin: 0;
+                color: inherit;
+            }
+
+            @media (min-width: $screen-md-min) {
+                @include flex-basis(125px);
+            }
+        }
+        > .control {
+            @include flex-basis(100%);
+
+            @media (min-width: $screen-md-min) {
+                @include flex-basis(calc(100% - 125px));
+            }
+        }
+
+        &.field.comment{
+            @include align-items(flex-start);
+        }
+
+        #comment{
+            min-height: 320px;
+        }
+    }
+
+    .actions-toolbar{
+        margin: 0;
+
+        @media (min-width: $screen-md-min) {
+            padding-left: 125px;
+        }
+
+        .action{
+            margin: 0;
+        }
+    }
+    .check_privacy_field {
+        @media (min-width: $screen-md-min) {
+            padding-left: 125px;
+            margin-bottom: 15px;
+        }
+    }
+}

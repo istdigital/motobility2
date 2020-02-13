@@ -1,0 +1,10 @@
+<?php
+/** @var \TemplateMonster\ShopByBrand\Block\Brand\View $block */
+
+$helper = $block->getHelper();
+$brand  = $block->getCurrentBrand();
+?>
+
+<?php if ($helper->isShowBrandLogo() && $brand->getImageLogoName()): ?>
+    <img class="category-brand-logo" src="<?php  echo $helper->resizeImageUrl($brand->getImageLogoName(), 280); ?>" alt="<?php echo $block->escapeHtml($brand->getName()) ?>" />
+<?php endif; ?>

@@ -1,0 +1,79 @@
+/**
+ * Copyright © 2016 TemplateMonster. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+.sm-wrapper {
+    height: 100%;
+
+    .sm-main {
+        max-width:800px;
+        padding: 30px 10px 50px;
+        margin: 0 auto;
+        text-align: center;
+
+        // Content
+        #sm-content-block {
+            padding-top: 50px;
+            margin-bottom: 50px;
+
+            .sm-logo {
+                margin-bottom: 20px;
+            }
+
+            .sm-title {
+                font-size: 31px;
+                margin-bottom: 10px;
+            }
+
+            .sm-description {}
+        }
+
+        // Timer
+        #sm-timer-block {
+            margin-bottom: 50px;
+
+            .sm-timer-text {}
+            .sm-timer-wrapper {
+                font-size: 40px;
+                font-weight: 700;
+            }
+        }
+
+        // Subscribe
+        #sm-subscription-block {
+            .sm-title {
+                font-size: 22px;
+                margin-bottom: 10px;
+            }
+            .sm-text {
+                margin-bottom: 10px;
+            }
+
+            .sm-content {
+                .sm-subscription {
+                    position: relative;
+
+                    #newsletter-error {
+                        position: absolute;
+                        bottom: -25px;
+                        margin: 0;
+                        width: 100%;
+                    }
+                }
+                #newsletter {
+                    width: 200px;
+                    display: inline-block;
+                }
+                .sm-button {
+                    display: inline-block;
+                }
+            }
+        }
+    }
+}
+
+
+
+
+

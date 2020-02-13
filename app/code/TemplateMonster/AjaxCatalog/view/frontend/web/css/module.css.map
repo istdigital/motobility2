@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAAA;;EAEE;AAMF,sBAAuB;EACnB,UAAU,EAAE,MAAM;EAElB,0BAAgC;IAHpC,sBAAuB;MAIf,UAAU,EAAE,OAAO;;ACR3B,cAAc;EACV,OAAO,EAAE,IAAI;EACb,SAAS,EAAE,IAAI;EACf,4BAAa;IACT,MAAM,EAAE,KAAK;IACb,UAAU,EAAE,IAAI",
+"sources": ["source/module.scss","source/_price-slider.scss"],
+"names": [],
+"file": "module.css"
+}

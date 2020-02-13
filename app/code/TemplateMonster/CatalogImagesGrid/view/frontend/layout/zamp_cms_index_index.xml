@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+  <body>
+    <referenceBlock name="head.additional">
+		<referenceBlock name="ampcss">
+			<block class="Zemez\Amp\Block\Page\Head\Style" name="ampcss.catalogImagesGrid" as="ampcss.catalogImagesGrid" template="TemplateMonster_CatalogImagesGrid::head/styles.phtml" before="-"/>
+      	</referenceBlock>
+    </referenceBlock>
+  </body>
+</page>

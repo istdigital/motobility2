@@ -1,0 +1,10 @@
+<?php
+/** @var \TemplateMonster\ShopByBrand\Block\Brand\View $block */
+
+$helper = $block->getHelper();
+$brand = $block->getCurrentBrand();
+?>
+
+<?php if ($helper->isShowBrandDescription() && $brand->getMainDescription()): ?>
+    <?php /* @escapeNotVerified */ echo $block->escapeHtml($brand->getMainDescription()); ?>
+<?php endif; ?>

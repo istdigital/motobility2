@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+
+        <!-- <add id="TemplateMonster_ShopByBrand::brand_label"
+             title="Shop By Brand"
+             translate="title"
+             module="TemplateMonster_ShopByBrand"
+             parent="Magento_Backend::content"
+             sortOrder="10"
+             resource="TemplateMonster_ShopByBrand::brand"/> -->
+        <update id="TemplateMonster_Base::modules" 
+            title="Template Monster" 
+            module="TemplateMonster_ShopByBrand" 
+            sortOrder="30"
+            resource="TemplateMonster_Base::modules" />
+        <add id="TemplateMonster_ShopByBrand::ShopByBrand" 
+            title="Shop By Brand" 
+            module="TemplateMonster_ShopByBrand" 
+            sortOrder="40"
+            resource="TemplateMonster_ShopByBrand::ShopByBrand" 
+            parent="TemplateMonster_Base::modules" />
+        <add id="TemplateMonster_ProductLabels::brand"
+             title="Brand Manage"
+             translate="title"
+             module="TemplateMonster_ShopByBrand"
+             sortOrder="0"
+             action="brand/index/index"
+             resource="TemplateMonster_ShopByBrand::brand"
+             parent="TemplateMonster_ShopByBrand::ShopByBrand"/>
+    </menu>
+</config>

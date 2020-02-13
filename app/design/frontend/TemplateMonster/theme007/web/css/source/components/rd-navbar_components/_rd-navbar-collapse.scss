@@ -1,0 +1,352 @@
+/*
+* @subsection   RD Navbar Collapse
+*
+* @description  Describes style declarations for RD Navbar collapse
+*/
+
+.rd-navbar-collapse {
+  .switcher.currency,
+  .switcher.language {
+    display: none;
+  }
+}
+.rd-navbar-collapse-toggle {
+  display: none;
+  .switcher.currency,
+  .switcher.language {
+    display: none;
+  }
+}
+
+.rd-navbar-collapse {
+  li {
+    a:before {
+      font-family: $linearicons-icon;
+      font-size: 22px;
+      vertical-align: sub;
+      padding-right: 5px;
+      transition: all 0.3s;
+    }
+    &.wishlist {
+      a:before {
+        content: "\e68c";
+      }
+    }
+    &.authorization-link {
+      a:before {
+        content: "\e721";
+      }
+    }
+    &.compare.link {
+      a:before {
+        content: "\e839";
+      }
+    }
+  }
+  a {
+    font-size: $font-ultra-small;
+    &.my-account:before {
+      content: "\e71e";
+    }
+    &.create-an-account:before {
+      content: "\e71f";
+    }
+  }
+}
+
+@media (min-width: $screen-sm-min){
+  .rd-navbar-inner {
+    max-width: 1200px;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .rd-navbar-collapse {
+    padding-top: 8px;
+    display: block;
+    li {
+      display: inline-block;
+      margin: 0 30px 0 0;
+      a:before {
+        font-family: $linearicons-icon;
+        font-size: 22px;
+        padding-right: 5px;
+
+        line-height: 1;
+        float: left;
+        transition: all 0.3s;
+      }
+      &.wishlist {
+        a:before {
+          content: "\e68c";
+        }
+      }
+      &.authorization-link {
+        a:before {
+          content: "\e721";
+        }
+      }
+      &.compare {
+        a:before {
+          content: "\e839";
+        }
+      }
+    }
+    a {
+      font-size: $font-ultra-small;
+      &.my-account:before {
+        content: "\e71e";
+      }
+      &.create-an-account:before {
+        content: "\e71f";
+      }
+    }
+  }
+
+  .layout_1,
+  .layout_3,
+  .layout_4 {
+    @media (min-width: $screen-sm-min) and (max-width: $screen-xl-min - 1) {
+      .rd-navbar-collapse {
+        display: none;
+        background: #fff;
+        box-shadow: 0 5px 27px rgba(0, 0, 0, 0.09);
+        padding: 15px 35px 35px;
+        position: absolute;
+        z-index: 4;
+        min-width: 300px;
+        top: 100%;
+        li {
+          display: block;
+          margin: 15px 0 0;
+        }
+        &.active {
+          display: block;
+        }
+      }
+      .rd-navbar-collapse-toggle {
+        display: block;
+        width: 70px;
+        height: 40px;
+        border-right: 1px solid $theme-line-1;
+        @include toggle-icons-via-rotation(48px, 28px, #cccccc);
+        z-index: 4;
+        margin-right: 30px;
+        span {
+          height: 40px;
+          line-height: 40px;
+          color: inherit;
+          &:before {
+            font-family: $linearicons-icon;
+            content: "\e71e";
+            font-size: 21px;
+          }
+        }
+        &.active span:after {
+          font-family: $linearicons-icon;
+          content: "\e92a";
+          font-size: 25px;
+        }
+      }
+    }
+  }
+  .layout_4 {
+    @media (min-width: $screen-sm-min) and (max-width: $screen-xl-min - 1) {
+      .rd-navbar-collapse-toggle {
+        margin: 0;
+        border: 0;
+      }
+      .rd-navbar-collapse {
+        right: 0;
+      }
+    }
+  }
+
+  .layout_5{
+    @media (min-width: $screen-xl-min) {
+      .rd-navbar-collapse-container {
+        float: right;
+      }
+      .rd-navbar-collapse li {
+        margin: 0 0 0 30px;
+      }
+    }
+
+    @media (min-width: $screen-sm-min) and (max-width: $screen-xl-min - 1) {
+      .rd-navbar-collapse-container {
+        float: right;
+        clear: inherit;
+        width: auto;
+        margin: 0;
+        border: 0;
+      }
+      .rd-navbar-collapse {
+        display: none;
+        background: #fff;
+        box-shadow: 0 5px 27px rgba(0, 0, 0, 0.09);
+        padding: 15px 35px 35px;
+        position: absolute;
+        z-index: 4;
+        min-width: 300px;
+        top: 100%;
+        right: 15px;
+        li {
+          display: block;
+          margin: 15px 0 0;
+        }
+        &.active {
+          display: block;
+        }
+      }
+      .rd-navbar-collapse-toggle {
+        display: block;
+        height: 40px;
+        @include toggle-icons-via-rotation(48px, 28px, #cccccc);
+        z-index: 4;
+        span {
+          height: 40px;
+          line-height: 40px;
+          color: inherit;
+          &:before {
+            font-family: $linearicons-icon;
+            content: "\e71e";
+            font-size: 21px;
+          }
+        }
+        &.active span:after {
+          font-family: $linearicons-icon;
+          content: "\e92a";
+          font-size: 25px;
+        }
+      }
+    }
+  }
+
+}
+@media (max-width: $screen-sm-min - 1) {
+  .rd-navbar-collapse {
+    display: block;
+    transition: .3s all cubic-bezier(0.785, 0.135, 0.150, 0.860), box-shadow ease .2s;
+    text-align: left;
+    position: fixed;
+    top: 70px;
+    right: 0;
+    left: 0;
+    padding: 15px 35px 35px;
+    z-index: 19;
+    box-shadow: 0 0 0 0 nth($rd-navbar-shadow-medium, 5);
+    visibility: hidden;
+    overflow: hidden;
+
+    &:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      background: darken($rd-navbar-accent-color, 3%);
+      width: 48px;
+      height: 48px;
+      @include transform(scale(0));
+      transition: .3s all cubic-bezier(0.785, 0.135, 0.150, 0.860);
+    }
+
+    li {
+      position: relative;
+      opacity: 0;
+      transition: .3s all ease 0s;
+    }
+
+    > li > a {
+      display: block;
+      padding: 11px 16px;
+    }
+
+    &.active {
+      visibility: visible;
+      box-shadow: $rd-navbar-shadow-medium;
+
+      li {
+        transition: .3s all ease .2s;
+        opacity: 1;
+      }
+
+      &:before {
+        background: $rd-navbar-accent-color;
+        @include transform(scale(35));
+      }
+    }
+
+    .links {
+      li {
+        display: block;
+        margin: 15px 0 0;
+        a {
+          font-size: $font-ultra-small;
+          &:before {
+            min-width: 34px;
+            vertical-align: text-bottom;
+            display: inline-block;
+          }
+          &:hover {
+          }
+        }
+      }
+    }
+
+  }
+  .header-switchers {
+    position: fixed;
+    right: 10px;
+    top: 15px;
+    z-index: 5;
+  }
+
+  .switcher.currency,
+  .switcher.language {
+    width: 50px;
+    margin: 0;
+    .actions .action {
+      padding: 5px 0 0 11px;
+      &:after {
+        margin-top: -10px;
+        display: block;
+      }
+    }
+    .mage-dropdown-dialog {
+      left: auto;
+      right: 0;
+      top: 55px;
+    }
+  }
+
+  .rd-navbar-collapse-toggle {
+    display: block;
+    position: fixed;
+    top: 15px;
+    left: 100px;
+    font-family: $fa;
+    width: 50px;
+    height: 40px;
+    border-left: 1px solid $theme-line-1;
+    @include toggle-icons-via-rotation(48px, 28px, #cccccc);
+    z-index: 4;
+    span {
+      height: 40px;
+      line-height: 40px;
+      color: inherit;
+      &:before {
+        font-family: $linearicons-icon;
+        content: "\e71e";
+        font-size: 21px;
+      }
+    }
+    &.active span:after {
+      font-family: $linearicons-icon;
+      content: "\e92a";
+      font-size: 25px;
+    }
+  }
+
+}

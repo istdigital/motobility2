@@ -1,0 +1,56 @@
+//
+//  Countdown Time
+//  ---------------------------------------------------
+.timer-wrapper {
+  border: 0 !important;
+  background: #fd6279;
+  text-align: center;
+  color: $white;
+  font-weight: 600;
+  padding: 10px 0 7px;
+  line-height: 18px;
+  span {
+    font-size: $font-ultra-small;
+    display: block;
+    font-weight: normal;
+    margin-top: -3px;
+  }
+  > div div {
+    display: inline-block;
+    position: relative;
+    padding-right: 25px;
+    &:last-child {
+      padding: 0;
+    }
+  }
+  b {
+    position: absolute;
+    right: 8px;
+    font-weight: normal;
+    top: 23%;
+  }
+}
+.products-grid .product-item-photo {
+  .timer-wrapper {
+    position: absolute;
+    width: 100%;
+    bottom: -2px;
+    z-index:1;
+  }
+  .product-thumb + .timer-wrapper {
+    position: relative;
+    bottom: 0;
+  }
+}
+.product-info-main {
+  .timer-wrapper {
+    max-width: 300px;
+    margin-top: 20px;
+  }
+}
+.main.layout_3{
+  .timer-wrapper {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}

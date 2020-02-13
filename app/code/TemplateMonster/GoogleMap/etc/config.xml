@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <google_map>
+            <home>
+                <coordinates>40.5899796,-73.8820439</coordinates>
+            </home>
+            <contacts>
+                <active>1</active>
+                <coordinates>40.5899796,-73.8820439</coordinates>
+                <zoom>12</zoom>
+                <map_type>HYBRID</map_type>
+                <scrollwheel>1</scrollwheel>
+                <draggable>1</draggable>
+                <markers>[]</markers>
+            </contacts>
+            <footer>
+                <coordinates>40.5899796,-73.8820439</coordinates>
+            </footer>
+        </google_map>
+
+    </default>
+</config>

@@ -1,0 +1,13 @@
+{
+  "name": "templatemonster/module-countdowntimer",
+  "type": "magento2-module",
+  "version": "1.0.3",
+  "autoload": {
+    "psr-4": {"TemplateMonster\\CountdownTimer\\":""},
+    "files": [ "registration.php" ]
+  },
+  "extra": {
+        "isStandalone": "false",
+        "magentoVersion": "v2.1.2"
+    }
+}

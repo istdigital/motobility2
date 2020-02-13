@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ @category    Mana
+ @package     Manadev_LayeredNavigation
+ @copyright   Copyright (c) http://www.manadev.com
+ @license     http://www.manadev.com/license  Proprietary License
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Indexer/etc/indexer.xsd">
+    <indexer id="mana_filter_attribute" view_id="mana_filter_attribute" class="Manadev\LayeredNavigation\Indexers\AttributeBasedFilterIndexer">
+        <title translate="true">Filter Settings</title>
+        <description translate="true">(Manadev) Based on product attribute changes, recalculates layered navigation filter settings</description>
+    </indexer>
+</config>

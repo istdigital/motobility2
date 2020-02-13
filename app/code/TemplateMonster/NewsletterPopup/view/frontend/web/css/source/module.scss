@@ -1,0 +1,147 @@
+// Local vars
+
+$block-indent: 48px;
+$title-size: 24px;
+$title-color: #2f2f2f;
+$content-color: #a5a5a5;
+$social-bg: #f2f2f2;
+$block-color: #dcdcdc;
+$input-color: #8f8f8f;
+
+// Main Styles
+
+.newsletter-popup.modal-popup {
+
+	// Modal
+	.modal-inner-wrap {
+		margin-top: 12%;
+	}
+
+	// Header
+	header.modal-header {
+		padding: ($block-indent - 10) $block-indent 0 $block-indent;
+		.action-close {
+			padding: 25px;
+
+			&::before {
+				font-family: 'FontAwesome';
+				content: '\f00d';
+				font-size: 24px;
+				line-height: 24px;
+				color: $block-color;
+			}
+
+			&:hover::before {
+				color: #c5c5c5;
+			}
+		}
+
+		h1.modal-title {
+			color: $title-color;
+			font-size: $title-size;
+			font-weight: 300;
+			border-bottom: none;
+			padding: 0;
+		}
+	}
+
+	// Content
+	.modal-content {
+		padding: ($block-indent - 18) $block-indent 0 $block-indent;
+
+		.content-text{
+			padding-bottom: 20px;
+			color: $content-color;
+		}
+		
+		.block.newsletter {
+			margin: 0;
+
+			.field .control {
+				input[id^="newsletter"] {
+					height: auto;
+					border-color: $block-color;
+					color: $input-color;
+					padding: 16px 18px 17px 18px;
+					outline: none;
+					box-shadow: none;
+					font-size: 14px;
+					line-height: 18px;
+				}
+
+				&::before {
+					display: none;
+				}
+			}
+		}
+	}
+
+	.buttons-container {
+		padding: 17px 0 $block-indent;
+
+		button {
+			padding: 12px 27px;
+			margin:0 7px 7px 0;
+			-webkit-transition: 0.2s;
+			-moz-transition: 0.2s;
+			-o-transition: 0.2s;
+			transition: 0.2s;
+		}
+		button.subscribe {
+			font-weight: 700;
+		}
+		button:not(.subscribe) {
+			// background: none;
+			border-width: 2px;
+		}
+	}
+
+	// Footer
+	footer.modal-footer {
+		padding: 0;
+
+		.modal-social {
+			background: $social-bg;
+			padding:  ($block-indent - 14) $block-indent ($block-indent - 19);
+
+			a {
+				display: inline-block;
+				margin-bottom: 5px;
+				-webkit-transition: 0.2s;
+				-moz-transition: 0.2s;
+				-o-transition: 0.2s;
+				transition: 0.2s;
+
+				&:hover{
+					opacity: 0.7;
+				}
+			}
+		}
+	}
+
+	@media screen and (max-width: 767px) {
+
+		// Modal
+		.modal-inner-wrap {
+			margin-top: 7%;
+		}
+
+		.modal-inner-wrap{
+			width: auto !important;
+			margin-right: 20px;
+			margin-left: 20px;
+		}
+		
+		.modal-content,
+		footer.modal-footer .buttons-container,
+		footer.modal-footer .modal-social {
+			padding: 10px 15px 10px;
+		}
+
+		header.modal-header {
+			padding: ($block-indent - 10) 20px 0;
+		}
+	}
+}
+
+

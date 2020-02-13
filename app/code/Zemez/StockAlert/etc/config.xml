@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <stockalert>
+            <frontend>
+                <popup_text><![CDATA[<h2>BACK IN STOCK REMINDER</h2><p>Enter your details below and we'll let you know as soon as your item is back in stock</p>]]></popup_text>
+                <newsletter_text><![CDATA[I would like to receive Golf Sales Australia newsletters and promotions]]></newsletter_text>
+                <thankyou_text><![CDATA[<h2>THANK YOU</h2><p>We've received your submission and will let you know as soon as your item is back in stock</p>]]></thankyou_text>
+            </frontend>
+            <email>
+                <receiver_email_identity>general</receiver_email_identity>
+                <sender_email_identity>general</sender_email_identity>
+                <admin_email_template>stockalert_email_admin_email_template</admin_email_template>
+                <user_email_template>stockalert_email_user_email_template</user_email_template>
+            </email>
+        </stockalert>
+    </default>
+</config>

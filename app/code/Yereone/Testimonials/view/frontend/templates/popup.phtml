@@ -1,0 +1,18 @@
+<div id="testimonialPopup" style="display: none;" data-bind="scope:'testimonialPopup'" >
+  <!-- ko template: getTemplate() --><!-- /ko -->
+  <script type="text/x-magento-init">
+  {
+      "#testimonialPopup": {
+          "Magento_Ui/js/core/app": {
+             "components": {
+                  "testimonialPopup": {
+                      "component" : "Yereone_Testimonials/js/popup",
+                      "template" : "Yereone_Testimonials/popup",
+                      "actionUrl" : "<?= $block->escapeUrl($this->getUrl('testimonial/index/save', ['_secure' => true])) ?>"
+                      }
+                  }
+              }
+          }
+  }
+  </script>
+</div>

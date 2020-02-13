@@ -1,0 +1,46 @@
+<?php
+/** @var \TemplateMonster\NewsletterPopup\Block\Widget\Subscribe $block */
+$id = $block->getUniqueId();
+$title = $block->getTitle();
+$description = $block->getDescription();
+?>
+<style>
+    .block.subscribe .title {
+        display: block!important;
+    }
+    .block.subscribe .description {
+        margin-bottom: 5px;
+    }
+</style>
+<div class="block newsletter subscribe">
+    <?php if ($title): ?>
+    <div class="title"><strong><?php echo $title ?></strong></div>
+    <?php endif; ?>
+
+    <?php if ($description): ?>
+    <div class="description"><?php echo $description ?></div>
+    <?php endif; ?>
+
+    <div class="content">
+        <form class="form subscribe"
+              novalidate
+              action="<?php /* @escapeNotVerified */ echo $block->getFormActionUrl() ?>"
+              method="post"
+              data-mage-init='{"validation": {"errorClass": "mage-error"}}'
+              id="newsletter-validate-detail_3">
+            <div class="field newsletter">
+                <label class="label" for="<?php echo $id ?>"><span><?php /* @escapeNotVerified */ echo __('Sign Up for Our Newsletter:') ?></span></label>
+                <div class="control">
+                    <input name="email" type="email" id="<?php echo $id ?>"
+                           placeholder="<?php /* @escapeNotVerified */ echo __('Enter your email address') ?>"
+                           data-validate="{required:true, 'validate-email':true}"/>
+                </div>
+            </div>
+            <div class="actions">
+                <button class="action subscribe primary" title="<?php /* @escapeNotVerified */ echo __('Subscribe') ?>" type="submit">
+                    <span><?php /* @escapeNotVerified */ echo __('Subscribe') ?></span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

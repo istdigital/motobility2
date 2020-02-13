@@ -1,0 +1,33 @@
+<?php
+/** @var \Magento\Newsletter\Block\Subscribe $block */
+$id = uniqid('newsletter-'); ?>
+
+<div class="block newsletter">
+    <form class="form subscribe"
+        novalidate
+        action="<?php /* @escapeNotVerified */ echo $block->getFormActionUrl() ?>"
+        method="post"
+        data-mage-init='{"validation": {"errorClass": "mage-error"}}'
+        id="newsletter-validate-detail_2">
+        <div class="field newsletter">
+            <div class="control">
+                <input
+                    name="email"
+                    type="email" id="<?php echo $id ?>"
+                    placeholder="<?php /* @escapeNotVerified */ echo __('Enter your email address') ?>"
+                    data-validate="{required:true, 'validate-email':true}"/>
+            </div>
+        </div>
+
+        <div class="buttons-container">
+            <button class="subscribe" type="button" data-role="action"><span><?php echo $block->getSubmitText() ?></span></button>
+            <button class="cancel" type="button" data-role="action"><span><?php echo $block->getCancelText() ?></span></button>
+        </div>
+    </form>
+<!--    <div class="privacy-policy-check-box">-->
+<!--        <input type="checkbox" class="check_privacy" name="newsletter_tm_id" value="true" />-->
+<!--        <div class="privacy-policy-check-text">-->
+            <?php // echo $block->getGdprMessage(); ?>
+<!--        </div>-->
+<!--    </div>-->
+</div>

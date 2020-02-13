@@ -1,0 +1,196 @@
+// Local Vars
+$block-bg: #f1f1f1;
+$border-color: #d8d8d8;
+$block-top: 140px;
+$inner-padding: 20px;
+$inner-border: solid 1px $border-color;
+$icon-size: 26px;
+$icon-dimensions: 50px;
+
+$color: #5b5754;
+$font-size: 13px;
+$title-size: 14px;
+
+$select-bg: #ffffff;
+$select-border: solid 1px $border-color;
+$select-size-bg: 12px;
+
+$apply-bg: #5e5653;
+$reset-bg: #716864;
+$button-color: #ffffff;
+$button-hover: #343434;
+
+
+// Main Styles
+.layout-switcher{
+	position: fixed;
+	left: 0;
+	display: none;
+	z-index: 99;
+	top: $block-top;
+	background: $block-bg;
+
+	@media (max-width: 767px) {
+		position: absolute;
+	}
+
+	section {
+		overflow: hidden;
+		padding: $inner-padding;
+		border-bottom: $inner-border;
+		font-size: $font-size;
+
+		.inner {
+			padding-bottom: 20px;
+
+			&.last {
+				padding-bottom: 0;
+			}
+		}
+	}
+
+	.color-scheme {
+		/*width: 30px;*/
+		padding: 1px 2px;
+		min-width: 30px;
+		max-width: 90px;
+		height: 28px;
+		float: left;
+		/*margin: 0 10px 5px 0;*/
+		margin-right: 3px;
+		text-align: center;
+		cursor: pointer;
+		position: relative;
+		border: 1px solid rgb(218, 218, 218);
+		overflow: hidden;
+		text-overflow: ellipsis;
+		clear: right;
+
+		&.selected {
+			outline: 2px solid #FF5100;
+			border: 1px solid #fff;
+			color: #333;
+		}
+		&:not(.selected):hover {
+			outline: 1px solid #999;
+			border: 1px solid #fff;
+			color: #333;
+		}
+	}
+
+	#ls-icon {
+		-webkit-border-radius: 0 2px 2px 0;
+		-moz-border-radius: 0 2px 2px 0;
+		border-radius: 0 2px 2px 0;
+		position: absolute;
+		text-align: center;
+		cursor: pointer;
+		top: 0;
+		background: $block-bg;
+		font-size: $icon-size;
+		width: $icon-dimensions;
+		height: $icon-dimensions;
+		line-height: $icon-dimensions;
+		right: -$icon-dimensions;
+	}
+
+	.section.ls-title{
+		padding: 15px $inner-padding 14px;
+		h3 {
+			color: $color;
+			font-size: $title-size;
+			line-height: normal;
+			text-transform: uppercase;
+			margin: 0;
+		}
+	}
+
+	label {
+		display: block;
+		padding-bottom: 5px;
+	}
+
+	.select-container {
+		border: $select-border;
+		background-color: $select-bg;
+		border-radius: 3px;
+		position: relative;
+		cursor: pointer;
+		z-index: 2;
+
+		select {
+			font-size: $select-size-bg;
+			padding: 5px 8px;
+			width: 100%;
+			border: none;
+			background-color: transparent;
+			box-shadow: none;
+			background-image: none;
+			-webkit-appearance: none;
+			-moz-appearance: none;
+			appearance: none;
+			position: relative;
+			z-index:3;
+			cursor: pointer;
+
+			&:focus {
+				outline: none;
+			}
+		}
+
+		&::after {
+			content: '\f107';
+			font-family: 'FontAwesome';
+			position: absolute;
+			top: 8px;
+			right: 15px;
+
+		}
+	}
+
+	.buttons {
+		border-bottom: none;
+		display: flex;
+		$apply-bg: #5e5653;
+		$reset-bg: #7e7571;
+		$button-size: 13px;
+		$button-color: #ffffff;
+		$button-hover: #4f4946;
+		$button-height: 40px;
+		button {
+			flex-basis: 50%;
+			margin-right: 5px;
+			background: none;
+			border: none;
+			-webkit-box-shadow: none;
+			-moz-box-shadow: none;
+			box-shadow: none;
+
+			&:last-child {
+				margin-right: 0;
+			}
+
+			span {
+				display: block;
+				height: $button-height;
+				line-height: $button-height;
+				color: $button-color;
+				font-size: $button-size;
+				font-weight: 600;
+				text-transform: uppercase;
+			}
+
+			&.apply {
+				background: $apply-bg;
+			}
+			&.reset {
+				background: $reset-bg;
+			}
+			
+			&:hover {
+				background: $button-hover;
+			}
+		}
+	}
+
+}

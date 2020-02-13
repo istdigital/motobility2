@@ -1,0 +1,171 @@
+// Main Styles
+
+.navigation{
+
+	li.level-top,
+	a.level-top{
+		position: static;
+
+		.submenu .submenu-reverse{
+			right: auto;
+		}
+		
+		.mm-label{
+			position: absolute;
+			top: -10px;
+			left: -5px;
+			padding: 3px 7px;
+			text-transform: uppercase;
+			font-size: $label-font-size;
+			line-height: $label-font-size * 1.2;
+			color: $label-color;
+			background-color: $label-bg;
+			display: none;
+			@media (min-width: $screen-sm-min) {
+				display: block;
+			}
+		}	
+		
+		li{
+			position: relative;
+		}
+
+		.mm-image{
+			display: none;
+			margin-bottom: 10px;
+			img{
+				width:100%;
+				max-width: 100%;
+			}
+			@media (min-width: $screen-sm-min) {
+				display: inline-block;
+			}
+
+		}
+
+		.megamenu-wrapper{
+			top: 100%;
+			left: 0;
+			width: 100%;
+			padding: 20px 0;
+			background: $menu-bg;
+			box-shadow: $shadow-medium;
+		}
+
+		ul.mm-submenu{
+			display: block;
+			padding: 0;
+
+			@media (max-width: $screen-sm-min - 1) {
+
+				&.level1 li a{
+					padding-left: 15px;
+					padding-right: 0;
+				}
+
+				.mm-submenu{
+					padding-left: 15px;
+				}
+			}
+		}
+
+		.tm-megamenu{
+
+			// FIRST level
+			ul.level1{
+				> li{
+					> a{
+						font-weight: 600;
+						position: relative;
+						@media (min-width: $screen-sm-min) {
+							text-transform: uppercase;
+						}
+					}
+				}
+			}
+
+			// Link SECOND level
+			ul.level2{
+				> li{
+					a{}
+				}
+			}
+			
+			// Product
+			.product{
+				
+				display: none;
+
+				.product-image {
+					margin-bottom: 10px;
+					a{
+						display: block;
+						border: solid 1px $menu-border;
+						background: none;
+					}
+				}
+				.product-name{
+					text-transform: uppercase;
+					display: block;
+					margin-bottom: 5px;
+					a{
+						padding: 0;
+						color: $name-color;
+
+						&:hover{
+							background: none;
+							color: $name-color-hover;
+						}
+					}
+				}
+				.price-box{
+					font-weight: bold;
+
+					.price{
+						font-size: 1.2em;
+						line-height: 1.2em;
+					}
+					.old-price{
+						font-size: 1em;
+						text-decoration: line-through;
+					}
+					.special-price{
+						font-size: 1.2em;
+					}
+				}
+
+				@media (min-width: $screen-sm-min) {
+					display: block;
+				}
+			}
+
+			// Static Blocks
+			.widget,
+			.video,
+			.static-block{
+				display: none;
+				@media (min-width: $screen-sm-min) {
+					display: block;
+				}
+			}
+		}
+
+		&:hover,
+		&.ui-state-focus{
+			.megamenu-wrapper{
+			}
+		}
+	}
+}
+
+
+//Hide ::before for products only megamenu on mobile
+.rd-navbar-nav li.rd-navbar--has-megamenu.products-only > .rd-navbar-submenu-toggle{
+    @media (max-width: $screen-sm-min) {
+        display: none;
+    }
+}
+
+
+
+

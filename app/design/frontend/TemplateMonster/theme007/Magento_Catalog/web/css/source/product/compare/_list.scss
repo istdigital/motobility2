@@ -1,0 +1,157 @@
+//
+//    Compare Products Page
+//--------------------------------------
+
+body.catalog-product-compare-index {
+  .action.print {
+    float: right;
+    margin: $indent-small 0;
+  }
+  .table-caption {
+    display: none;
+  }
+}
+
+.table-wrapper.comparison {
+  clear: both;
+  max-width: 100%;
+  overflow-x: auto;
+  .table-comparison > tbody > tr {
+    border-right: 1px solid $table-border;
+    > th,
+    > td {
+      border-top: 0;
+    }
+  }
+  td {
+    @media (max-width: $screen-sm-min) {
+      border-bottom: 0;
+      display: table-cell;
+      padding: 0;
+
+      &.product:before {
+        display: none;
+      }
+    }
+  }
+}
+
+.table-comparison {
+  table-layout: fixed;
+
+  .cell.label.remove,
+  .cell.label.product {
+    border-bottom: none;
+    span {
+      display: none;
+    }
+  }
+
+  .cell {
+    width: 180px;
+    padding: $indent-small;
+    .attibute.value {
+      width: 100%;
+      overflow: hidden;
+    }
+
+    &.product.info,
+    &.product.label {
+      border-bottom: 1px solid $table-border;
+    }
+    &.label {
+      width: 80px;
+      .attribute.label {
+        display: block;
+        width: 100%;
+        word-wrap: break-word;
+      }
+    }
+    &.attribute {
+      img {
+        max-width: 100%;
+        height: auto;
+      }
+    }
+    &.remove {
+      padding-top: 0;
+      padding-bottom: 0;
+      text-align: right;
+      .action.delete {
+
+      }
+    }
+  }
+
+  .product-item-photo {
+    display: block;
+    margin: 0 auto $indent-small;
+  }
+  .product-image-photo {
+    margin-left: 0;
+  }
+
+  .product-item-actions,
+  .price-box,
+  .product.rating,
+  .product-item-name {
+    display: block;
+    margin: $indent-small/4 0;
+  }
+
+  .product-addto-links {
+    margin-top: $indent-small;
+
+    .action.split,
+    .action.toggle {
+    }
+
+    .action.toggle {
+      padding: 0;
+    }
+  }
+
+  .action {
+    &.tocart {
+      white-space: nowrap;
+    }
+  }
+  .product-reviews-summary {
+    .rating-summary {
+      max-width: 100px;
+      margin: 0 auto;
+      .label {
+        display: none;
+      }
+    }
+    margin-bottom: 10px;
+  }
+  .product-item-name {
+    font-weight: normal;
+    font-size: $default-font-size;
+    display: block;
+    margin-bottom: 5px;
+  }
+  .price-box {
+    margin-bottom: 20px;
+  }
+  .action.towishlist {
+    padding: 0;
+    border: 0;
+    font-size: 22px;
+    margin-top: 10px;
+    &:hover {
+      background: none;
+    }
+  }
+}
+
+.comparison.headings {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  width: auto;
+  display: none;
+}
+

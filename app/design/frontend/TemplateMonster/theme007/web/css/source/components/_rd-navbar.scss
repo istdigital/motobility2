@@ -1,0 +1,107 @@
+/*
+* @subsection   RD Navbar
+*
+* @description  Describes style declarations for RD Navbar extension
+*/
+@import "../_variables.scss";
+@import "../_mixins.scss";
+
+$rd-navbar-accent-color: #fff;
+$rd-navbar-accent-color-2: rgb(46, 204, 113);
+
+$rd-navbar-submenu-bg: darken($white, 10%);
+
+$rd-navbar-shadow-ambient: 0 0 2px 0 rgba(0, 0, 0, .25);
+$rd-navbar-shadow-medium: 0 3px 5px 0 rgba(0, 0, 0, .25);
+$rd-navbar-shadow-large: 0 5px 8px 0 rgba(0, 0, 0, .25);
+
+%rd-navbar-transition {
+    transition: .3s all cubic-bezier(0.785, 0.135, 0.150, 0.860);
+}
+@mixin rd-navbar-transition() {
+    transition: .3s all cubic-bezier(0.785, 0.135, 0.150, 0.860);
+}
+%rd-navbar-hidden {
+    display: none;
+}
+
+%rd-navbar-visible {
+    display: block;
+}
+
+.rd-navbar--no-transition {
+    &, * {
+        transition: none !important;
+    }
+}
+
+.rd-navbar-wrap {
+    @extend %rd-navbar-transition;
+}
+
+.rd-navbar.rd-navbar--is-clone {
+    @extend %rd-navbar-hidden;
+}
+
+.rd-navbar-fixed,
+.rd-navbar-static,
+.rd-navbar-fullwidth,
+.rd-navbar-sidebar {
+    @extend %rd-navbar-visible;
+
+    .block {
+        margin: 0;
+    }
+}
+
+.rd-navbar-static {
+    background: $content-bg;
+    .rd-navbar-nav-wrap {
+        width: 100%;
+    }
+
+    &.rd-navbar--is-clone {
+        @extend %rd-navbar-transition;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        display: block;
+        @include transform(translateY(-105%));
+        z-index: 20;
+
+        .rd-navbar-panel {
+            display: none;
+        }
+
+        &.rd-navbar--is-stuck {
+            @include transform(translateY(0));
+        }
+    }
+
+    &.rd-navbar--is-stuck {
+        position: fixed;
+        left: 0;
+        top: 0;
+        right: 0;
+        z-index: 20;
+        background: $header-bg;
+
+        .rd-navbar-panel {
+            display: none;
+        }
+
+        .page-header__panel,
+        .page-header__content {
+            display: none;
+        }
+    }
+}
+
+@import "rd-navbar_components/_rd-navbar-toggles.scss";
+@import "rd-navbar_components/_rd-navbar-nav.scss";
+@import "rd-navbar_components/_rd-navbar-brand.scss";
+@import "rd-navbar_components/_rd-navbar-cart.scss";
+@import "rd-navbar_components/_rd-navbar-panel.scss";
+@import "rd-navbar_components/_rd-navbar-search.scss";
+@import "rd-navbar_components/_rd-navbar-collapse.scss";

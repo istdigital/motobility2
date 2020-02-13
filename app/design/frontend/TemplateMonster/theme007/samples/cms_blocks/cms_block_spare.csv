@@ -1,0 +1,74 @@
+block_id,title,identifier,content,creation_time,update_time,is_active
+38,block_1_1_layout_5,block_1_1_layout_5,"<div class=""custom-item-27"">
+    <div class=""item"">
+        <img src=""{{view url=''}}/images/media/img_40_spare.jpg""/>
+        <div class=""custom-item-content"">
+            <div class=""title-1"">Suspension <span>Parts</span></div>
+            <div class=""desc-1"">20 % off</div>
+            <a class=""link-custom"" href=""{{store url=''}}repair-parts.html"">Shop now</a>
+        </div>
+    </div>
+    <div class=""item item-extra"">
+        <img src=""{{view url=''}}/images/media/img_41_spare.jpg""/>
+        <div class=""custom-item-content"">
+            <div class=""title-1"">AUTO <span>LIGHTING</span></div>
+            <a class=""link-custom"" href=""{{store url=''}}exterior.html"">Shop now</a>
+        </div>
+    </div>
+    <div class=""item item-extra-2"">
+        <img src=""{{view url=''}}/images/media/img_42_spare.jpg""/>
+        <div class=""custom-item-content"">
+            <div class=""title-1"">CAR <span>SPOILERS</span></div>
+            <div class=""desc-1"">50 % off</div>
+            <a class=""link-custom"" href=""{{store url=''}}repair-parts.html"">Shop now</a>
+        </div>
+    </div>
+</div>",2017-01-19 08:48:54,2017-01-20 09:04:13,1
+39,block_1_2_layout_5,block_1_2_layout_5,"<div class=""custom-item-28"">
+    <div class=""item"">
+        <img src=""{{view url=''}}/images/media/img_40_spare.jpg""/>
+        <div class=""custom-item-content"">
+            <div class=""title-1"">Suspension <span>Parts</span></div>
+            <div class=""desc-1"">20 % off</div>
+            <a class=""link-custom"" href=""{{store url=''}}repair-parts.html"">Shop now</a>
+        </div>
+    </div>
+    <div class=""item item-extra-2"">
+        <img src=""{{view url=''}}/images/media/img_42_spare.jpg""/>
+        <div class=""custom-item-content"">
+            <div class=""title-1"">CAR <span>SPOILERS</span></div>
+            <div class=""desc-1"">50 % off</div>
+            <a class=""link-custom"" href=""{{store url=''}}repair-parts.html"">Shop now</a>
+        </div>
+    </div>
+    <div class=""item item-extra"">
+        <img src=""{{view url=''}}/images/media/img_41_spare.jpg""/>
+        <div class=""custom-item-content"">
+            <div class=""title-1"">AUTO <span>LIGHTING</span></div>
+            <a class=""link-custom"" href=""{{store url=''}}exterior.html"">Shop now</a>
+        </div>
+    </div>
+</div>",2017-01-23 14:32:44,2017-01-23 14:43:23,1
+40,block_2_2_layout_5,block_2_2_layout_5,"<ul class=""custom-item-13 custom-item-29 row"">
+    <li class=""col-sm-4"">
+        <div class=""custom-content"">
+            <span class=""icon-telephone""></span>
+            <div class=""title"">+3(800) 2345-6789</div>
+            <div class=""desc-content"">Round-the-clock free hotline (24/7)</div>
+        </div>
+    </li>
+    <li class=""col-sm-4"">
+        <div class=""custom-content"">
+            <span class=""icon-truck""></span>
+            <div class=""title"">Free Shipping</div>
+            <div class=""desc-content"">Shipping cost for any delivery method and order cost <br /> is $49. Free delivery on orders of $99.</div>
+        </div>
+    </li>
+    <li class=""col-sm-4"">
+        <div class=""custom-content"">
+            <span class=""icon-sync""></span>
+            <div class=""title"">Return & Exchange</div>
+            <div class=""desc-content"">You can return or exchange the item <br />within 30 days.</div>
+        </div>
+    </li>
+</ul>",2017-01-23 15:14:51,2017-01-23 15:18:14,1

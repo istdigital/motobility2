@@ -1,0 +1,14 @@
+.price-slider{}
+
+#slider-range{}
+
+.slider-fields{
+    display: flex;
+    flex-wrap: wrap;
+    .slider-input{
+        margin: 1em 0;
+        flex-basis: 100%;
+        label{}
+        input{}
+    }
+}

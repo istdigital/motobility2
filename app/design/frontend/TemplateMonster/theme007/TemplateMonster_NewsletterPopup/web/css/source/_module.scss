@@ -1,0 +1,89 @@
+/*
+* TM_Megamenu
+*/
+
+//@import "../../../../../../../../code/Templatemonster/NewsletterPopup/view/frontend/web/css/source/module.scss";
+.buttons-container .subscribe {
+    @include button-block;
+    @include button-block__primary;
+}
+.modal-popup.newsletter-popup {
+    .block.newsletter {
+        margin: 0;
+    }
+    .modal-title {
+        font-size: 35px;
+        margin-bottom: 30px;
+        @media (max-width: $screen-xs-min - 1) {
+            font-size: 26px;
+            line-height: 1.3;
+        }
+    }
+    .modal-inner-wrap {
+        background-image: url("../images/newsletter-popup-bg.png");
+        background-repeat: no-repeat;
+        background-position: top right;
+        padding: 84px 6%;
+        @media (max-width: $screen-md-min - 1) {
+            width: 96% !important;
+            padding: 50px 4%;
+        }
+    }
+    .content-text {
+        margin-bottom: 45px;
+        padding: 0 8%;
+        text-align: center;
+        @media (max-width: $screen-xs-min - 1) {
+            margin-bottom: 15px;
+        }
+    }
+    .form.subscribe {
+        @include make-flex;
+        @include justify-content(space-between);
+        @media (max-width: $screen-xs-min - 1) {
+            @include flex-wrap(wrap);
+        }
+    }
+    .field.newsletter {
+        order: 1;
+        width: 100%;
+        padding:0 10px 0 0;
+        margin: 0;
+
+    }
+    .buttons-container {
+        order: 2;
+        @media (max-width: $screen-xs-min - 1) {
+            margin: 20px auto 0;
+        }
+    }
+
+    .action-close {
+        position: absolute;
+        right: 15px;
+        top:10px;
+        display: block;
+        &:before {
+            font-family: $linearicons-icon;
+            content: "\e935";
+            font-size: 12px;
+        }
+    }
+    .privacy-policy-check-box {
+        @include make-flex;
+        font-size: 13px;
+        line-height:20px;
+        text-align: left;
+        padding: 15px 1% 0;
+        .check_privacy {
+            margin: 0 10px 0 0;
+        }
+    }
+}
+.newsletter-popup.modal-popup._show .modal-inner-wrap {
+    margin: 0 auto;
+    top: 50%;
+    transform: translateY(-50%);
+    -webkit-transform:translateY(-50.3%);
+    position: absolute;
+}

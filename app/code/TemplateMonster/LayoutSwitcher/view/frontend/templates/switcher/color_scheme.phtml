@@ -1,0 +1,24 @@
+<?php /** @var \TemplateMonster\LayoutSwitcher\Block\Switcher\ColorScheme $block */ ?>
+<section>
+    <label for="color-scheme">Color Scheme</label>
+    <div class="color-scheme-wrapper">
+        <?php foreach ($block->getColorSchemes() as $website => $schemes): ?>
+            <?php foreach ($schemes as $id => $data): ?>
+                <div data-id="<?php echo $id ?>" data-label="<?php echo $data['label'] ?>" data-color="<?php echo $data['color'] ?>" data-website="<?php echo $website ?>" class="color-scheme<?php if ($block->isCurrentColorScheme($website, $id)): ?> selected<?php endif; ?>" ></div>
+            <?php endforeach; ?>
+        <?php endforeach; ?>
+        <input id="color-scheme" type="hidden" name="color_scheme" />
+    </div>
+</section>
+
+<script type="text/javascript">
+    require(['jquery'], function($) {
+        $('.color-scheme').each(function() {
+            $(this).css('background-color', $(this).data('color'));
+        }).click(function() {
+            $('.color-scheme:visible').removeClass('selected');
+            $(this).addClass('selected');
+            $('#color-scheme').val($(this).data('id'));
+        }).filter('.selected').click();
+    });
+</script>

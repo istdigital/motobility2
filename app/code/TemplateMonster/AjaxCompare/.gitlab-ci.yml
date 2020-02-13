@@ -1,0 +1,22 @@
+variables: 
+    # Set Extension Name (e.g. TemplateMonster_Slider)
+    EXTENSION_NAME: "TemplateMonster_AjaxCompare"
+
+    HTML_ROOT: /var/www/gitlab-ci
+    BUILDS_TMP_ROOT: $HTML_ROOT/tmp
+    BUILDS_ROOT: $HTML_ROOT/builds
+
+#ext_prepare:
+#    only:
+#        - tags
+#    script:
+#        - export
+
+ext_build:
+    only:
+        - tags
+    tags:
+        - magento-extension
+    script: $HTML_ROOT/auto.sh
+
+

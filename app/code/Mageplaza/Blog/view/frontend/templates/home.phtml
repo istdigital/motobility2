@@ -1,0 +1,69 @@
+<div class="home-blog">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <h3 class="section-title" data-bind="i18n: 'FROM THE BLOG'"></h3>
+            </div>
+        </div>
+        <div class="row" data-bind="scope:'homeblog'" id="homeblog" >
+            <div class="col-md-4 col-sm-4 ph-item">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-3 ph-small"></div>
+                        <div class="col-md-9"></div>
+                        <div class="col-md-10 ph-medium"></div>
+                    </div>
+                </div>
+                <div class="ph-picture"></div>
+                <div class="col-md-12 ph-small"></div>
+                <div class="col-md-12 ph-small"></div>
+                <div class="col-md-12 ph-small"></div>
+                <div class="col-md-12 ph-small"></div>
+            </div>
+            <div class="col-md-4 col-sm-4 hidden-xs ph-item">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-3 ph-small"></div>
+                        <div class="col-md-9"></div>
+                        <div class="col-md-10 ph-medium"></div>
+                    </div>
+                </div>
+                <div class="ph-picture"></div>
+                <div class="col-md-12 ph-small"></div>
+                <div class="col-md-12 ph-small"></div>
+                <div class="col-md-12 ph-small"></div>
+                <div class="col-md-12 ph-small"></div>
+            </div>
+            <div class="col-md-4 col-sm-4 hidden-xs ph-item">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-3 ph-small"></div>
+                        <div class="col-md-9"></div>
+                        <div class="col-md-10 ph-medium"></div>
+                    </div>
+                </div>
+                <div class="ph-picture"></div>
+                <div class="col-md-12 ph-small"></div>
+                <div class="col-md-12 ph-small"></div>
+                <div class="col-md-12 ph-small"></div>
+                <div class="col-md-12 ph-small"></div>
+            </div>
+            <!-- ko template: getTemplate() --><!-- /ko -->
+            <script type="text/x-magento-init">
+            {
+                "#homeblog": {
+                    "Magento_Ui/js/core/app": {
+                       "components": {
+                            "homeblog": {
+                                "component": "Mageplaza_Blog/js/home",
+                                "template" : "Mageplaza_Blog/home"
+                                }
+                            }
+                        }
+                    }
+            }
+            </script>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,70 @@
+<?php
+/**
+ * Mageplaza
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mageplaza.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mageplaza.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mageplaza
+ * @package     Mageplaza_Blog
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
+ * @license     https://www.mageplaza.com/LICENSE.txt
+ */
+
+/** @var \Mageplaza\Blog\Block\Frontend $block */
+?>
+<div class="post-list-content" id="mpblog-list-container">
+    <?php $postCollection = $block->getPostCollection(); ?>
+    <?php if ($postCollection && $postCollection->getSize()) : ?>
+        <div class="post-top-toolbar"><?php echo $block->getPagerHtml() ?></div>
+        <div class="post-list-body row">
+            <?php /** @var \Mageplaza\Blog\Model\Post $post */
+            foreach ($postCollection as $post) : ?>
+                <div class="post-list-item col-md-4 col-sm-6">
+                    <div class="post-item-wraper">
+                        <?php if ($post->getImage()) : ?>
+                            <div class="post-image">
+                                <a href="<?php echo $post->getUrl() ?>">
+                                    <img class="img-responsive"
+                                    width="100%"
+                                         src="<?php echo $block->resizeImage($post->getImage(), '260x170'); ?>"
+                                         alt="<?php echo $block->escapeHtml($post->getName()); ?>"/>
+                                </a>
+                            </div>
+                        <?php endif; ?>
+                        <div class="post-info-wraper">
+                            <?= $block->getPostCategory($post) ?>
+
+                            <a class="post-link-title" title="<?php echo $block->escapeHtml($post->getName()); ?>"
+                               href="<?php echo $post->getUrl() ?>">
+                                <?php echo $post->getName(); ?>
+                            </a>
+
+                            <div class="post-short-description">
+                                <p>
+                                    <?= substr($post->getShortDescription(), 0, 90) ?>...
+                                
+                                <a class="mp-read-more" href="<?php echo $post->getUrl(); ?>"
+                                   title="<?php echo __('Read More'); ?>"></a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        </div>
+        <div class="post-bottom-toolbar"><?php echo $block->getPagerHtml() ?></div>
+    <?php else : ?>
+        <?php echo __('There are no posts at this moment'); ?>
+    <?php endif; ?>
+    <?php echo $this->getChildHtml('additional'); ?>
+</div>
+

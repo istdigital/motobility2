@@ -1,0 +1,215 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:TemplateMonster_ThemeOptions:etc/color_schemes.xsd">
+    <website code="base">
+        <scheme id="theme_color_1" label="Theme color 1" color="#fd5397">
+            <param name="primary_color" value="#fd5397" />
+            <param name="secondary_color" value="#fd5397" />
+            <param name="body_background_color" value="#ffffff" />
+            <param name="header_background_color" value="#ffffff" />
+            <param name="footer_background_color" value="#ffffff" />
+            <param name="primary_font_color" value="#888888" />
+            <param name="primary_link_color" value="#000000" />
+            <param name="primary_title_color" value="#000000" />
+        </scheme>
+        <scheme id="theme_color_2" label="Theme color 2" color="#3598db">
+            <param name="primary_color" value="#3598db" />
+            <param name="secondary_color" value="#3598db" />
+            <param name="body_background_color" value="#ffffff" />
+            <param name="header_background_color" value="#ffffff" />
+            <param name="footer_background_color" value="#ffffff" />
+            <param name="primary_font_color" value="#888888" />
+            <param name="primary_link_color" value="#304a5b" />
+            <param name="primary_title_color" value="#000000" />
+        </scheme>
+        <scheme id="theme_color_3" label="Theme color 3" color="#d54d4d">
+            <param name="primary_color" value="#d54d4d" />
+            <param name="secondary_color" value="#fe526a" />
+            <param name="body_background_color" value="#ffffff" />
+            <param name="header_background_color" value="#ffffff" />
+            <param name="footer_background_color" value="#ffffff" />
+            <param name="primary_font_color" value="#888888" />
+            <param name="primary_link_color" value="#000000" />
+            <param name="primary_title_color" value="#000000" />
+        </scheme>
+        <scheme id="theme_color_4" label="Theme color 4" color="#dbb879">
+            <param name="primary_color" value="#dbb879" />
+            <param name="secondary_color" value="#dbb879" />
+            <param name="body_background_color" value="#ffffff" />
+            <param name="header_background_color" value="#ffffff" />
+            <param name="footer_background_color" value="#ffffff" />
+            <param name="primary_font_color" value="#888888" />
+            <param name="primary_link_color" value="#000000" />
+            <param name="primary_title_color" value="#000000" />
+        </scheme>
+    </website>
+
+    <website code="furniture">
+        <scheme id="theme_color_1" label="Theme color 1" color="#30d0ac">
+            <param name="primary_color" value="#32cfb0" />
+            <param name="secondary_color" value="#fe526a" />
+            <param name="body_background_color" value="#ffffff" />
+            <param name="header_background_color" value="#ffffff" />
+            <param name="footer_background_color" value="#f6f6f6" />
+            <param name="primary_font_color" value="#888888" />
+            <param name="primary_link_color" value="#000000" />
+            <param name="primary_title_color" value="#000000" />
+        </scheme>
+        <scheme id="theme_color_2" label="Theme color 2" color="#3598db">
+            <param name="primary_color" value="#3598db" />
+            <param name="secondary_color" value="#f9ce0d" />
+            <param name="body_background_color" value="#ffffff" />
+            <param name="header_background_color" value="#ffffff" />
+            <param name="footer_background_color" value="#f6f6f6" />
+            <param name="primary_font_color" value="#888888" />
+            <param name="primary_link_color" value="#304a5b" />
+            <param name="primary_title_color" value="#000000" />
+        </scheme>
+        <scheme id="theme_color_3" label="Theme color 3" color="#f9b61f">
+            <param name="primary_color" value="#f9b61f" />
+            <param name="secondary_color" value="#fe526a" />
+            <param name="body_background_color" value="#ffffff" />
+            <param name="header_background_color" value="#ffffff" />
+            <param name="footer_background_color" value="#f6f6f6" />
+            <param name="primary_font_color" value="#888888" />
+            <param name="primary_link_color" value="#304a5b" />
+            <param name="primary_title_color" value="#000000" />
+        </scheme>
+        <scheme id="theme_color_4" label="Theme color 4" color="#d54d4d">
+            <param name="primary_color" value="#d54d4d" />
+            <param name="secondary_color" value="#fe526a" />
+            <param name="body_background_color" value="#ffffff" />
+            <param name="header_background_color" value="#ffffff" />
+            <param name="footer_background_color" value="#f6f6f6" />
+            <param name="primary_font_color" value="#888888" />
+            <param name="primary_link_color" value="#304a5b" />
+            <param name="primary_title_color" value="#000000" />
+        </scheme>
+    </website>
+
+    <website code="bikes_store">
+        <scheme id="theme_color_1" label="Theme color 1" color="#e7b56e">
+            <param name="primary_color" value="#e7b56e" />
+            <param name="secondary_color" value="#fd516a" />
+            <param name="body_background_color" value="#ffffff" />
+            <param name="header_background_color" value="#ffffff" />
+            <param name="footer_background_color" value="#f6f6f6" />
+            <param name="primary_font_color" value="#888888" />
+            <param name="primary_link_color" value="#000000" />
+            <param name="primary_title_color" value="#000000" />
+        </scheme>
+        <scheme id="theme_color_2" label="Theme color 2" color="#3598db">
+            <param name="primary_color" value="#3598db" />
+            <param name="secondary_color" value="#fd6279" />
+            <param name="body_background_color" value="#ffffff" />
+            <param name="header_background_color" value="#ffffff" />
+            <param name="footer_background_color" value="#f6f6f6" />
+            <param name="primary_font_color" value="#888888" />
+            <param name="primary_link_color" value="#304a5b" />
+            <param name="primary_title_color" value="#000000" />
+        </scheme>
+        <scheme id="theme_color_3" label="Theme color 3" color="#d54d4d">
+            <param name="primary_color" value="#d54d4d" />
+            <param name="secondary_color" value="#fe526a" />
+            <param name="body_background_color" value="#ffffff" />
+            <param name="header_background_color" value="#ffffff" />
+            <param name="footer_background_color" value="#f6f6f6" />
+            <param name="primary_font_color" value="#888888" />
+            <param name="primary_link_color" value="#000000" />
+            <param name="primary_title_color" value="#000000" />
+        </scheme>
+        <scheme id="theme_color_4" label="Theme color 4" color="#32d0b1">
+            <param name="primary_color" value="#32d0b1" />
+            <param name="secondary_color" value="#73d5c9" />
+            <param name="body_background_color" value="#ffffff" />
+            <param name="header_background_color" value="#ffffff" />
+            <param name="footer_background_color" value="#f6f6f6" />
+            <param name="primary_font_color" value="#888888" />
+            <param name="primary_link_color" value="#000000" />
+            <param name="primary_title_color" value="#000000" />
+        </scheme>
+    </website>
+    <website code="medical_supplies_and_equipment">
+        <scheme id="theme_color_1" label="Theme color 1" color="#12afa3">
+            <param name="primary_color" value="#12afa3" />
+            <param name="secondary_color" value="#fd5397" />
+            <param name="body_background_color" value="#ffffff" />
+            <param name="header_background_color" value="#ffffff" />
+            <param name="footer_background_color" value="#f6f6f6" />
+            <param name="primary_font_color" value="#888888" />
+            <param name="primary_link_color" value="#000000" />
+            <param name="primary_title_color" value="#000000" />
+        </scheme>
+        <scheme id="theme_color_2" label="Theme color 2" color="#3598db">
+            <param name="primary_color" value="#3598db" />
+            <param name="secondary_color" value="#fd6279" />
+            <param name="body_background_color" value="#ffffff" />
+            <param name="header_background_color" value="#ffffff" />
+            <param name="footer_background_color" value="#f6f6f6" />
+            <param name="primary_font_color" value="#888888" />
+            <param name="primary_link_color" value="#304a5b" />
+            <param name="primary_title_color" value="#000000" />
+        </scheme>
+        <scheme id="theme_color_3" label="Theme color 3" color="#d54d4d">
+            <param name="primary_color" value="#d54d4d" />
+            <param name="secondary_color" value="#fe526a" />
+            <param name="body_background_color" value="#ffffff" />
+            <param name="header_background_color" value="#ffffff" />
+            <param name="footer_background_color" value="#f6f6f6" />
+            <param name="primary_font_color" value="#888888" />
+            <param name="primary_link_color" value="#000000" />
+            <param name="primary_title_color" value="#000000" />
+        </scheme>
+        <scheme id="theme_color_4" label="Theme color 4" color="#dbb879">
+            <param name="primary_color" value="#dbb879" />
+            <param name="secondary_color" value="#73d5c9" />
+            <param name="body_background_color" value="#ffffff" />
+            <param name="header_background_color" value="#ffffff" />
+            <param name="footer_background_color" value="#f6f6f6" />
+            <param name="primary_font_color" value="#888888" />
+            <param name="primary_link_color" value="#000000" />
+            <param name="primary_title_color" value="#000000" />
+        </scheme>
+    </website>
+    <website code="spare_parts">
+        <scheme id="theme_color_1" label="Theme color 1" color="#8594a0">
+            <param name="primary_color" value="#8594a0" />
+            <param name="secondary_color" value="#ee221d" />
+            <param name="body_background_color" value="#ffffff" />
+            <param name="header_background_color" value="#ffffff" />
+            <param name="footer_background_color" value="#ffffff" />
+            <param name="primary_font_color" value="#888888" />
+            <param name="primary_link_color" value="#000000" />
+            <param name="primary_title_color" value="#000000" />
+        </scheme>
+        <scheme id="theme_color_2" label="Theme color 2" color="#3598db">
+            <param name="primary_color" value="#3598db" />
+            <param name="secondary_color" value="#fd6279" />
+            <param name="body_background_color" value="#ffffff" />
+            <param name="header_background_color" value="#ffffff" />
+            <param name="footer_background_color" value="#f6f6f6" />
+            <param name="primary_font_color" value="#888888" />
+            <param name="primary_link_color" value="#304a5b" />
+            <param name="primary_title_color" value="#000000" />
+        </scheme>
+        <scheme id="theme_color_3" label="Theme color 3" color="#d54d4d">
+            <param name="primary_color" value="#d54d4d" />
+            <param name="secondary_color" value="#fe526a" />
+            <param name="body_background_color" value="#ffffff" />
+            <param name="header_background_color" value="#ffffff" />
+            <param name="footer_background_color" value="#f6f6f6" />
+            <param name="primary_font_color" value="#888888" />
+            <param name="primary_link_color" value="#000000" />
+            <param name="primary_title_color" value="#000000" />
+        </scheme>
+        <scheme id="theme_color_4" label="Theme color 4" color="#dbb879">
+            <param name="primary_color" value="#dbb879" />
+            <param name="secondary_color" value="#73d5c9" />
+            <param name="body_background_color" value="#ffffff" />
+            <param name="header_background_color" value="#ffffff" />
+            <param name="footer_background_color" value="#f6f6f6" />
+            <param name="primary_font_color" value="#888888" />
+            <param name="primary_link_color" value="#000000" />
+            <param name="primary_title_color" value="#000000" />
+        </scheme>
+    </website>
+</config>

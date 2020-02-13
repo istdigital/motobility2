@@ -1,0 +1,157 @@
+//
+//  Search mini form
+//  ---------------------------------------------
+
+.block-search {
+  .block-title {
+    display: none;
+  }
+}
+
+#search_mini_form {
+  background: none;
+  .label {
+    display: none;
+  }
+  .nested {
+    display: none;
+  }
+}
+
+.rd-navbar-static {
+  .rd-navbar-search {
+    display: block;
+    form {
+      position: relative;
+    }
+  }
+}
+
+// Advanced Search
+//------------------------------------
+
+.catalogsearch-advanced-index {
+  .page-title {
+    text-align: left;
+
+    @media (min-width: $screen-md-min) {
+      @include flex-basis(66.66667%);
+      margin-left: calc(16.66667% + 8px);
+    }
+
+    span {
+      font-size: 35px;
+      line-height: 1;
+      font-weight: 600;
+      text-transform: none;
+    }
+  }
+}
+
+.search.advanced {
+  legend.legend {
+    padding-bottom: 2em;
+    border-bottom: 1px solid $border-color;
+    margin-bottom: 2em;
+    width: 100%;
+    font-weight: 400;
+  }
+
+  fieldset.fieldset > .field {
+    @include make-flex;
+    @include justify-content(space-between);
+    @include align-items(center);
+    @include flex-wrap(wrap);
+
+    > .label {
+      @include flex-basis(100%);
+      margin-right: 0;
+      &:after {
+        content: ':';
+      }
+
+      @media (min-width: $screen-md-min) {
+        @include flex-basis(130px);
+      }
+    }
+    > .control {
+      @include flex-basis(100%);
+
+      @media (min-width: $screen-md-min) {
+        @include flex-basis(calc(100% - 130px));
+      }
+    }
+  }
+
+  .price .range.price {
+    @include make-flex;
+    @include justify-content(space-between);
+    @include align-items(center);
+    position: relative;
+
+    > .field {
+      @include flex-basis(48%);
+    }
+
+    .addafter {
+      position: absolute;
+      top: 0;
+      left: calc(100% + 6px);
+      line-height: 38px;
+      margin-right: 0;
+
+      @media (max-width: $screen-sm-min - 1) {
+        left: auto;
+        right: 0;
+      }
+    }
+
+    .separator {
+      line-height: 28px;
+      padding: 7px 0;
+      margin-bottom: 1rem;
+    }
+
+    .addon {
+      @media (max-width: $screen-sm-min - 1) {
+        padding-right: 45px;
+      }
+    }
+  }
+
+  .actions-toolbar {
+    padding-top: 1.5rem;
+    border-top: 1px solid $border-color;
+
+    .action.search span {
+      @include font-icon('\e922', $linearicons-icon);
+      &:before {
+        font-size: 22px;
+        line-height: inherit;
+        vertical-align: text-top;
+        padding-right: 6px;
+      }
+    }
+  }
+}
+
+// Search Terms
+//------------------------------------
+.search-terms {
+  ul {
+    @include make-flex;
+    @include justify-content(flex-start);
+    @include align-items(center);
+
+    li {
+      margin: 0 5px 5px 0;
+      border: 1px solid $border-color;
+    }
+    a {
+      padding: 5px;
+      &:hover {
+        background: $bg-light;
+      }
+    }
+  }
+}

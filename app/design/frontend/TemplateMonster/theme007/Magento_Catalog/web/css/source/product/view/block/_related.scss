@@ -1,0 +1,42 @@
+//
+//  Related product
+//  ---------------------------------------------
+
+.block.related {
+  margin-bottom: 75px;
+  border-bottom: 1px solid $theme-line-1;
+  padding-bottom: 60px;
+
+  .field.related + .product-reviews-summary {
+    margin-top: 18px;
+  }
+  .field.related + .product-item-actions {
+    padding-top: 18px;
+  }
+
+  .field.related {
+    .label {
+      padding: 0;
+      font-size: $font-size-small;
+      &:before {
+        font-size: 20px;
+        margin-right: 5px;
+        float: left;
+      }
+
+    }
+  }
+  @media (max-width: $screen-lg-min - 1) {
+    margin-bottom: 35px;
+    padding-bottom: 30px;
+  }
+  .owl-controls.clickable {
+    top: -65px;
+  }
+  &:last-child {
+    border-bottom: 0;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+}
+

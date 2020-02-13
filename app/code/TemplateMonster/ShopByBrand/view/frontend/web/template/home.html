@@ -1,0 +1,17 @@
+<!-- ko if: isVisible -->
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <h3 class="section-title" data-bind="i18n: 'SHOP BY BRAND'"></h3>
+        </div>
+    </div>
+    <div class="row">
+    	<div class="col-md-12">
+    		<div class="owl-carousel owl-theme">
+    			<!-- ko foreach: { data: brands, as: 'brand' } -->
+	    			<div class="item">
+	    				<a data-bind="attr:{href: brand.url_key,title: brand.name}">
+	    					<img data-bind="attr:{src: brand.logo,alt: brand.name}">
+	    				</a>
+	    			</div>
+	    		<!-- /ko --></div></div></div></div><!-- /ko -->​

@@ -1,0 +1,128 @@
+<?php /**   */ ?>
+<?php
+$optionsHelper = $this->helper('TemplateMonster\ThemeOptions\Helper\Data');
+?>
+
+/** Primary Color **/
+
+/* put this selectors for primary color/background */
+.actions-primary .action,
+.primary .action, .action.primary,
+.checkout.methods .action.primary {
+    <?php if ($optionsHelper->getPrimaryColor()): ?>
+        background-color: <?php echo $optionsHelper->getPrimaryColor(); ?>;
+    <?php endif; ?>
+}
+.products .product-item .product-item-name a {
+    <?php if ($optionsHelper->getPrimaryColor()): ?>
+        color: <?php echo $optionsHelper->getPrimaryColor(); ?>;
+    <?php endif; ?>
+}
+/**/
+
+/** Secondary Color **/
+
+/* put this selectors for secondary color/background */
+.filter-options-title {
+    <?php if ($optionsHelper->getSecondaryColor()): ?>
+        color: <?php echo $optionsHelper->getSecondaryColor(); ?>;
+    <?php endif; ?>
+}
+/**/
+
+body {
+    <?php if ($optionsHelper->getBodyBackgroundColor()): ?>
+        background-color: <?php echo $optionsHelper->getBodyBackgroundColor(); ?>;
+    <?php endif; ?>
+    <?php if ($optionsHelper->isBodyBackgroundImage()) : ?>
+        background-image: <?php echo $optionsHelper->getBodyBackgroundImage() ? 'url(' . $this->getBaseUrl() . 'pub/media/theme_options/' . $optionsHelper->getBodyBackgroundImage() . ')' : 'none' ?>;
+        background-size: <?php echo $optionsHelper->getBodyBackgroundImageSize(); ?>;
+        background-attachment: <?php echo $optionsHelper->getBodyBackgroundImageAttachment(); ?>;
+        background-position: <?php echo $optionsHelper->getBodyBackgroundImagePosition(); ?>;
+        background-repeat: <?php echo $optionsHelper->getBodyBackgroundImageRepeat(); ?>;
+    <?php endif; ?>
+}
+
+header.page-header,
+.rd-navbar-static {
+    <?php if ($optionsHelper->getHeaderBackgroundColor()): ?>
+        background-color: <?php echo $optionsHelper->getHeaderBackgroundColor(); ?>;
+    <?php endif; ?>
+}
+
+.page-footer{
+    <?php if ($optionsHelper->getFooterBackgroundColor()): ?>
+        background-color: <?php echo $optionsHelper->getFooterBackgroundColor(); ?>;
+    <?php endif; ?>
+    <?php if ($optionsHelper->isFooterBackgroundImage()) : ?>
+        background-image: <?php echo $optionsHelper->getFooterBackgroundImage() ? 'url(' . $this->getBaseUrl() . 'pub/media/theme_options/' . $optionsHelper->getFooterBackgroundImage() . ')' : 'none' ?>;
+        background-size: <?php echo $optionsHelper->getFooterBackgroundImageSize(); ?>;
+        background-attachment: <?php echo $optionsHelper->getFooterBackgroundImageAttachment(); ?>;
+        background-position: <?php echo $optionsHelper->getFooterBackgroundImagePosition(); ?>;
+        background-repeat: <?php echo $optionsHelper->getFooterBackgroundImageRepeat(); ?>;
+    <?php endif; ?>
+}
+
+
+/** Typography Settings  **/
+
+/*Primary font family*/
+body {
+    <?php if ($optionsHelper->getPrimaryFontFamily()): ?>
+        font-family: <?php echo $optionsHelper->getPrimaryFontFamily(); ?>;
+    <?php endif; ?>
+    <?php if ($optionsHelper->getPrimaryFontSize()): ?>
+        font-size: <?php echo $optionsHelper->getPrimaryFontSize(); ?>;
+    <?php endif; ?>
+    <?php if ($optionsHelper->getPrimaryLineHeight()): ?>
+        line-height: <?php echo $optionsHelper->getPrimaryLineHeight(); ?>;
+    <?php endif; ?>
+
+    <?php if ($optionsHelper->getPrimaryFontColor()): ?>
+        color: <?php echo $optionsHelper->getPrimaryFontColor(); ?>;
+    <?php endif; ?>
+}
+a {
+    <?php if ($optionsHelper->getPrimaryLinkColor()): ?>
+        color: <?php echo $optionsHelper->getPrimaryLinkColor(); ?>;
+    <?php endif; ?>
+}
+
+/*Secondary font family*/
+<?php if ($optionsHelper->getSecondaryFontFamily()): ?>
+    .welcome,
+    .switcher-options,
+    .header.links {
+        font-family: <?php echo $optionsHelper->getSecondaryFontFamily(); ?>;
+    }
+<?php endif; ?>
+/* Category page */
+<?php if ($columns = $optionsHelper->getProductItemWidth()): ?>
+@media screen and (min-width: 1024px) {
+    .grid-main .products-grid .product-item{
+        -webkit-flex-basis: <?php echo $columns; ?>;
+        -ms-flex-preferred-size: <?php echo $columns; ?>;
+        flex-basis: <?php echo $columns; ?>;
+        max-width: <?php echo $columns; ?>;
+    }
+}
+<?php endif; ?>
+/* END Category page */
+
+@media (min-width: 768px) {
+    ul.social-links {
+        float: left;
+        clear: both;
+        width: 100%;
+        padding: 0!important;
+        text-align: left;
+    }
+    ul.social-links li {
+        display: inline-block;
+    }
+}
+@media (max-width: 768px) {
+    ul.social-links {
+        display: none;
+    }
+}

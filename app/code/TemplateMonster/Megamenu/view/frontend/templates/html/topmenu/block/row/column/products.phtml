@@ -1,0 +1,16 @@
+<?php
+    $products = $this->getProducts();
+?>
+<?php foreach($products as $product): ?>
+<div class="product">
+    <div class="product-image">
+        <a href="<?php echo $this->getProductUrl($product); ?>">
+            <img src="<?php echo $this->getProductImage($product); ?>" alt="">
+        </a>
+    </div>
+    <strong class="product-name"><a href="<?php echo $this->getProductUrl($product); ?>"> <?php echo $product->getName(); ?> </a></strong>
+    <div class="price-box">
+        <?php echo $this->getProductPrice($product);?>
+    </div>
+</div>
+<?php endforeach; ?>

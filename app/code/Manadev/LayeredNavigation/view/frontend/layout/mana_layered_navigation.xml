@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!--
+ @category    Mana
+ @package     Manadev_LayeredNavigation
+ @copyright   Copyright (c) http://www.manadev.com
+ @license     http://www.manadev.com/license  Proprietary License
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="sidebar.main">
+            <block class="Manadev\LayeredNavigation\Blocks\Navigation" name="main.mana.layered_nav" before="-" template="Manadev_LayeredNavigation::navigation.phtml">
+                <arguments>
+                    <argument name="position" xsi:type="string">show_in_main_sidebar</argument>
+                    <argument name="css_prefix" xsi:type="string">main</argument>
+                </arguments>
+                <block class="Manadev\LayeredNavigation\Blocks\FilterRenderer" name="main.mana.layered_nav.filter_renderer" as="filter_renderer"/>
+                <block class="Manadev\LayeredNavigation\Blocks\AppliedItemRenderer" name="main.mana.layered_nav.applied_item_renderer" as="applied_item_renderer"/>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

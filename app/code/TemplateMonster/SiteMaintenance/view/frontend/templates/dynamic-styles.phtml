@@ -1,0 +1,22 @@
+<?php
+/**
+ * Copyright © 2016 TemplateMonster. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+$color = $this->helper->getBackgroundColor();
+$image = $this->helper->getBackgroundImage();
+
+?>
+<style>
+    body {
+        <?php echo $color ? "background-color:" . $color . ";" : "" ?>
+        <?php if ($this->helper->getBackgroundType() == 'image' && $image): ?>
+            background-image: url("<?php echo $image; ?>");
+            background-repeat: <?php echo $this->helper->getBackgroundRepeat(); ?>;
+            background-position: <?php echo $this->helper->getBackgroundPosition(); ?>;
+            background-size: <?php echo $this->helper->getBackgroundSize(); ?>;
+            background-attachment: <?php echo $this->helper->getBackgroundAttachment(); ?>;
+        <?php endif; ?>
+    }
+</style>

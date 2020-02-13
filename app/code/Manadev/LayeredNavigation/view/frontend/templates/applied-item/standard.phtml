@@ -1,0 +1,18 @@
+<?php
+/**
+ * @copyright   Copyright (c) http://www.manadev.com
+ * @license     http://www.manadev.com/license  Proprietary License
+ */
+/** @var $block \Manadev\LayeredNavigation\Blocks\AppliedItemRenderer */
+/** @var $item array */
+/** @var $engineFilter \Manadev\LayeredNavigation\EngineFilter */
+/** @var $filter \Manadev\LayeredNavigation\Models\Filter */
+?>
+<span class="filter-label"><?php echo $block->escapeHtml(__($engineFilter->getName())); ?></span>
+<span class="filter-value"><?php echo $block->escapeItemLabel($engineFilter, $item['label']) ?></span>
+<?php $currentFilterName = $block->escapeHtml(__($engineFilter->getName())) . " " .
+            $block->stripTags($block->escapeItemLabel($engineFilter, $item['label'])); ?>
+<a class="action remove" href="<?php echo $block->getRemoveUrl($engineFilter, $item) ?>"<?php echo $block->getRemoveLinkAttributes($engineFilter, $item) ?>
+   title="<?php echo $block->escapeHtml(__('Remove')) . " " . $currentFilterName;?>">
+    <span><?php echo __('Remove This Item') ?></span>
+</a>

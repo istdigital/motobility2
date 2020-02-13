@@ -1,0 +1,69 @@
+@-webkit-keyframes spin {
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg)
+    }
+}
+
+@keyframes spin {
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg)
+    }
+}
+
+.box-tocart .action.tocart.payment-request-button
+{
+    padding: 0;
+}
+.payment-request-button {
+    width: 240px;
+}
+
+.payment-request-button.disabled,
+.payment-request-button.disabled * {
+    pointer-events: none !important;
+}
+
+.payment-request-button.disabled {
+    opacity: 0.5;
+    filter: grayscale(50%);
+}
+
+.payment-request-button.disabled::after {
+    position: relative;
+    height: 1em;
+    width: 1em;
+    display: block;
+    left: 50%;
+    margin-left: -.5em;
+    margin-top: -1.2em;
+    content: '';
+    -webkit-animation: spin 1s ease-in-out infinite;
+    animation: spin 1s ease-in-out infinite;
+    background: url(../images/loader.svg) center center;
+    background-size: cover;
+    line-height: 1;
+    text-align: center;
+    font-size: 2em;
+    color: rgba(0, 0, 0, .75)
+}
+
+.stripeexpress-minicart {
+    margin-top: 15px;
+}
+
+.stripeexpress-minicart .payment-request-button, .payment-request-button.cart {
+    width: 100% !important;
+}
+
+.cart-summary .stripeexpress-minicart {
+    margin-top: 0;
+    margin-bottom: 25px;
+}
+
+.catalog-product-view .payment-request-button {
+    margin-bottom: 15px;
+    margin-right: 1%;
+    width: 49%;
+}

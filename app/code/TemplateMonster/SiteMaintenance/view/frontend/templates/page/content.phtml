@@ -1,0 +1,16 @@
+<?php
+/**
+ * Copyright © 2016 TemplateMonster. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+$image = $this->helper->getLogo();
+$title = $this->helper->getTitle();
+$desc  = $this->getPageDescription();
+
+?>
+<div id="sm-content-block">
+    <?php echo $image ? "<div class='sm-logo'><img src=" . $image . " alt=''></div>" : "" ?>
+    <?php echo $title ? "<div class='sm-title'>" . $title . "</div>" : "" ?>
+    <?php echo $desc ? "<div class='sm-description'>" . $desc . "</div>" : "" ?>
+</div>

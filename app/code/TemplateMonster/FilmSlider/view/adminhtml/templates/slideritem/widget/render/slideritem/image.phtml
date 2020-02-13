@@ -1,0 +1,13 @@
+
+<div class="admin__field">
+    <label for="invoice_comment_text" class="admin__field-label">
+        <span><?php /* @escapeNotVerified */ echo __($block->getElement()->getLabel()) ?></span>
+    </label>
+    <div class="admin__field-control">
+        <?php
+            echo $block->getElement()->getElementHtml();
+            echo $block->getChildHtml('slideritem.image.button');
+        ?>
+    </div>
+</div>
+

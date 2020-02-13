@@ -1,0 +1,61 @@
+<?php
+$category = $this->getCategory();
+$subCategories = $category->getChildren()->getIterator();
+//$showSubcategories = $this->getShowSubcategories($category);
+//$numberOfSubcategories = $this->getNumberOfSubcategories($category);
+$cssClass = $this->getCssClass($category);
+?>
+<ul class="mm-submenu level1">
+    <li class="item<?php echo $cssClass; ?> ui-menu-item">
+        <?php if ($image = $this->getImage($category)) : ?>
+            <span class="mm-image"><img src="<?php echo $image; ?>" alt=""></span>
+        <?php endif; ?>
+        <a href="<?php echo $category->getUrl(); ?>">
+            <?php if ($label = $category->getMmLabel()): ?>
+                <span class="mm-label"><?php echo $label; ?></span>
+            <?php endif; ?>
+            <?php echo $category->getName() ?>
+        </a>
+        <ul class="mm-submenu level2">
+            <?php foreach ($subCategories as $subCategory): ?>
+                <?php $subCategoryCssClass = $this->getCssClass($subCategory); ?>
+                <?php $subSubCategories = $subCategory->getChildren()->getIterator(); ?>
+                <li class="item<?php echo (count($subSubCategories)) ? ' parent' : ''; ?><?php echo $subCategoryCssClass; ?> ui-menu-item">
+                    <?php if ($label = $subCategory->getMmLabel()): ?>
+                        <span class="mm-label"><?php echo $label; ?></span>
+                    <?php endif; ?>
+                    <?php if ($image = $this->getImage($subCategory)) : ?>
+                        <span class="mm-image"><img src="<?php echo $image; ?>" alt=""></span>
+                    <?php endif; ?>
+                    <a href="<?php echo $subCategory->getUrl(); ?>"><?php echo $subCategory->getName(); ?></a>
+                    <?php $showSubcategories = $this->getShowSubcategories($subCategory); ?>
+                    <?php $numberOfSubcategories = $this->getNumberOfSubcategories($subCategory); ?>
+                    <?php if ($subSubCategories && $showSubcategories): ?>
+                        <ul class="mm-submenu level3 <?php echo $subCategory->getMmViewMode()?'vm-'.$subCategory->getMmViewMode() : 'vm-static'; ?>"
+                            data-mage-init='{"subMenuViewMode": {}}'>
+                            <?php for ($i = 0; $i < min(count($subSubCategories), $numberOfSubcategories); $i++): ?>
+                                <?php $curCategory = $subSubCategories->current(); ?>
+                                <?php $subCategoryCssClass = $this->getCssClass($curCategory); ?>
+                                <li class="item<?php echo $subCategoryCssClass; ?> ui-menu-item">
+                                    <?php if ($label = $curCategory->getMmLabel()): ?>
+                                        <span class="mm-label"><?php echo $label; ?></span>
+                                    <?php endif; ?>
+                                    <?php if ($image = $this->getImage($curCategory)) : ?>
+                                        <span class="mm-image"><img src="<?php echo $image; ?>" alt=""></span>
+                                    <?php endif; ?>
+                                    <a href="<?php echo $curCategory->getUrl(); ?>"><?php echo $curCategory->getName(); ?></a>
+                                </li>
+                                <?php $subSubCategories->next(); ?>
+                            <?php endfor; ?>
+                            <?php if (count($subSubCategories) > $numberOfSubcategories): ?>
+                                <li class="show-all">
+                                    <a href="<?php echo $subCategory->getUrl(); ?>"><?php echo __('Show all'); ?></a>
+                                </li>
+                            <?php endif; ?>
+                        </ul>
+                    <?php endif; ?>
+                </li>
+            <?php endforeach; ?>
+        </ul>
+    </li>
+</ul>

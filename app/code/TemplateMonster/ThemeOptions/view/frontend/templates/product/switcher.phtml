@@ -1,0 +1,43 @@
+<?php
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/**
+ * @var $block \Magento\Catalog\Block\Product\ListProduct $block
+ */
+
+$replaceImageUrl = $block->getReplaceImageUrl();
+$videoUrl = $block->getVideoUrl();
+?>
+
+<div class="tm-switch-image-container<?php echo $videoUrl ? ' is-video' : '' ?>" data-mage-init='{"switchImage":""}'>
+    <img class="photo image<?php echo ($replaceImageUrl || $videoUrl) ? ' base' : '' ?>"
+         src="<?php /* @escapeNotVerified */ echo $block->getImageUrl(); ?>"
+         width="<?php /* @escapeNotVerified */ echo $block->getWidth(); ?>"
+         height="<?php /* @escapeNotVerified */ echo $block->getHeight(); ?>"
+         alt="<?php /* @escapeNotVerified */ echo $block->stripTags($block->getLabel(), null, true); ?>" />
+
+    <?php if ($replaceImageUrl): ?>
+        <div class="replaced">
+            <img class="photo2 image2"
+                 src="<?php /* @escapeNotVerified */ echo $replaceImageUrl; ?>"
+                 width="<?php /* @escapeNotVerified */ echo $block->getWidth(); ?>"
+                 height="<?php /* @escapeNotVerified */ echo $block->getHeight(); ?>"
+                 alt="<?php /* @escapeNotVerified */ echo $block->stripTags($block->getLabel(), null, true); ?>" />
+        </div>
+
+    <?php endif; ?>
+    <?php if($videoUrl): ?>
+        <div class="replaced switch-video">
+            <iframe width="<?php echo $block->getWidth() ?>"
+                    height="<?php echo $block->getHeight() ?>"
+                    src="<?php echo $videoUrl ?>?rel=0&amp;controls=0&amp;showinfo=0"
+                    frameborder="0" allowfullscreen></iframe>
+        </div>
+    <?php endif; ?>
+</div>
+

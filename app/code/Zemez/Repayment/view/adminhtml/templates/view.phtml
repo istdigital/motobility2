@@ -1,0 +1,95 @@
+<?php
+
+$enquiry = $block->getEnquiry();
+
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance(); // Instance of Object Manager
+$priceHelper = $objectManager->create('Magento\Framework\Pricing\Helper\Data');
+
+
+?>
+
+<div class="admin__old+">
+	<div class="entry-edit form-inline">
+		<div class="admin__scope-old+">
+			<div class="fieldset-wrapper customer-information">
+			    <div class="fieldset-wrapper-title">
+			        <span class="title">Contact Details</span>
+			    </div>
+			    <table class="admin__table-secondary">
+			        <tbody>
+			            <tr>
+			            	<th>Name:</th>
+			            	<td>
+			            		<?= $enquiry->getName() ?>
+			            	</td>
+			        	</tr>
+			        	<tr>
+			            	<th>Email:</th>
+			            	<td><?= $enquiry->getEmail() ?></td>
+			        	</tr>
+			        	<tr>
+			            	<th>Suburb:</th>
+			            	<td><?= $enquiry->getSuburb() ?></td>
+			        	</tr>
+			        	<tr>
+			            	<th>Phone:</th>
+			            	<td><?= $enquiry->getPhone() ?></td>
+			        	</tr>
+			        	<tr>
+			            	<th>Message:</th>
+			            	<td><?= $enquiry->getMessage() ?></td>
+			        	</tr>
+			        	<tr>
+			            	<th>Prior Visited Product URL:</th>
+			            	<td>
+			            		<a target="_blank" href="<?= $block->getProductUrl($enquiry->getProductId()) ?>">
+			            		<?= $enquiry->getProductName() ?>
+			            		</a>
+			            	</td>
+			        	</tr>
+			        	
+			        </tbody>
+			    </table>
+			    <div class="fieldset-wrapper-title">
+			        <span class="title">Calculation Details</span>
+			    </div>
+			    <table class="admin__table-secondary">
+			        <tbody>
+			            <tr>
+			            	<th>Price:</th>
+			            	<td>
+			            		<?= $priceHelper->currency($enquiry->getPrice(), true, false) ?>
+			            	</td>
+			        	</tr>
+			        	<tr>
+			            	<th>Application Fee:</th>
+			            	<td><?= $priceHelper->currency($enquiry->getApplicationFee(), true, false) ?></td>
+			        	</tr>
+			        	<tr>
+			            	<th>Deposit:</th>
+			            	<td><?= $priceHelper->currency($enquiry->getDeposit(), true, false) ?></td>
+			        	</tr>
+			        	<tr>
+			            	<th>Term:</th>
+			            	<td><?= $enquiry->getTerm() ?></td>
+			        	</tr>
+			        	<tr>
+			            	<th>Sub Total:</th>
+			            	<td><?= $priceHelper->currency($enquiry->getSubTotal(), true, false) ?></td>
+			        	</tr>
+			        	<tr>
+			            	<th>Payment Charge:</th>
+			            	<td><?= $priceHelper->currency($enquiry->getPaymentCharge(), true, false) ?></td>
+			        	</tr>
+			        	<tr>
+			            	<th>Total:</th>
+			            	<td><?= $priceHelper->currency($enquiry->getTotal(), true, false) ?></td>
+			        	</tr>
+			        	
+			        	
+			        </tbody>
+			    </table>
+			</div>
+		</div>
+    </div>
+</div>

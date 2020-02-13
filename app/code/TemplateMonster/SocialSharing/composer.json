@@ -1,0 +1,14 @@
+{
+    "name" : "templatemonster/magento2-social-sharing",
+    "description": "Social Sharing",
+    "type": "magento2-module",
+    "version": "1.0.1",
+    "autoload": {
+        "psr-4": {
+            "TemplateMonster\\SocialSharing\\": ""
+        },
+        "files": [
+            "registration.php"
+        ]
+    }
+}

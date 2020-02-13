@@ -1,0 +1,30 @@
+@font-face {
+    font-family: 'YereOne'; /*a name to be used later*/
+    src: url(../fonts/yereone.woff); /*URL to font*/
+}
+
+.admin__menu #menu-yereone-core-core.level-0 > a:before {
+    font-family: YereOne;
+    content: '\0041';
+    display: block;
+    font-size: 3.2rem;
+    height: 2.2rem;
+    margin-bottom: .3rem;
+    width: 60px;
+}
+
+.core-admin-field .admin__field-control {
+    margin-right: 10px;
+}
+
+.core-admin-field .field-service {
+    padding: 10px 10px 0 0;
+}
+
+.mana-disabled {
+    color: graytext;
+}
+
+#menu-yereone-core-core .submenu-group-title {
+    display: block;
+}

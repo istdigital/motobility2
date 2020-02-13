@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!--
+/**
+ *
+ * Copyright © 2015 TemplateMonster. All rights reserved.
+ * See COPYING.txt for license details.
+ *
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <update id="TemplateMonster_Base::modules"
+             title="Template Monster"
+             module="TemplateMonster_FilmSlider"
+             sortOrder="30"
+             resource="TemplateMonster_Base::modules"/>
+
+        <add id="TemplateMonster_FilmSlider::filmslider_index" title="Film Slider"
+             module="TemplateMonster_FilmSlider"
+             sortOrder="20"
+             parent="TemplateMonster_Base::modules"
+             dependsOnModule="TemplateMonster_FilmSlider"
+             resource="TemplateMonster_FilmSlider::filmsliders"/>
+
+        <add id="TemplateMonster_FilmSlider::filmslider_grid" title="Sliders"
+             module="TemplateMonster_FilmSlider"
+             sortOrder="10"
+             parent="TemplateMonster_FilmSlider::filmslider_index"
+             action="filmslider/slider/index"
+             resource="TemplateMonster_FilmSlider::filmsliders"/>
+    </menu>
+</config>

@@ -1,0 +1,65 @@
+<?php
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/**
+ * Product media data template
+ *
+ * @var $block \Magento\Catalog\Block\Product\View\Gallery
+ */
+?>
+
+<div class="gallery-placeholder listing-gallery sku-<?php echo $block->getProduct()->getUrlKey(); ?> _block-content-loading"
+     data-gallery-role="gallery-placeholder"></div>
+
+<script type="text/x-magento-init">
+    {
+        "[data-gallery-role=gallery-placeholder].sku-<?php echo $block->getProduct()->getUrlKey(); ?>": {
+            "mage/gallery/gallery": {
+                "mixins":["magnifier/magnify"],
+                "magnifierOpts": <?php /* @escapeNotVerified */ echo $block->getMagnifier(); ?>,
+                "data": <?php /* @escapeNotVerified */ echo $block->getGalleryImagesJson(); ?>,
+                "options": {
+                    "nav": false,
+                    "loop": false,
+                    "keyboard": true,
+                    "arrows": true,
+                    "allowfullscreen" : false,
+                    "navtype": "slides",
+                    "navdir": "horizontal",
+                    "navposition": "bottom",
+                    "thumbborderwidth": 1,
+                    "thumbmargin": 10,
+                    "captions": false,
+                    "width": "<?php /* @escapeNotVerified */ echo $block->getImageAttribute('category_page_grid', 'width'); ?>",
+                    "maxheight": "<?php /* @escapeNotVerified */ echo $block->getImageAttribute('category_page_grid', 'height'); ?>",
+
+                    <?php if ($block->getImageAttribute('product_page_image_medium', 'height') || $block->getImageAttribute('product_page_image_medium', 'width')): ?>
+                        "height": <?php echo $block->getImageAttribute('product_page_image_medium', 'height')
+        ?: $block->getImageAttribute('product_page_image_medium', 'width'); ?>,
+                    <?php endif; ?>
+                    "transition": "slide",
+                    "navarrows": true
+                },
+                "fullscreen": {
+                    "nav": "thumbs",
+                    "loop": "false",
+                    "navdir": "horizontal",
+                    "navarrows": "true",
+                    "arrows": "false"
+                },
+                "breakpoints": false
+            },
+            "productListingGallery" : {},
+            "Magento_ProductVideo/js/fotorama-add-video-events": {
+                "videoData": <?php /* @escapeNotVerified */ echo $block->getVideoData(); ?>,
+                "videoSettings": <?php /* @escapeNotVerified */ echo $block->getVideoSettings(); ?>,
+                "optionsVideoData": []
+            }
+        }
+    }
+</script>

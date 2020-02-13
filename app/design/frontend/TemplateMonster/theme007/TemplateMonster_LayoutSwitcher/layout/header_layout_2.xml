@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <!-- top header -->
+        <referenceContainer name="rd.navbar" htmlClass="layout_2">
+            <block class="Magento\Cms\Block\Block" name="header_info" before="-">
+                <arguments>
+                    <argument name="block_id" xsi:type="string">header_info</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+
+        <move element="header" destination="panel.container.wrap" before="-"/> <!-- Welcome message -->
+        <move element="header.switchers" destination="panel.container.wrap" after="header"/>
+        <move element="rd.navbar.collapse" destination="panel.container.wrap" after="-"/> <!-- Top links -->
+        <move element="minicart" destination="panel.container.wrap" after="header.switchers"/>
+        <referenceContainer name="header.panel.grid-container">
+            <container name="panel.container.wrap" htmlClass="panel-container-wrap" htmlTag="div"/>
+        </referenceContainer>
+        <!-- end -->
+
+
+        <!-- center header -->
+        <move element="header.panel" destination="rd.navbar" after="header_info"/>
+        <referenceContainer name="header-wrapper.grid-container">
+            <container name="logo.wrapper" htmlClass="logo-wrapper" htmlTag="div" before="-" />
+            <container name="header.bottom.wrap" htmlClass="header-bottom-wrap" htmlTag="div" after="logo.wrapper" />
+        </referenceContainer>
+        <move element="logo"  destination="logo.wrapper"/>
+        <move element="catalog.topnav" destination="header.bottom.wrap"/>
+        <move element="top.search"         destination="header.bottom.wrap" after="-" />
+
+        <!--<referenceBlock name="catalog.topnav">-->
+            <!--<block class="Magento\Theme\Block\Html\Header" name="header2" as="header2" before="-">-->
+                <!--<arguments>-->
+                    <!--<argument name="show_part" xsi:type="string">welcome</argument>-->
+                <!--</arguments>-->
+            <!--</block>-->
+        <!--</referenceBlock>-->
+        <!-- end -->
+    </body>
+</page>

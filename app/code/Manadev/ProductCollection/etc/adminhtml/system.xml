@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<!--
+ @category    Mana
+ @package     Manadev_ProductCollection
+ @copyright   Copyright (c) http://www.manadev.com
+ @license     http://www.manadev.com/license  Proprietary License
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="mana_core">
+            <group id="log" translate="label" type="text" sortOrder="10200" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Detailed Logs for Troubleshooting</label>
+                <field id="product_collection_queries" translate="label" type="select" sortOrder="200" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Product Collection Queries</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="facet_counting_queries" translate="label" type="select" sortOrder="250" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Facet Counting Queries</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+            <group id="experimental" translate="label" type="text" sortOrder="10300" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Experimental Features</label>
+                <!--<field id="batch_filter_counting" translate="label" type="select" sortOrder="200" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Count Layered Navigation Filters in Batches</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>-->
+                <field id="check_stock_status" translate="label" type="select" sortOrder="300" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>In configurable products, check stock status of underlying simple products</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <!--<field id="use_product_temp_table" translate="label" type="select" sortOrder="400" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Put IDs of currently shown products into temporary table</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="use_count_temp_table" translate="label" type="select" sortOrder="500" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Put layered navigation counts into temporary table</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>-->
+                <field id="price_filter_tax_calculation" translate="label" type="select" sortOrder="600" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Price Filter Tax Calculation</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

@@ -1,0 +1,24 @@
+<?php
+/**
+ * Copyright © 2016 TemplateMonster. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+$timerText = $this->helper->getTimerText();
+
+?>
+<?php if ($this->isActive()) : ?>
+<div id="sm-timer-block">
+    <?php echo $timerText ? "<div class='sm-timer-text'>" . $timerText . "</div>" : "" ?>
+    <div class="sm-timer-wrapper">
+        <div id="sm-timer"></div>
+    </div>
+    <script type="text/x-magento-init">
+    { "#sm-timer": {"smcountdowntimer":{
+    "format": "<?php echo $this->getFormat(); ?>",
+    "end_date": "<?php echo $this->getEndDate(); ?>"
+    } } }
+    </script>
+</div>
+<?php endif; ?>
+

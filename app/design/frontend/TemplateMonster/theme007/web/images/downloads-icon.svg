@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="71px" height="88px" viewBox="0 0 71 88" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 54.1 (76490) - https://sketchapp.com -->
+    <title>8F3A8766-2E7B-4825-BEB3-1D09137807A7@1x</title>
+    <desc>Created with sketchtool.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Resources-" transform="translate(-285.000000, -651.000000)">
+            <g id="Group-27" transform="translate(140.000000, 600.000000)">
+                <g id="ico/downloads" transform="translate(146.000000, 53.000000)">
+                    <g id="Group-2">
+                        <path d="M5.5,0 L63.5,0 C66.2614237,-5.07265313e-16 68.5,2.23857625 68.5,5 L68.5,24 L0.5,24 L0.5,5 C0.5,2.23857625 2.73857625,5.07265313e-16 5.5,0 Z" id="Rectangle" fill="#D39BE4"></path>
+                        <rect id="Rectangle" stroke="#782A90" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill-rule="nonzero" x="0.5" y="0" width="68" height="84" rx="5"></rect>
+                        <g id="Scoote4r" transform="translate(11.000000, 38.000000)" fill-rule="nonzero" stroke="#782A90" stroke-width="2.75">
+                            <path d="M13.7337356,14.8199068 L13.7337356,19.9416877" id="Path-11" stroke-linecap="round"></path>
+                            <rect id="Rectangle" x="1.39558361" y="29.0346579" width="4.29052632" height="9.32173779" rx="2.14526316"></rect>
+                            <rect id="Rectangle" x="21.5113731" y="29.0346579" width="4.29052632" height="9.32173779" rx="2.14526316"></rect>
+                            <path d="M26.6990682,2.75470138 L22.147952,2.75470138" id="Path-10" stroke-linecap="round" transform="translate(24.423510, 2.754701) scale(-1, 1) translate(-24.423510, -2.754701) "></path>
+                            <path d="M5.55382598,2.75470138 L1.02637308,2.75470138" id="Path-10" stroke-linecap="round" transform="translate(3.290100, 2.754701) scale(-1, 1) translate(-3.290100, -2.754701) "></path>
+                            <path d="M17.5225038,28.967471 L17.5225038,32.3116481 C17.5225038,33.0524677 16.2595528,33.6530206 14.7016238,33.6530206 L12.8210372,33.6530206 C11.2631082,33.6530206 10.0001572,33.0524677 10.0001572,32.3116481 L10.0001572,28.9661943 C10.0001572,26.9560402 8.37060537,25.3264884 6.36045132,25.3264884 C6.33893387,25.3264884 6.31741684,25.3266792 6.29590277,25.3270608 L0.020583606,25.4383683 L0.020583606,25.4383683 C0.020583606,23.7865519 1.08890887,22.3244015 2.66259842,21.8224068 L6.94550001,20.4561946 C7.1585112,20.3882457 7.37906363,20.3467243 7.60220101,20.3325633 L13.7613305,19.9416877 L19.7892599,20.3295542 C20.0401464,20.3456975 20.2876003,20.3964215 20.5246047,20.4802881 L24.0216699,21.7177625 C25.6869968,22.3070565 26.9307196,23.7134661 27.3118935,25.4383683 L27.3118935,25.4383683 L21.2280118,25.3283599 C19.2181863,25.2920184 17.5594402,26.8918433 17.5230986,28.9016688 C17.5227021,28.9236006 17.5225038,28.9455356 17.5225038,28.967471 Z" id="Combined-Shape" fill="#D39BE4" stroke-linecap="round" stroke-linejoin="round"></path>
+                            <path d="M6.19031455,0.689525389 L21.2771567,0.689525389 L21.2771567,3.31566988 L17.6951347,5.02708351 L16.3275997,11.6738253 L14.6158714,14.4691911 C14.3534378,14.8977626 13.7932675,15.032444 13.3646959,14.7700104 C13.2541958,14.7023462 13.1594208,14.6118628 13.0867124,14.5046144 L11.1675961,11.6738253 L9.47413302,4.8758689 L6.19031455,3.31566988 L6.19031455,0.689525389 Z" id="Rectangle" fill="#D39BE4" stroke-linecap="round" stroke-linejoin="round"></path>
+                        </g>
+                        <polygon id="Fill-5" fill="#782A90" points="16.4471545 10.6969697 48.8373984 10.6969697 48.8373984 8 16.4471545 8"></polygon>
+                        <polygon id="Fill-7" fill="#782A90" points="7 16.4621212 38.8373984 16.4621212 38.8373984 13.7651515 7 13.7651515"></polygon>
+                        <polygon id="Fill-9" fill="#782A90" points="7 10.6969697 13.0731707 10.6969697 13.0731707 8 7 8"></polygon>
+                    </g>
+                    <polygon id="Path" fill="#782A90" fill-rule="nonzero" points="52.8 74 55.2 74 55.2 76.4 52.8 76.4"></polygon>
+                    <polygon id="Path" fill="#782A90" fill-rule="nonzero" points="57.6 74 60 74 60 76.4 57.6 76.4"></polygon>
+                    <polygon id="Path" fill="#782A90" fill-rule="nonzero" points="48 74 50.4 74 50.4 76.4 48 76.4"></polygon>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

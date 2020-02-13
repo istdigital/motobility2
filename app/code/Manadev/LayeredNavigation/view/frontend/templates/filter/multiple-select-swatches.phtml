@@ -1,0 +1,88 @@
+<?php
+/**
+ * @copyright   Copyright (c) http://www.manadev.com
+ * @license     http://www.manadev.com/license  Proprietary License
+ */
+/** @var $block \Manadev\LayeredNavigation\Blocks\FilterRenderer */
+/** @var $data array */
+/** @var $engineFilter \Manadev\LayeredNavigation\EngineFilter */
+/** @var $filter \Manadev\LayeredNavigation\Models\Filter */
+?>
+<div class="swatch-attribute swatch-layered <?php echo $filter->getData('attribute_code') ?>"
+     attribute-code="<?php echo $filter->getData('attribute_code') ?>"
+     attribute-id="<?php echo $filter->getData('attribute_id') ?>"
+     data-mage-init='{ "Manadev_LayeredNavigation/js/SwatchFilterView": {} }'>
+    <div class="swatch-attribute-options clearfix">
+        <?php foreach ($data as $item): ?>
+            <?php if ($item['is_selected']) : ?>
+                <a href="<?php echo $block->getRemoveItemUrl($engineFilter, $item) ?>"<?php echo $block->getRemoveItemLinkAttributes($engineFilter, $item) ?> class="swatch-option-link-layered mana-selected">
+            <?php elseif ($item['count'] > 0) : ?>
+                <a href="<?php echo $block->getAddItemUrl($engineFilter, $item) ?>"<?php echo $block->getAddItemLinkAttributes($engineFilter, $item) ?> class="swatch-option-link-layered">
+            <?php else : ?>
+                <span class="swatch-option-link-layered">
+            <?php endif; ?>
+                <?php if (isset($item['swatch_type'])) : ?>
+                    <?php $cssClass = ($item['is_selected'] ? 'selected' : '') . ' ' . ($item['count'] == 0 ? 'disabled' : ''); ?>
+                    <?php switch ($item['swatch_type']) {
+                        case '3': ?>
+                            <div class="swatch-option <?php echo $cssClass ?>"
+                                 option-type="3"
+                                 option-id="<?php echo $item['value'] ?>"
+                                 option-label="<?php echo $item['label'] ?>"
+                                 option-tooltip-thumb=""
+                                 option-tooltip-value=""
+                                ></div>
+                            <?php    break;
+                        case '2':
+                            ?>
+                            <?php $swatchThumbPath = $block->getSwatchPath('swatch_thumb', $item['swatch']); ?>
+                            <?php $swatchImagePath = $block->getSwatchPath('swatch_image', $item['swatch']); ?>
+                            <div class="swatch-option image <?php echo $cssClass ?>"
+                                 option-type="2"
+                                 option-id="<?php echo $item['value'] ?>"
+                                 option-label="<?php echo $item['label'] ?>"
+                                 option-tooltip-thumb="<?php echo $swatchThumbPath ?>"
+                                 option-tooltip-value=""
+                                 style="background: url(<?php echo $swatchImagePath ?>) no-repeat center; background-size: initial;"></div>
+                            <?php    break;
+                        case '1':
+                            ?>
+                            <div class="swatch-option color <?php echo $cssClass ?>"
+                                 option-type="1"
+                                 option-id="<?php echo $item['value'] ?>"
+                                 option-label="<?php echo $item['label'] ?>"
+                                 option-tooltip-thumb=""
+                                 option-tooltip-value="<?php echo $item['swatch'] ?>"
+                                 style="background: <?php echo $item['swatch'] ?> no-repeat center; background-size: initial;"></div>
+                            <?php    break;
+                        case '0':
+                        default:
+                            ?>
+                                <div class="swatch-option text <?php echo $cssClass ?>"
+                                     option-type="0"
+                                     option-id="<?php echo $item['value'] ?>"
+                                     option-label="<?php echo $item['label'] ?>"
+                                     option-tooltip-thumb=""
+                                     option-tooltip-value=""
+                                    ><?php echo $item['swatch'] ?></div>
+                            <?php    break;
+                    } ?>
+                <?php endif; ?>
+            <?php if ($item['is_selected']) : ?>
+                </a>
+            <?php elseif ($item['count'] > 0) : ?>
+                </a>
+            <?php else : ?>
+                </span>
+            <?php endif; ?>
+        <?php endforeach; ?>
+    </div>
+</div>
+
+<script>
+    require(["jquery", "Magento_Swatches/js/swatch-renderer"], function ($) {
+        $('.swatch-layered.<?php echo $filter->getData('attribute_code') ?>')
+            .find('[option-type="1"], [option-type="2"], [option-type="0"], [option-type="3"]')
+            .SwatchRendererTooltip();
+    });
+</script>

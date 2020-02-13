@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="stockalert_subscriber_listing_data_source" xsi:type="string">Zemez\StockAlert\Model\ResourceModel\Subscriber\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Zemez\StockAlert\Model\ResourceModel\Subscriber\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">stockalert_subscriber</argument>
+            <argument name="eventPrefix" xsi:type="string">stock_alert_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">stockalert_grid_collection</argument>
+            <argument name="resourceModel" xsi:type="string">Zemez\StockAlert\Model\ResourceModel\Subscriber</argument>
+        </arguments>
+    </type>
+</config>
+

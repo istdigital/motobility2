@@ -1,0 +1,240 @@
+//
+//  Filters
+//  __________________________________________________
+
+//Current filters
+.filter-current--wrapper {
+  margin-bottom: 35px;
+  background: $bg-dark;
+  padding: 20px 10px 20px 25px;
+  @media (min-width: $screen-xl-min) {
+    padding: 22px 10px 25px 30px;
+  }
+  .item {
+    margin-bottom: 3px;
+  }
+
+  //Filter actions
+  .filter-actions {
+    .action {
+      text-decoration: underline;
+    }
+  }
+}
+
+.filter-content {
+  .filter-subtitle {
+    display: none;
+  }
+}
+
+.filter-current {
+  &.active {
+    .filter-current-subtitle {
+      margin-bottom: 0;
+    }
+    .items {
+      display: none;
+    }
+  }
+
+  .filter-current-subtitle {
+    @extend .heading-4;
+  }
+
+  .items {
+    display: block;
+  }
+
+  .filter-label {
+    &:after {
+      content: ':';
+      padding: 0 2px 0 4px;
+    }
+  }
+
+  .remove {
+    @include font-icon("\e5cd");
+    &:before {
+      vertical-align: sub;
+    }
+
+    span {
+      display: none;
+    }
+  }
+
+  &[role="tablist"] {
+    //Tablist title
+    [role="tab"] {
+      @include font-icon('\e5ce');
+      &[aria-expanded="true"] {
+        @include font-icon('\e5cf');
+      }
+    }
+  }
+
+}
+
+//Filter options
+
+.filter-options-title {
+  @include font-icon('\e5cf');
+  position: relative;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: $default-font-size;
+  margin-bottom: 14px !important;
+  letter-spacing: 0.02em;
+
+  &::before {
+    position: absolute;
+    font-size: $font-ultra-small !important;
+    top:-2px !important;
+  }
+  @media (min-width: $screen-sm-min) and(max-width: $screen-md-min - 1) {
+    font-size: 14px;
+    width: 100%;
+    word-wrap:break-word;
+  }
+}
+
+// Price Slider
+.sidebar .price-slider{
+  .slider-fields{
+    .slider-input{
+      margin-top: 8px;
+    }
+    label span {
+      font-weight: bold;
+      text-transform: capitalize;
+    }
+  }
+
+  .ui-slider-handle{
+    width: 20px;
+    height: 20px;
+    border-radius: 20px;
+    margin-left: -10px;
+    margin-top: -5px;
+    transition: all 0.0s ease;
+    &:after{
+      content: '';
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 16px;
+      height: 16px;
+      border-radius: 16px;
+      background: $white;
+    }
+  }
+  .ui-slider-range{
+    position: absolute;
+    height: 100%;
+  }
+}
+.filter-options-content {
+  .item {
+    margin-bottom: 13px;
+    line-height: 20px;
+    @include clearfix;
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+
+    a {
+      text-transform: capitalize;
+      @include clearfix;
+
+      //@media (min-width: $screen-sm-min) and(max-width: $screen-md-min - 1) {
+      //  @include make-flex;
+      //  @include justify-content(space-between);
+      //}
+    }
+  }
+
+
+  .count {
+    float: right;
+    opacity: 0.5;
+  }
+  .item-label {
+    float: left;
+    max-width: 150px;
+  }
+
+
+  .ui-slider-horizontal {
+    margin-bottom: 10px;
+  }
+  .slider-input {
+    margin-bottom: 10px;
+    span {
+      display: block;
+      margin-bottom: 5px;
+      text-transform: capitalize;
+    }
+    input {
+      padding: 8px 15px;
+    }
+  }
+  .slider-button {
+    padding-bottom: 8px;
+  }
+  .price-slider .slider-fields a.action {
+    @include button-block;
+    margin-top: 8px;
+  }
+}
+
+[role="tablist"] .filter-options-content[role="tabpanel"] {
+  margin-bottom: 23px;
+}
+
+.filter-options-item {
+  margin-bottom: 12px;
+  @include clearfix;
+  &:last-child {
+    margin-bottom: 0;
+    .filter-options-content {
+      margin-bottom: 0;
+    }
+  }
+}
+
+@media (max-width: $screen-sm-min - 1) {
+  #layered-filter-block {
+    margin: 0;
+  }
+  .action.filter-toggle {
+    @include button-block;
+    position: absolute;
+    right: 0;
+  }
+
+  .modal-slide {
+    transition-duration: .3s;
+    transition-timing-function: ease-in-out;
+    transform: translateX(100%);
+    transition-property:         transform, visibility;
+    &._show {
+      transform: translate(0, 0);
+      .action-close {
+        display: block;
+      }
+    }
+  }
+
+}
+
+@media (max-width: $screen-xs-min - 1) {
+  .action.filter-toggle {
+    position: relative;
+    width: 202px;
+    margin-bottom: 15px;
+
+  }
+}

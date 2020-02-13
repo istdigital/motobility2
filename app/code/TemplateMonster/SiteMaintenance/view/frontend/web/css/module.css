@@ -1,0 +1,44 @@
+@charset "UTF-8";
+/**
+ * Copyright ┬⌐ 2016 TemplateMonster. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+.sm-wrapper {
+  height: 100%; }
+  .sm-wrapper .sm-main {
+    max-width: 800px;
+    padding: 30px 10px 50px;
+    margin: 0 auto;
+    text-align: center; }
+    .sm-wrapper .sm-main #sm-content-block {
+      padding-top: 50px;
+      margin-bottom: 50px; }
+      .sm-wrapper .sm-main #sm-content-block .sm-logo {
+        margin-bottom: 20px; }
+      .sm-wrapper .sm-main #sm-content-block .sm-title {
+        font-size: 31px;
+        margin-bottom: 10px; }
+    .sm-wrapper .sm-main #sm-timer-block {
+      margin-bottom: 50px; }
+      .sm-wrapper .sm-main #sm-timer-block .sm-timer-wrapper {
+        font-size: 40px;
+        font-weight: 700; }
+    .sm-wrapper .sm-main #sm-subscription-block .sm-title {
+      font-size: 22px;
+      margin-bottom: 10px; }
+    .sm-wrapper .sm-main #sm-subscription-block .sm-text {
+      margin-bottom: 10px; }
+    .sm-wrapper .sm-main #sm-subscription-block .sm-content .sm-subscription {
+      position: relative; }
+      .sm-wrapper .sm-main #sm-subscription-block .sm-content .sm-subscription #newsletter-error {
+        position: absolute;
+        bottom: -25px;
+        margin: 0;
+        width: 100%; }
+    .sm-wrapper .sm-main #sm-subscription-block .sm-content #newsletter {
+      width: 200px;
+      display: inline-block; }
+    .sm-wrapper .sm-main #sm-subscription-block .sm-content .sm-button {
+      display: inline-block; }
+
+/*# sourceMappingURL=module.css.map */

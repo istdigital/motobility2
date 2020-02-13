@@ -1,0 +1,14 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<?php $_order = $block->getOrder();
+$grand_total = $_order->getGrandTotal();
+
+ ?>
+ <span class="custom-gt"><?php $t = $this->helper('Magento\Framework\Pricing\Helper\Data')->currency((int)$grand_total,true,false); echo str_replace(".00", null, $t) ?></span>

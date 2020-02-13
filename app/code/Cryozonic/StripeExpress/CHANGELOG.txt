@@ -1,0 +1,43 @@
+### Version 1.3.1, Released 2019-07-16
+
+- Compatibility adjustments Stripe Payments v2.6.0
+- Apple Pay is now hidden from subscription product pages, can only be used at the checkout
+- Fix for USPS and FedEx shipping methods
+- Fixed button size on product page with mobile screen sizes
+- Fixed Apple Pay not appearing in the shopping cart page
+
+### Version 1.3.0, Released 2019-05-31
+
+- Major update which re-architects the checkout flow to use Manual Payment Intent confirmation on the server side.
+- Fixed: When disabling Apple Pay from the admin configuration on the product page, it wouldn't disable it.
+
+### Version 1.2.0, Released 2019-05-01
+
+- New software license effective 1st May 2019
+
+### Version 1.1.3 - Released 2019-04-16
+
+- Fixed critical issue at the product page introduced in v1.1.2
+
+### Version 1.1.2 - Released 2019-04-03
+
+- Card declined messages would not be displayed correctly
+- Grouped product validator fix
+
+### Version 1.1.1 - Released 2019-03-15
+
+- Fixed stuck paysheet loader
+
+### Version 1.1.0 - Released 2019-03-08
+
+- Adjustments to work with the new Payment Intents API of Stripe Payments v2.3.0
+- Improvements at UX with loading spinner timing and card declined messages
+
+### Version 1.0.0 - Released 2018-11-07
+
+Initial release:
+- Supports Apple Pay, Android Pay, Google Pay and Microsoft Pay
+- Can be enabled or disabled at the product pages and/or the shopping cart page.
+- Supports and appears in the minicart by default
+- Supports customization of the button colors and text from the admin configuration page
+- Supports simple, virtual, grouped, downloadable, bundled and configurable products

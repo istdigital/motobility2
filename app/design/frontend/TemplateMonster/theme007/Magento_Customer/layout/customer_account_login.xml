@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="customer.login.container">
+            <container name="customer.login.container.grid-row" htmlClass="row" htmlTag="div">
+
+                <container name="customer.login.container.grid-col3" htmlClass="col-md-6" htmlTag="div"/>
+                <container name="customer.new.container.grid-col3" htmlClass="col-md-6" htmlTag="div"/>
+
+
+            </container>
+        </referenceContainer>
+
+        <move element="customer_form_login" destination="customer.login.container.grid-col3"/>
+        <move element="customer.new"        destination="customer.new.container.grid-col3"/>
+    </body>
+</page>

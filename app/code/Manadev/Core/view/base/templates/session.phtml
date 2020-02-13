@@ -1,0 +1,9 @@
+<?php /* @var \Manadev\Core\Blocks\SessionScript $block */ ?>
+<script>
+    require(['Manadev_Core/js/vars/session'], function(session) {
+        session.set({
+            url: '<?php echo $block->getSaveUrl() ?>',
+            values: <?php echo $block->getValues() ?>
+        });
+    });
+</script>

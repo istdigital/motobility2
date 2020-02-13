@@ -1,0 +1,11 @@
+.block.crosssell {
+  margin-top: 50px;
+  .products-grid .product-reviews-summary {
+    padding-top: 25px;
+  }
+  .owl-controls {
+    @media (max-width: $screen-sm-min) {
+      top:-56px;
+    }
+  }
+}

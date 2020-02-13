@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="category.products.list">
+            <action method="setTemplate">
+                <argument name="template" xsi:type="string">Magento_Catalog::product/list_layout_3.phtml</argument>
+            </action>
+        </referenceBlock>
+        <referenceBlock name="search_result_list">
+            <action method="setTemplate">
+                <argument name="template" xsi:type="string">Magento_Catalog::product/list_layout_3.phtml</argument>
+            </action>
+        </referenceBlock>
+        <referenceContainer name="main.columns.grid-main" htmlClass="col-sm-12 grid-main layout_3"/>
+        <referenceContainer name="main.columns.grid-left" htmlClass="grid-left-fixed grid-left layout_3"/>
+    </body>
+</page>

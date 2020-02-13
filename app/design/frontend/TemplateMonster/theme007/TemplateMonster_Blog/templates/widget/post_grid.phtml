@@ -1,0 +1,86 @@
+<?php
+/** @var \TemplateMonster\Blog\Block\Widget\PostList $block */
+$dateFormat = $this->getDateFormat();
+$itemWidth = $block->getPostAmountPerRow() ? sprintf('flex-basis: %1$.2f%%; -webkit-flex-basis: %1$.2f%%;', 100 / $block->getPostAmountPerRow()) : '';
+?>
+    <style>
+        /* TODO: Move to SASS */
+        .widget.blog-posts .post-items.list {
+            display: block;
+        }
+        @media (min-width: 992px) {
+            .widget.blog-posts .post-items .post-item {
+                <?php echo $itemWidth ?>
+            }
+        }
+    </style>
+<?php if ($posts = $this->getPosts()) : ?>
+    <div class="block widget blog-posts <?php if (!$block->isEnabledCarousel()): ?> disable-carousel<?php endif; ?>">
+        <h1 class="page-title">
+            <strong role="heading" aria-level="2"><?php echo __($block->getTitle()) ?></strong>
+        </h1>
+        <div class="block-content">
+            <div class="post-items grid"<?php if ($block->isEnabledCarousel()): ?> data-mage-init='{"blogCarouselChild": {"items": "<?php /* @escapeNotVerified */ echo $block->getPostAmountPerView(); ?>"}}' <?php endif; ?>>
+                <?php foreach ($posts as $post): ?>
+                 <div class="post-item">
+                    <div class="item-wrapper">
+                            <!-- Image -->
+                            <?php if ($image = $post->getImage()): ?>
+                                <div class="post-image">
+                                    <a href="<?php echo $this->getPostUrl($post); ?>"><img src="<?php echo $image ?>" /></a>
+                                </div>
+                            <?php endif; ?>
+
+                            <!-- Title -->
+                            <div class="post-title">
+                                <h3>
+                                    <a href="<?php echo $this->getPostUrl($post); ?>">
+                                        <?php echo $block->getStringTruncated($post->getTitle(), $block->getPostTitleLength()) ?>
+                                    </a>
+
+                                </h3>
+                            </div>
+
+                            <!-- Short Description -->
+                            <div class="post-short-content">
+                                <?php echo $block->filterContent($block->getStringTruncated($post->getShortContent(), $block->getPostDescLength())); ?>
+                            </div>
+
+                            <!-- Metadata -->
+                            <div class="post-data">
+                                <?php if ($post->getCommentsEnabled()) : ?>
+                                    <span class="post-comments">
+                                    <?php if ($post->getApprovedComments()->count() > 0): ?>
+                                        <a href="<?php echo $this->getPostUrl($post); ?>#post-comments">
+                                            <span class="count">
+                                                <?php echo $post->getApprovedComments()->count(); ?>
+                                            </span>
+                                        </a>
+                                    <?php else: ?>
+                                        <span class="count no-comment">
+                                            <?php /* @escapeNotVerified */ echo '0'; ?>
+                                        </span>
+                                    <?php endif; ?>
+                                </span>
+                                <?php endif; ?>
+                                <span class="create-date material-icons-access_time">
+                                <time><?php echo date($dateFormat, strtotime($post->getCreationTime()));?></time>
+                            </span>
+                                <?php if ($author = $post->getAuthor()): ?>
+                                    <span class="post-author material-icons-person">
+                                    <span class="label"><?php echo __('by '); ?></span>
+                                    <span class="author"><?php echo $author; ?></span>
+                                </span>
+                                <?php endif; ?>
+                            </div>
+                            <a href="<?php echo $this->getPostUrl($post); ?>" class="post-button">
+                                <span><?php /* @escapeNotVerified */ echo __('Read More'); ?></span>
+                            </a>
+
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+        </div>
+    </div>
+<?php endif; ?>

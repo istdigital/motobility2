@@ -1,0 +1,68 @@
+<!--
+  ~ Mage-World
+  ~
+  ~  @category    Mage-World
+  ~  @package     MW
+  ~  @author      Mage-world Developer
+  ~
+  ~  @copyright   Copyright (c) 2018 Mage-World (https://www.mage-world.com/)
+  -->
+
+<page layout="2columns-left" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="sidebar.additional">
+            <referenceBlock name="catalog.compare.sidebar" remove="true" />
+            <referenceBlock name="wishlist_sidebar" remove="true" />
+            
+
+            <block class="Magento\Framework\View\Element\Template" name="faq.filter" template="MW_EasyFaq::filter.phtml">
+                <block class="MW\EasyFaq\Block\Faq\Search" before="-" name="easyfaq-search" template="MW_EasyFaq::search.phtml" cacheable="true" />
+
+                <block class="MW\EasyFaq\Block\Category\Index" name="easyfaq-sidebar" template="MW_EasyFaq::category.phtml" cacheable="true" />
+            </block>
+
+            
+
+            <block class="Magento\Cms\Block\Block" name="sidebar.contact.popup">
+                <arguments>
+                    <argument name="block_id" xsi:type="string">sidebar_contact_popup</argument>
+                </arguments>
+            </block>
+
+        </referenceContainer>
+
+        <referenceContainer name="content">
+
+            <block class="MW\EasyFaq\Block\Faq\Search" before="-" name="easyfaq-search-mobile" template="MW_EasyFaq::search.phtml" cacheable="true" />
+
+            <block class="MW\EasyFaq\Block\Faq\Index" name="easyfaq-page" template="MW_EasyFaq::faq.phtml" cacheable="false"/>
+
+            <block class="Magento\Framework\View\Element\Template" name="easyfaq-search-js" template="MW_EasyFaq::js.phtml" cacheable="true" />
+
+        </referenceContainer>
+
+        <referenceContainer name="before.body.end">
+            <block class="Magento\Contact\Block\ContactForm" name="contact.popup" template="Magento_Contact::popup.phtml" cacheable="true">
+            <block class="MSP\ReCaptcha\Block\Frontend\ReCaptcha"
+                   name="msp-recaptcha-contact"
+                   after="-"
+                   template="MSP_ReCaptcha::msp_recaptcha_contact.phtml">
+                <arguments>
+                    <argument name="jsLayout" xsi:type="array">
+                        <item name="components" xsi:type="array">
+                            <item name="msp-recaptcha" xsi:type="array">
+                                <item name="component" xsi:type="string">MSP_ReCaptcha/js/reCaptcha</item>
+                                <item name="reCaptchaId" xsi:type="string">msp-recaptcha-contact</item>
+                                <item name="zone" xsi:type="string">contact</item>
+                                <item name="badge" xsi:type="string">bottomright</item>
+                                <item name="settings" xsi:type="array">
+                                    <item name="size" xsi:type="string">invisible</item>
+                                </item>
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>            </block>
+        </referenceContainer>
+    </body>
+</page>

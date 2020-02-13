@@ -1,0 +1,24 @@
+<?php /** @var \TemplateMonster\AjaxCatalog\Block\PriceSlider $block */ ?>
+
+<div class="price-slider">
+    <div id="slider-range" data-mage-init='{"priceRangeSlider": <?php echo $block->getOptionsJson(); ?>}'></div>
+    <form action="" class="slider-fields">
+        <div class="slider-input">
+            <label for="minPrice">
+                <span><?php echo __('from') ?></span>
+                <input type="text" id="minPrice" name="minPrice" size="3" value="<?php echo $block->getMinPrice() ?>"/>
+            </label>
+        </div>
+        <div class="slider-input">
+            <label for="maxPrice">
+                <span><?php echo __('to') ?></span>
+                <input type="text" id="maxPrice" name="maxPrice" size="3" value="<?php echo $block->getMaxPrice() ?>"/>
+            </label>
+        </div>
+        <div class="slider-input">
+            <a href="<?php echo $block->getCurrentUri() ?>" class="action primary" id="slider-range_submit">
+                <?php echo __('Filter') ?>
+            </a>
+        </div>
+    </form>
+</div>

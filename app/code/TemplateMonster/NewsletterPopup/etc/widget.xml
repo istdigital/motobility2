@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Widget:etc/widget.xsd">
+    <widget id="newsletter_popup" class="TemplateMonster\NewsletterPopup\Block\Widget\Subscribe">
+        <label translate="true">Newsletter Pop-Up Subscribe</label>
+        <description translate="true">Newsletter Pop-Up Subscribe Widget</description>
+        <parameters>
+            <parameter name="title" xsi:type="text" visible="true">
+                <label translate="true">Title</label>
+                <description translate="true">Newsletter subscribe title.</description>
+            </parameter>
+            <parameter name="description" xsi:type="text" visible="true">
+                <label translate="true">Description</label>
+                <description translate="true">Newsletter subscribe description.</description>
+            </parameter>
+            <parameter name="template" xsi:type="select" required="true" visible="true">
+                <label translate="true">Template</label>
+                <options>
+                    <option name="default" value="widget/subscribe.phtml" selected="true">
+                        <label translate="true">Default subscribe</label>
+                    </option>
+                </options>
+            </parameter>
+        </parameters>
+    </widget>
+</widgets>

@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+
+    <update handle="empty"/>
+    <!--<head>-->
+        <!--<script src="js/landing/jquery-2.2.4.min.js"/>-->
+        <!--<script src="js/landing/stickUp.min.js"/>-->
+        <!--<script src="js/landing/wow.js"/>-->
+        <!--<script src="js/landing/landing-scripts.js"/>-->
+
+        <!--<remove src="requirejs/require.js"/>-->
+
+        <!--<css src="css/landing.css" />-->
+
+        <!--<remove src="mage/calendar.css"/>-->
+        <!--<remove src="TemplateMonster_FilmSlider::css/slider-pro.css"/>-->
+        <!--<remove src="TemplateMonster_FilmSlider::css/animate.css"/>-->
+        <!--<remove src="TemplateMonster_CountdownTimer::css/timer.css"/>-->
+        <!--<remove src="TemplateMonster_LayoutSwitcher::css/module.css"/>-->
+        <!--<remove src="TemplateMonster_LayoutSwitcher::fonts/font-awesome-4.5.0/css/font-awesome.min.css"/>-->
+        <!--<remove src="TemplateMonster_Parallax::css/rd-parallax/style.css"/>-->
+        <!--<remove src="TemplateMonster_Parallax::css/jquery-youtubebackground/style.css"/>-->
+        <!--<remove src="TemplateMonster_AjaxCompare::css/modal-compare.css"/>-->
+        <!--<remove src="TemplateMonster_FeaturedProduct::fonts/font-awesome-4.5.0/css/font-awesome.min.css"/>-->
+        <!--<remove src="TemplateMonster_FeaturedProduct::css/module.css"/>-->
+        <!--<remove src="css/material-icons.css"/>-->
+        <!--<remove src="css/font-awesome.css"/>-->
+        <!--<remove src="css/modules.css"/>-->
+        <!--<remove src="css/style.css"/>-->
+    <!--</head>-->
+
+    <container name="root">
+        <container name="after.body.start" as="after.body.start" before="-" label="Page Top"/>
+        <container name="page.wrapper" as="page_wrapper" htmlTag="div" htmlClass="page-wrapper">
+            <container name="global.notices" as="global_notices" before="-"/>
+            <container name="main.content" htmlTag="main" htmlId="maincontent" htmlClass="page-main">
+                <container name="columns.top" label="Before Main Columns"/>
+                <container name="columns" htmlTag="div" htmlClass="columns">
+                    <container name="main" label="Main Content Container" htmlTag="div" htmlClass="column main" />
+                </container>
+            </container>
+            <container name="page.bottom.container" as="page_bottom_container" label="Before Page Footer Container" after="main.content" htmlTag="div" htmlClass="page-bottom"/>
+            <container name="before.body.end" as="before_body_end" after="-" label="Page Bottom"/>
+        </container>
+    </container>
+    <move element="cms_page"         destination="main" before="-" />
+
+    <referenceBlock name="page.preloader" remove="true" />
+    <referenceBlock name="translate" remove="true" />
+    <referenceBlock name="googlemap.page.content" remove="true" />
+    <referenceBlock name="googlemap.init" remove="true" />
+    <referenceContainer name="page.preloader" remove="true" />
+    <referenceContainer name="content" remove="true" />
+    <referenceContainer name="footer" remove="true" />
+    <referenceContainer name="after.body.start" remove="true" />
+    <referenceContainer name="before.body.end" remove="true" />
+    <referenceContainer name="page.messages" remove="true" />
+    <referenceContainer name="footer" remove="true" />
+</page>

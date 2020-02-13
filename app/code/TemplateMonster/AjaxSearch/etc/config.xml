@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <ajaxsearch>
+            <ajaxsearch>
+                <ajaxsearch_default_active>1</ajaxsearch_default_active>
+                <ajaxsearch_category_active>0</ajaxsearch_category_active>
+                <ajaxsearch_product_active>0</ajaxsearch_product_active>
+                <ajaxsearch_default_number>10</ajaxsearch_default_number>
+                <ajaxsearch_category_number>10</ajaxsearch_category_number>
+                <ajaxsearch_product_number>10</ajaxsearch_product_number>
+            </ajaxsearch>
+        </ajaxsearch>
+    </default>
+</config>

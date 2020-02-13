@@ -1,0 +1,15 @@
+<page layout="1column" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="before.body.end">
+            <block class="TemplateMonster\GoogleMap\Block\DataOptions"
+                   name="googlemap.page.content"
+                   before="-"
+                   template="TemplateMonster_GoogleMap::googlemap.phtml"/>
+            <block class="TemplateMonster\GoogleMap\Block\DataOptions"
+                   name="googlemap.init"
+                   after="googlemap.page.content"
+                   template="TemplateMonster_GoogleMap::init.phtml"/>
+        </referenceContainer>
+    </body>
+</page>

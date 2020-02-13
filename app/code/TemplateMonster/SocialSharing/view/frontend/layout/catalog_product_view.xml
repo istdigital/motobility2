@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="product.info.social">
+            <block class="Magento\Framework\View\Element\Template" name="social.sharing" ifconfig="social_sharing/general/enabled"
+                   template="TemplateMonster_SocialSharing::social_sharing.phtml">
+                <block class="TemplateMonster\SocialSharing\Block\AddThis\Icons" name="social.sharing.icons" as="social_sharing_icons" />
+            </block>
+        </referenceContainer>
+        <referenceContainer name="before.body.end">
+            <block class="TemplateMonster\SocialSharing\Block\AddThisInit" name="social.sharing.init" />
+        </referenceContainer>
+    </body>
+</page>

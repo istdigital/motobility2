@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <site_maintenance>
+            <general>
+                <active>0</active>
+                <title>Site Maintenance</title>
+                <background_repeat>0</background_repeat>
+                <background_position>0</background_position>
+                <background_size>0</background_size>
+                <background_attachment>0</background_attachment>
+            </general>
+            <timer>
+                <format>%D days %H:%M:%S</format>
+            </timer>
+            <!--<form>
+            </form>-->
+        </site_maintenance>
+    </default>
+</config>

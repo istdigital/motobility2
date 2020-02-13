@@ -1,0 +1,17 @@
+<div class="downloads" data-bind="scope: 'downloads-extension-item-alias'">
+    <!-- ko template: getTemplate() --><!-- /ko -->
+</div>
+
+<script type="text/x-magento-init">
+{
+    "*": {
+        "Magento_Ui/js/core/app": {
+            "components": {
+                "downloads-extension-item-alias": {
+                    "component": "MW_Downloads/js/downloads/item"
+                }
+            }
+        }
+    }
+}
+</script>

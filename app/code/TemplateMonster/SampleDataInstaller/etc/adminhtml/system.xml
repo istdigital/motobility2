@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="theme_options">
+            <group id="sample_data_installer" translate="label" type="text" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Sample Data Import</label>
+                <group id="cms_pages" translate="label" type="text" sortOrder="10" showInDefault="0" showInWebsite="1" showInStore="1">
+                    <label>CMS Pages</label>
+                    <field id="import_file" translate="label comment" type="multiselect" sortOrder="10" showInDefault="0" showInWebsite="1" showInStore="1">
+                        <label>Import file</label>
+                        <source_model>TemplateMonster\SampleDataInstaller\Model\Source\CmsPageSamples</source_model>
+                        <comment>Select one of the available import files.</comment>
+                        <frontend_class>import-files</frontend_class>
+                    </field>
+                    <field id="override" translate="label" type="select" sortOrder="20" showInDefault="0" showInWebsite="1" showInStore="1">
+                        <label>Override</label>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                        <comment>If need to override in case of duplicate key.</comment>
+                        <frontend_class>is-override</frontend_class>
+                    </field>
+                    <field id="install" translate="label" type="button" sortOrder="30" showInDefault="0" showInWebsite="1" showInStore="1">
+                        <label>Status</label>
+                        <frontend_model>TemplateMonster\SampleDataInstaller\Block\System\Config\Form\ImportCmsPages</frontend_model>
+                    </field>
+                </group>
+                <group id="cms_blocks" translate="label" type="text" sortOrder="20" showInDefault="0" showInWebsite="1" showInStore="1">
+                    <label>CMS Blocks</label>
+                    <field id="import_file" translate="label comment" type="multiselect" sortOrder="10" showInDefault="0" showInWebsite="1" showInStore="1">
+                        <label>Import file</label>
+                        <source_model>TemplateMonster\SampleDataInstaller\Model\Source\CmsBlockSamples</source_model>
+                        <comment>Select one of the available import files.</comment>
+                        <frontend_class>import-files</frontend_class>
+                    </field>
+                    <field id="override" translate="label" type="select" sortOrder="20" showInDefault="0" showInWebsite="1" showInStore="1">
+                        <label>Override</label>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                        <comment>If need to override in case of duplicate key.</comment>
+                        <frontend_class>is-override</frontend_class>
+                    </field>
+                    <field id="install" translate="label" type="button" sortOrder="30" showInDefault="0" showInWebsite="1" showInStore="1">
+                        <label>Status</label>
+                        <frontend_model>TemplateMonster\SampleDataInstaller\Block\System\Config\Form\ImportCmsBlocks</frontend_model>
+                    </field>
+                </group>
+                <group id="widgets" translate="label" type="text" sortOrder="30" showInDefault="0" showInWebsite="1" showInStore="1">
+                    <label>Widgets</label>
+                    <field id="import_file" translate="label comment" type="multiselect" sortOrder="10" showInDefault="0" showInWebsite="1" showInStore="1">
+                        <label>Import file</label>
+                        <source_model>TemplateMonster\SampleDataInstaller\Model\Source\WidgetSamples</source_model>
+                        <comment>Select one of the available import files.</comment>
+                        <frontend_class>import-files</frontend_class>
+                    </field>
+                    <field id="override" translate="label" type="select" sortOrder="20" showInDefault="0" showInWebsite="1" showInStore="1">
+                        <label>Override</label>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                        <comment>If need to override in case of duplicate keys.</comment>
+                        <frontend_class>is-override</frontend_class>
+                    </field>
+                    <field id="install" translate="label" type="button" sortOrder="30" showInDefault="0" showInWebsite="1" showInStore="1">
+                        <label>Status</label>
+                        <frontend_model>TemplateMonster\SampleDataInstaller\Block\System\Config\Form\ImportWidgets</frontend_model>
+                    </field>
+                </group>
+            </group>
+        </section>
+    </system>
+</config>

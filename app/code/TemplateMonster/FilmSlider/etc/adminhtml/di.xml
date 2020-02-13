@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+        <type name="Magento\Cms\Helper\Wysiwyg\Images">
+            <plugin name="film_slider_wysiwyg_image_format"
+                    type="TemplateMonster\FilmSlider\Plugin\Adminhtml\Cms\Helper\Wysiwyg\Images"
+                    sortOrder="100"/>
+        </type>
+        <type name="Magento\Cms\Block\Adminhtml\Wysiwyg\Images\Content">
+            <plugin name="film_slider_wysiwyg_image_format"
+                    type="TemplateMonster\FilmSlider\Plugin\Adminhtml\Cms\Helper\Wysiwyg\Image\Content"
+                    sortOrder="100"/>
+        </type>
+</config>

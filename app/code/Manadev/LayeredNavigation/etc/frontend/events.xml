@@ -1,0 +1,5 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="before_resolving_handles_in_cms_page">
+        <observer name="Manadev\LayeredNavigation" instance="Manadev\LayeredNavigation\Observers\AddLayeredNavigationAndProductListToCmsPage"/>
+    </event>
+</config>

@@ -1,0 +1,185 @@
+/**
+ * Copyright © 2016 TemplateMonster. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// Local vars
+$category-link-size: 24px;
+$category-link-size-small: 16px;
+$category-link-color: #000000;
+$category-link-color-hover: #7d7d7d;
+
+$subcategory-link-size: 18px;
+$subcategory-link-size-small: 14px;
+$subcategory-link-color: #000000;
+$subcategory-link-color-hover: #7d7d7d;
+
+$link-size: 16px;
+$link-color: #1979c3;
+$link-color-hover: #000000;
+
+
+// Main styles
+.catalog-image-grid {
+
+	margin-bottom: 20px;
+
+	ul{
+		list-style: none;
+		padding: 0;
+		margin: 0;
+
+		img {
+			max-width: 100%;
+		}
+	}
+
+	/************** Category **************/
+	.category-grid,
+	.category-list {
+		overflow: hidden;
+		display: flex;
+		-webkit-flex-wrap: wrap;
+		-ms-flex-wrap: wrap;
+		flex-wrap: wrap;
+		margin: 0 -8px;
+
+		> li {
+			padding: 0 8px;
+			margin: 0 0 20px;
+			box-sizing: border-box;
+
+			@media (max-width: 767px) {
+				-moz-flex-basis: 33.333%;
+				-ms-flex-basis: 33.333%;
+				flex-basis: 33.333%;
+			}
+			@media (max-width: 500px) {
+				-moz-flex-basis: 50%;
+				-ms-flex-basis: 50%;
+				flex-basis: 50%;
+			}
+			@media (max-width: 350px) {
+				-moz-flex-basis: 100%;
+				-ms-flex-basis: 100%;
+				flex-basis: 100%;
+			}
+
+			.grid-inner {
+				box-sizing: border-box;
+			}
+		}
+
+		.category-link {
+			display: inline-block;
+			text-decoration: none;
+			font-weight: 500;
+			font-size: $category-link-size;
+			color: $category-link-color;
+
+			&:hover {
+				color: $category-link-color-hover;
+			}
+
+			@media (max-width: 767px) {
+				font-weight: 600;
+				font-size: $category-link-size-small;
+			}
+
+			.category-name {
+				display: inline-block;
+				margin-bottom: 10px;
+			}
+			.category-image {
+				display: block;
+				margin-bottom: 10px;
+			}
+
+			.category-icon {
+				display: inline-block;
+				font-style: normal;
+
+				&:before {
+					line-height: normal;
+					margin-right: 5px;
+				}
+			}
+		}
+
+		.button-more {
+			text-decoration: none;
+			font-size: $link-size;
+			color: $link-color;
+
+			&:hover {
+				color: $link-color-hover;
+			}
+		}
+
+		/************** SubCategory **************/
+		.subcategory-grid {
+
+			margin-bottom: 10px;
+
+			> li {
+				padding: 0;
+				margin: 0;
+				line-height: 30px;
+			}
+			.subcategory-link {
+				display: inline-block;
+				text-decoration: none;
+				font-weight: 500;
+				font-size: $subcategory-link-size;
+				color: $subcategory-link-color;
+
+				&:hover {
+					color: $subcategory-link-color-hover;
+				}
+
+				@media (max-width: 767px) {
+					font-size: $subcategory-link-size-small;
+				}
+
+				.subcategory-name,
+				.subcategory-image {
+					display: inline-block;
+				}
+
+				.subcategory-image {
+					vertical-align: middle;
+					margin-right: 10px;
+
+					img {
+						vertical-align: middle;
+					}
+				}
+
+				.category-icon {
+					display: inline-block;
+					font-style: normal;
+
+					&:before {
+						line-height: normal;
+						margin-right: 5px;
+					}
+				}
+			}
+		}
+	}
+
+	.grid-wrapper {
+		overflow: hidden;
+
+		.category-image {
+			float: left;
+			width:33%;
+			margin-right: 20px;
+		}
+
+		.subcategories {
+			overflow: hidden;
+			float: left;
+		}
+	}
+}

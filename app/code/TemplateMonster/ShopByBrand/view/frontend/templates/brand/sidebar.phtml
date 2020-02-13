@@ -1,0 +1,44 @@
+<?php
+/** @var \TemplateMonster\ShopByBrand\Block\Brand\Sidebar $block */
+
+$collection = $block->getBrandCollection();
+$helper = $this->helper('TemplateMonster\ShopByBrand\Helper\Data');
+?>
+
+<?php if(!empty($collection->getData())): ?>
+<div class="block block-brand">
+    <div class="block-title">
+        <strong><?php /* @escapeNotVerified */ echo __('Brands') ?></strong>
+    </div>
+    <ul class="brand-items">
+    <?php foreach ($collection as $brand): ?>
+        <li class="brand-item">
+            <div class="brand-item-info">
+                <?php if ($block->isShowSidebarLogo() && $brand->getImageLogoName()): ?>
+                <a class="brand-image-photo" href="<?php echo $brand->getUrl() ?>">
+                    <?php /* echo $block->getImage($brand->getImageLogoUrl())->toHtml() */ ?>
+                    <img src="<?php  echo $helper->resizeImageUrl($brand->getImageLogoName(), 200); ?>" alt="<?php echo $block->escapeHtml($brand->getName()) ?>" />
+                </a>
+                <?php endif; ?>
+                <?php if ($block->isShowSidebarName()): ?>
+                <div class="brand-item-details">
+                    <strong class="brand-item-name">
+                        <a class="brand-item-link" href="<?php echo $brand->getUrl(); ?>">
+                            <span><?php echo $block->escapeHtml($brand->getName()) ?></span>
+                        </a>
+                    </strong>
+                </div>
+                <?php endif; ?>
+            </div>
+        </li>
+    <?php endforeach; ?>
+    </ul>
+    <div class="actions-toolbar">
+        <div class="primary">
+            <a class="action primary details" href="<?php echo $block->getAllBrandsUrl() ?>" title="<?php /* @escapeNotVerified */ echo __('View All') ?>">
+                <span><?php /* @escapeNotVerified */ echo __('View All') ?></span>
+            </a>
+        </div>
+    </div>
+</div>
+<?php endif; ?>

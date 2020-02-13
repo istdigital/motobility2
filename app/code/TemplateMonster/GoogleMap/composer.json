@@ -1,0 +1,19 @@
+{
+    "name" : "templatemonster/magento2-google-map",
+    "description": "Magento2 Google Map",
+    "type": "magento2-module",
+    "version": "1.1.0",
+
+    "autoload": {
+        "psr-4": {
+            "TemplateMonster\\GoogleMap\\": ""
+        },
+        "files": [
+            "registration.php"
+        ]
+    },
+    "extra": {
+        "isStandalone": "false",
+        "magentoVersion": "v2.2.0"
+    }
+}

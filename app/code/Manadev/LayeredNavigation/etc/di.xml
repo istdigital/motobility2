@@ -1,0 +1,104 @@
+<!--
+ @category    Mana
+ @package     Manadev_LayeredNavigation
+ @copyright   Copyright (c) http://www.manadev.com
+ @license     http://www.manadev.com/license  Proprietary License
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <!--
+        Registries
+    -->
+    <type name="Manadev\LayeredNavigation\Registries\FilterIndexers\PrimaryFilterIndexers">
+        <arguments>
+            <argument name="indexers" xsi:type="array">
+                <item name="category" xsi:type="object">Manadev\LayeredNavigation\Resources\Indexers\Filter\CategoryIndexer</item>
+                <item name="dropdown" xsi:type="object">Manadev\LayeredNavigation\Resources\Indexers\Filter\DropdownIndexer</item>
+                <item name="price" xsi:type="object">Manadev\LayeredNavigation\Resources\Indexers\Filter\PriceIndexer</item>
+                <item name="decimal" xsi:type="object">Manadev\LayeredNavigation\Resources\Indexers\Filter\DecimalIndexer</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Manadev\LayeredNavigation\Registries\FilterIndexers\SecondaryFilterIndexers">
+        <arguments>
+            <argument name="indexers" xsi:type="array">
+                <item name="swatch" xsi:type="object">Manadev\LayeredNavigation\Resources\Indexers\Filter\SwatchIndexer</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Manadev\LayeredNavigation\Registries\FilterTypes">
+        <arguments>
+            <argument name="filterTypes" xsi:type="array">
+                <item name="category" xsi:type="object">Manadev\LayeredNavigation\FilterTypes\CategoryFilter</item>
+                <item name="dropdown" xsi:type="object">Manadev\LayeredNavigation\FilterTypes\DropdownFilter</item>
+                <item name="price" xsi:type="object">Manadev\LayeredNavigation\FilterTypes\PriceFilter</item>
+                <item name="swatch" xsi:type="object">Manadev\LayeredNavigation\FilterTypes\SwatchFilter</item>
+                <item name="decimal" xsi:type="object">Manadev\LayeredNavigation\FilterTypes\DecimalFilter</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Manadev\LayeredNavigation\Registries\FilterTemplates\CategoryFilterTemplates">
+        <arguments>
+            <argument name="defaultFilterTemplate" xsi:type="string">text_single_select</argument>
+            <argument name="filterTemplates" xsi:type="array">
+                <item name="text_single_select" xsi:type="object">Manadev\LayeredNavigation\FilterTemplates\Category\TextSingleSelect</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Manadev\LayeredNavigation\Registries\FilterTemplates\DropdownFilterTemplates">
+        <arguments>
+            <argument name="defaultFilterTemplate" xsi:type="string">text_multiple_select</argument>
+            <argument name="filterTemplates" xsi:type="array">
+                <item name="text_multiple_select" xsi:type="object">Manadev\LayeredNavigation\FilterTemplates\Dropdown\TextMultipleSelect</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Manadev\LayeredNavigation\Registries\FilterTemplates\SwatchFilterTemplates">
+        <arguments>
+            <argument name="defaultFilterTemplate" xsi:type="string">swatch_multiple_select</argument>
+            <argument name="filterTemplates" xsi:type="array">
+                <item name="swatch_multiple_select" xsi:type="object">Manadev\LayeredNavigation\FilterTemplates\Swatch\MultipleSelect</item>
+                <item name="text_multiple_select" xsi:type="object">Manadev\LayeredNavigation\FilterTemplates\Dropdown\TextMultipleSelect</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Manadev\LayeredNavigation\Registries\FilterTemplates\PriceFilterTemplates">
+        <arguments>
+            <argument name="defaultFilterTemplate" xsi:type="string">text_multiple_select</argument>
+            <argument name="filterTemplates" xsi:type="array">
+                <item name="text_multiple_select" xsi:type="object">Manadev\LayeredNavigation\FilterTemplates\Price\TextMultipleSelect</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Manadev\LayeredNavigation\Registries\FilterTemplates\DecimalFilterTemplates">
+        <arguments>
+            <argument name="defaultFilterTemplate" xsi:type="string">text_multiple_select</argument>
+            <argument name="filterTemplates" xsi:type="array">
+                <item name="text_multiple_select" xsi:type="object">Manadev\LayeredNavigation\FilterTemplates\Decimal\TextMultipleSelect</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Manadev\Core\Registries\PostInstallScripts">
+        <arguments>
+            <argument name="postInstallScripts" xsi:type="array">
+                <item name="Manadev_LayeredNavigation" xsi:type="object">Manadev\LayeredNavigation\PostInstallScript</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Manadev\Core\Registries\ConfigDependentIndexers">
+        <arguments>
+            <argument name="configDependentIndexers" xsi:type="array">
+                <item name="Manadev\LayeredNavigation\Resources\Indexers\FilterIndexer" xsi:type="object">Manadev\LayeredNavigation\Resources\Indexers\FilterIndexer</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Framework\View\Result\Layout">
+        <plugin name="Manadev\LayeredNavigation" type="Manadev\LayeredNavigation\Plugins\ResultLayoutView" />
+    </type>
+    <type name="Magento\Catalog\Block\Product\View\Attributes">
+        <plugin name="Manadev\LayeredNavigation\Plugins\ProductAttributesBlockPlugin" type="Manadev\LayeredNavigation\Plugins\ProductAttributesBlockPlugin" />
+    </type>
+    <type name="Magento\CatalogInventory\Helper\Stock">
+        <plugin name="Manadev\LayeredNavigation\Plugins\StockHelperPlugin" type="Manadev\LayeredNavigation\Plugins\StockHelperPlugin" />
+    </type>
+</config>

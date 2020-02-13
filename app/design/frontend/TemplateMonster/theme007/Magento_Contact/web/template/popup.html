@@ -1,0 +1,60 @@
+
+
+			<div class="container contact-form-popup">
+				<button type="button" class="close" data-bind="event:{click:closePopup}"></button>
+		      	<div class="row">
+			      	<div class="col-md-12 text-left">
+						<h2>Get in touch</h2>
+						<p>For any online enquiries please don’t hesitate to get in touch via the web form below, or email us directly. For any urgent matters, please contact us directly on 08 9242 7333</p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="field name required col-md-12">
+						<label class="label" for="name"><span data-bind="i18n:'Name'"></span></label>
+						<div class="control">
+							<input type="text" name="name" id="name" class="input-text" data-validate="{required:true}"/>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="field email required col-md-6 col-sm-6">
+						<label class="label" for="email"><span data-bind="i18n:'Email'"></span></label>
+						<div class="control">
+							<input type="text" name="email" id="email" class="input-text" data-validate="{required:true,'validate-email':true}"/>
+						</div>
+					</div>
+					<div class="field suburb required col-md-6 col-sm-6">
+						<label class="label" for="suburb"><span data-bind="i18n:'Suburb'"></span></label>
+						<div class="control">
+							<input type="text" name="suburb" id="suburb" class="input-text" data-validate="{required:true}"/>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="field telephone col-md-12">
+						<label class="label" for="telephone"><span data-bind="i18n:'Mobile'"></span></label>
+						<div class="control">
+							<input type="text" name="telephone" id="telephone" class="input-text"/>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="field comment required col-md-12">
+						<label class="label" for="comment"><span data-bind="i18n:'Message'"></span></label>
+						<div class="control">
+							<textarea name="comment" id="comment" class="input-text" cols="5" rows="3" data-validate="{required:true}"></textarea>
+						</div>
+					</div>
+				</div>
+
+				<div class="row actions" style="margin-top: 10px;">
+					<div class="field name col-md-12">
+						<button type="submit" 
+						data-bind="click:submitForm"
+						title="Submit" 
+						class="action submit primary">
+			                <span data-bind="i18n:'Submit'"></span>
+			            </button>
+					</div>
+				</div>
+			</div>

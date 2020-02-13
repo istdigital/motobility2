@@ -1,0 +1,438 @@
+//
+//  Order
+//  ---------------------------------------------
+
+.page-title-wrapper {
+  .order-status {
+    font-size:$font-size-small;
+    display: block;
+    text-align: right;
+    font-weight: 600;
+  }
+  .order-date {
+    font-size:$font-ultra-small;
+    font-style: italic;
+    text-align: right;
+    margin-bottom: 5px;
+  }
+  .order-actions-toolbar {
+    display: block;
+    padding-bottom: 15px;
+    .actions {
+      width: 100%;
+      text-align: right;
+      .action {
+        padding: 4px 12px;
+        font-size: $font-ultra-small;
+        margin: 0 0 0 5px;
+      }
+    }
+  }
+}
+.block-dashboard-orders {
+  margin-bottom: 55px;
+}
+.table-order-items {
+  caption {
+    display: none;
+  }
+  tfoot {
+    th {
+      text-align: right;
+      font-weight: 600;
+    }
+    .grand_total .mark {
+      font-size: 20px;
+    }
+  }
+}
+
+.order-links {
+  font-size: 18px;
+  margin-bottom: 30px;
+  strong {
+  }
+}
+
+.order-details-items {
+  margin-bottom: 50px;
+  .order-title {
+    display: none;
+  }
+}
+
+.block-order-details-view {
+  padding: 20px 0 0;
+  overflow: hidden;
+  .block-content {
+    .box {
+      &.box-order-billing-address {
+        clear: both;
+      }
+    }
+
+  }
+}
+
+.order-products-toolbar {
+  @include clearfix;
+  &.bottom {
+    padding-top: 30px;
+  }
+  .field {
+    margin-bottom: 0;
+    .label {
+      line-height: 36px;
+    }
+  }
+  .pager {
+    position: relative;
+  }
+
+}
+
+//
+//  Order and returns
+//  ---------------------------------------------
+
+.sales-guest-form{
+    .page-title{
+        text-align: left;
+
+        @media (min-width: $screen-md-min){
+            @include flex-basis(66.66667%);
+            margin-left: calc(16.66667% + 8px);
+        }
+
+        span{
+            font-size: 35px;
+            line-height: 1;
+            font-weight: 600;
+            text-transform: none;
+        }
+    }
+}
+
+.form-orders-search{
+    legend.admin__legend {
+        padding-bottom: 2em;
+        border-bottom: 1px solid $border-color;
+        margin-bottom: 2em;
+        width: 100%;
+        font-weight: 400;
+    }
+
+    fieldset.fieldset > .field {
+        @include make-flex;
+        @include justify-content(space-between);
+        @include align-items(center);
+        @include flex-wrap(wrap);
+
+        > .label {
+            @include flex-basis(100%);
+            margin-right: 0;
+            &:after {
+                content: ':';
+            }
+
+            @media (min-width: $screen-md-min) {
+                @include flex-basis(130px);
+            }
+        }
+        > .control {
+            @include flex-basis(100%);
+
+            @media (min-width: $screen-md-min) {
+                @include flex-basis(calc(100% - 130px));
+            }
+        }
+    }
+
+    .actions-toolbar {
+        padding-top: 1.5rem;
+        border-top: 1px solid $border-color;
+        margin-top: 1.5rem;
+    }
+}
+
+.page-print.sales-order-print{
+  .page-title-wrapper {
+    .container {
+      position: relative;
+    }
+    .page-title {
+      border-bottom: 2px solid $black;
+      text-align: right;
+      font-size: 26px;
+      padding-bottom: 34px;
+    }
+    .logo {
+      position: absolute;
+      top:-9px;
+    }
+    .order-date,
+    .order-status {
+      text-align: left;
+    }
+    .order-status {
+      font-size: 26px;
+      margin-bottom: 18px;
+    }
+    .order-date {
+      margin-bottom: 45px;
+    }
+  }
+  .actions-toolbar,
+  .page-footer{
+    display: none;
+  }
+}
+
+
+/******* Print *********/
+@page {
+  size: A4 landscape;
+  margin: 0;
+}
+@media print {
+  html, body {
+    width: 297mm;
+    height: 210mm;
+    margin: 0 auto;
+  }
+  .header-switchers,
+  .greet.welcome,
+  .header.links,
+  .block-search,
+  .minicart-wrapper,
+  .navigation,
+  .page-footer,
+  #page-preloader,
+  #ls-icon {
+    display: none;
+  }
+  * {
+    -webkit-filter: none !important;
+    background: transparent !important;
+    color: #000000 !important;
+    filter: none !important;
+    text-shadow: none !important;
+  }
+  a,
+  a:visited {
+    text-decoration: underline !important;
+  }
+  pre,
+  blockquote {
+    border: 1px solid #999999;
+    page-break-inside: avoid;
+  }
+  thead {
+    display: table-header-group;
+  }
+  .table-wrapper table {
+    width: 100%;
+    table-layout: fixed;
+  }
+  .table-wrapper table td {
+    width: auto;
+  }
+  .table-wrapper table > tfoot > tr:first-child {
+    border-top: 1px solid #999999;
+  }
+  .box,
+  tr,
+  img {
+    page-break-inside: avoid;
+  }
+  img {
+    max-width: 100% !important;
+  }
+  @page {
+    margin: 1cm;
+  }
+  .block-content,
+  p,
+  h2,
+  h3 {
+    orphans: 3;
+    widows: 3;
+  }
+  .block-content {
+    page-break-before: avoid;
+  }
+  .block-title,
+  h2,
+  h3 {
+    page-break-after: avoid;
+  }
+  .nav-toggle {
+    display: none !important;
+  }
+  .sidebar,
+  .nav-sections,
+  .header.content > *[class],
+  .panel.wrapper > *[class],
+  .footer.content > *[class],
+  .header-info,
+  .panel-container-wrap,
+  .header-bottom-wrap {
+    display: none;
+  }
+
+  .catalog-product-view .product-options-wrapper .label:not(.admin__field-label) {
+    float: left;
+  }
+  .breadcrumbs {
+    margin: 0 auto;
+    text-align: left;
+    padding-right: 20px;
+  }
+  .product.media .fotorama-item .fotorama__stage__frame {
+    text-align: right;
+  }
+  .product.media .fotorama-item .fotorama__stage__frame .fotorama__img {
+    left: 0 !important;
+    top: 0 !important;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+  .fotorama__wrap .fotorama__grab {
+    width: 100% !important;
+  }
+  .page-main {
+    padding-top: 0;
+  }
+  .block.upsell .block-title,
+  .block.related .block-title,
+  .block.crosssell .block-title {
+    font-size: 26px;
+    margin-bottom: 10px;
+  }
+  .block.related {
+    margin-bottom: 0;
+    padding-bottom: 15px;
+    border: 0;
+  }
+  .catalog-product-view .owl-carousel .owl-item {
+    width: 240px !important;
+  }
+  .catalog-product-view .owl-controls {
+    display: none !important;
+  }
+  .catalog-product-view  .page-header__content {
+    padding-bottom: 0;
+  }
+  .select2-container--default .select2-selection--single .select2-selection__rendered {
+    line-height: 30px;
+  }
+  .catalog-product-view .product.info {
+    margin-bottom: 0;
+    border-bottom: 0;
+    padding-bottom: 0;
+  }
+}
+
+@media print{
+  .sales-order-view,
+  .sales-order-print{
+
+    .column.main{
+      page-break-before: avoid;
+      page-break-after: always;
+    }
+
+    .sidebar,
+    .order-actions-toolbar,
+    .actions-toolbar a.back,
+    .sm-header-nav-wrap,
+    .sm-header-panel-canvas,
+    .page-header__panel,
+    .header-info,
+    .header-bottom-wrap,
+    .copyright{
+      display: none;
+    }
+
+    #maincontent{
+      padding-top: 0;
+      box-shadow: none;
+      -webkit-hyphens: none;
+      -ms-hyphens: none;
+      hyphens: none;
+    }
+
+    .page-header{
+      height: auto !important;
+    }
+
+    .page-title-wrapper .page-title{
+      padding-bottom: 24px;
+      margin-bottom: 24px;
+    }
+
+    .order-details-items{
+      margin-bottom: 0;
+    }
+
+    &.page-layout-2columns-left,
+    &.page-layout-2columns-right{
+      .grid-left,
+      .grid-right{
+        display: none;
+      }
+
+      .grid-main{
+        @include flex-basis(100%);
+      }
+    }
+
+    .block-order-details-view{
+      .col-md-6{
+        @include flex-basis(50% !important);
+        width: 50% !important;
+      }
+    }
+  }
+}
+
+.sales-order-print{
+  text-align: center;
+
+  .logo{
+    display: inline-block;
+    margin-bottom: 32px;
+  }
+
+  .columns{
+    text-align: left;
+  }
+
+  .page-title{
+    margin-bottom: 16px;
+  }
+  .order-status{
+    display: inline-block;
+    font-size: 16px;
+    width: 100%;
+    margin-bottom: 8px;
+  }
+  .order-date{
+    display: inline-block;
+    font-size: 16px;
+    font-style: italic;
+  }
+}
+
+.page-print.sales-order-print {
+  #maincontent {
+    @extend .container;
+    margin-top: 3rem;
+  }
+
+  .actions-toolbar,
+  .page-footer {
+    display: none;
+  }
+}
+/******* Print End ****/

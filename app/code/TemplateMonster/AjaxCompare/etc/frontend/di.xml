@@ -1,0 +1,18 @@
+<config>
+    <type name="Magento\Catalog\Controller\Product\Compare\Add">
+        <plugin name="add_compare_ajax" type="TemplateMonster\AjaxCompare\Plugin\Product\Compare\Add"
+                sortOrder="100" />
+    </type>
+    <type name="Magento\Catalog\Controller\Product\Compare\Remove">
+        <plugin name="remove_compare_ajax" type="TemplateMonster\AjaxCompare\Plugin\Product\Compare\Remove"
+                sortOrder="100" />
+    </type>
+    <type name="Magento\Catalog\Controller\Product\Compare\Clear">
+        <plugin name="clear_compare_ajax" type="TemplateMonster\AjaxCompare\Plugin\Product\Compare\Clear"
+                sortOrder="100" />
+    </type>
+    <type name="Magento\Catalog\Controller\Product\Compare\Index">
+        <plugin name="modal_compare_ajax" type="TemplateMonster\AjaxCompare\Plugin\Product\Compare\Index"
+                sortOrder="100" />
+    </type>
+</config>

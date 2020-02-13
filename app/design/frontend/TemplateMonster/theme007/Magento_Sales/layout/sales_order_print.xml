@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="logo"  remove="true" />
+        <block class="Magento\Theme\Block\Html\Header\Logo" name="print_logo">
+            <arguments>
+                <argument name="logo_img_width" xsi:type="number">189</argument>
+                <argument name="logo_img_height" xsi:type="number">56</argument>
+            </arguments>
+        </block>
+        <move element="print_logo" destination="page.main.title" before="-"/>
+        <move element="copyright" destination="main"/>
+    </body>
+</page>

@@ -1,0 +1,32 @@
+<?php
+/** @var $block \TemplateMonster\ShopByBrand\Block\Brand\BrandList */
+
+$collection = $block->getBrandCollection();
+$helper = $this->helper('TemplateMonster\ShopByBrand\Helper\Data');
+?>
+
+<ul class="brand-list">
+    <?php foreach ($collection as $brand): ?>
+    <li class="brand-item">
+        <div class="inner">
+            <?php if ($block->isShowLogo()): ?>
+            <a href="<?php echo $brand->getUrl() ?>" class="brand-logo">
+                <img src="<?php  echo $helper->resizeImageUrl($brand->getImageLogoName(), 200); ?>" alt="<?php echo $block->escapeHtml($brand->getName()) ?>" />
+            </a>
+            <?php endif; ?>
+
+            <?php if ($block->isShowName()): ?>
+                <h4 class="brand-item-name">
+                    <a href="<?php echo $brand->getUrl() ?>"><?php echo $brand->getName() ?></a>
+                </h4>
+            <?php endif; ?>
+
+            <?php if ($block->isShowShortDescription()): ?>
+            <div class="brand-item-description">
+                <?php echo $brand->getShortDescription() ?>
+            </div>
+            <?php endif; ?>
+        </div>
+    </li>
+    <?php endforeach; ?>
+</ul>

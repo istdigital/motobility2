@@ -1,0 +1,67 @@
+<?php
+/**
+ * Copyright © 2016 TemplateMonster. All rights reserved.
+ */
+?>
+
+<script>
+require([
+    'jquery',
+    'mage/backend/form',
+    'mage/backend/validation'
+], function($){
+
+    var rules = {
+        'validate-zoom': [
+            function (value, element) {
+                if ($.mage.isEmptyNoTrim(value)) {
+                    return true;
+                }
+                value = Number(value);
+                return !isNaN(value) && value >= 0 && value <= 18;
+            },
+            'Please enter a number in the range from 0 to 18 in this field.'
+        ],
+        'validate-width': [
+            function (value, element) {
+                if ($.mage.isEmptyNoTrim(value)) {
+                    return true;
+                }
+                if(/^[0-9]*\.?[0-9]+%$/g.test(value)) {
+                    return true;
+                }
+                value = Number(value);
+                if(!isNaN(value) && value >= 0 && value <= 5000) {
+                    return true;
+                }
+            },
+            'Please enter a number in the range from 0 to 5000 in this field or with percentage(%)'
+        ],
+        'validate-height': [
+            function (value, element) {
+                if ($.mage.isEmptyNoTrim(value)) {
+                    return true;
+                }
+                value = Number(value);
+                return !isNaN(value) && value >= 0 && value <= 1500;
+            },
+            'Please enter a number in the range from 0 to 1500 in this field.'
+        ],
+        'validate-styles': [
+            function (value, element) {
+                if ($.mage.isEmptyNoTrim(value)) {
+                    return true;
+                }
+                value = $.trim(value);
+                return isNaN(value) && (value.charAt(0)) == '[' && (value.slice(-1) == ']');
+            },
+            'Please enter text format from snazzymaps.com'
+        ]
+    };
+
+    $.each(rules, function (i, rule) {
+        rule.unshift(i);
+        $.validator.addMethod.apply($.validator, rule);
+    });
+});
+</script>

@@ -1,0 +1,31 @@
+
+// Main Styles
+
+.modal-popup.compare-popup .action-close {
+    padding: 2rem;
+}
+
+.modals-wrapper .modal-popup.compare-popup {
+    &._show {
+        -webkit-overflow-scrolling: touch;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+    .modal-inner-wrap {
+        overflow: hidden;
+        box-sizing: border-box;
+        height: auto;
+        min-height: 100%;
+        margin-top: 0;
+    }
+
+    &._inner-scroll .modal-content {
+        margin-right: -40px;
+        padding-right: 40px;
+    }
+
+    .modal-footer {
+        display: block;
+        min-height: 70px !important;
+    }
+}

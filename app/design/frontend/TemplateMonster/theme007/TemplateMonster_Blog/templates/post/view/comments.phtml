@@ -1,0 +1,73 @@
+<?php
+$post = $this->getPost();
+$comments = $this->getItems();
+$captchaActive = $this->isReCaptchaActive();
+$captchaApi = $this->getReCaptchaApi();
+
+$dateFormat = $this->getDateFormat();
+
+?>
+
+<?php if ($post->getCommentsEnabled()) : ?>
+<div id="post-comments" class="post-comments-block">
+    <h2 class="post-comments-title"><?php /* @escapeNotVerified */ echo __('Post comments'); ?></h2>
+    <div class="post-comments-content">
+        <?php foreach($comments as $comment): ?>
+        <div class="post-comment">
+            <div class="comment-info">
+                <h3 class="comment-author"><?php /* @escapeNotVerified */ echo __('Review by'); ?> <?php echo $block->escapeHtml($comment->getAuthor()); ?></h3>
+                <div class="post-data">
+                    <span class="create-date">
+                        <?php /* @escapeNotVerified */ echo __('posted on '); ?>
+                        <?php echo date($dateFormat, strtotime($comment->getCreationTime()));?>
+                    </span>
+                </div>
+            </div>
+            <div class="comment-content">
+                <?php echo $block->escapeHtml($comment->getContent()); ?>
+            </div>
+        </div>
+        <?php endforeach; ?>
+    </div>
+    <div class="comment-add">
+        <h2 class="post-comments-title"><?php /* @escapeNotVerified */ echo __('Leave A Reply'); ?></h2>
+        <p class="subtitle"><?php /* @escapeNotVerified */ echo __('Your email address will not be published.'); ?></p>
+        <form action="<?php /* @escapeNotVerified */ echo $this->getAction() ?>" class="comment-form" method="post" id="comment-form" data-role="product-comment-form" data-bind="scope: 'comment-form'">
+            <?php echo $this->getBlockHtml('formkey'); ?>
+            <fieldset class="fieldset comment-fieldset">
+                <?php if ($captchaActive): ?>
+                    <div class="field">
+                        <div class="control">
+                            <div class="g-recaptcha" data-sitekey="<?php echo $captchaApi; ?>"></div>
+                        </div>
+                    </div>
+                <?php endif; ?>
+                <div class="field comment-field-name">
+                    <label for="name_field" class="label"><span><?php /* @escapeNotVerified */ echo __('Name') ?>:</span></label>
+                    <div class="control">
+                        <input type="text" name="author" id="name_field" class="input-text" />
+                    </div>
+                </div>
+                <div class="field comment-field-email">
+                    <label for="email_field" class="label"><span><?php /* @escapeNotVerified */ echo __('Email') ?>:</span></label>
+                    <div class="control">
+                        <input type="text" name="email" id="email_field" class="input-text" />
+                    </div>
+                </div>
+                <div class="field comment-field-text">
+                    <label for="comment_field" class="label"><span><?php /* @escapeNotVerified */ echo __('Comment') ?>:</span></label>
+                    <div class="control">
+                        <textarea name="content" id="comment_field" cols="5" rows="3" ></textarea>
+                    </div>
+                </div>
+                <input type="hidden" name="post_id" value="<?php echo $post->getId(); ?>" />
+            </fieldset>
+            <div class="comment-form-actions">
+                <div class="primary actions-primary">
+                    <button type="submit" class="action submit primary submit-comment"><span><?php /* @escapeNotVerified */ echo __('Submit') ?></span></button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<?php endif; ?>

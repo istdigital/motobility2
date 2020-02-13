@@ -1,0 +1,73 @@
+<?php
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/**
+ * Product media data template
+ *
+ * @var $block \Magento\Catalog\Block\Product\View\Gallery
+ */
+
+$optionsHelper = $this->helper('TemplateMonster\ThemeOptions\Helper\Data');
+$skuLink = $block->getProduct()->getUrlKey();
+?>
+
+<div class="product-item-photo">
+    <div class="product-image-container product-thumb gallery-placeholder listing-gallery sku-<?php echo $skuLink; ?> _block-content-loading"
+         data-gallery-role="gallery-placeholder"></div>
+</div>
+
+<script type="text/x-magento-init">
+    {
+        "[data-gallery-role=gallery-placeholder].sku-<?php echo $skuLink; ?>": {
+            "mage/gallery/gallery": {
+                "mixins":["magnifier/magnify"],
+                "magnifierOpts": <?php /* @escapeNotVerified */ echo $block->getMagnifier(); ?>,
+                "data": <?php /* @escapeNotVerified */ echo $block->getGalleryImagesJson(); ?>,
+                "options": {
+                    "nav": "thumbs",
+                    "keyboard": true,
+                    "arrows": false,
+                    "allowfullscreen" : false,
+                    "navtype": "slides",
+                    "navdir": "horizontal",
+                    "navposition": "bottom",
+                    "thumbborderwidth": 1,
+                    "thumbmargin": 10,
+                    "startindex": 0,
+                    "loop": true,
+                    "captions": false,
+                    "width": "<?php /* @escapeNotVerified */ echo $block->getImageAttribute('category_page_grid', 'width'); ?>",
+                    "maxheight": "<?php /* @escapeNotVerified */ echo $block->getImageAttribute('category_page_grid', 'height'); ?>",
+                    "thumbwidth": "<?php  echo (empty($optionsHelper->getHoverTypeThumbWidth()))
+        ? $block->getImageAttribute('grid_gallery_thumb', 'width')
+        : $optionsHelper->getHoverTypeThumbWidth(); ?>",
+
+                    "thumbheight": <?php  echo (empty($optionsHelper->getHoverTypeThumbHeight()))
+        ? $block->getImageAttribute('grid_gallery_thumb', 'height')
+        : $optionsHelper->getHoverTypeThumbHeight(); ?>,
+                    "transition": "slide",
+                    "navarrows": true
+                },
+                "fullscreen": {
+                    "nav": "thumbs",
+                    "loop": "false",
+                    "navdir": "horizontal",
+                    "navarrows": "true",
+                    "arrows": "false"
+                },
+                "breakpoints": false
+            },
+            "productListingGallery" : {},
+            "Magento_ProductVideo/js/fotorama-add-video-events": {
+                "videoData": <?php /* @escapeNotVerified */ echo $block->getVideoData(); ?>,
+                "videoSettings": <?php /* @escapeNotVerified */ echo $block->getVideoSettings(); ?>,
+                "optionsVideoData": []
+            }
+        }
+    }
+</script>

@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <!-- <referenceContainer name="before.body.end">
+            <block class="TemplateMonster\NewsletterPopup\Block\PopUp" name="newsletter_popup">
+                <block class="TemplateMonster\NewsletterPopup\Block\PopUp\Configure" name="newsletter_popup.configure" as="newsletter_popup_configure"/>
+                <block class="TemplateMonster\NewsletterPopup\Block\Subscribe" name="newsletter_popup.subscribe" as="newsletter_popup_subscribe" template="TemplateMonster_NewsletterPopup::popup/subscribe.phtml"/>
+            </block>
+        </referenceContainer>
+        <referenceBlock name="footer_links">
+            <block class="Magento\Framework\View\Element\Html\Link\Current" name="newsletter_popup.footer_link" ifconfig="newsletter_popup/general/show_subscription_link_in_footer">
+                <arguments>
+                    <argument name="label" xsi:type="helper" helper="TemplateMonster\NewsletterPopup\Helper\Data::getFooterLinkText"/>
+                    <argument name="path" xsi:type="string">newsletter/manage/index</argument>
+                    <argument name="attributes" xsi:type="array">
+                        <item name="class" xsi:type="string">newsletter-popup-link</item>
+                    </argument>
+                </arguments>
+            </block>
+        </referenceBlock> -->
+    </body>
+</page>

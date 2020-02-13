@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Widget:etc/widget.xsd">
+    <widget id="shop_by_brand"
+            class="TemplateMonster\ShopByBrand\Block\Widget\Brand">
+        <label translate="true">Shop by Brand</label>
+        <description translate="true">Add brands to widget</description>
+        <parameters>
+            <parameter name="title" xsi:type="text" visible="true" sort_order="10">
+                <label>Widget Title</label>
+                <description translate="true">Set widget title.</description>
+            </parameter>
+            <parameter name="is_amp" xsi:type="select" visible="true" sort_order="5"
+                       source_model="Magento\Config\Model\Config\Source\Yesno">
+                <label translate="true">AMP</label>
+                <description translate="true">"YES" If you create widget for AMP version</description>
+            </parameter>
+            <parameter name="brands_amount" xsi:type="text" visible="true" sort_order="20">
+                <label>Brands Amount</label>
+                <description translate="true">Enter number brands for output.</description>
+            </parameter>
+            <parameter name="show_carousel" xsi:type="select" visible="true" sort_order="30"
+                       source_model="Magento\Config\Model\Config\Source\Yesno">
+                <label translate="true">Carousel</label>
+                <description translate="true">Display as carousel</description>
+            </parameter>
+            <parameter name="brands_carousel_height" xsi:type="text" visible="true" required="true" sort_order="31">
+                <label>Brands Carousel Height</label>
+                <description translate="true">Enter brands carousel height.</description>
+                <depends>
+                    <parameter name="is_amp" value="1" />
+                    <parameter name="show_carousel" value="1" />
+                </depends>
+                <value>80</value>
+            </parameter>
+            <parameter name="brands_per_view" xsi:type="text" visible="true" sort_order="40">
+                <label translate="true">Brands Per View</label>
+                <description translate="true">Enter number brands per view in carousel.</description>
+                <depends>
+                    <parameter name="show_carousel" value="1" />
+                    <parameter name="is_amp" value="0" />
+                </depends>
+            </parameter>
+            <parameter name="brands_logo_height" xsi:type="text" visible="true" required="true" sort_order="50">
+                <label>Brands Logo Height</label>
+                <description translate="true">Enter brands logo height.</description>
+                <depends>
+                    <parameter name="is_amp" value="1" />
+                </depends>
+            </parameter>
+            <parameter name="brands_per_view" xsi:type="text" visible="true" sort_order="40">
+                <label translate="true">Brands Per View</label>
+                <description translate="true">Enter number brands per view in carousel.</description>
+                <depends>
+                    <parameter name="show_carousel" value="1" />
+                </depends>
+            </parameter>
+            <parameter name="brands_per_row" xsi:type="text" visible="true" sort_order="40">
+                <label translate="true">Brands per row</label>
+                <description translate="true">Number of brands per row</description>
+                <depends>
+                    <parameter name="show_carousel" value="0" />
+                </depends>
+            </parameter>
+            <parameter name="brands_logo_width" xsi:type="text" visible="true" required="true" sort_order="50">
+                <label>Brands Logo Width</label>
+                <description translate="true">Enter brands logo width.</description>
+            </parameter>
+            <parameter name="show_brand_title" xsi:type="select" visible="true"
+                       source_model="Magento\Config\Model\Config\Source\Yesno" sort_order="60">
+                <label translate="true">Show Brand Title</label>
+                <description translate="true">Show/Hide brand title.</description>
+            </parameter>
+            <parameter name="css_class" xsi:type="text" visible="true" sort_order="70">
+                <label>CSS Class</label>
+                <description translate="true">Set custom css class for brand container.</description>
+            </parameter>
+            <parameter name="brands" xsi:type="multiselect" visible="true"
+                       source_model="TemplateMonster\ShopByBrand\Model\Source\Brand" sort_order="80">
+                <label translate="true">Choose brands</label>
+                <description translate="true">Choose brands for output.</description>
+            </parameter>
+            <parameter name="template" xsi:type="select" required="true" visible="true">
+                <label translate="true">Template</label>
+                <options>
+                    <option name="default" value="widget/brand/default.phtml" selected="true">
+                        <label translate="true">Template for Default version</label>
+                    </option>
+                    <option name="list" value="widget/brand/amp.phtml">
+                        <label translate="true">Template for AMP version</label>
+                    </option>
+
+                </options>
+            </parameter>
+        </parameters>
+    </widget>
+</widgets>

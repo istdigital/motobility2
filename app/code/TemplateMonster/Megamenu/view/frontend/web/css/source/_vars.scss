@@ -1,0 +1,48 @@
+/*
+** Vars
+*/
+
+// Resolutions
+$screen-xs-min: 768px;
+$screen-sm-min: 768px;
+$screen-md-min: 992px;
+$screen-lg-min: 1200px;
+
+// Grid system
+
+$column-count: 12;
+$column-width: 70px;
+$gutter-width: 30px;
+
+$row-ws: 0;
+
+$container-xs: 300px;
+$container-sm: 720px + $gutter-width;
+$container-md: 940px + $gutter-width;
+$container-lg: $column-count*$column-width + $gutter-width*($column-count);
+
+
+// Colors
+$menu-bg:           #ffffff;
+$menu-border:       #c9c9c9;
+$menu-color:       #575757;
+$menu-line-heigh:   47px;
+$label-bg:          #c02a2a;
+$label-color:       #ffffff;
+$label-font-size:   11px;
+$mobile-menu:       767px;
+
+
+
+$submenu-bg: darken(#fff, 10%);
+
+//Product
+$name-color: $menu-color;
+$name-color-hover: #b9b9b9;
+
+
+// Shadows
+$shadow-ambient: 0 0 2px 0 rgba(0, 0, 0, .25);
+$shadow-medium: 0 3px 5px 0 rgba(0, 0, 0, .25);
+$shadow-large: 0 5px 8px 0 rgba(0, 0, 0, .25);
+

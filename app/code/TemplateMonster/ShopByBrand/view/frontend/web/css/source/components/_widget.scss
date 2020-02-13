@@ -1,0 +1,68 @@
+// Widger Brands
+
+.block.brands {
+    float: none;
+
+    .block-content {
+
+        .brandlist {
+            text-align: center;
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+
+            .inner{
+                padding: 0 15px;
+            }
+
+            .brand-logo {
+                display: inline-block;
+                margin-bottom: 15px;
+            }
+            .brand-name {
+                margin-bottom: 0;
+            }
+
+            @media screen and (max-width: 767px){
+                li{
+                    flex-basis: 50% !important;
+                    -ms-flex-basis: 50% !important;
+                }
+            }
+        }
+        .owl-carousel{
+
+            // controls
+            .owl-controls {
+                position: absolute;
+                top: -50px;
+                right: 0;
+
+                .owl-prev{
+                    @include font-icon("\f104");
+                    display: inline-block;
+                }
+                .owl-next{
+                    @include font-icon("\f105");
+                    display: inline-block;
+                }
+                .owl-prev,
+                .owl-next{
+                    padding: 0 7px;
+                    cursor: pointer;
+                    &:before{
+                        font-size: 36px;
+                        color: $secondary;
+                        @include transition(.3s ease);
+                    }
+                    &:hover{
+                        &:before{
+                            color: $primary;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+}

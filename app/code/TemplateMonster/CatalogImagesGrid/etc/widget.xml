@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+
+<widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Widget:etc/widget.xsd">
+    <widget id="catalog_image_grid"
+            class="TemplateMonster\CatalogImagesGrid\Block\CatalogImage\Grid">
+        <label translate="true">Catalog Image Grid</label>
+        <description translate="true">Catalog Image Grid.</description>
+        <parameters>
+            <parameter name="widget_status" xsi:type="select" visible="true" sort_order="1" source_model="Magento\Config\Model\Config\Source\Enabledisable">
+                <label translate="true">Status</label>
+                <description translate="true">Enable/Disable widget</description>
+            </parameter>
+            <parameter name="is_amp" xsi:type="select" visible="true" source_model="Magento\Config\Model\Config\Source\Yesno">
+                <label translate="true">AMP</label>
+                <description translate="true">"YES" If you create widget for AMP version</description>
+            </parameter>
+            <parameter name="id_path" xsi:type="block" visible="true" required="true" sort_order="10">
+                <label translate="true">Category</label>
+                <block class="Magento\Catalog\Block\Adminhtml\Category\Widget\Chooser">
+                    <data>
+                        <item name="button" xsi:type="array">
+                            <item name="open" xsi:type="string" translate="true">Select Category...</item>
+                        </item>
+                    </data>
+                </block>
+            </parameter>
+            <parameter name="title" xsi:type="text" visible="true" sort_order="15">
+                <label translate="true">Title</label>
+                <description translate="true">Widget title</description>
+            </parameter>
+            <parameter name="image_type" xsi:type="select" visible="true" sort_order="20">
+                <label translate="true">Use Image</label>
+                <description translate="true">Select Image type for categories</description>
+                <options>
+                    <option name="thumbnail_image" value="thumbnail_image" selected="true">
+                        <label translate="true">Thumbnail Image</label>
+                    </option>
+                    <option name="category_image" value="category_image">
+                        <label translate="true">Category Image</label>
+                    </option>
+                    <option name="font_icon" value="font_icon">
+                        <label translate="true">Custom Font Icon</label>
+                    </option>
+                </options>
+            </parameter>
+            <parameter name="image_categories" xsi:type="select" visible="true"
+                       source_model="Magento\Config\Model\Config\Source\Enabledisable" sort_order="30">
+                <label translate="true">Category Images</label>
+                <description translate="true">Enable/Disable Images for Categories</description>
+            </parameter>
+            <parameter name="cig_img_height" xsi:type="text" visible="true" required="true" sort_order="31">
+                <label>Image Height</label>
+                <description translate="true">Image ratio.</description>
+                <depends>
+                    <parameter name="is_amp" value="1" />
+                </depends>
+                <value>100</value>
+            </parameter>
+            <parameter name="cig_img_width" xsi:type="text" visible="true" required="true" sort_order="32">
+                <label>Image Width</label>
+                <description translate="true">Image ratio.</description>
+                <depends>
+                    <parameter name="is_amp" value="1" />
+                </depends>
+                <value>100</value>
+            </parameter>
+            <parameter name="image_subcategories" xsi:type="select" visible="true"
+                       source_model="Magento\Config\Model\Config\Source\Enabledisable" sort_order="40">
+                <label translate="true">Subcategory Images</label>
+                <description translate="true">Enable/Disable Images for SubCategories</description>
+                <depends>
+                    <parameter name="is_amp" value="0" />
+                </depends>
+            </parameter>
+            <parameter name="image_width" xsi:type="text" visible="true" sort_order="50">
+                <label translate="true">Image width</label>
+                <description translate="true">Set Image width in px.</description>
+                <depends>
+                    <parameter name="image_type" value="thumbnail_image,category_image" />
+                </depends>
+            </parameter>
+            <parameter name="icon_size" xsi:type="text" visible="true" sort_order="50">
+                <label translate="true">Font Icon Size</label>
+                <description translate="true">Set Icon size in px.</description>
+                <depends>
+                    <parameter name="image_type" value="font_icon" />
+                    <parameter name="is_amp" value="0" />
+                </depends>
+            </parameter>
+            <parameter name="columns_count" xsi:type="text" visible="true" sort_order="60">
+                <label translate="true">Columns count</label>
+                <description translate="true">Set columns count. If empty, 4 columns will be displayed</description>
+            </parameter>
+            <parameter name="amount_categories" xsi:type="text" visible="true" sort_order="70">
+                <label translate="true">Count of categories to show</label>
+                <description translate="true">Set categories count. If empty, categories will not be displayed</description>
+            </parameter>
+            <parameter name="amount_subcategories" xsi:type="text" visible="true" sort_order="80">
+                <label translate="true">Count of subcategories to show</label>
+                <description translate="true">Set subcategories count. If empty, subcategories will not be displayed</description>
+            </parameter>
+            <parameter name="view_more" xsi:type="select" visible="true" source_model="Magento\Config\Model\Config\Source\Enabledisable" sort_order="90">
+                <label translate="true">Show "View More" button</label>
+                <description translate="true">Enable/Disable "View More" button, which refers to the parent category</description>
+            </parameter>
+            <parameter name="view_more_text" xsi:type="text" visible="true" sort_order="95">
+                <label translate="true">"View more" link text</label>
+                <description translate="true">Text to use for "View more" link. If empty, "View more in ..." will be used.</description>
+                <depends>
+                    <parameter name="view_more" value="1" />
+                </depends>
+            </parameter>
+            <parameter name="css_class" xsi:type="text" visible="true" sort_order="100">
+                <label translate="true">Container css class</label>
+                <description translate="true">Input css class for Catalog Image Grid container</description>
+            </parameter>
+            <parameter name="template" xsi:type="select" required="true" visible="true">
+                <label translate="true">Template</label>
+                <options>
+                    <option name="default" value="catalog/widget_image_grid.phtml" selected="true">
+                        <label translate="true">Catalog Image Grid</label>
+                    </option>
+                    <option name="list" value="catalog/widget_image_list.phtml">
+                        <label translate="true">Catalog Image List</label>
+                    </option>
+                    <option name="grid_full" value="catalog/widget_image_grid_full.phtml">
+                        <label translate="true">Catalog Image Grid Full</label>
+                    </option>
+                    <option name="amp" value="catalog/widget_amp.phtml">
+                        <label translate="true">Catalog Image AMP</label>
+                    </option>
+                </options>
+            </parameter>
+        </parameters>
+    </widget>
+</widgets>

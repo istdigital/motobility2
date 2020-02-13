@@ -1,0 +1,67 @@
+<?php
+/**
+ * @copyright   Copyright (c) http://www.manadev.com
+ * @license     http://www.manadev.com/license  Proprietary License
+ */
+/** @var $block \Manadev\LayeredNavigation\Blocks\FilterRenderer */
+/** @var $data array */
+/** @var $engineFilter \Manadev\LayeredNavigation\EngineFilter */
+/** @var $filter \Manadev\LayeredNavigation\Models\Filter */
+?>
+<ol id="<?php echo $block->getFilterName($filter) ?>" class="items" data-mage-init='{ "Manadev_LayeredNavigation/js/FilterView": {} }'>
+    <?php foreach ($data as $item): ?>
+        <?php if ($item['is_selected']) : ?>
+            <li class="mana-selected item">
+                <a href="<?php echo $block->getRemoveItemUrl($engineFilter, $item) ?>"<?php echo $block->getRemoveItemLinkAttributes($engineFilter, $item) ?>>
+                    <i class="icon-ok-squared"></i>
+                    <span class="item-label">
+                        <?php echo $block->escapeItemLabel($engineFilter, $item['label']) ?>
+                    </span>
+                    <?php if ($block->shouldDisplayProductCountOnLayer()): ?>
+                        <span class="count"><?php echo $item['count'] ?><span class="filter-count-label">
+                            <?php if ($item['count'] == 1):?>
+                                <?php echo __('item')?>
+                            <?php else : ?>
+                                <?php echo __('items') ?>
+                            <?php endif;?>
+                        </span></span>
+                    <?php endif; ?>
+                </a>
+            </li>
+        <?php elseif ($item['count'] > 0) : ?>
+            <li class="item">
+                <a href="<?php echo $block->getAddItemUrl($engineFilter, $item) ?>"<?php echo $block->getAddItemLinkAttributes($engineFilter, $item) ?>>
+                    <i class="icon-check-empty"></i>
+                    <span class="item-label">
+                    <?php echo $block->escapeItemLabel($engineFilter, $item['label']) ?>
+                    </span>
+                    <?php if ($block->shouldDisplayProductCountOnLayer()): ?>
+                        <span class="count"><?php echo $item['count'] ?><span class="filter-count-label">
+                            <?php if ($item['count'] == 1):?>
+                                <?php echo __('item')?>
+                            <?php else : ?>
+                                <?php echo __('items') ?>
+                            <?php endif;?>
+                        </span></span>
+                    <?php endif; ?>
+                </a>
+            </li>
+        <?php else : ?>
+            <li class="item">
+                <i class="icon-check-empty"></i>
+                <span class="item-label">
+                <?php echo $block->escapeItemLabel($engineFilter, $item['label']) ?>
+                </span>
+                <?php if ($block->shouldDisplayProductCountOnLayer()): ?>
+                        <span class="count"><?php echo $item['count'] ?><span class="filter-count-label">
+                            <?php if ($item['count'] == 1):?>
+                                <?php echo __('item')?>
+                            <?php else : ?>
+                                <?php echo __('items') ?>
+                            <?php endif;?>
+                        </span></span>
+                <?php endif; ?>
+            </li>
+        <?php endif; ?>
+    <?php endforeach ?>
+</ol>

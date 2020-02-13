@@ -1,0 +1,64 @@
+<?php
+
+$code = $block->escapeHtml($block->getMethodCode());
+$ccType = $block->getInfoData('cc_type');
+$ccExpMonth = $block->getInfoData('cc_exp_month');
+$ccExpYear = $block->getInfoData('cc_exp_year');
+$cards = $block->getCustomerCards();
+
+?>
+<input type="hidden" name="form_key" value="<?php echo $block->getFormKey() ?>" />
+
+<fieldset id="payment_form_cryozonic_stripe" class="cryozonic-stripe standard-form fieldset items stripe-new indent-target" style="display: none;">
+
+<fieldset class="fieldset payment-method stripe-new cryozonic-stripe" id="payment_form_cryozonic_stripe_payment">
+
+  <?php if (!empty($cards)): ?>
+    <div class="cryozonic-saved-cards-section" id="saved-cards">
+      <?php foreach ($cards as $key => $card): ?>
+        <div class="cryozonic-saved-card">
+          <input type="radio" name="payment[cc_saved]" class="select"
+                value="<?php echo $card->id . ':' . $card->brand . ':' . $card->last4; ?>" id="<?php echo $card->id; ?>"
+            >
+          <label for="<?php echo $card->id; ?>">
+            <span class="type <?php echo $card->brand ?>">
+                <?php echo (empty($card->brand) ? __('Card') : $block->cardType($card->brand)); ?>
+            </span>
+            <span class="last4 cryozonic-stripe-fade"><?php echo __('ending in'); ?> <?php echo $card->last4; ?></span>
+            <span class="exp cryozonic-stripe-fade"><?php echo __('expires'); ?>
+                <?php echo str_pad($card->exp_month,2,'0',STR_PAD_LEFT); ?>/<?php echo $card->exp_year; ?>
+            </span>
+          </label>
+        </div>
+      <?php endforeach; ?>
+
+      <div>
+        <input type="radio" name="payment[cc_saved]" value="new_card" class="select" id="new_card" checked="checked">
+        <label for="new_card">
+          <span class="type"><?php echo __('Use a new card'); ?></span>
+        </label>
+      </div>
+    </div>
+  <?php endif; ?>
+
+  <?php echo $block->getLayout()->createBlock('Cryozonic\StripePayments\Block\StripeElements')->toHtml(); ?>
+
+  <!-- In multishipping, Magento 2 will create multiple charges. We need to save the card in order to reuse if for all charges -->
+  <input type="hidden" id="cryozonic_stripe_cc_save" name="payment[cc_save]" value="1" />
+  <input type="hidden" id="cryozonic_stripe_cc_save" name="payment[is_multishipping]" value="1" />
+
+</fieldset>
+
+<script type="text/javascript">
+  require(['jquery', 'prototype', 'mage/mage'], function(jQuery, $) {
+    jQuery(document).ready(function()
+    {
+      var securityMethod = '<?php echo $block->config->getSecurityMethod(); ?>';
+      var stripeJsPublishableKey = '<?php echo $block->config->getPublishableKey(); ?>';
+      initStripe(stripeJsPublishableKey, securityMethod);
+      cryozonic.onWindowLoaded(cryozonic.initMultiShippingEvents);
+    });
+  });
+</script>
+
+</fieldset>

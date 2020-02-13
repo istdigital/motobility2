@@ -1,0 +1,18 @@
+{
+    "name" : "templatemonster/magento2-sample-data-installer",
+    "description": "Magento2 Sample Data Installer implementation",
+    "type": "magento2-module",
+    "version": "1.0.5",
+    "autoload": {
+        "psr-4": {
+            "TemplateMonster\\SampleDataInstaller\\": ""
+        },
+        "files": [
+            "registration.php"
+        ]
+    },
+    "extra": {
+        "isStandalone": "false",
+        "magentoVersion": "v2.2.3"
+    }
+}

@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <!--<type name="Magento\Catalog\Helper\Image">-->
+        <!--<plugin name="featured_product_image_dimensions" type="TemplateMonster\FeaturedProduct\Plugin\Catalog\Helper\Image" />-->
+    <!--</type>-->
+    <!--<preference for="Magento\Framework\Config\View" type="TemplateMonster\FeaturedProduct\Block\Config\View" />-->
+    <type name="Magento\Widget\Block\Adminhtml\Widget\Options">
+        <plugin name="featured_product_widget" type="TemplateMonster\FeaturedProduct\Plugin\Widget\Block\Adminhtml\Widget\Options" />
+    </type>
+</config>

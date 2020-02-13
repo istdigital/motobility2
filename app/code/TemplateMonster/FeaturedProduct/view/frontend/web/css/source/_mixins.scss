@@ -1,0 +1,25 @@
+/* 
+ *  Featured Product by TemplateMonster 2016
+ *  v1.0.0
+ */
+
+// Font Icon
+@mixin font-icon($font-family:$fa) {
+  &:before{
+      display: inline-block;
+      font-family: $font-family;
+      text-rendering: auto;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      transform: translate(0, 0);
+      //content: $icon;
+  }
+}
+
+// Transition
+@mixin transition($trsn) {
+  -moz-transition: $trsn;
+  -o-transition: $trsn;
+  -webkit-transition: $trsn;
+  transition: $trsn;
+}

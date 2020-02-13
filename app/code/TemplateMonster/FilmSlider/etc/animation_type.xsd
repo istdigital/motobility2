@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="config">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="animation" type="animationType" minOccurs="1" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:complexType name="animationType">
+        <xs:annotation>
+            <xs:documentation>
+                Animation type (root element)
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="value" type="valueType" minOccurs="1" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attribute name="code" type="xs:string" use="required" />
+    </xs:complexType>
+    <xs:complexType name="valueType">
+        <xs:annotation>
+            <xs:documentation>
+                Value elements
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="item" type="itemValue" minOccurs="1" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attribute name="label" type="xs:string" use="required" />
+    </xs:complexType>
+    <xs:complexType name="itemValue">
+        <xs:annotation>
+            <xs:documentation>
+                Item value
+            </xs:documentation>
+        </xs:annotation>
+        <xs:attribute name="value" type="xs:string" use="required" />
+        <xs:attribute name="label" type="xs:string" use="required" />
+    </xs:complexType>
+</xs:schema>

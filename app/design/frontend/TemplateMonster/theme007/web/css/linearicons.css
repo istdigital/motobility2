@@ -1,0 +1,101 @@
+@font-face {
+  font-family: 'Linearicons';
+  src: url('../fonts/linearicons/linearicons.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+/* Chrome hack: SVG is rendered more smooth in Windozze. 100% magic, uncomment if you need it. */
+/* Note, that will break hinting! In other OS-es font will be not as sharp as it could be */
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+    font-family: 'Linearicons';
+    font-display:fallback;
+    src: url('../fonts/linearicons.svg') format('svg');
+  }
+}
+*
+ 
+ [class^="icon-"]:before, [class*=" icon-"]:before {
+  font-family: "Linearicons";
+  font-style: normal;
+  font-weight: normal;
+  speak: none;
+ 
+  display: inline-block;
+  text-decoration: inherit;
+  width: 1em;
+  margin-right: .2em;
+  text-align: center;
+  /* opacity: .8; */
+ 
+  /* For safety - reset parent styles, that can break glyph codes*/
+  font-variant: normal;
+  text-transform: none;
+ 
+  /* fix buttons height, for twitter bootstrap */
+  line-height: 1em;
+ 
+  /* Animation center compensation - margins should be symmetric */
+  /* remove if not needed */
+  margin-left: .2em;
+ 
+  /* you can be more comfortable with increased icons size */
+  /* font-size: 120%; */
+ 
+  /* Font smoothing. That was taken from TWBS */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+ 
+  /* Uncomment for 3D effect */
+  /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
+}
+ 
+.icon-uniE753:before { content: '\e800'; } /* '' */
+.icon-uniE74D:before { content: '\e801'; } /* '' */
+.icon-uniE696:before { content: '\e802'; } /* '' */
+.icon-uniE60D:before { content: '\e803'; } /* '' */
+.icon-uniE600:before { content: '\e804'; } /* '' */
+.icon-uniE68C:before { content: '\e805'; } /* '' */
+.icon-uniE681:before { content: '\e806'; } /* '' */
+.icon-uniE71F:before { content: '\e807'; } /* '' */
+.icon-uniE721:before { content: '\e808'; } /* '' */
+.icon-uniE76C:before { content: '\e809'; } /* '' */
+.icon-uniE76A:before { content: '\e80a'; } /* '' */
+.icon-uniE767:before { content: '\e80b'; } /* '' */
+.icon-uniE77A:before { content: '\e80c'; } /* '' */
+.icon-uniE7DA:before { content: '\e80d'; } /* '' */
+.icon-star:before { content: '\e80e'; } /* '' */
+.icon-star-empty:before { content: '\e80f'; } /* '' */
+.icon-help-circled:before { content: '\e810'; } /* '' */
+.icon-check:before { content: '\e811'; } /* '' */
+.icon-uniE8DA:before { content: '\e8da'; } /* '' */
+.icon-uniE922:before { content: '\e922'; } /* '' */
+.icon-uniE92A:before { content: '\e92a'; } /* '' */
+.icon-uniE92B:before { content: '\e92b'; } /* '' */
+.icon-uniE934:before { content: '\e934'; } /* '' */
+.icon-uniE935:before { content: '\e935'; } /* '' */
+.icon-uniE936:before { content: '\e936'; } /* '' */
+.icon-uniE937:before { content: '\e937'; } /* '' */
+.icon-uniE939:before { content: '\e939'; } /* '' */
+.icon-uniE93A:before { content: '\e93a'; } /* '' */
+.icon-arrow-prev:before { content: '\e93b'; } /* '' */
+.icon-arrow-next:before { content: '\e93c'; } /* '' */
+.icon-uniE941:before { content: '\e941'; } /* '' */
+.icon-uniE943:before { content: '\e943'; } /* '' */
+.icon-uniE944:before { content: '\e944'; } /* '' */
+.icon-uniE99E:before { content: '\e99e'; } /* '' */
+.icon-uniE9B5:before { content: '\e9b5'; } /* '' */
+.icon-uniE9B6:before { content: '\e9b6'; } /* '' */
+.icon-uniE9B9:before { content: '\e9b9'; } /* '' */
+.icon-uniE9BA:before { content: '\e9ba'; } /* '' */
+.icon-check-empty:before { content: '\f096'; } /* '' */
+.icon-facebook:before { content: '\f09a'; } /* '' */
+.icon-circle-empty:before { content: '\f10c'; } /* '' */
+.icon-star-half-alt:before { content: '\f123'; } /* '' */
+.icon-youtube:before { content: '\f16a'; } /* '' */
+.icon-dot-circled:before { content: '\f192'; } /* '' */
+.icon-linkdin:before { content: '\f30c'; } /* '' */
+.icon-uniE71E:before { content: '\e812'; } /* '' */
+.icon-home:before { content: '\e813'; } /* '' */
+.icon-ok-squared:before { content: '\F14A'; } /* '' */

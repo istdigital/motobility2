@@ -1,0 +1,20 @@
+<a href="#" id="open-repayment-popup" class="open-repayment-popup">Repayment Calculator</a>
+<div id="rCalculator" style="display: none;" data-bind="scope:'rCalculator'" >
+  <!-- ko template: getTemplate() --><!-- /ko -->
+  <script type="text/x-magento-init">
+  {
+      "#rCalculator": {
+          "Magento_Ui/js/core/app": {
+             "components": {
+                  "rCalculator": {
+                      "component": "Magento_Catalog/js/rcalc",
+                      "template" : "Magento_Catalog/rcalc",
+                      "rlogo" : "<?= $block->getViewFileUrl('images/calculater-poup.svg') ?>",
+                      "contactUrl" : "<?= $block->getUrl('contact') ?>"
+                      }
+                  }
+              }
+          }
+  }
+  </script>
+</div>

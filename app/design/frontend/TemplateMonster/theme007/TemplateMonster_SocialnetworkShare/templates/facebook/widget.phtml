@@ -1,0 +1,16 @@
+<?php
+
+$anchors = [
+	'mainsidebar' => '.sidebar.sidebar-main',
+	'additional'  => '.sidebar.sidebar-additional',
+	'contentmain' => '.column.main',
+	'footer'      => '.footer.content .copyright'
+];
+
+$params = json_encode(array_merge(json_decode($block->getJsLayout(), true), $anchors));
+
+?>
+
+<script type="text/x-magento-init">
+{"*": {"facebookPagePlugin": <?php /* @escapeNotVerified */ echo $params;?>}}
+</script>

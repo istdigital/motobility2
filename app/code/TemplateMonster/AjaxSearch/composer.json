@@ -1,0 +1,17 @@
+{
+  "name" : "templatemonster/ajax-search",
+  "autoload": {
+    "psr-4": {"TemplateMonster\\AjaxSearch\\":""},
+    "files": [ "registration.php" ]
+  },
+  "description": "Ajax Search",
+  "require": {
+    "magento/module-search": "*"
+  },
+  "type": "magento2-module",
+  "version": "1.0.8",
+    "extra": {
+        "isStandalone": "false",
+        "magentoVersion": "v2.1.6"
+    }
+}

@@ -1,0 +1,52 @@
+<!--
+  ~ Mage-World
+  ~
+  ~  @category    Mage-World
+  ~  @package     MW
+  ~  @author      Mage-world Developer
+  ~
+  ~  @copyright   Copyright (c) 2018 Mage-World (https://www.mage-world.com/)
+  -->
+
+<page layout="2columns-left" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+      <referenceBlock name="page.main.title">
+            <action method="setPageTitle">
+                <argument translate="true" name="title" xsi:type="string">Testimonials</argument>
+            </action>
+        </referenceBlock>
+        <referenceContainer name="sidebar.additional">
+            <referenceBlock name="catalog.compare.sidebar" remove="true" />
+            <referenceBlock name="wishlist_sidebar" remove="true" />
+            <block class="Zemez\CmsHierarchy\Block\Links" before="-" name="sidebar.links">
+              <arguments>
+                <argument name="default" xsi:type="array">
+                  <item name="whyus" xsi:type="array">
+                          <item name="title" xsi:type="string">Why us?</item>
+                          <item name="url" xsi:type="string">why-us</item>
+                      </item>
+                      <item name="testimonials" xsi:type="array">
+                          <item name="title" xsi:type="string">Testimonials</item>
+                          <item name="url" xsi:type="string">testimonials</item>
+                      </item>
+                </argument>
+              </arguments>
+            </block>
+
+            <block class="Magento\Cms\Block\Block" name="sidebar.testimonial.popup">
+                <arguments>
+                    <argument name="block_id" xsi:type="string">sidebar_testimonials_popup</argument>
+                </arguments>
+            </block>
+            
+        </referenceContainer>
+        <referenceContainer name="content">
+            <block class="Yereone\Testimonials\Block\Index" name="testimonials.list" template="Yereone_Testimonials::list.phtml" cacheable="false"/>
+        </referenceContainer>
+
+        <referenceContainer name="before.body.end">
+            <block class="Magento\Framework\View\Element\Template" name="testimonials.popup" template="Yereone_Testimonials::popup.phtml" cacheable="true" />
+        </referenceContainer>
+
+    </body>
+</page>

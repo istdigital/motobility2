@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <payment>
+            <cryozonic_stripe>
+                <active>1</active>
+                <model>StripePaymentsFacade</model>
+                <stripe_test_sk backend_model="Magento\Config\Model\Config\Backend\Encrypted" />
+                <stripe_live_sk backend_model="Magento\Config\Model\Config\Backend\Encrypted" />
+                <payment_action>authorize_capture</payment_action>
+                <title>Pay by Card (Stripe)</title>
+                <apple_pay_checkout>1</apple_pay_checkout>
+                <apple_pay_location>1</apple_pay_location>
+                <radar_risk_level>10</radar_risk_level>
+                <currency>USD</currency>
+                <allowspecific>0</allowspecific>
+                <sort_order>1</sort_order>
+                <use_store_currency>1</use_store_currency>
+                <card_autodetect>2</card_autodetect>
+                <cctypes>visa,mastercard,amex,jcb,discover,diners</cctypes>
+
+                <!-- What can we do? -->
+                <is_gateway>1</is_gateway>
+                <can_authorize>1</can_authorize>
+                <can_capture>1</can_capture>
+                <can_capture_partial>1</can_capture_partial>
+                <can_refund>1</can_refund>
+                <can_refund_partial_per_invoice>1</can_refund_partial_per_invoice>
+                <can_void>1</can_void>
+                <can_cancel>1</can_cancel>
+                <can_use_internal>1</can_use_internal>
+                <can_use_checkout>1</can_use_checkout>
+                <can_save_cc>0</can_save_cc>
+            </cryozonic_stripe>
+        </payment>
+    </default>
+</config>

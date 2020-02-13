@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Widget:etc/widget.xsd">
+    <widget id="parallax_block" class="TemplateMonster\Parallax\Block\Widget\Parallax">
+        <label translate="true">Parallax Block</label>
+        <description translate="true">Parallax Block Widget</description>
+        <parameters>
+            <parameter name="widget_status" xsi:type="select" visible="true" source_model="Magento\Config\Model\Config\Source\Enabledisable">
+                <label translate="true">Status</label>
+                <description translate="true">Enable/Disable widget</description>
+            </parameter>
+            <parameter name="block_id" visible="true" required="true" sort_order="20" xsi:type="block">
+                <label>Block</label>
+                <block class="TemplateMonster\Parallax\Block\Adminhtml\Block\Widget\Chooser">
+                    <data>
+                        <item name="button" xsi:type="array">
+                            <item name="open" translate="true" xsi:type="string">Select Block...</item>
+                        </item>
+                    </data>
+                </block>
+            </parameter>
+        </parameters>
+    </widget>
+</widgets>

@@ -1,0 +1,45 @@
+<?php
+/**
+ * Mage-World
+ *
+ *  @category    Mage-World
+ *  @package     MW
+ *  @author      Mage-world Developer
+ *
+ *  @copyright   Copyright (c) 2018 Mage-World (https://www.mage-world.com/)
+ */
+
+$itemsJsonData = $block->getDataOneColumnJson();
+?>
+
+<div class="downloads-container">
+    <div class="downloads-list" data-bind="scope: 'downloads-grid'">
+
+        <!-- ko template: getTemplate() --><!-- /ko -->
+
+    </div>
+</div>
+
+<script type="text/x-magento-init">
+{
+    "*": {
+        "Magento_Ui/js/core/app": {
+            "components": {
+                "downloads-grid": {
+                    "component": "MW_Downloads/js/downloads/1column/grid"
+                }
+            }
+        }
+    }
+}
+</script>
+
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "MW_Downloads/js/downloads/1column/grid": {
+                "items": <?php /* @escapeNotVerified */ echo $itemsJsonData; ?>
+            }
+        }
+    }
+</script>

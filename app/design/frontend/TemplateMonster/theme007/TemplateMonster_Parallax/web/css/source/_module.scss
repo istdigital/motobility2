@@ -1,0 +1,85 @@
+.parallax-container {
+    margin-bottom: 92px;
+    text-align: center;
+  .rd-parallax-inner {
+    min-height: 658px;
+  }
+  .parallax-title {
+    font-size: 84px;
+    line-height: 84px;
+    color: $white;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  .parallax-slog {
+    font-size: 24px;
+    line-height:normal;
+    color: $white;
+  }
+
+  .link-parallax {
+    @include button-block;
+    @include button-block__primary;
+    margin-top: 50px;
+    padding: 17px 40px;
+    font-size: $default-font-size;
+  }
+
+  .parallax-slog-2 {
+    font-size: 24px;
+    text-transform: uppercase;
+    color: #fff;
+    margin-bottom: 43px;
+  }
+  .parallax-title-2 {
+    font-size: 84px;
+    line-height: 87px;
+    text-transform: uppercase;
+    color: #fff;
+    margin-bottom: -15px;
+    strong {
+      display: block;
+      font-weight: bold;
+    }
+  }
+  @media (max-width: $screen-md-min - 1) {
+    padding-bottom: 50px;
+    margin-bottom: 50px;
+    .rd-parallax-inner {
+      min-height: 300px;
+      padding: 65px 20px;
+    }
+    .parallax-title {
+      font-size: 41px;
+      line-height: 50px;
+    }
+    .parallax-slog {
+      font-size: 18px;
+    }
+    .parallax-slog-2 {
+      font-size: 20px;
+    }
+    .parallax-title-2 {
+      font-size: 46px;
+      line-height: 50px;
+      color: #fff;
+      margin-bottom: 0;
+    }
+  }
+  @media (max-width: $screen-xs-min - 1) {
+    .parallax-title-2 {
+      font-size: 38px;
+    }
+  }
+}
+.mobile .parallax-container .text-layout {
+  padding: 50px 0;
+}
+
+.parallax-container.parallax-4 {
+  @media (max-width: $screen-md-min - 1) {
+    padding-bottom: 0;
+  }
+}
+
+

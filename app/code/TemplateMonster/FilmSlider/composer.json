@@ -1,0 +1,17 @@
+{
+  "name" : "templatemonster/film-slider",
+  "autoload": {
+    "psr-4": {"TemplateMonster\\FilmSlider\\":""},
+    "files": [ "registration.php" ]
+  },
+  "description": "Film Slider",
+  "require": {
+    "magento/module-catalog": "*"
+  },
+  "type": "magento2-module",
+  "version": "1.0.12",
+  "extra": {
+      "isStandalone": "true",
+      "magentoVersion": "v2.1.7"
+  }
+}

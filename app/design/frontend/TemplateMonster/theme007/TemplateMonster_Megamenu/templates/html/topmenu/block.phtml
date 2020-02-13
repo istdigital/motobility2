@@ -1,0 +1,12 @@
+<?php
+$helper = $this->helper('TemplateMonster\LayoutSwitcher\Helper\Data');
+$header = $helper->getCurrentLayout('header');
+?>
+
+<!-- For sidebar menu: add class "in-sidebar" to "tm-megamenu" div -->
+
+<div class="tm-megamenu megamenu-wrapper submenu <?php echo $this->getAdditionalCssClass(); ?> rd-navbar-megamenu">
+        <div class="container <?php if($header == 'header_layout_4'): ?> container-full <?php endif;?>">
+            <?php echo $this->renderRows(); ?>
+        </div>
+</div>

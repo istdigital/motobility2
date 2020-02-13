@@ -1,0 +1,121 @@
+<?php
+/**
+ * Testimonials grid template
+ *
+ * @var $block \Yereone\Testimonials\Block\Widget\Testimonial
+ */
+?>
+<?php
+$_testimonialCollection = $block->getTestimonialsCollection();
+?>
+<?php if (!$_testimonialCollection->count()): ?>
+    <div class="message info empty">
+        <div><?php /* @escapeNotVerified */ echo __('We can\'t find testimonials matching the selection.') ?></div>
+    </div>
+<?php else: ?>
+    <?php if ($widgetTitle = $block->getWidgetTitle()): ?>
+        <div class="yereone-testimonials-block-title">
+            <h2><span><?php echo /* @escapeNotVerified */ $widgetTitle; ?></span></h2>
+        </div>
+    <?php endif; ?>
+    <div class="yereone-testimonials yereone-testimonials-grid">
+        <?php $i = 0; ?>
+        <?php foreach ($_testimonialCollection as $testimonial): ?>
+        <?php $i++; ?>
+            <div class="yereone-testimonial-item <?php echo ($i % 2 != 0) ? 'yereone-testimonial-item-margin' : ''; ?>">
+                <div class="yereone-testimonials-grid-left">
+                    <?php if ($block->showImage()): ?>
+                        <div class="yereone-testimonial-image">
+                            <img src = "<?php echo $block->getAuthorImage($testimonial->getImage()); ?>" 
+                                class = "<?php echo $block->getImageStyle() == 'round' ? 'round-imge' : ''; ?>"
+                                alt = "<?php echo $block->escapeHtml(__($testimonial->getAuthor())); ?>"
+                            >
+                        </div>
+                    <?php endif; ?>
+                </div>
+                <div class="yereone-testimonials-grid-right <?php echo !$block->showImage() ? 'yereone-testimonials-no-avatar' : ''; ?>">
+                    <?php if ($block->showAuthor()): ?>
+                        <div class="yereone-testimonial-author"><span><?php echo $block->escapeHtml(__($testimonial->getAuthor())); ?></span></div>
+                    <?php endif; ?>
+                    <?php if ($block->showRating()): ?>
+                        <div class="yereone-testimonial-rating">
+                            <div class="rating-result">
+                                <span style="width: <?php echo $block->escapeHtml($testimonial->getRating()).'%'; ?>"></span>
+                            </div>
+                        </div>
+                    <?php endif; ?>
+                    <?php if ($block->showTitle()): ?>
+                        <div class="yereone-testimonial-title"><span><?php echo $block->escapeHtml(__($testimonial->getTitle())); ?></span></div>
+                    <?php endif; ?>
+                    <div class="yereone-testimonial-content"><span><?php echo $block->escapeHtml(__($testimonial->getTestimonialContent())); ?></span></div>
+                    <?php if ($block->showSocial()): ?>
+                        <div class="yereone-testimonial-social">
+                            <?php if ($facebookUrl = $testimonial->getFacebookUrl()): ?>
+                                <a target="_blank" class="yereone-testimonial-social-facebook" href="<?php echo $block->escapeHtml($facebookUrl); ?>" title="facebook">
+                                    <i class="fa fa-facebook"></i>
+                                </a>
+                            <?php endif; ?>
+                            <?php if ($twitterUrl = $testimonial->getTwitterUrl()): ?>
+                                <a target="_blank" class="yereone-testimonial-social-twitter" href="<?php echo $block->escapeHtml($twitterUrl); ?>" title="twitter">
+                                    <i class="fa fa-twitter"></i>
+                                </a>
+                            <?php endif; ?>
+                            <?php if ($googleplusUrl = $testimonial->getGoogleplusUrl()): ?>
+                                <a target="_blank" class="yereone-testimonial-social-google-plus" href="<?php echo $block->escapeHtml($googleplusUrl); ?>" title="google-plus">
+                                    <i class="fa fa-google-plus"></i>
+                                </a>
+                            <?php endif; ?>
+                            <?php if ($linkedinUrl = $testimonial->getLinkedinUrl()): ?>
+                                <a target="_blank" class="yereone-testimonial-social-linkedin" href="<?php echo $block->escapeHtml($linkedinUrl); ?>" title="linkedin">
+                                    <i class="fa fa-linkedin"></i>
+                                </a>
+                            <?php endif; ?>
+                            <?php if ($youtubeUrl = $testimonial->getYoutubeUrl()): ?>
+                                <a target="_blank" class="yereone-testimonial-social-youtube" href="<?php echo $block->escapeHtml($youtubeUrl); ?>" title="youtube">
+                                    <i class="fa fa-youtube"></i>
+                                </a>
+                            <?php endif; ?>
+                        </div>
+                    <?php endif; ?>
+                    <?php if ($block->showCity() || $block->showCreationTime()): ?>
+                        <div class="yereone-testimonial-meta">
+                            <?php if ($block->showCreationTime()): ?>
+                                <span class="yereone-testimonial-date">
+                                    <?php echo substr($testimonial->getCreationTime(), 0, strrpos($testimonial->getCreationTime(), ' ')); ?>
+                                </span>
+                            <?php endif; ?>
+                            <?php if ($block->showCity()): ?>
+                                <span class="yereone-testimonial-address"><?php echo $block->escapeHtml(__($testimonial->getCity())); ?></span>
+                            <?php endif; ?>
+                        </div>
+                    <?php endif; ?>
+                    <?php if ($block->showJob() || $block->showCompany()): ?>
+                        <?php
+                            $companyName = $testimonial->getCompanyName();
+                            $job = $testimonial->getJob();
+                        ?>
+                        <div class="yereone-testimonial-jobandcompany">
+                            <?php if ($block->showJob()): ?>
+                                <span><?php echo $block->escapeHtml(__($job)); ?></span>
+                            <?php endif; ?>
+                            <?php if ($block->showJob() && $block->showCompany() && $companyName && $job): ?>
+                                <span>/</span>
+                            <?php endif; ?>
+                            <?php if ($block->showCompany()): ?>
+                                <a href="<?php echo $block->escapeHtml($testimonial->getCompanyUrl()); ?>"><?php echo $block->escapeHtml(__($companyName)); ?></a>
+                            <?php endif; ?>
+                        </div>
+                    <?php endif; ?>
+                </div>
+            </div>
+            <?php if ($i % 2 == 0): ?>
+                <div style="clear: both;"></div>
+            <?php endif; ?>
+        <?php endforeach;?>
+        <?php if ($block->getPagerHtml()): ?> 
+            <div class="yereone-testimonials-toolbar">
+                <?php echo $block->getPagerHtml(); ?>
+            </div> 
+        <?php endif ?>
+    </div>
+<?php endif; ?>

@@ -1,0 +1,23 @@
+<?php
+$Data = $block->getTestimonialsCollection();
+?>
+
+<div class="testimonial-container">
+    <p class="count_results"><?= $block->getCollection()->count() ?> Results</p>
+    <br/>
+    <?php if($Data->count()): ?>
+    <div class="testimonial-list" data-mage-init='{"loader": {}}'>
+        <ul>
+            <?php foreach($Data as $testi): ?>
+                <li class="testimon-dtls">
+                    <p><?= $testi->getTestimonialContent() ?></p>
+                    <address><?= $testi->getAuthor() ?></address>
+                </li>
+            <?php endforeach; ?>
+        </ul>
+    </div>
+    <div class="post-bottom-toolbar"><?php echo $block->getPagerHtml() ?></div>
+    <?php else: ?>
+    <div class="message info empty"><div>Sorry!, No Testimonial found.</div></div>
+    <?php endif  ?>
+</div>

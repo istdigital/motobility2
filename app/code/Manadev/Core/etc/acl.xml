@@ -1,0 +1,28 @@
+<!--
+ @category    Mana
+ @package     Manadev_Core
+ @copyright   Copyright (c) http://www.manadev.com
+ @license     http://www.manadev.com/license  Proprietary License
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+            <resource id="Magento_Backend::admin">
+                <resource id="Manadev_Core::manadev" title="MANAdev" sortOrder="100">
+                    <resource id="Manadev_Core::general" title="General" sortOrder="100">
+                        <resource id="Manadev_Core::extension_control" title="Installed MANAdev Extensions" sortOrder="100"/>
+                    </resource>
+                </resource>
+                <resource id="Magento_Backend::stores">
+                    <resource id="Magento_Backend::stores_settings">
+                        <resource id="Magento_Config::config">
+                            <resource id="Manadev_Core::global_configuration" title="MANAdev Developer Configuration"
+                                      sortOrder="19900"/>
+                        </resource>
+                    </resource>
+                </resource>
+            </resource>
+        </resources>
+    </acl>
+
+</config>

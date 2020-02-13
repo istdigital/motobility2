@@ -1,0 +1,91 @@
+<?php
+    $block = $this->helper('TemplateMonster\CatalogImagesGrid\Helper\CategoryImage');
+    $imageType = $block->getImageType();
+    $columnsCount = $block->getColumnsCount();
+    $iconSize = $block->getIconSize();
+?>
+.category-grid {
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flex;
+    display: -o-flex;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin: 0 -8px;
+}
+.category-grid > li {
+    margin-bottom: 20px;
+    padding: 0 8px;
+        box-sizing: border-box;
+}
+.category-grid.columns-1 > li{
+    -moz-flex-basis: 100%;
+    -ms-flex-basis: 100%;
+    flex-basis: 100%;
+}
+
+.category-grid.columns-2 > li{
+    -moz-flex-basis: 50%;
+    -ms-flex-basis: 50%;
+    flex-basis: 50%;
+}
+
+
+.category-grid.columns-3 > li{
+    -moz-flex-basis: 33.3333%;
+    -ms-flex-basis: 33.3333%;
+    flex-basis: 33.3333%;
+}
+.category-link {
+    border: 1px solid #ddd;
+    padding: 4px 4px 0;
+}
+.category-grid.columns-4 > li{
+    -moz-flex-basis: 25%;
+    -ms-flex-basis: 25%;
+    flex-basis: 25%;
+}
+@media (max-width:600px){
+    .category-grid.columns-4 > li{
+        -moz-flex-basis: 50%;
+        -ms-flex-basis: 50%;
+        flex-basis: 50%;
+    }
+}
+
+@media (max-width:500px){
+    .category-grid.columns-2 > li{
+        -moz-flex-basis: 100%;
+        -ms-flex-basis: 100%;
+        flex-basis: 100%;
+    }
+}
+@media (max-width:359px){
+    .category-grid.columns-3 > li{
+        -moz-flex-basis: 50%;
+        -ms-flex-basis: 50%;
+        flex-basis: 50%;
+    }
+}
+@media (max-width:400px){
+    .category-grid.columns-4 > li {
+        -moz-flex-basis: 50%;
+        -ms-flex-basis: 50%;
+        flex-basis: 50%;
+    }
+}
+.category-image {
+    display: block;
+    width: 100%;
+    border: 1px solid #ebebeb;
+}
+.catalog-image-grid-title {
+    font-size: 24px;
+}
+
+    <?php if ($imageType == 'font_icon' && $iconSize): ?>
+    .category-grid .category-icon.size-::before {
+        font-size: <?php echo $iconSize; ?>px;
+    }
+    <?php endif; ?>

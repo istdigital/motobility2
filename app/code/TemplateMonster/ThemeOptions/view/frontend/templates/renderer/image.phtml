@@ -1,0 +1,6 @@
+<?php /** @var TemplateMonster\ThemeOptions\Block\SocialLinks\Renderer\Image $block */ ?>
+<a href="<?php echo $block->getSocialUrl() ?>" target="_blank">
+    <img src="<?php echo $block->getImageUrl() ?>"
+         width="<?php echo $block->getWidth() ?>"
+         alt="<?php $this->stripTags($block->getAltText()) ?>" />
+</a>
