@@ -5999,7 +5999,7 @@ a.mp-read-more:before{
 }
 @media (min-width: 767px){
 
-  body.[class*='mpblog-'] .mp-sidebar:after{
+  body[class^='mpblog-'] .mp-sidebar:after{
     content: " ";
       background-image: url(../images/geometry.png);
       width: 100%;
