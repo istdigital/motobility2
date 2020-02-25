@@ -34,6 +34,10 @@ endif;
 $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
 $productMetadata = $objectManager->get('Magento\Framework\App\ProductMetadataInterface');
 $version = $productMetadata->getVersion();
+
+$resource = $objectManager->get('Magento\Framework\App\ResourceConnection');
+$connection = $resource->getConnection();
+$query = $connection->select()->from("catalog_product_entity_text", 'value')->where("`attribute_id` IN (SELECT `attribute_id` FROM `eav_attribute` WHERE `attribute_code` = 'mini_description') AND `entity_id` = :entity_id");
 ?>
 
 <?php if (!$_productCollection->count()): ?>
@@ -108,7 +112,7 @@ $version = $productMetadata->getVersion();
                                 <?php /* @escapeNotVerified */ echo $_helper->productAttribute($_product, $_product->getName(), 'name'); ?>
                             </a>
                         </strong>
-                        <p>
+                        <p style="margin: 0">
                             <?php $brand = $_bhelper->getBrandById($_product->getData('brand_id')) ?>
                             <?php if(count($brand)): ?>
                                 <a class="product-brand-name" href="<?= $this->getUrl($brand['url_key']) ?>"><?= $brand['name'] ?></a>
@@ -116,6 +120,7 @@ $version = $productMetadata->getVersion();
                                 <a class="product-brand-name"  href="#">&nbsp;</a>
                             <?php endif; ?>
                         </p>
+                        <p class="p-short-desc"><?= $connection->fetchOne($query, [':entity_id' => $_product->getId()]); ?></p>
 
 
                         <?php /* @escapeNotVerified */ echo $block->getProductPrice($_product) ?>

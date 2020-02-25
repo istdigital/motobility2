@@ -18,10 +18,10 @@
                     </block>
                 </container>
 
-                <container name="contact.us.info.wrapper" htmlClass="col-md-3" htmlTag="div">
+                <!-- <container name="contact.us.info.wrapper" htmlClass="col-md-3" htmlTag="div">
                     <block class="Magento\Framework\View\Element\Template" name="contactInfo" template="Magento_Contact::info.phtml">
                     </block>
-                </container>
+                </container> -->
 
                 <container name="contact.us.form.wrapper" htmlClass="col-md-9" htmlTag="div" after="-">
                     <block class="Magento\Contact\Block\ContactForm" name="contactForm" template="Magento_Contact::form.phtml">
