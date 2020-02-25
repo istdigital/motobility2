@@ -104,6 +104,12 @@
                 <label translate="true">Phone</label>
             </settings>
         </column>
+        <column name="postal">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Postal</label>
+            </settings>
+        </column>
         <column name="message">
             <settings>
                 <filter>text</filter>

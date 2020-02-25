@@ -141,6 +141,12 @@
             </container>
         </referenceContainer>
 
+        <referenceContainer name="fcopyright" htmlClass="page-footersd" htmlTag="div">
+            <container name="fcopyright.grid-container" htmlClass="container content footer" htmlTag="div" before="-">
+
+            </container>
+        </referenceContainer>
+
         <!-- <move element="footer_links"   destination="footer_col_content_1" after="-"/> -->
         <referenceBlock name="footer_links" remove="true" />
         <move element="form.subscribe" destination="footer.grid-col4"/>
@@ -169,6 +175,10 @@
 
         <move element="block.ndis"  destination="panel.container.wrap.bottom"  after="-" />
         
+
+        <referenceContainer name="footer">
+            <block class="Magento\Framework\View\Element\Template" name="instagram.posts" template="Magento_Theme::html/instagram.phtml" before="footer.grid-container"/>
+        </referenceContainer>
 
     </body>
 </page>
