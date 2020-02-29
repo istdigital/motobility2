@@ -4,6 +4,13 @@
         'jquery'
     ], function ($) {
         $('.tm-megamenu .price-box').removeClass('price-box');
+
+        //Active current menu
+        $(".breadcrumbs .items a").each(function() {
+            const url = $( this ).attr( "href" ).replace(/^\/|\/$/g, '');
+            console.log(url)
+            $("ul.rd-navbar-nav").find( "a[href='"+url+"']" ).parent().addClass("_active");
+        });
     });
 </script>
 <?php if ($this->getNameInLayout() == 'catalog.topnav' && (!$this->_helper->isVertical())): ?>

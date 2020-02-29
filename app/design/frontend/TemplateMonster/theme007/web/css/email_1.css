@@ -121,12 +121,12 @@ h6 .small {
 }
 a,
 .alink {
-  color: #1979c3;
+  color: #02a9c9;
   text-decoration: none;
 }
 a:visited,
 .alink:visited {
-  color: #1979c3;
+  color: #02a9c9;
   text-decoration: none;
 }
 a:hover,
@@ -351,7 +351,7 @@ td {
   mso-table-rspace: 0pt;
 }
 a:visited {
-  color: #1979c3 !important;
+  color: #02a9c9 !important;
   text-decoration: none !important;
 }
 a:hover {

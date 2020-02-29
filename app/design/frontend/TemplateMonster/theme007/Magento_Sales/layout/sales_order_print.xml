@@ -16,6 +16,7 @@
             </arguments>
         </block>
         <move element="print_logo" destination="page.main.title" before="-"/>
-        <move element="copyright" destination="main"/>
+        <referenceBlock name="footer"  remove="true" />
+        <referenceBlock name="copyright"  remove="true" />
     </body>
 </page>

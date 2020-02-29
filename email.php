@@ -60,9 +60,9 @@ try {
 	    )
 	    ->setTemplateVars($transport)
 	    ->setFrom("general")
-	    //->addTo("rajalwaysfirst@gmail.com")
+	    ->addTo("rajalwaysfirst@gmail.com")
 	    //->addTo("rajalwaysfirst@yahoo.com")
-	    ->addTo("sam@i-st.com.au")
+	    //->addTo("sam@i-st.com.au")
 	    ->setReplyTo("test@gmail.com")
 	    ->getTransport();
 

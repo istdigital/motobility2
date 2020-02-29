@@ -83,7 +83,7 @@ class Listpost extends Frontend
      */
     protected function getCollection()
     {
-        return $this->helperData->getPostCollection(null, null, $this->store->getStore()->getId());
+        return $this->helperData->getPostCollection(null, null, $this->store->getStore()->getId())->setOrder('post_id', 'desc');
     }
 
     /**
@@ -221,5 +221,15 @@ class Listpost extends Frontend
         }
 
         return $categoryHtml[0];
+    }
+
+    public function getPostCategoryObject($post)
+    {
+        $categories = $this->helperData->getCategoryCollection($post->getCategoryIds());
+        $categoryHtml = [];
+        foreach ($categories as $_cat) {
+            return $_cat;
+            break;
+        }
     }
 }
