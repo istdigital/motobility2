@@ -12,7 +12,7 @@
 <?php /* Extensions placeholder */ ?>
 <?= $block->getChildHtml('customer.form.register.extra') ?>
 <form class="form create account form-create-account row" action="<?= $block->escapeUrl($block->getPostActionUrl()) ?>" method="post" id="form-validate" enctype="multipart/form-data" autocomplete="off">
-    <div class="col-md-7 col-md-preffix-2-">
+    <div class="col-md-8 col-md-preffix-2-">
         <?= /* @noEscape */ $block->getBlockHtml('formkey'); ?>
         <fieldset class="fieldset create info">
             <legend class="legend"><span><?= $block->escapeHtml(__('Personal Information')) ?></span></legend><br>

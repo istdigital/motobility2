@@ -21,6 +21,10 @@
 
 /** @var \Mageplaza\Blog\Block\Frontend $block */
 ?>
+<?php
+$_helper = $this->helper('Mageplaza\Blog\Helper\Data');
+$cats = [];
+?>
 <div class="post-list-content" id="mpblog-list-container">
     <?php $postCollection = $block->getPostCollection(); ?>
     <?php if ($postCollection && $postCollection->getSize()) : ?>
@@ -41,7 +45,20 @@
                             </div>
                         <?php endif; ?>
                         <div class="post-info-wraper">
-                            <?= $block->getPostCategory($post) ?>
+                            <?php $category = $block->getPostCategoryObject($post) ?>
+                            <?php if($category): ?>
+                                <?php 
+                                    $cats[] = $category->getId();
+                                    $cats = array_unique($cats);
+                                    $index = array_search($category->getId(), $cats);
+                                    $_class = (($index + 1) % 2 == 0) ? 'txtorange' : '' ;    
+                                ?>
+                                <a class="mp-info-category <?= $_class ?>" href="<?= $_helper->getBlogUrl($category, \Mageplaza\Blog\Helper\Data::TYPE_CATEGORY)?>">
+                                    <?= $category->getName() ?>
+                                </a>
+                            <?php else: ?>
+                                <a class="mp-info-category" href="#">&nbsp;</a>
+                            <?php endif; ?>
 
                             <a class="post-link-title" title="<?php echo $block->escapeHtml($post->getName()); ?>"
                                href="<?php echo $post->getUrl() ?>">
@@ -50,7 +67,7 @@
 
                             <div class="post-short-description">
                                 <p>
-                                    <?= substr($post->getShortDescription(), 0, 90) ?>...
+                                    <?= substr($post->getShortDescription(), 0, 80) ?>...
                                 
                                 <a class="mp-read-more" href="<?php echo $post->getUrl(); ?>"
                                    title="<?php echo __('Read More'); ?>"></a>

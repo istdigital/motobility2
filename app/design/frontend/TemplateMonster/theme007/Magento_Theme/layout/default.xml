@@ -141,11 +141,11 @@
             </container>
         </referenceContainer>
 
-        <referenceContainer name="fcopyright" htmlClass="page-footersd" htmlTag="div">
+        <!-- <referenceContainer name="fcopyright" htmlClass="page-footersd" htmlTag="div">
             <container name="fcopyright.grid-container" htmlClass="container content footer" htmlTag="div" before="-">
 
             </container>
-        </referenceContainer>
+        </referenceContainer> -->
 
         <!-- <move element="footer_links"   destination="footer_col_content_1" after="-"/> -->
         <referenceBlock name="footer_links" remove="true" />

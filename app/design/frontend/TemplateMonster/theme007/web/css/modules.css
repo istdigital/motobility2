@@ -3356,9 +3356,15 @@ pre {
   @media (min-width: 768px) {
     .layout_3 .panel-container-wrap {
       min-height: 61px; } }
+
+
 .layout_3 .rd-navbar-collapse-container {
-  float: right;
-      margin-top: 4px; }
+  float: right;margin-top: 3px; }
+@media (min-width: 1354px) {
+  .layout_3 .rd-navbar-collapse-container {
+      margin-top: -7px; }
+}
+
 .layout_3 .panel-container-wrap-bottom {
       padding-bottom: 10px;
     padding-top: 20px; }
@@ -3628,7 +3634,7 @@ pre {
       .breadcrumbs .items .item:last-child:after {
         display: none; }
     .breadcrumbs .items .item a,.breadcrumbs .items .item strong {
-       color: #777777;
+       color: #2f2f2f ;
   font-size: 14px;
   font-weight: 400;
   line-height: 24px;
@@ -7501,6 +7507,9 @@ dl.custom-page dd {
 .toolbar-bottom .toolbar-sorter {
   display: none !important; }
 
+.catalog-category-view .toolbar-bottom .limiter,
+.catalog-category-view .toolbar-bottom .toolbar-sorter {  display: block !important; }
+
 @media (max-width: 767px) {
   .modes,
   .toolbar-amount,
@@ -7582,6 +7591,7 @@ dl.custom-page dd {
 .modal-popup.quick-view .page-title-wrapper .page-title {
       font-size: 36px;
     margin-bottom: 25px;
+    margin-top: 20px;
     line-height: 44px;
     color: #0f849c;}
 .catalog-product-view .product.sku,
@@ -7772,6 +7782,10 @@ dl.custom-page dd {
   font-weight: 600;
   line-height: 28px;
   text-decoration: line-through; }
+.catalog-product-view .product-info-price .old-price{
+  margin-left: 15px;
+}
+
 .catalog-product-view .product-add-form,
 .modal-popup.quick-view .product-add-form {
   margin-bottom: 1rem; }
@@ -7905,7 +7919,7 @@ border-radius: 0;}
   .catalog-product-view .product.info.detailed:before {
       background: rgba(245,245,245,0.4);
       content: "";
-      width: 200%;
+      width: 250%;
       height: 100%;
       display: inline-block;
       left: -500px;
@@ -9639,7 +9653,7 @@ body.account .box address {
   .rd-navbar-cart-wrap {
     position: relative;
     float: right;
-    margin-top: 4px;
+    /*margin-top: 4px;*/
     padding: 2px 31px 4px;
     border-left: 1px solid #eae9e9;
     height: 40px; }
@@ -9849,7 +9863,7 @@ body.account .box address {
 
 @media (min-width: 768px) {
   .minicart-wrapper {
-    padding: 6px 0; } }
+    padding: 10px 0; } }
 @media (max-width: 767px) {
   .minicart-items .item > .product {
     overflow: hidden;
@@ -11108,7 +11122,7 @@ text-transform: capitalize;}
       display: block;
       width: 33px;
       height: 33px;
-      border: 2px solid #0f849c;
+      border: 2px solid #f7981d;
       border-radius: 50%;
       background: #FFF; }
     .opc-progress-bar .opc-progress-bar-item:after {
@@ -11137,6 +11151,7 @@ text-transform: capitalize;}
     .opc-progress-bar .opc-progress-bar-item:last-child span:before {
       content: '02.'; }
     .opc-progress-bar .opc-progress-bar-item span {
+      color: #0b4857;
       position: absolute;
       top: 0;
       left: 0;
@@ -11157,7 +11172,7 @@ text-transform: capitalize;}
         z-index: -1;
         background: #888; }
         .opc-progress-bar .opc-progress-bar-item._active span::after{
-          background:#0f849c;
+          background:#f7981d;
         }
         @media (min-width: 992px) {
           .opc-progress-bar .opc-progress-bar-item span:after {
@@ -11176,8 +11191,9 @@ text-transform: capitalize;}
         opacity: 1; }
       .opc-progress-bar .opc-progress-bar-item._active:after {
         opacity: 1;
-        display: block;background-color: #0f849c;
-          border-color: #0f849c; }
+        display: block;
+        background-color: #f7981d;
+          border-color: #f7981d; }
     .opc-progress-bar .opc-progress-bar-item._complete {
       opacity: .5; }
 
@@ -11386,8 +11402,11 @@ text-transform: capitalize;}
   -webkit-justify-content: flex-end;
   -ms-flex-pack: end;
   justify-content: flex-end; }
+  .payment-methods .actions-toolbar .action,
   #shipping-method-buttons-container .action {
-    margin: 0; }
+    margin: 0;
+    background-color: #f7981d;
+    border-color: #f7981d; }
     #shipping-method-buttons-container .action span span:after {
       content: "";
       display: inline-block;
@@ -13358,26 +13377,28 @@ div[class^="swatch-opt-"] {
     align-items: flex-start; }
   .contact-index-index fieldset.fieldset .field #comment {
     min-height: 320px; }
-.contact-index-index .actions-toolbar {
+/*.contact-index-index .actions-toolbar {
     margin: 20px 0 0; 
-    }
+    }*/
     .contact-index-index .actions-toolbar button{
       background: #f7981d;
       border-color:  #f7981d;
       min-width: 164px;
-      padding: 7px 34px 9px;
+      padding: 9px 34px 9px;
+      line-height: 20px;
       box-shadow: 0px 8px 10px rgba(0,0,0,0.2);
       text-transform: uppercase;
+      margin: 1rem 1rem 0 0;
     }
     .contact-index-index .actions-toolbar button.outline-secondary{
       background: transparent;
-      margin-left: 1rem;
+      
     }
   /*@media (min-width: 992px) {
     .contact-index-index .actions-toolbar {
       padding-left: 125px; } }*/
-  .contact-index-index .actions-toolbar .action {
-    margin: 0; }
+  /*.contact-index-index .actions-toolbar .action {
+    margin: 0; }*/
 @media (min-width: 992px) {
   .contact-index-index .check_privacy_field {
     padding-left: 125px;
@@ -13659,9 +13680,11 @@ div[class^="swatch-opt-"] {
       margin-top: 27px;
       position: relative; } }
 @media (min-width: 768px) {
+    .rd-navbar-nav li._active.rd-navbar--has-megamenu > a,
     .rd-navbar-nav li.focus.rd-navbar--has-megamenu > a {
         color: #f7981d;
     }
+    .rd-navbar-nav > li._active,
     .rd-navbar-nav > li.focus{
       background: #fff;
       border-top:2px solid #f7981d;
@@ -13698,7 +13721,7 @@ div[class^="swatch-opt-"] {
 
     @media (min-width: 768px) and (max-width: 1353px) {
       .rd-navbar-nav > li {
-        margin: 0 10px 0 0; } }
+        margin: 0 0px 0 0; } }
 
 
 @media (min-width: 768px) {
@@ -13780,9 +13803,9 @@ div[class^="swatch-opt-"] {
 
 @media (min-width: 992px) {
   .layout_3 .rd-navbar-nav > li > .rd-navbar-dropdown {
-    top: 66px; }
+    top: 65px; }
   .layout_3 .rd-navbar-nav > li > .rd-navbar-megamenu {
-    top: 66px;
+    top: 65px;
     box-shadow: 0 2px 5px 0 rgba(0,0,0,.1); }
   .layout_3 .rd-navbar-nav > li > a::after {
     bottom: -21px; } }
@@ -15680,7 +15703,8 @@ div[class^="swatch-opt-"] {
   -khtml-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
-  user-select: none; }
+  user-select: none;
+  max-width: 20px; }
 
 
 

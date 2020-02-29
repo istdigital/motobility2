@@ -145,12 +145,12 @@ h6 .small {
 }
 a,
 .alink {
-  color: #782a90;
+  color: #02a9c9;
   text-decoration: none;
 }
 a:visited,
 .alink:visited {
-  color: #782a90;
+  color: #02a9c9;
   text-decoration: none;
 }
 a:hover,
@@ -340,7 +340,7 @@ body {
     padding: 20px 0px 10px;
     letter-spacing: -0.01px;
 }
-.footer a{color: #782a90}
+.footer a{color: #02a9c9}
 .button > tr > td {
   padding-bottom: 10px;
 }
@@ -376,7 +376,7 @@ body {
 }
 .message-info td a,
 .message-gift td a {
-  color: #782a90;
+  color: #02a9c9;
 }
 .message-info td h1,
 .message-gift td h1,
@@ -679,7 +679,7 @@ color: #4e5055
     font-weight: normal;
 }
 .email-intro p a{
-      color: #782a90;
+      color: #02a9c9;
 }
 
 .main-content .store-links td{
@@ -695,7 +695,7 @@ color: #4e5055
     color: #FFFFFF;
     font-size: 12px;
     text-transform: uppercase;
-    background-color: #782a90;
+    background-color: #02a9c9;
     width: 160px;
 }
 .main-content .view-order a{
@@ -710,7 +710,7 @@ color: #4e5055
 }
 .main-content .store-url a{
     text-decoration: underline;
-    color: #782a90;
+    color: #02a9c9;
 }
 
 .email-information {
