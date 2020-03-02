@@ -10,7 +10,7 @@
             $("ul.rd-navbar-nav").find( "a[href='"+url+"']" ).parent().addClass("_active");
         });
         const u = window.location.href.replace(/^\/|\/$/g, '');
-        $("ul.rd-navbar-nav").find( "a[href^='"+u+"']" ).parent().addClass("_active");
+        $("ul.rd-navbar-nav").find( "a[href='"+u+"']" ).parent().addClass("_active");
     });
 </script>
 <?php if ($this->getNameInLayout() == 'catalog.topnav' && (!$this->_helper->isVertical())): ?>
