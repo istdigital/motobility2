@@ -1,0 +1,70 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/**
+ * Product additional attributes template
+ *
+ * @var $block \Magento\Catalog\Block\Product\View\Attributes
+ */
+?>
+<?php
+    $_helper = $this->helper('Magento\Catalog\Helper\Output');
+    $_product = $block->getProduct();
+?>
+<?php if ($additional = $block->getAdditionalData()): ?>
+    <?php 
+        $_additional = array_values($additional);
+        usort($_additional, function($a, $b) {
+            return $a['label'] > $b['label'];
+        });
+    ?>
+    <div class="product attribute specifications">
+        <div class="value">
+            <div class="row">
+                <div class="col-md-6">
+                    <table width="100%">
+                        <tbody>
+                            <?php for($i = 0; $i < count($_additional);): ?>
+                                <?php $_data = $_additional[$i]; ?>
+                                <tr>
+                                    <th>
+                                        <p><?= $block->escapeHtml($_data['label']) ?></p>
+                                    </th>
+                                    <td>
+                                        <p>
+                                            <?= $_helper->productAttribute($_product, $_data['value'], $_data['code']) ?>
+                                        </p>
+                                    </td>
+                                </tr>
+                            <?php $i = $i + 2; endfor; ?>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-6">
+                    <table width="100%">
+                        <tbody>
+                            <?php for($i = 1; $i <= count($_additional);): ?>
+                                <?php $_data = $_additional[$i]; ?>
+                                <tr>
+                                    <th>
+                                        <p><?= $block->escapeHtml($_data['label']) ?></p>
+                                    </th>
+                                    <td>
+                                        <p>
+                                            <?= $_helper->productAttribute($_product, $_data['value'], $_data['code']) ?>
+                                        </p>
+                                    </td>
+                                </tr>
+                            <?php $i = $i + 2; endfor; ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+<?php endif;?>

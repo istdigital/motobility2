@@ -10186,7 +10186,7 @@ table.cart {
       font-weight: 400;
       text-transform: capitalize; }
     .cart-container .main.actions .action.continue {
-      line-height: inherit; }
+       }
       .cart-container .main.actions .action.continue:before {
         content: "\e943";
         display: inline-block;
@@ -10197,7 +10197,6 @@ table.cart {
         -moz-osx-font-smoothing: grayscale;
         transform: translate(0, 0); }
     .cart-container .main.actions .action.clear {
-      line-height: inherit;
       margin-left: 2rem;
       margin-right: auto; }
       .cart-container .main.actions .action.clear:before {
@@ -10214,7 +10213,7 @@ table.cart {
           margin-left: 0; } }
 
     .cart-container .main.actions .action.update {
-      line-height: inherit; }
+       }
       .cart-container .main.actions .action.update:before {
         content: "";
         display: inline-block;
@@ -13681,10 +13680,12 @@ div[class^="swatch-opt-"] {
       position: relative; } }
 @media (min-width: 768px) {
     .rd-navbar-nav li._active.rd-navbar--has-megamenu > a,
+    .rd-navbar-nav li:hover > a,
     .rd-navbar-nav li.focus.rd-navbar--has-megamenu > a {
         color: #f7981d;
     }
     .rd-navbar-nav > li._active,
+    .rd-navbar-nav > li:hover,
     .rd-navbar-nav > li.focus{
       background: #fff;
       border-top:2px solid #f7981d;
