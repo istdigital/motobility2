@@ -5,6 +5,10 @@
             'loader'
         ],function($){
 
+            $('.downloads-list').loader({
+                icon: "<?= $this->getViewFileUrl('images/loader-2.gif'); ?>"
+            });
+            
             function fetchData(v){
                 $('.downloads-list').trigger('processStart');
                 $.get("<?php echo $this->getUrl('downloads/index/search'); ?>"+"?query="+v+"&cat="+'<?= $this->getRequest()->getParam('cat') ?>', function(res){

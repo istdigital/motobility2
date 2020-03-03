@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg width="260px" height="150px" viewBox="0 0 260 150" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg">
+  <desc>Created with Lunacy</desc>
+  <defs>
+    <linearGradient x1="0.391423732" y1="0.5665694" x2="-0.547847331" y2="0.5532193" id="gradient_1">
+      <stop offset="0" stop-color="#0F849C" />
+      <stop offset="1" stop-color="#35B3CA" />
+    </linearGradient>
+  </defs>
+  <g id="ask-question">
+    <path d="M0 0L260 0L260 150L0 150L0 0Z" id="Rectangle" fill="#0F849C" stroke="none" />
+    <path d="M112 -3.05176e-05L112 121L0.629903 121C0.629903 121 -5.64589 78.5344 21.4208 44.0001C48.4876 9.46573 112 -3.05176e-05 112 -3.05176e-05Z" transform="translate(147.5001 28.49979)" id="New-shape1" fill="url(#gradient_1)" stroke="none" />
+    <path d="M78.3709 0L78.3708 104L0.370881 104C0.370881 104 -3.79791 57.7003 15.8175 31.7387C35.4328 5.7772 78.3709 0 78.3709 0Z" transform="translate(181.1291 45.49997)" id="New-shape2" fill="#35B3CA" stroke="none" />
+  </g>
+</svg>

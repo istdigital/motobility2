@@ -21,6 +21,11 @@
 
 //$tree = $block->getTree();
 $cats = $block->getSidebarCategoryCollection();
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$resource = $objectManager->get('Magento\Framework\App\ResourceConnection');
+$connection = $resource->getConnection();
+$query = $connection->select()->from("mageplaza_blog_post_category", ' COUNT(*) as total')->where("`category_id` = :category_id");
+
 
 if ($cats->count()) :
     ?>
@@ -30,7 +35,7 @@ if ($cats->count()) :
 	    		<li class="category-item">
 	    			<a class="list-categories <?= $this->isActive($cat->getCategoryId()) ?>" href="<?= $this->getCategoryUrl($cat->getUrlKey()) ?>">
 	    				<?= $cat->getName() ?>
-	    				<span>(<?= $cat->getPostCount() ?>)</span>
+	    				<span>(<?= $connection->fetchOne($query, [':category_id' => $cat->getCategoryId()]); ?>)</span>
 	    			</a>
 	    		</li>
 	    	<?php endforeach; ?>

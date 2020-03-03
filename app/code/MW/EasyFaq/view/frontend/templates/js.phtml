@@ -5,6 +5,9 @@
             'jquery',
             'loader'
         ],function($){
+            $('.faq-list').loader({
+                icon: "<?= $this->getViewFileUrl('images/loader-2.gif'); ?>"
+            });
 
             function fetchData(v){
                 $('.faq-list').trigger('processStart');
