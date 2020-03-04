@@ -5788,7 +5788,7 @@ li.customer-account.active ul.customer-menu a:before{display: none;}
                     margin-right: 5px;
                 }
           }
-}
+
 
 
 .home-section-7{
@@ -5796,7 +5796,12 @@ li.customer-account.active ul.customer-menu a:before{display: none;}
   background-size: cover;
   background-repeat: repeat-y;
   background-attachment: fixed;
-  padding: 30px 0;clear: both;color: #fff;text-transform: uppercase;}
+  padding: 30px 0;
+  clear: both;
+  color: #fff;
+  text-transform: uppercase;
+}
+
   .home-section-7 .col-md-12{
       padding-top:50px;padding-bottom: 50px;  position: relative;z-index: 1;
       
