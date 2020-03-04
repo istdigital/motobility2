@@ -6606,7 +6606,7 @@ button.inc-qty {
         margin-right: 20px;
     }
 }
-
+div#tab-label-additional { display: none; }
 .catalog-product-view .data.items .title.active{    background: #0f849c;color: #fff}
 .catalog-product-view .data.items .title a{
   font-size: 13px;

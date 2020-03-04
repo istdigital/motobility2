@@ -1,6 +1,12 @@
 <?php
 $dwnData = $block->getDownloadsCollection();
 ?>
+<div class="loading-mask" id="loader-download" data-role="loader">
+    <div class="loader">
+         <img src="<?= $this->getViewFileUrl('images/loader-2.gif'); ?>">
+    </div>
+</div>
+
 <div class="downloads-container">
     <div class="toolbar-products row">
         <div class="col-xs-6 result-wrap">

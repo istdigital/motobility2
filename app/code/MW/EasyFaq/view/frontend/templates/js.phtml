@@ -5,20 +5,16 @@
             'jquery',
             'loader'
         ],function($){
-            $('.faq-list').loader({
-                icon: "<?= $this->getViewFileUrl('images/loader-2.gif'); ?>"
-            });
-
             function fetchData(v){
-                $('.faq-list').trigger('processStart');
+                $('#loader-faq').show();
                 $.get("<?php echo $this->getUrl('easyfaq/index/search'); ?>"+"?query="+v+"&cat="+'<?= $this->getRequest()->getParam('cat') ?>', function(res){
                     var res = JSON.parse(res);
                     $(".faq-container").replaceWith(res.results.replace("/index/search/",""));
-
                     $(".mp-sidebar.mpcss").replaceWith(res.sidebar);
-                    $('.loading-mask').hide();
+
+                    $('#loader-faq').hide();
                 }).fail(function() {
-                    $('.loading-mask').hide();
+                    $('#loader-faq').hide();
                 });
             }
 
