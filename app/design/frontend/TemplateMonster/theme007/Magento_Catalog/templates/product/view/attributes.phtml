@@ -30,7 +30,10 @@
                     <table width="100%">
                         <tbody>
                             <?php for($i = 0; $i < count($_additional);): ?>
-                                <?php $_data = $_additional[$i]; ?>
+                                <?php 
+                                    if(!isset($_additional[$i])) continue;
+                                    $_data = $_additional[$i];
+                                ?>
                                 <tr>
                                     <th>
                                         <p><?= $block->escapeHtml($_data['label']) ?></p>
@@ -49,7 +52,10 @@
                     <table width="100%">
                         <tbody>
                             <?php for($i = 1; $i <= count($_additional);): ?>
-                                <?php $_data = $_additional[$i]; ?>
+                                <?php 
+                                    if(!isset($_additional[$i])) continue;
+                                    $_data = $_additional[$i]; 
+                                ?>
                                 <tr>
                                     <th>
                                         <p><?= $block->escapeHtml($_data['label']) ?></p>

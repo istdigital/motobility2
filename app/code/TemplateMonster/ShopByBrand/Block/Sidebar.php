@@ -99,6 +99,7 @@ class Sidebar extends Template
             return $category = $this->_categoryFactory->create()
                     ->getCollection()
                     ->addAttributeToSelect("*")
+                    ->addFieldToFilter("include_in_menu",1)
                     ->addFieldToFilter("parent_id",['eq' => $category->getParentId()]);
         }
 

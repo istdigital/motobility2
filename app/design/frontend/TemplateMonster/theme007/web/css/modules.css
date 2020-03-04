@@ -10164,7 +10164,7 @@ table.cart {
 
   .cart-container .main.actions .action {
     border: none;
-    padding: 5px 15px;
+    padding: 6px 15px 6px;
     font-size: 12px;
     line-height: 22px;
     margin-bottom: 15px; }
@@ -13680,6 +13680,7 @@ div[class^="swatch-opt-"] {
       position: relative; } }
 @media (min-width: 768px) {
     .rd-navbar-nav li._active.rd-navbar--has-megamenu > a,
+    .rd-navbar-nav li._active > a,
     .rd-navbar-nav li:hover > a,
     .rd-navbar-nav li.focus.rd-navbar--has-megamenu > a {
         color: #f7981d;
