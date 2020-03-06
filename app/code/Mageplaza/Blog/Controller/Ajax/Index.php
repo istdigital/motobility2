@@ -71,7 +71,7 @@ class Index extends Action
      */
     public function execute()
     {
-        $collection = $this->_helperBlog->getPostList();
+        $collection = $this->_helperBlog->getPostList()->setOrder('post_id', 'desc');
         $collection->getSelect()->limit(3);
 
         $return = [];
