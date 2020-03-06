@@ -28,7 +28,9 @@
 		})
 
 	    $.getJSON("https://www.instagram.com/motobility/?__a=1", function( res ) {
-			for(var image of res.graphql.user.edge_owner_to_timeline_media.edges){
+	    	const t = res.graphql.user.edge_owner_to_timeline_media.edges.length;
+			for(var i = 0; i < t; i++){
+				var image = res.graphql.user.edge_owner_to_timeline_media.edges[i];
 				$('#instagram-slide .owl-carousel').append("<div>\
 					<a href='https://www.instagram.com/p/"+image.node.shortcode+"' target='_blank'>\
 					<img src='"+image.node.thumbnail_resources[3].src+"' />\

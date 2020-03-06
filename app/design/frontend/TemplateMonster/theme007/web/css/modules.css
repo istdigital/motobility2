@@ -10314,6 +10314,7 @@ table.cart {
   #cart-totals .table.totals th, #cart-totals .table.totals td {
     border: none; }
   #cart-totals .table.totals th {
+    padding-right: 19px !important;
     font-size: 20px;
     line-height: 1; }
   #cart-totals .table.totals .mark,
