@@ -3,6 +3,16 @@
     require([
         'jquery'
     ], function ($) {
+        //STICKY MENU
+        $(window).scroll(function () {
+          if($(window).scrollTop() > 183) {
+            $(".page-header__content").addClass('sticky');
+          } else {
+            $(".page-header__content").removeClass('sticky');
+          }
+        });
+
+
         $('.tm-megamenu .price-box').removeClass('price-box');
         //Active current menu
         $(".breadcrumbs .items a").each(function() {

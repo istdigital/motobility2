@@ -3297,9 +3297,10 @@ fotoramaVersion = '4.6.4';
                     width = Math.round(width);
                     height = measures.h = Math.round(minMaxLimit(height, numberFromWhatever(measures.minheight, windowHeight), numberFromWhatever(measures.maxheight, windowHeight)));
                     
+                    //CUSTOM HEIGHT
                     if($WINDOW.width() > 767){
-                        height = measures.h = 400;
-                        $stage.css({'width': width, 'height': 710});
+                        height = measures.h = 580;
+                        $stage.css({'width': width, 'height': 700});
                     }
                     else{
                         $stage.css({'width': width, 'height': height});    

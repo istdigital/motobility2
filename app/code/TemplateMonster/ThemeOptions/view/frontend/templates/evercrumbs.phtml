@@ -17,14 +17,6 @@ $request = $objectManager->get('Magento\Framework\App\Action\Context')->getReque
         <ul class="items">
 
             <?php $i = 0; foreach ($crumbs as $crumbName => $crumbInfo) : ?>
-
-                <?php if ($i == 1 &&  ($request->getFullActionName() == 'catalog_category_view' || $request->getFullActionName() == 'catalog_product_view') ) :?>
-                    <li class="item lifestyle">
-                        <a href="<?= $this->getUrl('lifestyle') ?>" title="<?= __("Lifestyle") ?>">
-                            <?= __("Lifestyle") ?>
-                        </a>
-                    </li>
-                <?php endif; ?>
                  
                 <li class="item <?php echo $crumbName ?>">
                 <?php if ($crumbInfo['link']) : ?>
