@@ -5947,7 +5947,7 @@ li.customer-account.active ul.customer-menu a:before{display: none;}
     position: absolute;
     background: rgba(255, 255, 255, 0.6);
     width: 217px;
-    z-index: 99;
+    z-index: 2;
     height: calc(100% - 131px);
     font-size: 24px;
 }
@@ -7887,5 +7887,8 @@ body.checkout-index-index aside.modal-popup:not(.opc-sidebar) .action-close{disp
 
 #shipping-zip-form .select2-container{
   width: 100% !important;
+}
+iframe.zoid-component-frame {
+    z-index: 1 !important;
 }
 /* sourceMappingURL=style.css.map */
