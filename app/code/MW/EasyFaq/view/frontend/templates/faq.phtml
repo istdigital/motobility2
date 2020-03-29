@@ -7,6 +7,10 @@ $faqData = $block->getFaqCollection();
     </div>
 </div>
 
+<?php if($tab = $this->getChildHtml('easyfaq-ctabs')): ?>
+<div class="faq-ctabs"><?= $tab ?></div>
+<?php endif ?>
+
 <div class="faq-container">
     <div class="toolbar-products row">
         <div class="col-xs-6 result-wrap">
