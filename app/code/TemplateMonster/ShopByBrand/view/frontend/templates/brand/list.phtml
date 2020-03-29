@@ -4,29 +4,30 @@
 $collection = $block->getBrandCollection();
 $helper = $this->helper('TemplateMonster\ShopByBrand\Helper\Data');
 ?>
+<div class="container">
+    <div class="row brand-list">
+        <?php foreach ($collection as $brand): ?>
+        <div class="col-md-3 brand-item">
+            <div class="inner">
+                <?php if ($block->isShowLogo()): ?>
+                <a href="<?php echo $brand->getUrl() ?>" class="brand-logo">
+                    <img src="<?php  echo $helper->resizeImageUrl($brand->getImageLogoName(), 200); ?>" alt="<?php echo $block->escapeHtml($brand->getName()) ?>" />
+                </a>
+                <?php endif; ?>
 
-<ul class="brand-list">
-    <?php foreach ($collection as $brand): ?>
-    <li class="brand-item">
-        <div class="inner">
-            <?php if ($block->isShowLogo()): ?>
-            <a href="<?php echo $brand->getUrl() ?>" class="brand-logo">
-                <img src="<?php  echo $helper->resizeImageUrl($brand->getImageLogoName(), 200); ?>" alt="<?php echo $block->escapeHtml($brand->getName()) ?>" />
-            </a>
-            <?php endif; ?>
+                <?php if ($block->isShowName()): ?>
+                    <h4 class="brand-item-name">
+                        <a href="<?php echo $brand->getUrl() ?>"><?php echo $brand->getName() ?></a>
+                    </h4>
+                <?php endif; ?>
 
-            <?php if ($block->isShowName()): ?>
-                <h4 class="brand-item-name">
-                    <a href="<?php echo $brand->getUrl() ?>"><?php echo $brand->getName() ?></a>
-                </h4>
-            <?php endif; ?>
-
-            <?php if ($block->isShowShortDescription()): ?>
-            <div class="brand-item-description">
-                <?php echo $brand->getShortDescription() ?>
+                <?php if ($block->isShowShortDescription()): ?>
+                <div class="brand-item-description">
+                    <?php echo $brand->getShortDescription() ?>
+                </div>
+                <?php endif; ?>
             </div>
-            <?php endif; ?>
         </div>
-    </li>
-    <?php endforeach; ?>
-</ul>
+        <?php endforeach; ?>
+    </div>
+</div>

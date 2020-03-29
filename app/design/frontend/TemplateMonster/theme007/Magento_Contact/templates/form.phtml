@@ -21,25 +21,26 @@
             <div class="field name required col-sm-12">
                 <label class="label" for="name"><span><?php /* @escapeNotVerified */ echo __('Name') ?></span></label>
                 <div class="control">
-                    <input name="name" id="name" title="<?php /* @escapeNotVerified */ echo __('Name') ?>" value="<?php echo $block->escapeHtml($this->helper('Magento\Contact\Helper\Data')->getUserName()) ?>" class="input-text" type="text" data-validate="{required:true}" placeholder="e.g. John Doe"/>
+                    <input name="name" id="name" title="<?php /* @escapeNotVerified */ echo __('Name') ?>" value="<?php echo $block->escapeHtml($this->helper('Magento\Contact\Helper\Data')->getUserName()) ?>" class="input-text" type="text" data-validate="{required:true}" placeholder="First & Last Name
+"/>
                 </div>
             </div>
             <div class="field email required col-sm-12">
                 <label class="label" for="email"><span><?php /* @escapeNotVerified */ echo __('Email') ?></span></label>
                 <div class="control">
-                    <input name="email" id="email" title="<?php /* @escapeNotVerified */ echo __('Email') ?>" value="<?php echo $block->escapeHtml($this->helper('Magento\Contact\Helper\Data')->getUserEmail()) ?>" class="input-text" type="email" data-validate="{required:true, 'validate-email':true}" placeholder="e.g. contact@mobilizeme.com"/>
+                    <input name="email" id="email" title="<?php /* @escapeNotVerified */ echo __('Email') ?>" value="<?php echo $block->escapeHtml($this->helper('Magento\Contact\Helper\Data')->getUserEmail()) ?>" class="input-text" type="email" data-validate="{required:true, 'validate-email':true}" placeholder="My Email address"/>
                 </div>
             </div>
-            <div class="field telephone col-sm-12">
+            <div class="field telephone col-sm-12 required">
                 <label class="label" for="telephone"><span><?php /* @escapeNotVerified */ echo __('Phone Number') ?></span></label>
                 <div class="control">
-                    <input name="telephone" id="telephone" title="<?php /* @escapeNotVerified */ echo __('Phone Number') ?>" value="" class="input-text" type="text" placeholder="e.g. 09 8764 5321"/>
+                    <input name="telephone" id="telephone" title="<?php /* @escapeNotVerified */ echo __('Phone Number') ?>" value="" class="input-text" type="text" placeholder="Home Phone or Mobile" data-validate="{required:true}"/>
                 </div>
             </div>
             <div class="field postal col-sm-12 required">
                 <label class="label" for="postal"><span><?php /* @escapeNotVerified */ echo __('Postal Code') ?></span></label>
                 <div class="control">
-                    <input name="postal" id="postal" title="<?php /* @escapeNotVerified */ echo __('Postal Code') ?>" value="" class="input-text" type="text" placeholder="e.g. 6340" data-validate="{required:true}"/>
+                    <input name="postal" id="postal" title="<?php /* @escapeNotVerified */ echo __('Postal Code') ?>" value="" class="input-text" type="text" placeholder="E.g. 6000" data-validate="{required:true}"/>
                 </div>
             </div>
             
@@ -47,7 +48,7 @@
         <div class="field comment required">
             <label class="label" for="comment"><span><?php /* @escapeNotVerified */ echo __('Message') ?></span></label>
             <div class="control">
-                <textarea name="comment" id="comment" title="<?php /* @escapeNotVerified */ echo __('What’s on your mind?') ?>" class="input-text" cols="5" rows="3" data-validate="{required:true}" placeholder="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled "></textarea>
+                <textarea name="comment" id="comment" title="<?php /* @escapeNotVerified */ echo __('What’s on your mind?') ?>" class="input-text" cols="5" rows="3" data-validate="{required:true}" placeholder="Leave us a Message"></textarea>
             </div>
         </div>
         <?php echo $block->getChildHtml('form.additional.info'); ?>
@@ -58,11 +59,11 @@
             <button type="submit" title="<?php /* @escapeNotVerified */ echo __('Submit') ?>" class="action submit primary">
                 <span><?php /* @escapeNotVerified */ echo __('Submit') ?></span>
             </button>
-            <button type="button" 
+            <!-- <button type="button" 
                 onclick="window.location.href='<?= $this->getUrl('contact.html') ?>'"
                 title="<?php /* @escapeNotVerified */ echo __('More Contact Details') ?>" class="action submit outline-secondary">
                 <span><?php /* @escapeNotVerified */ echo __('More Contact Details') ?></span>
-            </button>
+            </button> -->
         </div>
     </div>
 </form>

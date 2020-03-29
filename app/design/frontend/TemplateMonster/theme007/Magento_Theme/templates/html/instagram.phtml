@@ -27,7 +27,7 @@
 		    owl.trigger('prev.owl.carousel', [300]);
 		})
 
-	    $.getJSON("https://www.instagram.com/motobility/?__a=1", function( res ) {
+	    $.getJSON("https://www.instagram.com/mobilize.me/?__a=1", function( res ) {
 	    	const t = res.graphql.user.edge_owner_to_timeline_media.edges.length;
 			for(var i = 0; i < t; i++){
 				var image = res.graphql.user.edge_owner_to_timeline_media.edges[i];
