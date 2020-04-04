@@ -7944,4 +7944,13 @@ justify-content: space-between;
 }
 
 
+ul.list-ordered {
+    list-style: unset;
+    list-style-position: inside;
+}
+ol.list-ordered {
+    list-style: decimal;
+    list-style-position: inside;
+}
+
 /* sourceMappingURL=style.css.map */
