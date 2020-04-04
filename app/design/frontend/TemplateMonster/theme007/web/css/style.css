@@ -5933,9 +5933,13 @@ li.customer-account.active ul.customer-menu a:before{display: none;}
     }
 
 #instagram-slide{
-      padding: 30px 0;
+      padding: 30px 0 0;
     background: #fff;
     position: relative;
+    }
+
+#instagram-slide .owl-carousel.owl-loaded{
+      display: inline-flex;
     }
 
 @media (max-width: 767px){
@@ -5948,7 +5952,7 @@ li.customer-account.active ul.customer-menu a:before{display: none;}
     background: rgba(255, 255, 255, 0.6);
     width: 217px;
     z-index: 2;
-    height: calc(100% - 107px);
+    height: calc(100% - 77px);
     font-size: 24px;
 }
 .is-owl-next{
