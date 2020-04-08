@@ -7344,7 +7344,7 @@ dl.custom-page dd {
   .toolbar-products .toolbar-sorter {
     float: right;    }
     .toolbar-products .limiter {
-     margin-left: 36px !important;}
+     margin: 0px 0 21px 10px !important;}
     .toolbar-products #limiter + .select2-container {
         min-width: 90px;
     }
@@ -9233,7 +9233,7 @@ padding: 0 ;}
       transform: translate(0, 0); }
       .modal-slide._show .action-close {
         display: block; } }
-@media (max-width: 479px) {
+@media (max-width: 767px) {
   .action.filter-toggle {
     position: relative;
     margin-bottom: 15px; } }
