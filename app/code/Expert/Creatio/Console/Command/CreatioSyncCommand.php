@@ -237,14 +237,18 @@ class CreatioSyncCommand extends Command
             foreach ($products as $product)
             {
                 $product_id = $creatio->getProductIdyByCode($product['sku']);
-                $creatio->create([
-                    'Order' => $orderId,
-                    'Product' => $product_id,
-                    'Quantity' => $product['qty_ordered'],
-                    'Price' => $product['price'],
-                    'Amount' => $product['row_total'],
-                    'TotalAmount' => $product['row_total'],
-                ], 'OrderProduct');           
+                if($product_id)
+                {
+                    $creatio->create([
+                        'Order' => $orderId,
+                        'Product' => $product_id,
+                        'Quantity' => $product['qty_ordered'],
+                        'Price' => $product['price'],
+                        'Amount' => $product['row_total'],
+                        'TotalAmount' => $product['row_total'],
+                    ], 'OrderProduct');
+                }
+                           
             }
         }
     }

@@ -61,7 +61,9 @@ class Creatio
 		if($response['Code'] == 0){
 			$cookie = file_get_contents($this->cookie);
 			preg_match("/BPMCSRF.*/",$cookie, $_csrf);
-			$this->_csrf = trim(str_replace("BPMCSRF",'',$_csrf[0]));
+			if(count($_csrf)){
+				$this->_csrf = trim(str_replace("BPMCSRF",'',$_csrf[0]));	
+			}
 		}else{
 			throw new Exception("Creatio:Invalid Credentials", 1);		
 		}
@@ -69,6 +71,7 @@ class Creatio
 
 	function request($url, $data)
 	{
+		if(!$this->_csrf) return false;
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_URL,$url);
 		curl_setopt($ch, CURLOPT_POST, 1); 
@@ -198,8 +201,6 @@ class Creatio
 	{
 		$data = $this->formatInsertData($type, $data);
 		$response = $this->request($this->auth_url . $this->insert_url, $data);
-
-		print_r($response);
 		
 		if($response['success']) return $response['id'];
 		else return false;
