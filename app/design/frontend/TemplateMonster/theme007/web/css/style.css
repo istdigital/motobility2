@@ -2508,7 +2508,7 @@ dl dd {
         -webkit-appearance: none; }
 
 .sorter .select2-container {
-  min-width: 204px; }
+  min-width: 204px;     max-width: 149px;}
   @media (max-width: 992px) {
     .sorter .select2-container {
       min-width: inherit; } }
