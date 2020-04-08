@@ -1,0 +1,89 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="creatio" sortOrder="900">
+            <label>Creatio</label>
+        </tab>
+
+        <section id="creatio" translate="label" type="text" sortOrder="900" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Configuration</label>
+            <tab>creatio</tab>
+            <resource>Expert_Creatio::config</resource>
+
+            <group id="general" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="0">
+                <label>Enable / Disable</label>
+
+                <field id="status" translate="label comment" type="select" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Enable/Disable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+
+                <field id="url" translate="label comment" type="text" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Auth Url</label>
+                </field>
+
+                <field id="username" translate="label comment" type="text" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Auth Username</label>
+                </field>
+
+                <field id="password" translate="label comment" type="text" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Auth Password</label>
+                </field>
+                
+                
+            </group>
+
+            <group id="customer" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="0">
+                <label>Customer</label>
+
+                <field id="type" translate="label comment" type="select" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Type</label>
+                    <source_model>Expert\Creatio\Model\Config\Source\CustomerType</source_model>
+                </field>
+            </group>
+
+
+            <group id="contact" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="0">
+                <label>Contact</label>
+
+                <field id="type" translate="label comment" type="select" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Lead Type</label>
+                    <source_model>Expert\Creatio\Model\Config\Source\LeadType</source_model>
+                </field>
+            </group>
+
+
+            <group id="testimonial" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="0">
+                <label>Testimonial</label>
+
+                <field id="type" translate="label comment" type="select" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Lead Type</label>
+                    <source_model>Expert\Creatio\Model\Config\Source\LeadType</source_model>
+                </field>
+            </group>
+
+
+            <group id="order" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="0">
+                <label>Order</label>
+
+                <field id="source" translate="label comment" type="select" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Lead Type</label>
+                    <source_model>Expert\Creatio\Model\Config\Source\OrderSource</source_model>
+                </field>
+
+                <field id="prefix" translate="label comment" type="text" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Prefix</label>
+                </field>
+                
+            </group>
+
+
+        </section>
+    </system>
+</config>

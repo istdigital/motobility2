@@ -1065,7 +1065,7 @@ dl dd {
 @media (min-width: 768px) {
   .layout_3 .rd-navbar-nav {
     line-height: 17px;
-    text-align: left;
+    text-align: center;
     border: 0;
     padding: 0;
     margin: 0; } }
@@ -5887,9 +5887,21 @@ li.customer-account.active ul.customer-menu a:before{display: none;}
 
 .home-blog {
         background: rgba(245,245,245,0.4);padding: 30px 0;
-    }.home-blog .post-inner{
-        background: #fff;padding: 20px;display: block;
-        }.home-blog .post-inner span{
+    }
+    .home-blog .post-inner{
+        background: #fff;
+        padding: 20px;
+        display: block;
+        margin-bottom: 15px;
+    }
+    @media (min-width: 767px){
+      .home-blog .post-inner {
+        height: 100%;
+        
+      }
+    }
+
+        .home-blog .post-inner span{
             color: #777777;
             font-size: 14px;
             font-weight: 400;
@@ -7544,7 +7556,7 @@ a#open-repayment-popup{
     border-bottom: 1px solid #e2e0ef;
     width: 100%;
     height: 8px;
-    z-index: 99;
+    z-index: 1;
     position: absolute;
     left: 0;
     bottom: 0;
