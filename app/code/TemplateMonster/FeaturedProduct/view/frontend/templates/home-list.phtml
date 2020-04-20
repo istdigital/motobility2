@@ -13,6 +13,8 @@
  *
  * @var $block \TemplateMonster\FeaturedProduct\Block\FeaturedProduct\Widget\Product\
  */
+
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
 if ($exist = ($block->getProductCollections())) {
     $type = 'widget-new-grid';
     $image = 'new_products_content_widget_grid';
@@ -20,8 +22,12 @@ if ($exist = ($block->getProductCollections())) {
     $productItemWidth = $block->getItemWidth();
     $cssClass = $block->getCssClass();
 
+    $resource = $objectManager->get('Magento\Framework\App\ResourceConnection');
+    $connection = $resource->getConnection();
+    $query = $connection->select()->from("catalog_product_entity_text", 'value')->where("`attribute_id` IN (SELECT `attribute_id` FROM `eav_attribute` WHERE `attribute_code` = 'mini_description') AND `entity_id` = :entity_id");
+
 }
-$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+
 ?>
 
 <?php if ($exist):?>
@@ -47,7 +53,12 @@ $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
                                                class="product-item-link">
                                                 <?php echo $block->truncateProductName($_item->getName()); ?>
 
-                                                <?php if($catID){ echo " - ".$objectManager->create('Magento\Catalog\Model\Category')->load($catID)->getName(); } ?>
+                                                <?php $d = $connection->fetchOne($query, [':entity_id' => $_item->getId()]); ?>
+
+                                                <?php if(!empty($d)){ 
+                                                        echo " - ".$d; 
+                                                    } 
+                                                ?>
 
                                             </a>
                                         </strong>

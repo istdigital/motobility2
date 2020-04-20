@@ -44,7 +44,9 @@ class NewAction extends \Magento\Newsletter\Controller\Subscriber\NewAction
                     );
                 }
 
-                $status = (int) $this->_subscriberFactory->create()->subscribe($email);
+                $status = (int) $this->_subscriberFactory->create()
+                                    ->setSubscriberName((string)$this->getRequest()->getPost('subscriber_name'))
+                                    ->subscribe($email);
 
                 return $this->resultRedirectFactory->create()->setPath('newsletter-thankyou');
 

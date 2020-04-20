@@ -87,6 +87,9 @@ class Creatio
 		);
 		$response = json_decode(curl_exec ($ch), true);
 		curl_close ($ch);
+
+		if(!$response['success']) print_r($response);
+
 		return $response;
 	}
 
@@ -221,7 +224,7 @@ class Creatio
 				if(preg_match("/^[a-z0-9]{8}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{12}$/",$value))
 				{
 					$datatype = 0;
-				}else if(is_numeric($value) && !in_array($key, ['Phone', 'MobilePhone'])){
+				}else if(is_numeric($value) && !in_array($key, ['Phone', 'MobilePhone', 'Zip'])){
 					$datatype = 5; //FLOAT
 				}
 
@@ -251,6 +254,33 @@ class Creatio
 			'a770b005-e8bb-df11-b00f-001d60e938c6' =>	'KAZ',
 			'6525ec6f-8650-45f8-915a-a61b6f3bf09f' =>	'BLR',
 			'4a88fe46-607b-4e74-ad4f-d80a50079ba6' =>	'NZL',
+		];
+		$key = array_search($code, $countries);
+		if($key === FALSE) return '';
+		return $key;
+	}
+
+	function getPaymentTypeByCode($code)
+	{
+		$countries = [
+			'9f0a8bf8-4343-4966-b634-11757224de0e' =>	'afterpay',
+			'7f3e3aff-2d34-49a7-b4ed-411241ad59d9' =>	'cryozonic_stripe',
+			'bf4f69c8-e242-4b0e-83c3-1c8d4790fc01' =>	'paypal_express',
+			'0026bde9-932b-4baa-ba30-ffa521a255ab' =>	'cashondelivery',
+			'0026bde9-932b-4baa-ba30-ffa521a255ab' =>	'checkmo',
+		];
+		$key = array_search($code, $countries);
+		if($key === FALSE) return '';
+		return $key;
+	}
+
+	function getDeliveryTypeByCode($code)
+	{
+		$countries = [
+			'9f0a8bf8-4343-4966-b634-11757224de0e' =>	'afterpay',
+			'7f3e3aff-2d34-49a7-b4ed-411241ad59d9' =>	'Stripe',
+			'bf4f69c8-e242-4b0e-83c3-1c8d4790fc01' =>	'paypal',
+			'0026bde9-932b-4baa-ba30-ffa521a255ab' =>	'cashondelivery',
 		];
 		$key = array_search($code, $countries);
 		if($key === FALSE) return '';

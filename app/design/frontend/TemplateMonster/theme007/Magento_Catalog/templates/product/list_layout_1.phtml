@@ -114,7 +114,7 @@ $query = $connection->select()->from("catalog_product_entity_text", 'value')->wh
                         </strong>
                         <p style="margin: 0">
                             <?php $brand = $_bhelper->getBrandById($_product->getData('brand_id')) ?>
-                            <?php if(count($brand)): ?>
+                            <?php if($brand && count($brand)): ?>
                                 <a class="product-brand-name" href="<?= $this->getUrl($brand['url_key']) ?>"><?= $brand['name'] ?></a>
                             <?php else: ?>
                                 <a class="product-brand-name"  href="#">&nbsp;</a>

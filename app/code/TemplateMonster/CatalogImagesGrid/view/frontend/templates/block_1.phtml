@@ -1,0 +1,23 @@
+<?php
+	$data = $this->getData();
+	$murl = $this->getUrl('pub/media/');
+?>
+<?php if($data['widget_status'] == 1): ?>
+<div class="home-section-1">
+    <div class="row">
+    	<?php foreach (range(1, 4) as $i): ?>
+	        <div class="col-md-3 col-xs-12 col-sm-3">
+	        	<a href="<?= $this->getUrl($data["b{$i}_url"]) ?>">
+	        		<?php if(isset($data["b{$i}_image"])): ?>
+	        			<img src="<?= $murl . $data["b{$i}_image"] ?>" width="461" height="461">
+	        		<?php endif; ?>
+	        		<strong>
+	        			<small><?= $data["b{$i}_label"] ?? null ?></small>
+	        			<?= $data["b{$i}_title"] ?? null ?>
+	        		</strong> 
+	        	</a>
+	        </div>
+        <?php endforeach; ?>
+    </div>
+</div>
+<?php endif; ?>

@@ -7863,11 +7863,11 @@ border-radius: 0;}
   padding: 0;
   margin-right: 10px;
   border: solid 1px #35b3ca;
-    height: 50px;
-    width: 50px;
+    height: 60px;
+    width: 60px;
     display: inline-block;
     text-align: center;
-    line-height: 50px;
+    line-height: 60px;
     color: #35b3ca;
     border-radius: 4px; }
   .catalog-product-view .product-social-links .action:hover,
@@ -8956,8 +8956,15 @@ body.catalog-product-compare-index .table-caption {
   text-indent: 1px; }
 
 .tocompare:before {
-  font-family: "Linearicons";
-  content: "\e8da"; }
+    background-image: url(../images/compare-icon4.png);
+    background-repeat: no-repeat;
+    content: " ";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 1px;
+    background-size: 98%;
+}
 
 .filter-current--wrapper {
   margin-bottom: 35px;
@@ -17133,10 +17140,12 @@ div[class^="swatch-opt-"] {
     clear: both;
     flex-direction: row;
     justify-content: center;
+    flex-wrap: wrap;
 }
 .product-info-logos ul li {
     padding: 0;
     text-align: center;
+    flex-basis: 33.33%;
 }
 .product-info-logos img {
     display: block;
