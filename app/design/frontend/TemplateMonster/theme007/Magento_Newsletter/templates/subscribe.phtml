@@ -23,6 +23,10 @@
               data-mage-init='{"validation": {"errorClass": "mage-error"}}'
               id="newsletter-validate-detail">
             <div class="field newsletter">
+                <div class="control" style="margin-bottom: 10px;">
+                    <input type="text" placeholder="<?php /* @escapeNotVerified */
+                        echo __('Enter your Name') ?>" name="subscriber_name" data-validate="{required:true}"/>
+                </div>
                 <div class="control">
                     <input
                         name="email"

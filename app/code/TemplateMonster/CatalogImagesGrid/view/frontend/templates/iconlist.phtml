@@ -1,0 +1,40 @@
+<?php
+	$data = $this->getData();
+	$murl = $this->getUrl('pub/media/');
+	$class = $data['layout'] == 1 ? 'shipping-payment' : 'product-info-logos';
+
+	if(isset($data['conditions_encoded'])){
+		$helper = new \Magento\Widget\Helper\Conditions();
+		$cats = array_map(function($e){return explode(",", $e['value']);},array_filter($helper->decode($data['conditions_encoded']), function($e){
+			if(isset($e['attribute']) && $e['attribute'] == 'category_ids') return $e;
+		}));
+
+		if(count($cats)){
+			$cats = array_map(function($e){
+				return trim($e);
+			},array_merge(...array_values($cats)));
+
+			$objectManager =  \Magento\Framework\App\ObjectManager::getInstance();      
+			$registry = $objectManager->get('\Magento\Framework\Registry');
+			$product = $registry->registry('current_product');
+
+			if($cats && !count(array_intersect($cats,$product->getCategoryIds()))) return;
+		}
+	}
+?>
+<?php if($data['widget_status'] == 1): ?>
+<div class="<?= $class ?>">
+	<ul>
+		<?php foreach (range(1, 6) as $i): ?>
+			<?php if(isset($data["b{$i}_title"]) && !empty($data["b{$i}_title"])): ?>
+		    <li>
+		    	<?php if(isset($data["b{$i}_image"])): ?>
+		        	<img src="<?= $murl . $data["b{$i}_image"] ?>"/>
+	        	<?php endif; ?>
+	        	<span><?= $data["b{$i}_title"] ?></span>
+		    </li>
+		    <?php endif; ?>
+	    <?php endforeach; ?>
+	</div>
+</ul>
+<?php endif; ?>

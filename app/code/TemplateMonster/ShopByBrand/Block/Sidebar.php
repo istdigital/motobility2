@@ -100,7 +100,8 @@ class Sidebar extends Template
                     ->getCollection()
                     ->addAttributeToSelect("*")
                     ->addFieldToFilter("include_in_menu",1)
-                    ->addFieldToFilter("parent_id",['eq' => $category->getParentId()]);
+                    ->addFieldToFilter("parent_id",['eq' => $category->getParentId()])
+                    ->setOrder('position','ASC');
         }
 
         // $cacheKey = sprintf('%d-%d-%d-%d', $this->getSelectedRootCategory(), $sorted, $asCollection, $toLoad);

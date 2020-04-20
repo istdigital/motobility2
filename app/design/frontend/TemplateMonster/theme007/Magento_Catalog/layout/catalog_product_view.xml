@@ -36,10 +36,10 @@
             
         </block>
 
-        <block class="Magento\Framework\View\Element\Template" name="ship.link" template="Magento_Catalog::sp.phtml" after="-"/>
+        <!-- <block class="Magento\Framework\View\Element\Template" name="ship.link" template="Magento_Catalog::sp.phtml" after="-"/>
 
         <block class="Magento\Framework\View\Element\Template" name="product.payment.logos"
-               template="Magento_Catalog::product/view/logos.phtml" after="ship.link"/>
+               template="Magento_Catalog::product/view/logos.phtml" after="ship.link"/> -->
         
     </referenceContainer>
 

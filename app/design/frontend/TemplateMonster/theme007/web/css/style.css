@@ -6669,7 +6669,7 @@ div#tab-label-additional { display: none; }
 
 .product-info-main .shipping-payment{
   text-align: left;
-  margin-top: 30px;
+  margin-top: 40px;
 }
 @media (min-width: 768px){
   .product-info-main .shipping-payment{
@@ -6686,7 +6686,7 @@ div#tab-label-additional { display: none; }
 .product-info-main .shipping-payment li.buy-link{
     background-size: 40px;
 }
-.product-info-main .shipping-payment li a{
+.product-info-main .shipping-payment li span{
   color: rgba(34,36,43,0.8);
   font-size: 14px;
   font-weight: 600;
@@ -7970,3 +7970,25 @@ ol.list-ordered {
 }
 
 /* sourceMappingURL=style.css.map */
+
+.product-info-main .product-reviews-summary {
+    display: none;
+}
+
+.product-info-main .product-addto-links .towishlist:after,
+.product-info-main .product-addto-links .tocompare:after {
+    content: "Compare";
+    font-size: 11px;
+    position: ABSOLUTE;
+    bottom: -44px;
+    left: 0;
+    width: 100%;
+}
+
+
+.product-info-main .product-addto-links .towishlist:before {
+  font-size: 35px;
+}
+.product-info-main .product-addto-links .towishlist:after {
+    content: "Favourites";
+}

@@ -84,8 +84,17 @@ class CreatioSyncCommand extends Command
                     "MobilePhone" => $query['phone'],
                     "Commentary" => $query['message'],
                     "Zip" => $query["postal"],
+                    "Address" => "Zip:" . $query["postal"],
                     "Owner" => $Id,
                 ], 'Lead');
+
+                if(!empty($query["postal"])){
+                    $creatio->create([
+                        "Address" => "Zip:" . $query["postal"],
+                        "Zip" => $query["postal"],
+                        "Lead" => $leadId,
+                    ], 'LeadAddress');
+                }
 
                 //SET creatio_id
                 $connection->query("UPDATE $contacts SET `creatio_id` = '$leadId' WHERE `id` = {$query['id']}");
@@ -136,9 +145,8 @@ class CreatioSyncCommand extends Command
             $Id = $creatio->getContact($query['subscriber_email']);
             if($Id === false)
             {
-                [$name] = explode("@",$query['subscriber_email']);
                 $Id = $creatio->create([
-                    "Name" => $name,
+                    "Name" => $query['subscriber_name'],
                     "Type" => $customerType,
                     "Email" => $query['subscriber_email'],
                 ], 'Contact');
@@ -184,6 +192,7 @@ class CreatioSyncCommand extends Command
         //Create Orders
         $sales_order = $resource->getTableName('sales_order');
         $sales_order_address = $resource->getTableName('sales_order_address');
+        $sales_order_payment = $resource->getTableName('sales_order_payment');
         $sales_order_item = $resource->getTableName('sales_order_item');
 
 
@@ -192,10 +201,12 @@ class CreatioSyncCommand extends Command
                         A.`customer_firstname`, A.`customer_lastname`, 
                         A.`grand_total`,
                         B.`region_id`,B.`postcode`,B.`street`,B.`city`,
-                        B.`telephone`,B.`country_id`
+                        B.`telephone`,B.`country_id`,
+                        C.`method` as `payment_method`
                         FROM $sales_order A
                         LEFT JOIN $sales_order_address B ON A.`shipping_address_id` = B.`entity_id`
-                        WHERE TIMESTAMPDIFF(MINUTE, `created_at` , now()) <= $schedule;
+                        LEFT JOIN $sales_order_payment C ON A.`entity_id` = B.`parent_id`
+                        WHERE TIMESTAMPDIFF(MINUTE, `created_at` , now()) <= $schedule;                
                     ");
 
         foreach ($orders as $order)
@@ -220,6 +231,9 @@ class CreatioSyncCommand extends Command
                 'Number' => $orderprefix . $order['increment_id'],
                 'Owner' => $Id,
                 'Contact' => $Id,
+                'PaymentType' => $creatio->getPaymentTypeByCode($order['payment_method']),
+                //'DeliveryType' => $creatio->getDeliveryTypeByCode($order['payment_method']),
+                //'OrderChannel' => $Id, // ORDE CHANNEL
                 'Amount' => $order['grand_total'],
                 'PaymentAmount' => $order['grand_total'],
                 'DeliveryAddress' => sprintf("%s %s, %s %s",
