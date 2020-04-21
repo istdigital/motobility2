@@ -313,7 +313,7 @@ class Matrixrate extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
             $shippingData = [$shippingData[0]];
         }
 
-        return [$shippingData[0]];
+        return $shippingData;
     }
 
     /**

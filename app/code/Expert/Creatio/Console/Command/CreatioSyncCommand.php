@@ -205,12 +205,13 @@ class CreatioSyncCommand extends Command
                         C.`method` as `payment_method`
                         FROM $sales_order A
                         LEFT JOIN $sales_order_address B ON A.`shipping_address_id` = B.`entity_id`
-                        LEFT JOIN $sales_order_payment C ON A.`entity_id` = B.`parent_id`
-                        WHERE TIMESTAMPDIFF(MINUTE, `created_at` , now()) <= $schedule;                
+                        LEFT JOIN $sales_order_payment C ON A.`entity_id` = C.`parent_id`
+                        WHERE TIMESTAMPDIFF(MINUTE, `created_at` , now()) <= $schedule
+                        ;                
                     ");
-
         foreach ($orders as $order)
         {
+
             $orderId = $creatio->getOrderIdyByNumber($orderprefix . $order['increment_id']);
             if($orderId) continue;
 
