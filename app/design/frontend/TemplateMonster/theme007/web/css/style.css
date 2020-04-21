@@ -7182,7 +7182,7 @@ float: left;
     border-radius: 10px;
     padding: 0px 43px 0px;
     box-sizing: border-box;
-    background-size: contain;
+    background-size: cover;
     
 }
 @media (min-width: 768px){
@@ -7195,8 +7195,8 @@ float: left;
   .whyus-contact-inner{
       background-color: #fff;
       box-shadow: 0 10px 16px 0 rgba(10,31,68,.06);
-      background: linear-gradient(267.09deg, rgba(255,255,255,0) 0%, #FFFFFF 100%), 
-      url(../images/whyus-contact.png) no-repeat center right;
+      /*background: linear-gradient(267.09deg, rgba(255,255,255,0) 0%, #FFFFFF 100%), 
+      url(../images/whyus-contact.png) no-repeat center right;*/
   }
 }
 

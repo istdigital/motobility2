@@ -7,7 +7,8 @@
 -->
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <head>
-        <title>Contact Us - MobilizeMe</title>
+        <title>Contact Us</title>
+        <meta name="title" content="Contact Us - MobilizeMe"/>
         <meta name="keywords" content="contact us, enquires, chat, products, scooters"/>
         <meta name="description" content="Contact us for any online enquiries - either regarding an order, our products. Email us on info@mobilizeme.com.au"/>
     </head>

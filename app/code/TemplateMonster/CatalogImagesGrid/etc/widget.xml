@@ -380,54 +380,6 @@
         </parameters>
     </widget>
 
-    <widget id="home_page_block_three" class="TemplateMonster\CatalogImagesGrid\Block\Widget\BlockThree">
-        <label translate="true">Parallax Block</label>
-        <description translate="true">Parallax Block</description>
-        <parameters>
-            <parameter name="template" xsi:type="select" visible="false">
-                <options>
-                    <option name="option_id" value="TemplateMonster_CatalogImagesGrid::block_3.phtml">
-                        <label translate="true">Block #</label>
-                    </option>
-                </options>
-            </parameter>
-
-            <parameter name="widget_status" xsi:type="select" visible="true" sort_order="1" source_model="Magento\Config\Model\Config\Source\Enabledisable">
-                <label translate="true">Status</label>
-                <description translate="true">Enable/Disable widget</description>
-            </parameter>
-
-            <parameter name="label" xsi:type="text" required="true" visible="true">
-                <label translate="true">Label</label>
-            </parameter>
-
-            <parameter name="description" xsi:type="text" required="true" visible="true">
-                <label translate="true">Description</label>
-            </parameter>
-
-
-            <parameter name="link" xsi:type="text" required="true" visible="true">
-                <label translate="true">Link</label>
-            </parameter>
-
-            <parameter name="link_title" xsi:type="text" required="true" visible="true">
-                <label translate="true">Link Title</label>
-            </parameter>
-
-            <parameter name="b1_image" xsi:type="block" visible="true">
-                <label translate="true">Background image</label>
-                <block class="TemplateMonster\CatalogImagesGrid\Block\Adminhtml\Widget\ImageChooser">
-                    <data>
-                        <item name="button" xsi:type="array">
-                            <item name="open" xsi:type="string">Choose Image...</item>
-                        </item>
-                    </data>
-                </block>
-            </parameter>
-
-        </parameters>
-    </widget>
-
     <widget id="home_page_block_four" class="TemplateMonster\CatalogImagesGrid\Block\Widget\BlockFour">
         <label translate="true">Four Category In-Row</label>
         <description translate="true">Four Category In-Row</description>
@@ -974,6 +926,54 @@
                     </data>
                 </block>
             </parameter>
+        </parameters>
+    </widget>
+
+
+    <widget id="home_page_parallax_block" class="TemplateMonster\CatalogImagesGrid\Block\Widget\Parallax">
+        <label translate="true">Home Page Parallax Block</label>
+        <description translate="true">Home Page Parallax Block</description>
+        <parameters>
+            <!-- <parameter name="template" xsi:type="select" visible="false">
+                <options>
+                    <option name="option_id" value="TemplateMonster_CatalogImagesGrid::parallax.phtml">
+                        <label translate="true">Block #</label>
+                    </option>
+                </options>
+            </parameter> -->
+            <parameter name="widget_status" xsi:type="select" visible="true" sort_order="1" source_model="Magento\Config\Model\Config\Source\Enabledisable">
+                <label translate="true">Status</label>
+                <description translate="true">Enable/Disable widget</description>
+            </parameter>
+
+            <parameter name="label" xsi:type="text" required="true" visible="true">
+                <label translate="true">Label</label>
+            </parameter>
+
+            <parameter name="description" xsi:type="text" required="true" visible="true">
+                <label translate="true">Description</label>
+            </parameter>
+
+
+            <parameter name="link" xsi:type="text" required="true" visible="true">
+                <label translate="true">Link</label>
+            </parameter>
+
+            <parameter name="link_title" xsi:type="text" required="true" visible="true">
+                <label translate="true">Link Title</label>
+            </parameter>
+
+            <parameter name="b1_image" xsi:type="block" visible="true">
+                <label translate="true">Background image</label>
+                <block class="TemplateMonster\CatalogImagesGrid\Block\Adminhtml\Widget\ImageChooser">
+                    <data>
+                        <item name="button" xsi:type="array">
+                            <item name="open" xsi:type="string">Choose Image...</item>
+                        </item>
+                    </data>
+                </block>
+            </parameter>
+
         </parameters>
     </widget>
 </widgets>

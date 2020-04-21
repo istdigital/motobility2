@@ -4365,10 +4365,11 @@ pre {
       .scrollToTop:before {
         font-size: 18px; } }
 
-.widget.block-static-block, .widget.featured {
-  padding-bottom: 95px;
+/*.widget.block-static-block, .widget.featured {
+ padding-bottom: 95px;
   margin-bottom: 110px;
-  border-bottom: 1px solid #eae9e9; }
+  border-bottom: 1px solid #eae9e9;
+}
   @media (max-width: 1199px) {
     .widget.block-static-block, .widget.featured {
       margin-bottom: 40px;
@@ -4382,7 +4383,10 @@ pre {
   @media (max-width: 1199px) {
     .widget.featured {
       padding-bottom: 40px;
-      margin-bottom: 40px; } }
+      margin-bottom: 40px; } }*/
+
+
+
 .widget.border-none, .widget.last_widget, .widget.brands.last_widget {
   border-bottom: 0;
   padding-bottom: 0; }
