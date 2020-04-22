@@ -310,10 +310,10 @@ class Matrixrate extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
             usort($shippingData, function ($a, $b) {
                 return $a["price"] < $b["price"];
             });
-            $shippingData = [$shippingData[0]];
+            $shippingData = [current($shippingData)];
         }
 
-        return [$shippingData[0]];
+        return $shippingData;
     }
 
     /**
