@@ -7672,8 +7672,11 @@ dl.custom-page dd {
       flex-wrap: wrap; } }
 .catalog-product-view .product-options-wrapper .swatch-attribute-label,
 .modal-popup.quick-view .product-options-wrapper .swatch-attribute-label {
-  font-size: 12px;
-  font-weight: normal; }
+    color: #2f2f2f;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase; 
+  }
   @media (min-width: 1200px) {
     .catalog-product-view .product-options-wrapper .swatch-attribute-label,
     .modal-popup.quick-view .product-options-wrapper .swatch-attribute-label {
@@ -7684,10 +7687,10 @@ dl.custom-page dd {
 @media (min-width: 1200px) {
   .catalog-product-view .product-options-wrapper .color .swatch-attribute-label,
   .modal-popup.quick-view .product-options-wrapper .color .swatch-attribute-label {
-    -webkit-flex-basis: 15%;
-    -ms-flex-preferred-size: 15%;
-    flex-basis: 15%;
-    max-width: 15%; } }
+    -webkit-flex-basis: 25%;
+    -ms-flex-preferred-size: 25%;
+    flex-basis: 25%;
+    max-width: 25%; } }
 .catalog-product-view .product-options-wrapper .swatch-option.color,
 .modal-popup.quick-view .product-options-wrapper .swatch-option.color {
   min-width: 48px;
@@ -11765,6 +11768,7 @@ input::-webkit-inner-spin-button {
 .review-field-rating > label.label {
   min-width: 43px;
   padding: 0;
+  display: none;
   margin-right: 5px;
   font-weight: 300; }
 
@@ -11934,8 +11938,8 @@ input::-webkit-inner-spin-button {
       position: absolute;
       padding: 5px;
       background: #fff;
-      color: #949494;
-      border: 1px solid #adadad;
+      color: #35b3ca;
+      border: 1px solid #35b3ca;
       display: none;
       visibility: visible;
       z-index: 999;
@@ -11968,21 +11972,23 @@ input::-webkit-inner-spin-button {
     height: 0;
     border-style: solid;
     border-width: 8px 8.5px 0 8.5px;
-    border-color: #adadad transparent transparent transparent;
+    border-color: #35b3ca transparent transparent transparent;
     font-size: 1px; }
 
 @media (min-width: 768px) {
   .swatch-option-tooltip .image,
   .swatch-option-tooltip-layered .image {
     display: block;
-    height: 130px;
-    width: 130px;
+    height: 38px;
+    width: 100%;
     margin: 0 auto; } }
 .swatch-option-tooltip .title {
   max-width: 140px;
   min-height: 20px;
   max-height: 200px;
-  color: #282828;
+  color: #35b3ca;
+  font-weight: 400;
+  font-size: 14px;
   text-align: center;
   display: block;
   overflow: hidden; }
@@ -17164,4 +17170,8 @@ div[class^="swatch-opt-"] {
     line-height: 11px;
     margin: 9px 0 0 0;
 }
+.swatch-attribute.swatch-layered {
+    margin-bottom: 18px;
+}
 /* sourceMappingURL=modules.css.map */
+
