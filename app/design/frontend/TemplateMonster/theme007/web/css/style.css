@@ -7996,5 +7996,5 @@ ol.list-ordered {
 }
 
 .price-container span.price-label{
-  display: none;
+  display: none !important;
 }
