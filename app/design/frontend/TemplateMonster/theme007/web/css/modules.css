@@ -3247,7 +3247,9 @@ pre {
 .page-header {
   position: relative;
   height: auto !important;
-  z-index: 3; }
+  z-index: 3;
+  background-color: #fff;
+}
 
 .loading-mask.for-slider {
   display: block; }
