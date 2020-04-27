@@ -126,7 +126,7 @@ content{width: 100%; float: left;}
 /******* step5 *******/
 
 
-.data-step-row{width: 528px; float: right; background: url(../images/line-2.png) left 15px repeat-x;margin-top: 20px; }
+.data-step-row{width: 528px; float: right; background: url(../images/line-2.png) left 15px repeat-x;margin-top: 20px; cursor: pointer;}
 
 .prod-list{width: 95%;float: right;background: #35B3CA;padding: 8px 0 8px 8px;box-sizing: border-box; }
 .prod-list p{width: 100%;float: left;font-weight: 500;font-size: 12px;margin-left: 15px;line-height: 20px;padding-bottom: 8px; font-family: 'Montserrat', sans-serif;color: #fff;letter-spacing: 1px;box-sizing: border-box;}
