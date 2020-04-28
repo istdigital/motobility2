@@ -99,7 +99,9 @@ class Sidebar extends Template
             return $category = $this->_categoryFactory->create()
                     ->getCollection()
                     ->addAttributeToSelect("*")
-                    ->addFieldToFilter("parent_id",['eq' => $category->getParentId()]);
+                    ->addFieldToFilter("include_in_menu",1)
+                    ->addFieldToFilter("parent_id",['eq' => $category->getParentId()])
+                    ->setOrder('position','ASC');
         }
 
         // $cacheKey = sprintf('%d-%d-%d-%d', $this->getSelectedRootCategory(), $sorted, $asCollection, $toLoad);

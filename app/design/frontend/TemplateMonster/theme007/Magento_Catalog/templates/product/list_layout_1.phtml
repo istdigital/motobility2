@@ -34,6 +34,10 @@ endif;
 $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
 $productMetadata = $objectManager->get('Magento\Framework\App\ProductMetadataInterface');
 $version = $productMetadata->getVersion();
+
+$resource = $objectManager->get('Magento\Framework\App\ResourceConnection');
+$connection = $resource->getConnection();
+$query = $connection->select()->from("catalog_product_entity_text", 'value')->where("`attribute_id` IN (SELECT `attribute_id` FROM `eav_attribute` WHERE `attribute_code` = 'mini_description') AND `entity_id` = :entity_id");
 ?>
 
 <?php if (!$_productCollection->count()): ?>
@@ -67,7 +71,7 @@ $version = $productMetadata->getVersion();
             <?php /** @var $_product \Magento\Catalog\Model\Product */ ?>
             <?php foreach ($_productCollection as $_product): ?>
                 <?php /* @escapeNotVerified */ echo($iterator++ == 1) ? '<li class="item product product-item">' : '</li><li class="item product product-item">' ?>
-                <div class="product-item-info <?php if (!$_product->getIsSalable()): ?> product-item-info-hide <?php endif; ?>" data-container="product-grid" itemscope itemtype="//schema.org/product">
+                <div class="product-item-info <?php if (!$_product->getIsSalable()): ?> product-item-info-hide <?php endif; ?>" data-container="product-grid" itemscope itemtype="//schema.org/product" onclick="window.location.href = '<?php /* @escapeNotVerified */ echo $_product->getProductUrl() ?>'">
 
                     
 
@@ -108,14 +112,15 @@ $version = $productMetadata->getVersion();
                                 <?php /* @escapeNotVerified */ echo $_helper->productAttribute($_product, $_product->getName(), 'name'); ?>
                             </a>
                         </strong>
-                        <p>
+                        <p style="margin: 0">
                             <?php $brand = $_bhelper->getBrandById($_product->getData('brand_id')) ?>
-                            <?php if(count($brand)): ?>
+                            <?php if($brand && count($brand)): ?>
                                 <a class="product-brand-name" href="<?= $this->getUrl($brand['url_key']) ?>"><?= $brand['name'] ?></a>
                             <?php else: ?>
                                 <a class="product-brand-name"  href="#">&nbsp;</a>
                             <?php endif; ?>
                         </p>
+                        <p class="p-short-desc"><?= $connection->fetchOne($query, [':entity_id' => $_product->getId()]); ?></p>
 
 
                         <?php /* @escapeNotVerified */ echo $block->getProductPrice($_product) ?>

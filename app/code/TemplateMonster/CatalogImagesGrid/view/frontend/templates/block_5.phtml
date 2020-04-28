@@ -1,0 +1,30 @@
+<?php
+    $data = $this->getData();
+    $murl = $this->getUrl('pub/media/');
+    $classes = ['','col-md-3 col-sm-4 first','col-md-6 col-sm-4 center','col-md-3 col-sm-4 last'];
+?>
+<?php if($data['widget_status'] == 1): ?>
+<div class="home-section-13">
+    <div class="container">
+        <div class="row">
+            <?php foreach (range(1, 3) as $i): ?>
+                <div class="<?= $classes[$i] ?>">
+                    <?php if(isset($data["b{$i}_image"])): ?>
+                        <img src="<?= $murl . $data["b{$i}_image"] ?>">
+                    <?php endif; ?>
+                    <div class="text-wrap">
+                        <p><?= $data["b{$i}_title"] ?? null ?></p>
+                        <h4><?= $data["b{$i}_label"] ?? null ?></h4>
+                        <br>
+                        <h4><?= $data["b{$i}_price"] ?? null ?></h4>
+                        <br>
+                        <a title="Shop Now" href="<?= $this->getUrl($data["b{$i}_url"]) ?>">
+                            <?= $data["b{$i}_link"] ?? null ?>
+                        </a>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        </div>
+    </div>
+</div>
+<?php endif; ?>

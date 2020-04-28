@@ -5,13 +5,17 @@
             'loader'
         ],function($){
 
+            
+            
             function fetchData(v){
-                $('.downloads-list').trigger('processStart');
+                $('#loader-download').show();
                 $.get("<?php echo $this->getUrl('downloads/index/search'); ?>"+"?query="+v+"&cat="+'<?= $this->getRequest()->getParam('cat') ?>', function(res){
                     var res = JSON.parse(res);
                     $(".downloads-container").replaceWith(res.results.replace("/index/search/",""));
                     $(".mp-sidebar.mpcss").replaceWith(res.sidebar);
-                    $('.loading-mask').hide();
+                    $('#loader-download').hide();
+                }).fail(function() {
+                    $('#loader-download').hide();
                 });
             }
 

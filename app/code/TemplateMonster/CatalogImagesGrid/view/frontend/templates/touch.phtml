@@ -1,0 +1,21 @@
+<?php
+	$data = $this->getData();
+	$murl = $this->getUrl('pub/media/');
+?>
+<?php if($data['widget_status'] == 1): ?>
+<div class="whyus-contact">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 whyus-contact-inner" style="background-image: url('<?= $murl . $data["b1_image"] ?>');">
+                <h2><?= $data["title"] ?? null ?></h2>
+                <a title="<?= $data["phone"] ?? null ?>" href="tel:<?= $data["phone"] ?? null ?>">
+                	<?= $data["phone"] ?? null ?>
+                </a>
+                <a class="open-contact-popup" title="Get in touch">
+                	<?= $data["label"] ?? null ?>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<?php endif; ?>

@@ -1,0 +1,26 @@
+<?php
+	$data = $this->getData();
+	$murl = $this->getUrl('pub/media/');
+?>
+<?php if($data['widget_status'] == 1): ?>
+<div class="row">
+	<?php foreach (range(1, 6) as $i): ?>
+		<?php if(isset($data["b{$i}_title"]) && !empty($data["b{$i}_title"])): ?>
+	    <div class="col-md-6 col-lg-4">
+	        <div class="cs-block">
+	        	<a class="cs-box key-<?= $i ?>" href="<?= $this->getUrl($data["b{$i}_url"]) ?>"> 
+	        		<?= $data["b{$i}_title"] ?>
+	        	</a>
+	        	<?php if(isset($data["b{$i}_image"])): ?>
+	        	<style type="text/css">
+	        		.cs-box.key-<?= $i ?>:before{
+	        			background-image: url('<?= $murl . $data["b{$i}_image"] ?>');
+	        		}
+	        	</style>
+	        	<?php endif; ?>
+	        </div>
+	    </div>
+	    <?php endif; ?>
+    <?php endforeach; ?>
+</div>
+<?php endif; ?>

@@ -1,0 +1,64 @@
+<div id="instagram-slide">
+	<div class="container">
+		<div class="row">
+	        <div class="col-md-12 text-center">
+	            <h3 class="section-title">FOLLOW US ON INSTAGRAM</h3>
+	        </div>
+	    </div>
+	</div>
+	<button class="is-owlnav is-owl-next">
+		<i class='icon-arrow-prev'></i>
+	</button>
+	<button class="is-owlnav is-owl-prev">
+		<i class='icon-arrow-next'></i>
+	</button>
+	<div class="owl-carousel">
+
+	</div>
+</div>
+<script type="text/javascript">
+	 require(['jquery','owlcarousel'], function($){
+	 	var owl = $('#instagram-slide .owl-carousel');
+		
+	 	$('.is-owl-next').click(function() {
+		    owl.trigger('next.owl.carousel');
+		})
+		$('.is-owl-prev').click(function() {
+		    owl.trigger('prev.owl.carousel', [300]);
+		})
+
+	    $.getJSON("https://www.instagram.com/mobilize.me/?__a=1", function( res ) {
+	    	const t = res.graphql.user.edge_owner_to_timeline_media.edges.length;
+			for(var i = 0; i < t; i++){
+				var image = res.graphql.user.edge_owner_to_timeline_media.edges[i];
+				$('#instagram-slide .owl-carousel').append("<div>\
+					<a href='https://www.instagram.com/p/"+image.node.shortcode+"' target='_blank'>\
+					<img src='"+image.node.thumbnail_resources[3].src+"' />\
+					<a/>\
+				</div>");
+			}
+
+			owl.owlCarousel({
+                loop:true,
+                margin:10,
+                nav:false,
+                navText:["<i class='icon-arrow-prev'></i>","<i class='icon-arrow-next'></i>"],
+                responsive:{
+                    0:{
+                    	nav:true,
+                        items:1
+                    },
+                    600:{
+                    	nav:true,
+                        items:4
+                    },
+                    1000:{
+                        items:6
+                    }
+                }
+            });
+
+
+		});
+	 });
+</script>

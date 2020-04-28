@@ -25,6 +25,7 @@ $helper = $this->helper('Magento\Search\Helper\Data');
                                   "url":"<?php echo $block->getUrl('search/ajax/suggest'); ?>",
                                   "destinationSelector":"#search_autocomplete"}
                              }'
+                             onclick="event.preventDefault()"
                              type="text"
                              name="<?php echo $helper->getQueryParamName() ?>"
                              value="<?php echo $helper->getEscapedQueryText() ?>"

@@ -35,10 +35,20 @@
     $options['maxwidth'] = 710;
     $options['thumbmargin'] = 10;
     $options['thumbborderwidth'] = 1;
+    // $options['thumbheight'] = 124;
+    // $options['thumbwidth'] = 124;
 
     $_bhelper = $this->helper('TemplateMonster\ShopByBrand\Helper\Data');
 
     $brand = $_bhelper->getBrandById($_product->getData('brand_id'));
+
+    $images = array_map(function($img){
+        if(preg_match("/\.gif$/",$img['thumb'])){
+           $img['img'] = preg_replace("/cache(.*?)\w[a-zA-Z0-9]{20,}/i", "", $img['img']);
+           $img['full'] = preg_replace("/cache(.*?)\w[a-zA-Z0-9]{20,}/i", "", $img['full']);
+        }
+        return $img;
+    }, json_decode($block->getGalleryImagesJson(), true));
 
 ?>
 <meta itemprop="mpn" content="<?= $_product->getId() ?>"/>
@@ -60,7 +70,7 @@
             "mage/gallery/gallery": {
                 "mixins":["magnifier/magnify"],
                 "magnifierOpts": <?= /* @escapeNotVerified */ $block->getMagnifier() ?>,
-                "data": <?= /* @escapeNotVerified */ $block->getGalleryImagesJson() ?>,
+                "data": <?= json_encode($images) ?>,
                 "options": <?= /* @noEscape */ json_encode($options) ?>,
                 "fullscreen": <?= /* @noEscape */ $block->getGalleryOptions()->getFSOptionsJson() ?>,
                 "breakpoints": <?= /* @escapeNotVerified */ $block->getBreakpoints() ?>

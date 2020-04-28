@@ -71,7 +71,7 @@ class Index extends Action
      */
     public function execute()
     {
-        $collection = $this->_helperBlog->getPostList();
+        $collection = $this->_helperBlog->getPostList()->setOrder('post_id', 'desc');
         $collection->getSelect()->limit(3);
 
         $return = [];
@@ -83,7 +83,7 @@ class Index extends Action
                 'name' => $post->getName(),
                 'url' => $post->getUrl(),
                 'publish_date' => date('F d, Y',strtotime($post->getPublishDate())),
-                'short_description' => substr($post->getShortDescription(), 0,200),
+                'short_description' => $post->getShortDescription(),
                 'image' => $this->_helperBlog->getImageHelper()->resizeImage($post->getImage(), '327x261', 'post',false),
             ];            
         }

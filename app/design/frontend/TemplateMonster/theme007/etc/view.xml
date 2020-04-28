@@ -82,8 +82,8 @@
                 <height>840</height>
             </image>
             <image id="product_page_image_small" type="thumbnail">
-                <width>60</width>
-                <height>60</height>
+                <width>124</width>
+                <height>124</height>
             </image>
             <image id="product_page_main_image" type="image">
                 <width>700</width>

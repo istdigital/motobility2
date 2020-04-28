@@ -1,0 +1,21 @@
+<?php
+	$data = $this->getData();
+	$murl = $this->getUrl('pub/media/');
+?>
+<?php if($data['widget_status'] == 1): ?>
+<div class="home-section-7" style="background-image: url('<?= $murl . ($data["b1_image"] ?? null) ?>');">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="row">
+					<div class="col-md-4 col-md-preffix-7 text-center">
+						<h4><?= $data["label"] ?? null ?></h4>
+						<h2><?= $data["description"] ?? null ?></h2>
+						<a title="<?= $data["link_title"] ?? null ?>" href="<?= $data["link"] ?? null ?>" target="_blank" rel="noopener"><?= $data["link_title"] ?? null ?></a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<?php endif; ?>
