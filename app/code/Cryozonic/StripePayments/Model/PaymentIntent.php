@@ -568,7 +568,7 @@ class PaymentIntent
 
     public function triggerAuthentication($piSecrets)
     {
-        if (count($piSecrets) > 0)
+        if ($piSecrets && count($piSecrets) > 0)
         {
             if ($this->helper->isAdmin())
                 throw new LocalizedException(__("This card cannot be used because it requires a 3D Secure authentication by the customer."));

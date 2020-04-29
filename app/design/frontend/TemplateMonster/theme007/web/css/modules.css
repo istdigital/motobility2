@@ -7695,8 +7695,10 @@ dl.custom-page dd {
     max-width: 25%; } }
 .catalog-product-view .product-options-wrapper .swatch-option.color,
 .modal-popup.quick-view .product-options-wrapper .swatch-option.color {
-  min-width: 48px;
-  min-height: 48px; }
+  min-width: 25px;
+  min-height:25px;
+  border-radius: 25px; 
+}
 .catalog-product-view .product-options-wrapper .swatch-option.disabled:before, .catalog-product-view .product-options-wrapper .swatch-option.disabled:after,
 .modal-popup.quick-view .product-options-wrapper .swatch-option.disabled:before,
 .modal-popup.quick-view .product-options-wrapper .swatch-option.disabled:after {
