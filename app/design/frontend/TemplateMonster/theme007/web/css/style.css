@@ -997,7 +997,9 @@ dl dd {
     .rd-navbar-nav > li {
       display: block;
       margin-bottom: 15px;
-      padding: 0 60px 0 30px; }
+      padding: 0 60px 0 30px; 
+      text-align: left;
+    }
       .rd-navbar-nav > li:last-child {
         margin-bottom: 0; }
       .rd-navbar-nav > li > a {
@@ -6672,11 +6674,7 @@ div#tab-label-additional { display: none; }
 .product-info-main .shipping-payment{
   text-align: left;
   margin-top: 40px;
-}
-@media (min-width: 768px){
-  .product-info-main .shipping-payment{
-    text-align: center;
-  }
+  text-align: center;
 }
 
 
