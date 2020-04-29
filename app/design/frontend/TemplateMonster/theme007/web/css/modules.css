@@ -7608,6 +7608,13 @@ dl.custom-page dd {
     margin-top: 20px;
     line-height: 44px;
     color: #35b3ca;}
+  @media (max-width: 767px) {
+    .catalog-product-view .page-title-wrapper .page-title,
+      .modal-popup.quick-view .page-title-wrapper .page-title {
+        text-align: center;
+      }
+  }
+
 .catalog-product-view .product.sku,
 .modal-popup.quick-view .product.sku {
   font-size: 12px;
@@ -7818,6 +7825,15 @@ dl.custom-page dd {
   -ms-flex-align: center;
   align-items: center;
   margin-bottom: 30px; }
+
+  @media (max-width: 767px) {
+    .catalog-product-view .box-tocart .field,
+    .modal-popup.quick-view .box-tocart .field {
+      justify-content: center;   
+    }
+  }
+
+
 @media (min-width: 768px) and (max-width: 1023px){
   .catalog-product-view .box-tocart .qty{flex-direction: column;}
 }
@@ -7850,12 +7866,20 @@ border-radius: 0;}
 .catalog-product-view .box-tocart .primary,
 .modal-popup.quick-view .box-tocart .primary {
   text-transform: none;
-  min-width: 150px;
+  min-width: 200px;
   padding-top: 12px;
     padding-bottom: 13px;
       background: #f7981d;
       border-color: #f7981d;
       box-shadow: 0px 8px 10px rgba(0,0,0,0.2); }
+
+      @media (min-width: 768px) and (max-width: 1023px) {
+    .catalog-product-view .box-tocart .primary,
+    .modal-popup.quick-view .box-tocart .primary {
+      min-width: 150px;
+    }
+  }
+
   @media (min-width: 1024px) {
     .catalog-product-view .box-tocart .primary,
     .modal-popup.quick-view .box-tocart .primary {
@@ -8195,6 +8219,13 @@ border-radius: 0;}
 
 #fancybox-img {
   background-color: #fff; }
+
+
+@media (max-width: 767px) {
+  .catalog-product-view .product-info-main{
+      text-align: center;
+  }
+}
 
 @media (min-width: 768px) {
   .catalog-product-view .product-info-main{
@@ -8939,6 +8970,9 @@ body.catalog-product-compare-index .table-caption {
   .tocompare span {
     display: none; }
 
+.product-social-links{
+  text-align: center;
+}
 .product-social-links .mailto {
   padding: 0 0.5rem;
   line-height: inherit; }
@@ -9867,20 +9901,29 @@ body.account .box address {
     margin-bottom: 0; }
   .minicart-items .product.options .list {
     padding-top: 10px;
+    padding-bottom: 10px;
     display: -ms-flexbox;
     display: -webkit-flex;
     display: flex;
     -webkit-flex-wrap: wrap;
     -ms-flex-wrap: wrap;
     flex-wrap: wrap; }
-    .minicart-items .product.options .list > dt, .minicart-items .product.options .list > dd {
-      -webkit-flex-basis: 50%;
-      -ms-flex-preferred-size: 50%;
-      flex-basis: 50%;
-      max-width: 50%;
+    .minicart-items .product.options .list > dt, 
+    .minicart-items .product.options .list > dd {
+      -webkit-flex-basis: 25%;
+      -ms-flex-preferred-size: 25%;
+      flex-basis: 25%;
+      max-width: 25%;
       font-weight: normal;
       font-style: normal;
       line-height: 20px; }
+
+    .minicart-items .product.options .list > dd {
+      -webkit-flex-basis: 75%;
+      -ms-flex-preferred-size: 75%;
+      flex-basis: 75%;
+      max-width: 75%;
+    }
 .minicart-items .product.actions {
   position: absolute;
   top: 0;
@@ -10098,11 +10141,15 @@ body.account .box address {
       #shopping-cart-table .cart.item .product-item-details dl.item-options dt {
         font-weight: 400;
         text-transform: capitalize;
+            flex-basis: 100%;
+        max-width: 100%;
         padding-right: 5px; }
         #shopping-cart-table .cart.item .product-item-details dl.item-options dt:after {
           content: ':'; }
       #shopping-cart-table .cart.item .product-item-details dl.item-options dd {
         padding-left: 0;
+            flex-basis: 100%;
+        max-width: 100%;
         text-transform: capitalize; }
   #shopping-cart-table .item-actions {
     border-top: 1px solid #eae9e9; }
@@ -11871,7 +11918,7 @@ input::-webkit-inner-spin-button {
   min-width: 24px;
   max-width: 90px;
   min-height: 24px;
-  float: left;
+  display: inline-block;
   margin: 0 7px 5px 0;
   text-align: center;
   cursor: pointer;
@@ -12036,6 +12083,10 @@ input::-webkit-inner-spin-button {
 
 .swatch-option-link-layered:hover > .swatch-option-tooltip-layered {
   display: block; }
+
+.swatch-attribute-options:focus {
+    outline: 0;
+}
 
 .swatch-attribute-options .swatch-option-tooltip-layered .title {
   width: 100%;
