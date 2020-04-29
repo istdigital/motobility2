@@ -2,6 +2,13 @@
 <page layout="3columns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd">
     <update handle="default_head_blocks"/>
     <body>
+        <referenceBlock name="head.additional">
+            <block class="Magento\Framework\View\Element\Template" name="gtm" template="Magento_Theme::gtm.phtml" before="-"/>
+        </referenceBlock>
+
+        <referenceContainer name="after.body.start">
+            <block class="Magento\Framework\View\Element\Template" name="gtms" template="Magento_Theme::gtms.phtml" before="-"/>
+        </referenceContainer>
         <!-- Inline scripts -->
         <referenceContainer name="before.body.end">
             <block class="Magento\Translation\Block\Js" name="translate" template="Magento_Translation::translate.phtml"/>
