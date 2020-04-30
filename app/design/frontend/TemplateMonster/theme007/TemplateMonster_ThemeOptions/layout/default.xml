@@ -4,9 +4,10 @@
         <remove src="TemplateMonster_ThemeOptions::fonts/font-awesome-4.5.0/css/font-awesome.min.css" />
     </head>
     <body>
-        <referenceContainer name="after.body.start">
+        <!-- <referenceContainer name="after.body.start">
             <block class="TemplateMonster\ThemeOptions\Block\View\Styles" template="preloades-style.phtml" name="preloader.options.styles" />
-        </referenceContainer>
+        </referenceContainer> -->
+        
         <referenceContainer name="header-wrapper">
             <block class="TemplateMonster\ThemeOptions\Block\SocialLinks" name="theme_options.social_links.header" after="top.search">
                 <action method="setPosition">
