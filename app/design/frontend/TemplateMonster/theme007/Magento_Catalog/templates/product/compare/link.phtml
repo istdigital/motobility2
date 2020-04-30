@@ -6,18 +6,13 @@
 
 // @codingStandardsIgnoreFile
 ?>
-<li class="item link compare" data-bind="scope: 'compareProducts'" data-role="compare-products-link">
+<li class="item link compare" data-bind="scope: 'compareProducts'" data-role="compare-products-link" id="hd.compare.link" style="display: none;">
     <a class="action compare " title="<?= /* @escapeNotVerified */ __('Compare') ?>"
        data-bind="attr: {'href': compareProducts().listUrl}, css: {'no-display': !compareProducts().count}"
     >
         <span class="label"><?= /* @escapeNotVerified */ __('Compare') ?></span>
         <span class="counter qty" data-bind="text: parseInt(compareProducts().countCaption)"></span>
     </a>
-    <!-- ko if: !compareProducts().count -->
-        <style>
-            .item.link.compare { display: none;}
-        </style>
-    <!-- /ko -->
 </li>
 
 

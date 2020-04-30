@@ -10,7 +10,7 @@
             <?php foreach (range(1, 3) as $i): ?>
                 <div class="<?= $classes[$i] ?>">
                     <?php if(isset($data["b{$i}_image"])): ?>
-                        <img src="<?= $murl . $data["b{$i}_image"] ?>">
+                        <img src="<?= $murl . $data["b{$i}_image"] ?>" alt="">
                     <?php endif; ?>
                     <div class="text-wrap">
                         <p><?= $data["b{$i}_title"] ?? null ?></p>

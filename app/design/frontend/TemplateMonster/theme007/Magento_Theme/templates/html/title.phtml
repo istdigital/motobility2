@@ -21,7 +21,7 @@ if (trim($block->getPageTitle())) {
     <div class="container">
         <h1 class="page-title"
             <?php if ($block->getId()): ?> id="<?php echo $block->getId();?>" <?php endif; ?>
-            <?php if ($block->getAddBaseAttributeAria()): ?>
+            <?php if ($block->getAddBaseAttributeAria() && false): ?>
                 aria-labelledby="<?php echo $block->getAddBaseAttributeAria(); ?>"
             <?php endif; ?>>
             <?php echo $title ?>
