@@ -9,7 +9,7 @@
 	        <div class="col-md-3 col-xs-12 col-sm-3">
 	        	<a href="<?= $this->getUrl($data["b{$i}_url"]) ?>">
 	        		<?php if(isset($data["b{$i}_image"])): ?>
-	        			<img src="<?= $murl . $data["b{$i}_image"] ?>" width="461" height="461">
+	        			<img src="<?= $murl . $data["b{$i}_image"] ?>" alt="" width="461" height="461">
 	        		<?php endif; ?>
 	        		<strong>
 	        			<small><?= $data["b{$i}_label"] ?? null ?></small>

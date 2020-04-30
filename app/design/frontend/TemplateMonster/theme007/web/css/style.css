@@ -1027,13 +1027,19 @@ dl dd {
       .rd-navbar-submenu li > a {
         font-size: 14px;
         margin-bottom: 10px;
-      display: inline-block; }
+      display: inline-block; 
+          position: relative;
+        padding-left: 18px;}
         .rd-navbar-submenu li > a:before {
           font-family: "Linearicons";
           content: "\e93c";
           float: left;
           font-size: 10px;
-          margin-right: 10px; }
+          margin-right: 10px;
+          position: absolute;
+          left: 0;
+          top: 0; 
+        }
       .rd-navbar-submenu li .rd-navbar-submenu-toggle {
         right: 0; }
         .rd-navbar-submenu li .rd-navbar-submenu-toggle:before {
@@ -1464,8 +1470,8 @@ dl dd {
         visibility: hidden; }
       .rd-navbar-cart-fixed .rd-navbar-cart-toggle .counter {
         position: absolute;
-        right: 10px;
-        top: -6px; }
+        right: 3px;
+        top: -14px; }
       .rd-navbar-cart-fixed .rd-navbar-cart-toggle .counter-label {
         display: none; }
       .rd-navbar-cart-fixed .rd-navbar-cart-toggle .text {
@@ -1790,7 +1796,7 @@ dl dd {
           display: inline-block;
           margin: 0 23px 0 0;
           padding: 11px 11px 11px 0px;
-          border-right: 1px solid #eae9e9; }
+           }
       .rd-navbar-collapse li a:before {
         font-family: "Linearicons";
         font-size: 22px;
@@ -1811,6 +1817,11 @@ dl dd {
       .rd-navbar-collapse a.create-an-account:before {
         content: "\e807"; } }
 
+@media (min-width: 1354px) {
+  .rd-navbar-collapse li{
+    border-right: 1px solid #eae9e9;
+  }
+}
 
 @media (min-width: 768px) and (min-width: 768px) and (max-width: 1353px) {
   .layout_1 .rd-navbar-collapse,
@@ -1829,7 +1840,13 @@ dl dd {
     .layout_3 .rd-navbar-collapse li,
     .layout_4 .rd-navbar-collapse li {
       display: block;
-      margin: 15px 0 0; }
+      margin: 0; }
+
+      .header.links .customer-account{padding: 0}
+      .header.links .customer-account > a{
+        display: none;
+      }
+
     .layout_1 .rd-navbar-collapse.active,
     .layout_3 .rd-navbar-collapse.active,
     .layout_4 .rd-navbar-collapse.active {
@@ -7750,7 +7767,7 @@ a#open-repayment-popup{
 
 
 /*CUSTOMER ACCOUNT PAGES*/
-#limiter + .select2-container{
+.limiter-options + .select2-container{
       width: 90px !important;
 }
 @media (max-width: 767px) {

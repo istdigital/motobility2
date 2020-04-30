@@ -7351,7 +7351,7 @@ dl.custom-page dd {
     float: right;    }
     .toolbar-products .limiter {
      margin: 0px 0 21px 10px !important;}
-    .toolbar-products #limiter + .select2-container {
+    .toolbar-products .limiter-options + .select2-container {
         min-width: 90px;
     }
   .toolbar-products .field {
