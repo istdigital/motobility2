@@ -13971,6 +13971,12 @@ div[class^="swatch-opt-"] {
   .static-block,
   .mm-image {
     display: none; } }
+
+@media (max-width: 1200px) {
+  .mm-submenu .mm-image img{
+    max-width: 80px;
+  }
+}
 /*
 * TM_Megamenu
 */
