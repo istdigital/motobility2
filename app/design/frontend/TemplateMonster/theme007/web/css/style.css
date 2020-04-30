@@ -1658,6 +1658,12 @@ dl dd {
       min-width: 320px;
     }
     .layout_3 .rd-navbar-search {
+          margin: 5px 4% 0 4%;
+      }
+  }
+
+@media (min-width: 1300px) {
+    .layout_3 .rd-navbar-search {
           margin: 5px 7% 0 7%;
       }
   }
@@ -5438,7 +5444,7 @@ box-shadow: 0 2px 9px 0 rgba(0,0,0,.2);
 
 .header-info .top-header-links ul{float: right;position: relative;}
 
-@media (max-width: 1024px) {
+@media (max-width: 1200px) {
   .header-info .top-header-links a {
       font-size: 10px;
   }
@@ -7037,6 +7043,7 @@ padding: 6px 0;
   }.navigation .container [class*='col-sm-9']{
       max-width: 100%;
       max-width: 100%;
+      padding: 0;
   }
 }
 
