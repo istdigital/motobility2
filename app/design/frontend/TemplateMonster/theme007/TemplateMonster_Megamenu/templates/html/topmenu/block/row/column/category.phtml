@@ -9,7 +9,7 @@ $cssClass = $this->getCssClass($category);
     <li class="item<?php echo $cssClass; ?> ui-menu-item">
         <?php if ($image = $this->getImage($category)) : ?>
             <a class="mm-image-a" href="<?php echo $category->getUrl(); ?>">
-            <span class="mm-image"><img loading="lazy" width="150px" class="lozad" data-src="<?php echo $image; ?>" alt=""></span>
+            <span class="mm-image"><img loading="lazy" width="150" class="lozad" src="" data-src="<?php echo $image; ?>" alt=""></span>
             </a>
         <?php endif; ?>
 
