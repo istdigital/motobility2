@@ -7750,7 +7750,7 @@ a#open-repayment-popup{
 
 
 /*CUSTOMER ACCOUNT PAGES*/
-#limiter + .select2-container{
+.limiter-options + .select2-container{
       width: 90px !important;
 }
 @media (max-width: 767px) {

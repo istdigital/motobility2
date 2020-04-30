@@ -38,7 +38,7 @@
 
         <?php if ($block->getLastPageNum()>1): ?>
         <div class="pages">
-            <ul class="items pages-items" aria-labelledby="paging-label">
+            <ul class="items pages-items">
             <?php if (!$block->isFirstPage()): ?>
                 <li class="item pages-item-previous">
                     <?php $text = $block->getAnchorTextForPrevious() ? $block->getAnchorTextForPrevious() : '';?>
@@ -117,7 +117,7 @@
             <strong class="limiter-label label"><?php /* @escapeNotVerified */ echo __('Show') ?></strong>
             <div class="control">
                 <!-- data-mage-init='{"redirectUrl": {"event":"change"}, "selectize":{}}' -->
-                <select id="limiter" data-mage-init='{"redirectUrl": {"event":"change"}}' class="limiter-options">
+                <select data-mage-init='{"redirectUrl": {"event":"change"}}' class="limiter-options">
                     <?php foreach ($block->getAvailableLimit() as $_key => $_limit): ?>
                         <option value="<?php /* @escapeNotVerified */ echo $block->getLimitUrl($_key) ?>"<?php if ($block->isLimitCurrent($_key)): ?>
                             selected="selected"<?php endif ?>>
