@@ -5947,6 +5947,10 @@ li.customer-account.active ul.customer-menu a:before{display: none;}
       padding: 35px 0 0;
     background: #fff;
     }
+    
+#homebrand .owl-carousel img {
+    margin: 0 auto;
+}
 
 #instagram-slide{
       padding: 30px 0 0;
@@ -5981,7 +5985,7 @@ li.customer-account.active ul.customer-menu a:before{display: none;}
   .is-owlnav{display: none;}
 }
 @media (max-width: 767px) {
-  #instagram-slide h3{font-size: 19px;}
+  #instagram-slide h3{font-size: 16px;}
 }
 
 #homebrand .owl-carousel .owl-nav.disabled{display: block;}

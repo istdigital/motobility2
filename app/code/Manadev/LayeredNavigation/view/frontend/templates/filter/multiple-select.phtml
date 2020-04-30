@@ -30,7 +30,7 @@
             </li>
         <?php elseif ($item['count'] > 0) : ?>
             <li class="item">
-                <a href="<?php echo $block->getAddItemUrl($engineFilter, $item) ?>"<?php echo $block->getAddItemLinkAttributes($engineFilter, $item) ?>>
+                <a href="<?php echo $block->getAddItemUrl($engineFilter, $item) ?>" <?php echo $block->getAddItemLinkAttributes($engineFilter, $item) ?>>
                     <i class="icon-check-empty"></i>
                     <span class="item-label">
                     <?php echo $block->escapeItemLabel($engineFilter, $item['label']) ?>

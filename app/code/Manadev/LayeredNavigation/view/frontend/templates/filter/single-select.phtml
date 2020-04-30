@@ -12,7 +12,7 @@
     <?php foreach ($data as $item): ?>
         <?php if ($item['count'] > 0) : ?>
             <li class="<?php echo $item['is_selected'] ? 'mana-selected' : '' ?> item">
-                <a href="<?php echo $block->getReplaceItemUrl($engineFilter, $item) ?>"<?php echo $block->getReplaceItemLinkAttributes($engineFilter, $item) ?>>
+                <a href="<?php echo $block->getReplaceItemUrl($engineFilter, $item) ?>" <?php echo $block->getReplaceItemLinkAttributes($engineFilter, $item) ?>>
                     <i class="icon-check-empty"></i>
                     <span class="item-label">
                     <?php echo $block->escapeItemLabel($engineFilter, $item['label']) ?>

@@ -11,18 +11,10 @@
  */
 ?>
 <?php $storeName = $block->getThemeName() ? $block->getThemeName() : $block->getLogoAlt();?>
-<?php if ($block->isHomePage() || true):?>
-    <a class="logo" href="<?php echo $block->getUrl(''); ?>" title="<?php echo $storeName ?>">
-<?php else: ?>
-	<strong class="logo">
-<?php endif ?>
-        <img src="<?php echo $block->getLogoSrc() ?>"
-             alt="<?php echo $block->getLogoAlt() ?>"
-             <?php # $block->getLogoWidth() ? 'width="' . $block->getLogoWidth() . '"' : '' ?>
-             <?php # $block->getLogoHeight() ? 'height="' . $block->getLogoHeight() . '"' : '' ?>
-        />
-<?php if ($block->isHomePage()):?>
-    </strong>
-<?php else:?>
-    </a>
-<?php endif?>
+<a class="logo" href="<?php echo $block->getUrl(''); ?>" title="<?php echo $storeName ?>">
+    <img src="<?php echo $block->getLogoSrc() ?>"
+         alt="<?php echo $block->getLogoAlt() ?>"
+         <?php # $block->getLogoWidth() ? 'width="' . $block->getLogoWidth() . '"' : '' ?>
+         <?php # $block->getLogoHeight() ? 'height="' . $block->getLogoHeight() . '"' : '' ?>
+    />
+</a>
