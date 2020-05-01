@@ -123,7 +123,12 @@ $query = $connection->select()->from("catalog_product_entity_text", 'value')->wh
                         <p class="p-short-desc"><?= $connection->fetchOne($query, [':entity_id' => $_product->getId()]); ?></p>
 
 
-                        <?php /* @escapeNotVerified */ echo $block->getProductPrice($_product) ?>
+                        <?php if ($_product->getIsSalable()): ?>
+                            <?php /* @escapeNotVerified */ echo $block->getProductPrice($_product) ?>
+                        <?php else: ?>
+                            <span class="out-of-stock">Out of Stock</span>
+                        <?php endif; ?>
+
 
                         <?php #echo $block->getProductDetailsHtml($_product); ?>
                     </div>
