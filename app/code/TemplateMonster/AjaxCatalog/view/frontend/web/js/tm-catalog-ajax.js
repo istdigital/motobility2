@@ -29,8 +29,8 @@ define([
             scrollAnchor: '#infinite_loadMoreAnchor',
             infiniteScrollPages: parseInt($('#infinite_loadMoreAnchor').data('pages')),
             lastPages: parseInt($('#infinite_lastPageNum').data('pages')),
-            allProductsSelector: '#toolbar-amount .toolbar-number:last-child',
-            minProductsRange: '#toolbar-amount .toolbar-number:first-child',
+            allProductsSelector: 'p.toolbar-amount .toolbar-number:last-child',
+            minProductsRange: 'p.toolbar-amount .toolbar-number:first-child',
             allProducts: null,
             scrollProcessing: false,
             windowHeightOffset: 200,
@@ -286,7 +286,6 @@ define([
 
             if ($('body.brand-brand-view').length) {
                 if(sidebarBrand <= 1 ) {
-                    console.log (sidebarBrand);
                     $('.filter-current--wrapper .filter-actions, .filter-current--wrapper .action.remove').css({'display':'none'});
                 } else {
 

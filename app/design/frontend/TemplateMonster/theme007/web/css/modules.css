@@ -7145,6 +7145,9 @@ dl.custom-page dd {
     padding-top: 3px; }
 .products .product-item .swatch-attribute-options {
   margin-top: 5px; }
+
+
+.products .product-item .out-of-stock,
 .products .product-item .price {
   font-size: 24px;
   color: #ffffff;
@@ -7158,6 +7161,11 @@ dl.custom-page dd {
     display: inline-block;
     border-radius: 3px;
 }
+
+.products .product-item .out-of-stock{
+  background: #f9b761 !important;
+}
+
 .products .product-item .old-price .price{
   background: none;
   color: #f9b761;
@@ -9450,6 +9458,7 @@ body.account .box address {
   display: none; }
 
 #search_mini_form {
+  position: relative;
   background: none; }
   #search_mini_form .label {
     display: none; }
