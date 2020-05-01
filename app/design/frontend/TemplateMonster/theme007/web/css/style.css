@@ -1823,7 +1823,7 @@ dl dd {
   }
 }
 
-@media (min-width: 768px) and (min-width: 768px) and (max-width: 1353px) {
+@media (min-width: 768px) and (max-width: 1353px) {
   .layout_1 .rd-navbar-collapse,
   .layout_3 .rd-navbar-collapse,
   .layout_4 .rd-navbar-collapse {
@@ -1950,7 +1950,7 @@ dl dd {
     float: right; }
   .layout_5 .rd-navbar-collapse li {
     margin: 0 0 0 30px; } }
-@media (min-width: 768px) and (min-width: 768px) and (max-width: 1353px) {
+@media (min-width: 768px) and (max-width: 1353px) {
   .layout_5 .rd-navbar-collapse-container {
     float: right;
     clear: inherit;
@@ -5571,12 +5571,9 @@ box-shadow: 0 2px 9px 0 rgba(0,0,0,.2);
 /*HEADER*/
 li.customer-account{position: relative;}
 ul.header.links li.link a{position: relative;    display: inline-block;}
-li.customer-account.active ul.customer-menu a:before{display: none;}
-
+/*li.customer-account.active ul.customer-menu a:before{display: none;}
+*/
 @media (min-width: 768px) and (max-width: 1024px){
-    header ul.header.links a:before{
-        display: none;
-    }
     header ul.header.links a{cursor: pointer;}
 }
 
@@ -5584,9 +5581,9 @@ li.customer-account.active ul.customer-menu a:before{display: none;}
   li.customer-account ul.customer-menu{
     display: none;
     position: absolute;
-    width: 170px;
-    top: 28px;
-    right: 0;
+    width: 202px;
+    top: 40px;
+    right: 10px;
     border: 1px solid #dedede;
     padding: 13px;
     background: #fff;
