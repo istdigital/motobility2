@@ -7164,6 +7164,7 @@ dl.custom-page dd {
 
 .products .product-item .out-of-stock{
   background: #f9b761 !important;
+  margin-bottom: 8px;
 }
 
 .products .product-item .old-price .price{
