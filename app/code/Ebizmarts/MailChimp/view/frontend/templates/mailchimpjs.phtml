@@ -1,4 +1,6 @@
 <?php
     $url = $this->getJsUrl();
 ?>
-<script type="text/javascript" src="<?php echo $url;?>" defer></script>
+<?php if(!empty($url)): ?>
+<script src="<?php echo $url;?>" defer></script>
+<?php endif; ?>
