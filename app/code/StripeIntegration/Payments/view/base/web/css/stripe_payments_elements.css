@@ -4,7 +4,7 @@
     display: block;
 }
 #stripe-payments-card-number {
-    width: 200px;
+    width: 210px;
     display: inline-block;
 }
 .admin__payment-methods #stripe-payments-card-number {
@@ -15,10 +15,10 @@
     height: 24px;
     width: 32px;
     display: inline-block;
-    font-size: 20px;
-    margin-left: -49px;
+    font-size: 16px;
+    margin-left: -35px;
     position: relative;
-    top: -12px;
+    top: 11px;
 }
 #stripe-payments-card-expiry {
     width: 100px;

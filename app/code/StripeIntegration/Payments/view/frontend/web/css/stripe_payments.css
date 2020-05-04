@@ -209,6 +209,7 @@ a.subscription-name {
 .box-tocart .action.tocart.payment-request-button
 {
     padding: 0;
+    display: none;
 }
 
 .payment-request-button {
