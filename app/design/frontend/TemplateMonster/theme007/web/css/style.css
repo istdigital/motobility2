@@ -45,7 +45,7 @@
   font-family: 'Montserrat';
   font-style: normal;
   font-weight: 400;
-  font-display:normal;
+  font-display:swap;
   src: local("Montserrat"), local("Montserrat-Regular"), 
       url("../fonts/montserrat/Montserrat-Regular.ttf") format("ttf"), 
       url("../fonts/montserrat/montserrat-regular-webfont.woff2") format("woff2"), 
@@ -630,7 +630,7 @@ input[type="radio"] {
     }
 
 
-button..action-primary,
+button.action-primary,
 button.action{
   box-shadow: 0px 8px 10px rgba(0,0,0,0.2);
 }
@@ -1266,7 +1266,6 @@ dl dd {
   width: auto;
   height: auto;
   font-size: 12px;
-  line-height: auto;
   text-align: center;
   cursor: pointer;
   color: #000; }
@@ -1834,7 +1833,7 @@ dl dd {
     position: absolute;
     z-index: 4;
     min-width: 300px;
-    top: 65%; 
+    top: 69%; 
     right: 0}
     .layout_1 .rd-navbar-collapse li,
     .layout_3 .rd-navbar-collapse li,
@@ -2289,7 +2288,6 @@ dl dd {
 .owl-carousel .owl-controls .owl-nav .owl-next,
 .owl-carousel .owl-controls .owl-dot {
   cursor: pointer;
-  cursor: hand;
   -webkit-user-select: none;
   -khtml-user-select: none;
   -moz-user-select: none;
@@ -2395,7 +2393,7 @@ dl dd {
     outline: none; }
   .slick-list.dragging {
     cursor: pointer;
-    cursor: hand; }
+  }
 
 .slick-slider .slick-track,
 .slick-slider .slick-list {
@@ -2542,7 +2540,7 @@ dl dd {
 
 .select2-dropdown {
   background-color: #f6f6f6;
-  boder: none;
+  border: none;
   border-radius: 0;
   box-sizing: border-box;
   display: block;
@@ -5582,7 +5580,7 @@ ul.header.links li.link a{position: relative;    display: inline-block;}
     display: none;
     position: absolute;
     width: 202px;
-    top: 40px;
+    top: 45px;
     right: 10px;
     border: 1px solid #dedede;
     padding: 13px;
@@ -6156,9 +6154,12 @@ a.mp-read-more:before{
 
 .mp-sidebar.mpcss{
   border-radius: 3px;  
-  background: #ffffff;  box-shadow: 0px 0px 2px 2px #e8e8e8;
-  padding: 10px 20px;box-shadow: 0px 0px2px2px #e8e8e8;}
-  .mp-sidebar.mpcss a{color: #2f2f2f;
+  background: #ffffff;  
+  box-shadow: 0px 0px 2px 2px #e8e8e8;
+  padding: 10px 20px;
+}
+  .mp-sidebar.mpcss a{
+    color: #2f2f2f;
     font-size: 15px;
     font-weight: 600;
     line-height: 26px;
@@ -6782,7 +6783,7 @@ div#tab-label-additional { display: none; }
   font-size: 14px;
   margin: 0 auto;
 }
-@media (min-width: ) {
+@media (min-width: 767px) {
   #stock-alert-form p,
   #thanks-popup p {
     max-width: 78%;

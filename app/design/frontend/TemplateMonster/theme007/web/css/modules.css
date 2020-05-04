@@ -10995,7 +10995,6 @@ body._has-modal-custom .modal-custom-overlay {
     -webkit-flex-basis: auto;
     -ms-flex-preferred-size: auto;
     flex-basis: auto;
-    max-width: auto;
     max-width: 100%; }
   .checkout-index-index .opc-block-summary .minicart-items .product.options > .content .item-options .label {
     float: left;
@@ -13548,7 +13547,7 @@ div[class^="swatch-opt-"] {
       }
       .tm-megamenu{overflow: hidden;}
       
-      .tm-megamenu > .container > .row:lastChild{
+      .tm-megamenu > .container > .row:last-child{
           border:0;
       }
 
@@ -14915,7 +14914,6 @@ div[class^="swatch-opt-"] {
   .post-page .owl-carousel .owl-controls .owl-nav .owl-next,
   .post-page .owl-carousel .owl-controls .owl-dot {
     cursor: pointer;
-    cursor: hand;
     -webkit-user-select: none;
     -khtml-user-select: none;
     -moz-user-select: none;
@@ -15809,7 +15807,6 @@ div[class^="swatch-opt-"] {
 .owl-carousel .owl-nav .owl-next,
 .owl-carousel .owl-dot {
   cursor: pointer;
-  cursor: hand;
   -webkit-user-select: none;
   -khtml-user-select: none;
   -moz-user-select: none;
