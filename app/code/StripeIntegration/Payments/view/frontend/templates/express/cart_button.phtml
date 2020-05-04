@@ -1,0 +1,12 @@
+<?php if ($block->isEnabled("cart_button")) : ?>
+    <div id="payment-request-button-cart" class="payment-request-button cart">&nbsp;</div>
+    <script>
+        require(['jquery', 'StripeIntegration_Payments/js/stripe_payments_express'], function(jQuery, stripeExpress) {
+            jQuery(document).ready(function() {
+                stripeExpress.initStripeExpress('#payment-request-button-cart', '<?php echo $block->getPublishableKey(); ?>', 'cart', <?php echo \Zend_Json::encode($block->getButtonConfig()); ?>, function (paymentRequestButton, paymentRequest, params, prButton) {
+                    stripeExpress.initCartWidget(paymentRequestButton, paymentRequest, params, prButton);
+                });
+            });
+        });
+    </script>
+<?php endif; ?>

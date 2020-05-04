@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<include xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_include.xsd">
+  <group id="express" translate="label" type="text" sortOrder="11" showInDefault="1" showInWebsite="1" showInStore="1">
+    <label>Apple Pay</label>
+    <comment>Allow your customers to checkout with Apple Pay, Google Pay and Microsoft Pay directly from the product page or the shopping cart page.</comment>
+    <field id="seller_name" translate="label" type="text" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+      <label>Seller Name</label>
+      <comment>
+        <![CDATA[This is the text that appears as PAY SELLER NAME in the Apple Pay modal.]]>
+      </comment>
+      <config_path>payment/stripe_payments_express/seller_name</config_path>
+    </field>
+    <field id="apple_pay_checkout" translate="label" type="select" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+      <label>Checkout Page</label>
+      <comment>
+        <![CDATA[Enable Apple Pay, Google Pay and Microsoft Pay on the checkout page.]]>
+      </comment>
+      <source_model>StripeIntegration\Payments\Model\Adminhtml\Source\Enabled</source_model>
+      <config_path>payment/stripe_payments_express/apple_pay_checkout</config_path>
+    </field>
+    <field id="apple_pay_location" translate="label" type="select" sortOrder="7" showInDefault="1" showInWebsite="1" showInStore="1">
+      <label>Checkout Button Location</label>
+      <comment>
+        <![CDATA[Where should we display the Apple Pay button?]]>
+      </comment>
+      <source_model>StripeIntegration\Payments\Model\Adminhtml\Source\ApplePayLocation</source_model>
+      <depends>
+        <field id="apple_pay_checkout">1</field>
+      </depends>
+      <config_path>payment/stripe_payments_express/apple_pay_location</config_path>
+    </field>
+    <field id="cart_button" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+      <label>Shopping Cart Page</label>
+      <comment><![CDATA[The button appears below the Proceed to Checkout button.]]></comment>
+      <source_model>StripeIntegration\Payments\Model\Adminhtml\Source\Enabled</source_model>
+      <config_path>payment/stripe_payments_express/cart_button</config_path>
+    </field>
+    <field id="product_button" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+      <label>Product Page</label>
+      <comment><![CDATA[The button appears next to the Add to Cart button.]]></comment>
+      <source_model>StripeIntegration\Payments\Model\Adminhtml\Source\Enabled</source_model>
+      <config_path>payment/stripe_payments_express/product_button</config_path>
+    </field>
+    <field id="minicart" translate="label" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+      <label>Minicart</label>
+      <comment><![CDATA[The button appears below the Proceed to Checkout button.]]></comment>
+      <source_model>StripeIntegration\Payments\Model\Adminhtml\Source\Enabled</source_model>
+      <config_path>payment/stripe_payments_express/minicart</config_path>
+    </field>
+    <field id="button_type" translate="label" type="select" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+      <label>Button Type</label>
+      <source_model>StripeIntegration\Payments\Model\Adminhtml\Source\ButtonType</source_model>
+      <config_path>payment/stripe_payments_express/button_type</config_path>
+    </field>
+    <field id="button_theme" translate="label" type="select" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+      <label>Button Theme</label>
+      <source_model>StripeIntegration\Payments\Model\Adminhtml\Source\ButtonTheme</source_model>
+      <config_path>payment/stripe_payments_express/button_theme</config_path>
+    </field>
+    <field id="button_height" translate="label" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+      <label>Button Height</label>
+      <config_path>payment/stripe_payments_express/button_height</config_path>
+    </field>
+ </group>
+</include>
