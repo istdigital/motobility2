@@ -8021,3 +8021,8 @@ ol.list-ordered {
 .price-container span.price-label{
   display: none !important;
 }
+
+.billing-address-details button.action-edit-address {
+    box-shadow: none;
+    color: #35b3ca;
+}
