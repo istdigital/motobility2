@@ -8,6 +8,7 @@
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd">
     <head>
         <!-- <css src="css/magnific-popup.css" /> -->
+        <remove src="mage/calendar.css" />
         <css src="css/grid.css" />
         <!-- <css src="css/material-icons.css" />
         <css src="css/font-awesome.css" /> -->
