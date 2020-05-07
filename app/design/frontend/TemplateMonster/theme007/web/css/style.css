@@ -6177,12 +6177,27 @@ a.mp-read-more:before{
   padding-left: 20px;
   padding-right: 20px;
 }
+
+@media (min-width: 767px) and (max-width: 991.9px){
+  .post-list-content .col-md-4 {
+      -webkit-flex-basis: 32%;
+      -ms-flex-preferred-size: 32%;
+    flex-basis: 50%;
+    min-width: 50%;
+    flex: 1;
+    display: flex;
+    max-width: 50%;
+  }
+}
 @media (min-width: 992px){
   .post-list-content .col-md-4 {
       -webkit-flex-basis: 32%;
       -ms-flex-preferred-size: 32%;
-      flex-basis: 33%;
-      max-width: 32%;
+    flex-basis: 33.33%;
+    min-width: 33.33%;
+    flex: 1;
+    display: flex;
+    max-width: 33.33%;
   }
 }
 
