@@ -1,0 +1,29 @@
+        'schema' => $schema,
+    ];
+    /* @noEscape */ echo $block->renderAmount($finalPriceModel->getAmount(), $arguments);
+    ?>
+</span>
+
+<?php if ($block->hasSpecialPrice()): ?>
+    <span class="old-price sly-old-price">
+        <?php /* @escapeNotVerified */ echo $block->renderAmount($priceModel->getAmount(), [
+            'display_label'     => __('Regular Price'),
+            'price_id'          => $block->getPriceId('old-price-' . $idSuffix),
+            'price_type'        => 'oldPrice',
+            'include_container' => true,
+            'skip_adjustments'  => true
+        ]); ?>
+    </span>
+<?php endif; ?>
+
+<?php if ($block->showMinimalPrice()): ?>
+    <?php if ($block->getUseLinkForAsLowAs()):?>
+        <a href="<?= /* @escapeNotVerified */ $block->getSaleableItem()->getProductUrl() ?>" class="minimal-price-link">
+            <?= /* @escapeNotVerified */ $block->renderAmountMinimal() ?>
+        </a>
+    <?php else:?>
+        <span class="minimal-price-link">
+            <?= /* @escapeNotVerified */ $block->renderAmountMinimal() ?>
+        </span>
+    <?php endif?>
+<?php endif; ?>
