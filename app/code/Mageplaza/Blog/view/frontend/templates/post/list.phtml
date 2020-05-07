@@ -67,7 +67,7 @@ $cats = [];
 
                             <div class="post-short-description">
                                 <p>
-                                    <?= substr($post->getShortDescription(), 0, 80) ?>...
+                                    <?= $post->getShortDescription() ?>
                                 
                                 <a class="mp-read-more" href="<?php echo $post->getUrl(); ?>"
                                    title="<?php echo __('Read More'); ?>"></a>
