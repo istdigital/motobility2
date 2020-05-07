@@ -3380,8 +3380,8 @@ pre {
     
   @media (min-width: 768px) {
     .layout_3 .panel-container-wrap-bottom {
-      padding-bottom: 40px;
-    padding-top: 40px; }
+      padding-bottom: 20px;
+    padding-top: 20px; }
     .layout_3 .panel-container-wrap-bottom {
       position: relative; }
       .layout_3 .panel-container-wrap-bottom > .logo {
