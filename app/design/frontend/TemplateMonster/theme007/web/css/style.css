@@ -6894,7 +6894,7 @@ li.item.product-item:hover a.product-items-compare-link {
   display: inline-block;
 }
 .block.related .product-brand-name{
-  color: rgba(34,36,43,0.6);
+  color: #f9b761;
 }
 .category-cms.category-content{  background: rgba(245,245,245,0.4);padding: 80px 0;margin-top: 30px;}
 .category-cms.category-content h4{

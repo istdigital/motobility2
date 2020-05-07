@@ -8617,6 +8617,23 @@ body.catalog-product-compare-index .table-caption {
 .products-grid .product-item-actions .actions-primary ~ .actions-secondary {
   padding-top: 23px; }
 
+
+.products-grid .product-item-actions .actions-primary ~ .actions-secondary a {
+    font-size: 22px;
+    padding: 0;
+    margin-right: 10px;
+    border: solid 1px #35b3ca;
+    height: 50px;
+    width: 50px;
+    display: inline-block;
+    text-align: center;
+    line-height: 50px;
+    color: #35b3ca;
+    border-radius: 4px;
+    background: transparent;
+}
+
+
 @media (max-width: 479px) {
   .products-grid .product-items > .product-item {
     border-bottom: 1px solid #eae9e9;
@@ -8961,6 +8978,14 @@ body.catalog-product-compare-index .table-caption {
   margin-top: 50px; }
   .block.crosssell .products-grid .product-reviews-summary {
     padding-top: 25px; }
+
+  .block.crosssell .products-grid .product-item-info {
+        margin: 8px 0;
+  }
+
+  
+
+
   @media (max-width: 768px) {
     .block.crosssell .owl-controls {
       top: -56px; } }
