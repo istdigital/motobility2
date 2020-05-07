@@ -22,9 +22,9 @@ content{width: 100%; float: left;}
 .abs-icon.stap-one{left: -41px;top: 8px;}
 .blet{width: 100%; float: left; background: #F86A29; box-sizing: border-box; color: #fff; font-size: 18px; font-weight: 500; padding: 6px 0 6px 60px; letter-spacing: 1.5px; box-shadow: -4px 8px 8px #000; margin: 22px 0 0 0;}
 .text{width: 460px; float: right; margin-right: 10px;  }
-.text.strong p{font-size: 12px; font-weight: 700; font-style: italic; color: #fff; letter-spacing: 1.2; line-height: 30px; margin: 12px 0;}
+.text.strong p{font-size: 14px; font-weight: 700; font-style: italic; color: #fff; letter-spacing: 1.2; line-height: 30px; margin: 14px 0;}
 .inner-data .abs-icon{top: 3px; left: -17px;}
-.inner-data .blet{font-size: 12px; margin-top: 10px}
+.inner-data .blet{font-size: 14px; margin-top: 10px}
 .bluebg{background:#35B3CA;}
 .orangebg{background: #FBB03B;}
 .plane-bg{background: #9861B2;}
@@ -32,14 +32,14 @@ content{width: 100%; float: left;}
 .inn-bluebg{background:#31B7ED;}
 .bg-pink{background: #FF9EC9;}
 
-.inner-orangebg{width: 99%; float: right; background:#FBB03B;; box-sizing: border-box; color: #fff; font-size: 12px; font-weight: 500; padding: 6px 0 6px 60px; letter-spacing: 1.5px;  margin: 22px 0 0px 0;}
+.inner-orangebg{width: 99%; float: right; background:#FBB03B;; box-sizing: border-box; color: #fff; font-size: 14px; font-weight: 500; padding: 6px 0 6px 60px; letter-spacing: 1.5px;  margin: 22px 0 0px 0;}
 .inner-data .text.strong p{font-weight: 400; font-style: normal;}
 
 .inner-text{width: 460px;float: right;}
 .lft-inn-text{width: 50%;float: left;margin-top: 20px;}
-.lft-inn-text p{width: 100%;float: left; font-size: 12px; font-weight: 400; color: #fff; letter-spacing: 1.2; line-height: 25px; margin:0px 0;font-style: normal;}
-.lft-inn-text h3{width: 100%;float: left; font-size: 12px; font-weight: 600; font-style: italic !important; color: #fff; letter-spacing: 1.2; line-height: 30px; margin:0px 0;font-style: normal;}
-.lft-inn-text span{width: 100%;float: left;padding-top: 20px; font-size: 12px; font-weight: 400; color: #fff; letter-spacing: 1.2; line-height: 25px; margin:0px 0;font-style: normal;}
+.lft-inn-text p{width: 100%;float: left; font-size: 14px; font-weight: 400; color: #fff; letter-spacing: 1.2; line-height: 25px; margin:0px 0;font-style: normal;}
+.lft-inn-text h3{width: 100%;float: left; font-size: 14px; font-weight: 600; font-style: italic !important; color: #fff; letter-spacing: 1.2; line-height: 30px; margin:0px 0;font-style: normal;}
+.lft-inn-text span{width: 100%;float: left;padding-top: 20px; font-size: 14px; font-weight: 400; color: #fff; letter-spacing: 1.2; line-height: 25px; margin:0px 0;font-style: normal;}
 
 .rgt-img{width: 50%;float: right;}
 .rgt-img img{width: 100%;float: left;}
@@ -52,8 +52,8 @@ content{width: 100%; float: left;}
 .gfooter{width: 100%;float: right;background: #F86A29;padding: 20px 0 10px;margin-top: 30px;  box-shadow: -4px 8px 8px #000;}
 .above{background: #F86A29; width: 100%;float: right;padding: 20px 0 10px;margin-top: 30px;  box-shadow: -4px 8px 8px #000;}
 .footer-text{width: 100%;float: left;text-align: center;}
-.footer-text p{width: 100%;float: left;font-weight: 500;font-size: 12px;margin: 0; font-family: 'Montserrat', sans-serif;color: #fff;letter-spacing: 2px;}
-.footer-text a{width: 100%;float: left;font-weight: 900;font-size: 12px;margin: 0; font-family: 'Montserrat', sans-serif;color: #fff;padding-top: 10px;letter-spacing: 2px;}
+.footer-text p{width: 100%;float: left;font-weight: 500;font-size: 14px;margin: 0; font-family: 'Montserrat', sans-serif;color: #fff;letter-spacing: 2px;}
+.footer-text a{width: 100%;float: left;font-weight: 900;font-size: 14px;margin: 0; font-family: 'Montserrat', sans-serif;color: #fff;padding-top: 10px;letter-spacing: 2px;}
 
 
 .footer-text .left-btn, .footer-text .right-btn {
@@ -95,11 +95,11 @@ content{width: 100%; float: left;}
 /******* step2 *******/
 .data-content.steptwo{width: 100%; position: relative; float: left;}
 
-.text.strong.steptwo p{font-weight: 500;font-style: normal;font-size: 12px;}
+.text.strong.steptwo p{font-weight: 500;font-style: normal;font-size: 14px;}
 .st-two-belt{width: 99%; float: right; background: #F86A29; box-sizing: border-box; color: #fff; font-size: 18px; font-weight: 500; padding: 6px 0 6px 60px; letter-spacing: 1.5px; box-shadow: 0px 8px 8px #000; margin: 22px 0 0 0;}
 .data-content.steptwo{width: 100%; position: relative; float: left;padding-bottom: 10px;}
 .abs-icon.st-icon{left: -17px;top: 15px;}
-.blet.bluebg-steptwo{width: 100%; float: left; background: #35B3CA; box-sizing: border-box; color: #fff; font-size: 12px; font-weight: 500; padding: 6px 0 6px 50px; letter-spacing: 1.5px; box-shadow: -4px 8px 8px #000; margin: 22px 0 0 0;}
+.blet.bluebg-steptwo{width: 100%; float: left; background: #35B3CA; box-sizing: border-box; color: #fff; font-size: 14px; font-weight: 500; padding: 6px 0 6px 50px; letter-spacing: 1.5px; box-shadow: -4px 8px 8px #000; margin: 22px 0 0 0;}
 .abs-img{width: 100%;float: left;margin-top: 25px;margin-left: -25px;}
 .abs-img img{width: 100%;float: left;}
 
@@ -107,13 +107,13 @@ content{width: 100%; float: left;}
 /******* step3 *******/
 
 .data-content.step-three-data{width: 100%; position: relative; float: left;}
-.inner-orangebg.stepth-txt{width: 99%; float: right; background:#35B3CA;text-align: center; box-sizing: border-box; color: #fff; font-size: 12px; font-weight: 500; padding: 6px 0 6px 0px; letter-spacing: 1.5px;  margin: 22px 0 0px 0;}
+.inner-orangebg.stepth-txt{width: 99%; float: right; background:#35B3CA;text-align: center; box-sizing: border-box; color: #fff; font-size: 14px; font-weight: 500; padding: 6px 0 6px 0px; letter-spacing: 1.5px;  margin: 22px 0 0px 0;}
 .three-st{width: 99%;float: right;background: #fff;padding: 20px 30px;box-sizing: border-box;margin-bottom: 20px;}
 .three-lft-img{width: 35%;float: left;}
 .three-lft-img img{width: 100%;float: left;}
 
 .three-rgt-txt{width: 65%;float: left;}
-.three-rgt-txt p{width: 100%;float: left;font-weight: 500;font-size: 12px;margin-left: 15px;margin-top: 25px; line-height: 20px; font-family: 'Montserrat', sans-serif;color: #35B3CA;letter-spacing: 1px;}
+.three-rgt-txt p{width: 100%;float: left;font-weight: 500;font-size: 14px;margin-left: 15px;margin-top: 25px; line-height: 20px; font-family: 'Montserrat', sans-serif;color: #35B3CA;letter-spacing: 1px;}
 
 
 
@@ -129,7 +129,7 @@ content{width: 100%; float: left;}
 .data-step-row{width: 528px; float: right; background: url(../images/line-2.png) left 15px repeat-x;margin-top: 20px; cursor: pointer;}
 
 .prod-list{width: 95%;float: right;background: #35B3CA;padding: 8px 0 8px 8px;box-sizing: border-box; }
-.prod-list p{width: 100%;float: left;font-weight: 500;font-size: 12px;margin-left: 15px;line-height: 20px;padding-bottom: 8px; font-family: 'Montserrat', sans-serif;color: #fff;letter-spacing: 1px;box-sizing: border-box;}
+.prod-list p{width: 100%;float: left;font-weight: 500;font-size: 14px;margin-left: 15px;line-height: 20px;padding-bottom: 8px; font-family: 'Montserrat', sans-serif;color: #fff;letter-spacing: 1px;box-sizing: border-box;}
 .all-prod{width: 100%;float: left;background: #fff;padding: 8px;box-sizing: border-box;}
 .all-prod ul{width: 100%;float: left;}
 .all-prod ul li{ width: auto; float: left;    margin-right: 8px;    max-height: 85px;    max-width: 95px;    display: inline-block;}
@@ -149,7 +149,7 @@ span.helper{height: 100%; vertical-align: middle;    display: inline-block;    m
 	.data-step {width: 90%; float: right; background: url(../images/line.png) left top repeat-y; }
 	.text {width: 88%; float: right; margin-right: 10px; }
 	.blet{padding: 6px 0 6px 48px;font-size: 18px;}
-	.inner-data .blet {font-size: 12px; margin-top: 10px; }
+	.inner-data .blet {font-size: 14px; margin-top: 10px; }
 	.lft-inn-text {width: 88%; float: right;margin-bottom: 20px; }
 	.rgt-img {width: 99%; float: right; }
 	.inner-text {width: 100%; float: right; }
