@@ -3380,8 +3380,8 @@ pre {
     
   @media (min-width: 768px) {
     .layout_3 .panel-container-wrap-bottom {
-      padding-bottom: 40px;
-    padding-top: 40px; }
+      padding-bottom: 20px;
+    padding-top: 20px; }
     .layout_3 .panel-container-wrap-bottom {
       position: relative; }
       .layout_3 .panel-container-wrap-bottom > .logo {
@@ -11939,6 +11939,7 @@ input::-webkit-inner-spin-button {
   border: 1px solid #eae9e9;
   overflow: hidden;
   text-overflow: ellipsis;
+  outline: 0;
   transition: 0.3s ease; }
   .swatch-option.text {
     background: #FFF;
@@ -13684,7 +13685,7 @@ div[class^="swatch-opt-"] {
         .rd-navbar-nav > li.parent li > a ,
   .rd-navbar-nav > li.parent .level1.mm-submenu > li > a {
      color: #2f2f2f;
-      font-size: 14px;
+      font-size: 13.5px;
       font-weight: 600;
       line-height: 17px;
       text-transform: uppercase;
@@ -13743,7 +13744,7 @@ div[class^="swatch-opt-"] {
     right: 15px;
     padding: 0; }
     .rd-navbar-megamenu li.item.ui-menu-item{
-      padding: 25px 0px 15px;
+      padding: 12px 0px 5px;
       text-align: center;
     }
   }
@@ -13930,8 +13931,10 @@ div[class^="swatch-opt-"] {
 
 .mm-image {
   display: block;
-  margin-bottom: 25px; }
-
+  margin-bottom: 0px; }
+.mm-image img {
+    max-width: 140px;
+}
 .menu-block-1 {
   display: -ms-flexbox;
   display: -webkit-flex;
