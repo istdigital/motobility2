@@ -73,6 +73,7 @@ class CreatioSyncCommand extends Command
                     "Type" => $customerType,
                     "Email" => $query['email'],
                     "Phone" => $query['phone'],
+                    "UsrContactStatus" => "eb5a165e-bd19-4ff9-88b3-55f973cb01cd",
                 ], 'Contact');
             }
             //Create Lead
@@ -117,6 +118,7 @@ class CreatioSyncCommand extends Command
                     "Type" => $customerType,
                     "Email" => $query['email'],
                     "Phone" => $query['telephone'],
+                    "UsrContactStatus" => "eb5a165e-bd19-4ff9-88b3-55f973cb01cd",
                 ], 'Contact');
             }
 
@@ -149,6 +151,7 @@ class CreatioSyncCommand extends Command
                     "Name" => $query['subscriber_name'],
                     "Type" => $customerType,
                     "Email" => $query['subscriber_email'],
+                    "UsrContactStatus" => "eb5a165e-bd19-4ff9-88b3-55f973cb01cd",
                 ], 'Contact');
             }
         }
