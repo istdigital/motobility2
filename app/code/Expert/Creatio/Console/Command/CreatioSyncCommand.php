@@ -228,6 +228,7 @@ class CreatioSyncCommand extends Command
                     "Type" => $customerType,
                     "Email" => $order['customer_email'],
                     "Phone" => $order['telephone'],
+                    "UsrContactStatus" => "eb5a165e-bd19-4ff9-88b3-55f973cb01cd",
                 ], 'Contact');
             }
 
