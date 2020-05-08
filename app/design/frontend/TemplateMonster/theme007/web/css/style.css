@@ -6228,6 +6228,7 @@ a.mp-read-more:before{
   letter-spacing: 0.2px;
   width: 100%;
   display: inline-block;
+  min-height: 50px;
 }
 .post-list-item .post-short-description p{
   color: rgba(34,36,43,0.6);
@@ -7755,6 +7756,7 @@ a#open-repayment-popup{
     margin: 0 auto;
     position: relative;
     padding: 0;
+    box-shadow: none;
   }
   .faq-container .toolbar-products,
   .downloads-container .toolbar-products{

@@ -65,7 +65,8 @@ class Creatio
 				$this->_csrf = trim(str_replace("BPMCSRF",'',$_csrf[0]));	
 			}
 		}else{
-			throw new Exception("Creatio:Invalid Credentials", 1);		
+			echo $response['Message'];
+			//throw new \Exception("Creatio:Invalid Credentials", 1);		
 		}
 	}
 
@@ -105,6 +106,7 @@ class Creatio
 		]);
 
 		$response = $this->request($this->auth_url . $this->select_url, $postdata);
+
 
 		if($response['success'])
 		{
@@ -262,16 +264,26 @@ class Creatio
 
 	function getPaymentTypeByCode($code)
 	{
-		$ptypes = [
-			'9f0a8bf8-4343-4966-b634-11757224de0e' =>	'afterpay',
-			'7f3e3aff-2d34-49a7-b4ed-411241ad59d9' =>	'cryozonic_stripe',
-			'b22487fa-6e66-4dc2-a263-5a1a15237289' =>	'paypal_express',
-			'0026bde9-932b-4baa-ba30-ffa521a255ab' =>	'cashondelivery',
-			'7d5ded73-ce32-4de6-94ba-e58d2e6b3675' =>	'checkmo',
-		];
-		$key = array_search($code, $ptypes);
-		if($key === FALSE) return '';
-		return $key;
+		// $ptypes = [
+		// 	'47d85c8e-82e0-47e2-b963-390542d4a360' =>	'afterpay',
+		// 	'bf4f69c8-e242-4b0e-83c3-1c8d4790fc01' =>	'cryozonic_stripe', // paypal_express
+		// 	'bf4f69c8-e242-4b0e-83c3-1c8d4790fc01' =>	'paypal_express',
+		// 	'0026bde9-932b-4baa-ba30-ffa521a255ab' =>	'cashondelivery',
+		// 	'7d5ded73-ce32-4de6-94ba-e58d2e6b3675' =>	'checkmo',
+		// ];
+
+		if(preg_match('/stripe|paypal/i', $code))
+		{
+			return 'bf4f69c8-e242-4b0e-83c3-1c8d4790fc01';
+		}else if(preg_match('/checkmo/i', $code)){
+			return '7d5ded73-ce32-4de6-94ba-e58d2e6b3675';
+		}else if(preg_match('/cashondelivery/i', $code)){
+			return '0026bde9-932b-4baa-ba30-ffa521a255ab';
+		}else if(preg_match('/afterpay/i', $code)){
+			return '47d85c8e-82e0-47e2-b963-390542d4a360';
+		}else{
+			return '7d5ded73-ce32-4de6-94ba-e58d2e6b3675';
+		}
 	}
 
 	function getDeliveryTypeByCode($code)
