@@ -7820,6 +7820,9 @@ dl.custom-page dd {
 .catalog-product-view .product-info-price .old-price{
   margin-left: 15px;
 }
+.catalog-product-view .product-info-price span.old-price.sly-old-price {
+    display: inline !important;
+}
 
 .catalog-product-view .product-add-form,
 .modal-popup.quick-view .product-add-form {

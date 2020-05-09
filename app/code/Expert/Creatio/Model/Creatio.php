@@ -88,9 +88,7 @@ class Creatio
 		);
 		$response = json_decode(curl_exec ($ch), true);
 		curl_close ($ch);
-
 		if(!$response['success']) print_r($response);
-
 		return $response;
 	}
 
