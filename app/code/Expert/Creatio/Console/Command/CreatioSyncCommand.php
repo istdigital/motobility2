@@ -180,6 +180,7 @@ class CreatioSyncCommand extends Command
                 "Address" => $query['street'],
                 "Zip" => $query['postcode'],
                 "Country" => $creatio->getCountryIdByCode($query['country_id']),
+                "UsrContactStatus" => "eb5a165e-bd19-4ff9-88b3-55f973cb01cd",
             ];
 
             if($Id === false)
@@ -212,6 +213,9 @@ class CreatioSyncCommand extends Command
                         WHERE TIMESTAMPDIFF(MINUTE, `created_at` , now()) <= $schedule
                         ;                
                     ");
+
+        //print_r($orders);
+
         foreach ($orders as $order)
         {
 
