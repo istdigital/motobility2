@@ -137,25 +137,7 @@ class CreatioSyncCommand extends Command
                 $connection->query("UPDATE $ytestimonial SET `creatio_id` = '$leadId' WHERE `id` = {$query['id']}");
             }
         }
-
-        //Read Newsletter Subscriber Entries
-        $ntable = $resource->getTableName('newsletter_subscriber');
-        $queries = $connection->fetchAll("Select * FROM $ntable  WHERE `customer_id` = 0 AND TIMESTAMPDIFF(MINUTE, `change_status_at` , now()) <= $schedule;");
-        foreach ($queries as $query)
-        {
-            if(empty($query['subscriber_email'])) continue;
-            $Id = $creatio->getContact($query['subscriber_email']);
-            if($Id === false)
-            {
-                $Id = $creatio->create([
-                    "Name" => $query['subscriber_name'],
-                    "Type" => $customerType,
-                    "Email" => $query['subscriber_email'],
-                    "UsrContactStatus" => "eb5a165e-bd19-4ff9-88b3-55f973cb01cd",
-                ], 'Contact');
-            }
-        }
-
+        
         //Read Customers & Create if not exists
         $customer_entity = $resource->getTableName('customer_entity');
         $customer_address_entity = $resource->getTableName('customer_address_entity');
@@ -201,11 +183,20 @@ class CreatioSyncCommand extends Command
 
 
         $orders = $connection->fetchAll("SELECT 
-                        A.`entity_id`, A.`increment_id`, A.`customer_email`, 
-                        A.`customer_firstname`, A.`customer_lastname`, 
+                        A.`entity_id`, 
+                        A.`increment_id`, 
+                        A.`customer_email`, 
+                        A.`customer_firstname`, 
+                        A.`customer_lastname`, 
                         A.`grand_total`,
-                        B.`region_id`,B.`postcode`,B.`street`,B.`city`,
-                        B.`telephone`,B.`country_id`,
+                        B.`firstname`,
+                        B.`lastname`,
+                        B.`region_id`,
+                        B.`postcode`,
+                        B.`street`,
+                        B.`city`,
+                        B.`telephone`,
+                        B.`country_id`,
                         C.`method` as `payment_method`
                         FROM $sales_order A
                         LEFT JOIN $sales_order_address B ON A.`shipping_address_id` = B.`entity_id`
@@ -227,8 +218,13 @@ class CreatioSyncCommand extends Command
 
             if($Id === false)
             {
+                $name = $order['customer_firstname'] . ' ' . $order['customer_lastname'];
+                if(empty($order['customer_firstname'])){
+                    $name = $order['firstname'] . ' ' . $order['lastname'];
+                }
+
                 $Id = $creatio->create([
-                    "Name" => $order['customer_firstname'],
+                    "Name" => $name,
                     "Type" => $customerType,
                     "Email" => $order['customer_email'],
                     "Phone" => $order['telephone'],
@@ -274,6 +270,29 @@ class CreatioSyncCommand extends Command
                            
             }
         }
+
+
+
+
+
+        //Read Newsletter Subscriber Entries
+        $ntable = $resource->getTableName('newsletter_subscriber');
+        $queries = $connection->fetchAll("Select * FROM $ntable  WHERE `customer_id` = 0 AND TIMESTAMPDIFF(MINUTE, `change_status_at` , now()) <= $schedule;");
+        foreach ($queries as $query)
+        {
+            if(empty($query['subscriber_email'])) continue;
+            $Id = $creatio->getContact($query['subscriber_email']);
+            if($Id === false)
+            {
+                $Id = $creatio->create([
+                    "Name" => !empty($query['subscriber_name']) ? $query['subscriber_name'] : $query['subscriber_email'],
+                    "Type" => $customerType,
+                    "Email" => $query['subscriber_email'],
+                    "UsrContactStatus" => "eb5a165e-bd19-4ff9-88b3-55f973cb01cd",
+                ], 'Contact');
+            }
+        }
+
     }
 
 }

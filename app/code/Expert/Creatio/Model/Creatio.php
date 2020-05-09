@@ -18,6 +18,7 @@ class Creatio
 	private $auth_password = null;
 	private $cookie = "cookies.txt";
 	private $_csrf = null;
+	private $logger = null;
 
 	/**
      * Data constructor.
@@ -30,6 +31,11 @@ class Creatio
     	$this->auth_url = $auth_url;
     	$this->auth_username = $auth_username;
     	$this->auth_password = $auth_password;
+
+    	$writer = new \Zend\Log\Writer\Stream(BP . '/var/log/crm.log');
+		$this->logger = new \Zend\Log\Logger();
+		$this->logger->addWriter($writer);
+
         $this->login();
     }
 
@@ -65,6 +71,7 @@ class Creatio
 				$this->_csrf = trim(str_replace("BPMCSRF",'',$_csrf[0]));	
 			}
 		}else{
+			$this->logger->info($response['Message']);
 			echo $response['Message'];
 			//throw new \Exception("Creatio:Invalid Credentials", 1);		
 		}
@@ -88,7 +95,10 @@ class Creatio
 		);
 		$response = json_decode(curl_exec ($ch), true);
 		curl_close ($ch);
-		if(!$response['success']) print_r($response);
+		if(!$response['success']){
+			$this->logger->info($response['responseStatus']['Message']);
+			$this->logger->info(print_r($data, true));
+		}
 		return $response;
 	}
 
