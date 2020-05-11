@@ -9,7 +9,9 @@ $cssClass = $this->getCssClass($category);
     <li class="item<?php echo $cssClass; ?> ui-menu-item">
         <?php if ($image = $this->getImage($category)) : ?>
             <a class="mm-image-a" href="<?php echo $category->getUrl(); ?>">
-            <span class="mm-image"><img loading="lazy" width="150" class="lozad" src="/" data-src="<?php echo $image; ?>" alt=""></span>
+            <span class="mm-image">
+                <img loading="lazy" width="150" class="lozad" src="/" data-src="<?php echo $image; ?>" alt="<?= $category->getName(); ?>" title="<?= $category->getName(); ?>">
+            </span>
             </a>
         <?php endif; ?>
 
@@ -29,7 +31,7 @@ $cssClass = $this->getCssClass($category);
                     <?php endif; ?>
                     <?php if ($image = $this->getImage($subCategory)) : ?>
                         <a class="mm-image-a" href="<?php echo $subCategory->getUrl(); ?>">
-                        <span class="mm-image"><img  width="150" class="lozad" src="/" data-src="<?php echo $image; ?>" alt=""></span>
+                        <span class="mm-image"><img  width="150" class="lozad" src="/" data-src="<?php echo $image; ?>" alt="<?= $subCategory->getName(); ?>" title="<?= $subCategory->getName(); ?>"></span>
                         </a>
                     <?php endif; ?>
                     <a href="<?php echo $subCategory->getUrl(); ?>"><?php echo $subCategory->getName(); ?></a>
@@ -47,7 +49,7 @@ $cssClass = $this->getCssClass($category);
                                     <?php endif; ?>
                                     <?php if ($image = $this->getImage($curCategory)) : ?>
                                         <a class="mm-image-a" href="<?php echo $curCategory->getUrl(); ?>">
-                                        <span class="mm-image"><img src="<?php echo $image; ?>" alt=""></span>
+                                        <span class="mm-image"><img src="<?php echo $image; ?>" alt="<?= $curCategory->getName(); ?>" title="<?= $curCategory->getName(); ?>"></span>
                                         </a>
                                     <?php endif; ?>
                                     <a href="<?php echo $curCategory->getUrl(); ?>"><?php echo $curCategory->getName(); ?></a>

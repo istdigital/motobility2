@@ -78,7 +78,7 @@ foreach ($categories as $rootCategory):
         $html .= '<span class="category-name">'."{$rootCategory->getName()}".'</span>';
         if ($showImageInCategory && $helper->getImageByType($rootCategory,$imageType)):
             $html .= "<span class='category-image'>";
-            $html .= "<img alt='' width='{$imageWidth}' src='{$helper->getImageByType($rootCategory,$imageType)}'>";
+            $html .= "<img alt='{$rootCategory->getName()}' title='{$rootCategory->getName()}' width='{$imageWidth}' src='{$helper->getImageByType($rootCategory,$imageType)}'>";
             $html .= "</span>";
         endif;
         $html .= "</a>";
@@ -94,7 +94,7 @@ foreach ($categories as $rootCategory):
                 $html .= "<li><a href='{$subCategory->getUrl()}' class='subcategory-link'>";
                 if ($showImageInSubcategory && $helper->getImageByType($subCategory,$imageType)):
                     $html .= "<span class='subcategory-image'>";
-                    $html .= "<img alt='' src='{$helper->getImageByType($subCategory,$imageType)}'>";
+                    $html .= "<img alt='{$subCategory->getName()}' title='{$subCategory->getName()}' src='{$helper->getImageByType($subCategory,$imageType)}'>";
                     $html .= "</span>";
                 endif;
                 if ($showImageInSubcategory && $subCategoryFontIcon && $imageType == 'font_icon'):

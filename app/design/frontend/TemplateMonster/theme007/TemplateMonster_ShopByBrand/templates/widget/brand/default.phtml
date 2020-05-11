@@ -26,7 +26,7 @@
                     <div class="inner">
                         <?php if ($brand->getImageLogoName()): ?>
                             <a class="brand-logo" href="<?php echo $brand->getUrl() ?>">
-                                <img src="<?php echo $helper->resizeImageUrl($brand->getImageLogoName(), $brandLogoWidth); ?>" alt="<?php echo $block->escapeHtml($brand->getName()) ?>">
+                                <img src="<?php echo $helper->resizeImageUrl($brand->getImageLogoName(), $brandLogoWidth); ?>" alt="<?php echo $block->escapeHtml($brand->getName()) ?>" title="<?php echo $block->escapeHtml($brand->getName()) ?>">
                             </a>
                         <?php endif; ?>
 
