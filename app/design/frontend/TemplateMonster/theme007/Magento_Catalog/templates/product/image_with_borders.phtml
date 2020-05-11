@@ -13,5 +13,6 @@
         <img class="<?= /* @escapeNotVerified */ $block->getClass() ?>"
             <?= /* @escapeNotVerified */ $block->getCustomAttributes() ?>
             src="<?= /* @escapeNotVerified */ $block->getImageUrl() ?>"
+            title="<?= /* @escapeNotVerified */ $block->stripTags($block->getLabel(), null, true) ?>"
             alt="<?= /* @escapeNotVerified */ $block->stripTags($block->getLabel(), null, true) ?>"/></span>
 </span>

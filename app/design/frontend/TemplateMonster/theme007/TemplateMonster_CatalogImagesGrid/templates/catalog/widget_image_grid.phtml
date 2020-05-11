@@ -48,7 +48,7 @@ foreach ($categories as $rootCategory):
         endif;
         if ($showImageInCategory && $block->getImageByType($rootCategory, $imageType)):
             $html .= "<span class='category-image'>";
-            $html .= "<img alt='' width='{$imageWidth}' src='{$block->getImageByType($rootCategory, $imageType)}'>";
+            $html .= "<img alt='{$rootCategory->getName()}' title='{$rootCategory->getName()}' width='{$imageWidth}' src='{$block->getImageByType($rootCategory, $imageType)}'>";
             $html .= "</span>";
         endif;
         $html .= '<span class="category-name">'."{$rootCategory->getName()}".'</span>';
@@ -65,7 +65,7 @@ foreach ($categories as $rootCategory):
                 $html .= "<li><a href='{$subCategory->getUrl()}' class='subcategory-link'>";
                 if ($showImageInSubcategory && $block->getImageByType($subCategory, $imageType)):
                     $html .= "<span class='subcategory-image'>";
-                    $html .= "<img alt='' src='{$block->getImageByType($subCategory, $imageType)}'>";
+                    $html .= "<img alt='{$subCategory->getName()}' title='{$subCategory->getName()}' src='{$block->getImageByType($subCategory, $imageType)}'>";
                     $html .= "</span>";
                 endif;
                 if ($showImageInSubcategory && $subCategoryFontIcon && $imageType == 'font_icon'):

@@ -10,7 +10,7 @@
     <% if (data.showLogo && data.brand.image) { %>
     <div class="product-brand-logo">
         <a href="<%- data.brand.url %>">
-            <img src="<%- data.brand.image %>" alt="" />
+            <img src="<%- data.brand.image %>" alt="<%- data.brand.name %>" title="<%- data.brand.name %>" />
         </a>
     </div>
     <% } %>

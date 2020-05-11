@@ -20,6 +20,7 @@ $videoUrl = $block->getVideoUrl();
                  src="<?php /* @escapeNotVerified */ echo $block->getImageUrl(); ?>"
                  width="<?php /* @escapeNotVerified */ echo $block->getWidth(); ?>"
                  height="<?php /* @escapeNotVerified */ echo $block->getHeight(); ?>"
+                 title="<?php /* @escapeNotVerified */ echo $block->stripTags($block->getLabel(), null, true); ?>"
                  alt="<?php /* @escapeNotVerified */ echo $block->stripTags($block->getLabel(), null, true); ?>" />
 
             <?php if ($replaceImageUrl): ?>
@@ -28,6 +29,7 @@ $videoUrl = $block->getVideoUrl();
                          src="<?php /* @escapeNotVerified */ echo $replaceImageUrl; ?>"
                          width="<?php /* @escapeNotVerified */ echo $block->getWidth(); ?>"
                          height="<?php /* @escapeNotVerified */ echo $block->getHeight(); ?>"
+                         title="<?php /* @escapeNotVerified */ echo $block->stripTags($block->getLabel(), null, true); ?>"
                          alt="<?php /* @escapeNotVerified */ echo $block->stripTags($block->getLabel(), null, true); ?>" />
                 </div>
 

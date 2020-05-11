@@ -4175,13 +4175,17 @@ pre {
             width: 36px;
             /* border: 2px solid #eae9e9; */
             /* border-radius: 50%; */
-            font-size: 26px;
+            font-size: 0;
             line-height: 42px;
             text-align: center;
             background-repeat: no-repeat;
             background-size: 26px;
             background-position: center;
             overflow: hidden; }
+            .footer .list-icon li a:before {
+              font-size: 26px;
+              line-height: 42px;
+            } 
             .footer .list-icon li a.icon-afterpay{    background-size: 100%;    width: 40px;}
             .footer .list-icon li a.icon-facebook{
               background-size: 14px;
