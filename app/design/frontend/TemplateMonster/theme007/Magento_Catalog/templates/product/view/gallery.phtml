@@ -58,7 +58,8 @@
 
 <div class="gallery-placeholder _block-content-loading" data-gallery-role="gallery-placeholder">
     <img
-        alt="main product photo"
+        alt="<?= $_product->getName() ?>"
+        title="<?= $_product->getName() ?>"
         class="gallery-placeholder__image"
         src="<?= /* @noEscape */ $mainImageData ?>"
     />

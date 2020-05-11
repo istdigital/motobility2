@@ -18,12 +18,14 @@ $videoUrl = $block->getVideoUrl();
 <div class="product-image-container tm-featured-switch-image-container<?php echo $videoUrl ? ' is-video' : '' ?>" data-mage-init='{"featuredSwitchImage":""}'>
     <img class="photo image"
          src="<?php /* @escapeNotVerified */ echo $block->getImageUrl(); ?>"
+         title="<?php /* @escapeNotVerified */ echo $block->stripTags($block->getLabel(), null, true); ?>"
          alt="<?php /* @escapeNotVerified */ echo $block->stripTags($block->getLabel(), null, true); ?>" />
 
     <?php if ($replaceImageUrl): ?>
         <div class="replaced">
             <img class="photo2 image2"
                  src="<?php /* @escapeNotVerified */ echo $replaceImageUrl; ?>"
+                 title="<?php /* @escapeNotVerified */ echo $block->stripTags($block->getLabel(), null, true); ?>"
                  alt="<?php /* @escapeNotVerified */ echo $block->stripTags($block->getLabel(), null, true); ?>" />
         </div>
 

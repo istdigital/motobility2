@@ -27,7 +27,9 @@ $itemWidth = $block->getPostAmountPerRow() ? sprintf('flex-basis: %1$.2f%%; -web
                         <!-- Image -->
                         <?php if ($image = $post->getImage()): ?>
                         <div class="post-image">
-                            <a href="<?php echo $this->getPostUrl($post); ?>"><img src="<?php echo $image ?>" /></a>
+                            <a href="<?php echo $this->getPostUrl($post); ?>">
+                                <img src="<?php echo $image ?>" alt="<?= $post->getTitle(); ?>" title="<?= $post->getTitle(); ?>"/>
+                            </a>
                         </div>
                         <?php endif; ?>
                         <div class="item-wrapper-list">

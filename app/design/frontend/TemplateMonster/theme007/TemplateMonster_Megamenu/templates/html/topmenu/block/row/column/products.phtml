@@ -5,7 +5,7 @@
 <div class="product">
     <div class="product-image">
         <a href="<?php echo $this->getProductUrl($product); ?>">
-            <img src="<?php echo $this->getProductImage($product); ?>" alt="">
+            <img src="<?php echo $this->getProductImage($product); ?>" alt="<?= $product->getName() ?>" title="<?= $product->getName() ?>">
         </a>
     </div>
     <div class="pricebox">
