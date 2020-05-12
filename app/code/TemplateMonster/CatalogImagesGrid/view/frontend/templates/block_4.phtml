@@ -18,7 +18,7 @@
 	                        <div class="img-wrap">
 	                        	<a href='<?= $this->getUrl($data["b{$i}_url"]) ?>'>
 	                        		<?php if(isset($data["b{$i}_image"])): ?>
-	                        			<img alt="" src="<?= $murl . $data["b{$i}_image"] ?>">
+	                        			<img alt="<?= $data["b{$i}_title"] ?? null ?>" title="<?= $data["b{$i}_title"] ?? null ?>" src="<?= $murl . $data["b{$i}_image"] ?>">
 	                        		<?php endif; ?>
 	                        	</a>
 	                        </div>

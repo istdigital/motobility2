@@ -29,7 +29,7 @@
 			<?php if(isset($data["b{$i}_title"]) && !empty($data["b{$i}_title"])): ?>
 		    <li>
 		    	<?php if(isset($data["b{$i}_image"])): ?>
-		        	<img src="<?= $murl . $data["b{$i}_image"] ?>" alt="<?= $data["b{$i}_title"] ?>"/>
+		        	<img src="<?= $murl . $data["b{$i}_image"] ?>" title="<?= $data["b{$i}_title"] ?>" alt="<?= $data["b{$i}_title"] ?>"/>
 	        	<?php endif; ?>
 	        	<span><?= $data["b{$i}_title"] ?></span>
 		    </li>

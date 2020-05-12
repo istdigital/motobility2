@@ -37,7 +37,7 @@ $_product = $block->getProduct();
 			<td align="center">
 				<div class="pblock">
 					<?php $productImage = $block->getImage($_product, 'cart_page_product_thumbnail'); ?>
-					<img src="<?= $productImage->getImageUrl(); ?>"/>
+					<img src="<?= $productImage->getImageUrl(); ?>" alt="<?= /* @escapeNotVerified */ $_product->getName() ?>" title="<?= /* @escapeNotVerified */ $_product->getName() ?>"/>
 					<strong><?= /* @escapeNotVerified */ $_product->getName() ?></strong>
 					<br/>
 					<span><?= /* @escapeNotVerified */ $_product->getAttributeText('brand_id') ?></span>
