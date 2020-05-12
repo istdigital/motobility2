@@ -3,7 +3,7 @@
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd">
     <head>
         <meta name="keywords" content="login, user-portal, orders, wishlist"/>
-        <meta name="description" content="Account Settings. Login &amp; Security Settings · Forgot Your Password?"/>
+        <meta name="description" content="Account Settings, Login, Security Settings, Forgot Your Password"/>
     </head>
 
     <body>

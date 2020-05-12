@@ -9,7 +9,9 @@
 			<?php foreach (range(1, 6) as $i): ?>
 				<div class="col-md-2 col-xs-6">
 					<?php if(isset($data["b{$i}_image"])): ?>
-						<img src="<?= $murl . $data["b{$i}_image"] ?>" alt="<?= $data["b{$i}_title"] ?? null ?>"/>
+						<img src="<?= $murl . $data["b{$i}_image"] ?>" 
+							title="<?= $data["b{$i}_title"] ?? null ?>"
+							alt="<?= $data["b{$i}_title"] ?? null ?>"/>
 					<?php endif; ?>
 					<small><?= $data["b{$i}_title"] ?? null ?></small>
 				</div>
