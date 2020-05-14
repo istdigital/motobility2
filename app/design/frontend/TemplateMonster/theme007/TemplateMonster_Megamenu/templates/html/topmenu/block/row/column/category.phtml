@@ -10,7 +10,7 @@ $cssClass = $this->getCssClass($category);
         <?php if ($image = $this->getImage($category)) : ?>
             <a class="mm-image-a" href="<?php echo $category->getUrl(); ?>">
             <span class="mm-image">
-                <img loading="lazy" width="150" class="lozad" src="/" data-src="<?php echo $image; ?>" alt="<?= $category->getName(); ?>" title="<?= $category->getName(); ?>">
+                <img loading="lazy" width="150" src="<?php echo $image; ?>" alt="<?= $category->getName(); ?>" title="<?= $category->getName(); ?>">
             </span>
             </a>
         <?php endif; ?>
@@ -31,7 +31,7 @@ $cssClass = $this->getCssClass($category);
                     <?php endif; ?>
                     <?php if ($image = $this->getImage($subCategory)) : ?>
                         <a class="mm-image-a" href="<?php echo $subCategory->getUrl(); ?>">
-                        <span class="mm-image"><img  width="150" class="lozad" src="/" data-src="<?php echo $image; ?>" alt="<?= $subCategory->getName(); ?>" title="<?= $subCategory->getName(); ?>"></span>
+                        <span class="mm-image"><img  width="150" src="<?php echo $image; ?>" alt="<?= $subCategory->getName(); ?>" title="<?= $subCategory->getName(); ?>"></span>
                         </a>
                     <?php endif; ?>
                     <a href="<?php echo $subCategory->getUrl(); ?>"><?php echo $subCategory->getName(); ?></a>
