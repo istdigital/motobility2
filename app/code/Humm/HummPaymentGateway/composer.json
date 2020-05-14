@@ -1,0 +1,21 @@
+{
+  "name": "humm/module-humm-payment-gateway",
+  "description": "Humm Payment Gateway",
+  "require": {
+    "php": ">=5.4"
+  },
+  "type": "magento2-module",
+  "version": "1.5.10",
+  "license": [
+    "OSL-3.0",
+    "AFL-3.0"
+  ],
+  "autoload": {
+    "files": [
+      "registration.php"
+    ],
+    "psr-4": {
+      "Humm\\HummPaymentGateway\\": ""
+    }
+  }
+}
