@@ -3385,6 +3385,7 @@ pre {
     .layout_3 .panel-container-wrap-bottom {
       position: relative; }
       .layout_3 .panel-container-wrap-bottom > .logo {
+        cursor: pointer;
         display: inline-block; } }
 
 
