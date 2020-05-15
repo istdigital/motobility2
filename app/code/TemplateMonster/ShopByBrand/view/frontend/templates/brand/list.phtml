@@ -11,7 +11,9 @@ $helper = $this->helper('TemplateMonster\ShopByBrand\Helper\Data');
             <div class="inner">
                 <?php if ($block->isShowLogo()): ?>
                 <a href="<?php echo $brand->getUrl() ?>" class="brand-logo">
-                    <img src="<?php  echo $helper->resizeImageUrl($brand->getImageLogoName(), 200); ?>" alt="<?php echo $block->escapeHtml($brand->getName()) ?>" />
+                    <img src="<?php  echo $helper->resizeImageUrl($brand->getImageLogoName(), 200); ?>" 
+                        title="<?php echo $block->escapeHtml($brand->getName()) ?>"
+                        alt="<?php echo $block->escapeHtml($brand->getName()) ?>" />
                 </a>
                 <?php endif; ?>
 
