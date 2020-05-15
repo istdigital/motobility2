@@ -40,6 +40,7 @@ $cats = [];
                                     <img class="img-responsive"
                                     width="100%"
                                          src="<?php echo $block->resizeImage($post->getImage(), '260x170'); ?>"
+                                         title="<?php echo $block->escapeHtml($post->getName()); ?>"
                                          alt="<?php echo $block->escapeHtml($post->getName()); ?>"/>
                                 </a>
                             </div>
