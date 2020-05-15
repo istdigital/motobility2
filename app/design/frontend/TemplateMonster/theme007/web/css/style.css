@@ -5917,6 +5917,7 @@ ul.header.links li.link a{position: relative;    display: inline-block;}
         padding: 20px;
         display: block;
         margin-bottom: 15px;
+        cursor: pointer;
     }
     @media (min-width: 767px){
       .home-blog .post-inner {
