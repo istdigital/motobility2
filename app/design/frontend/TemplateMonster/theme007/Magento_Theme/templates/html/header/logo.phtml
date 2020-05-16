@@ -11,7 +11,6 @@
  */
 ?>
 <?php $storeName = $block->getThemeName() ? $block->getThemeName() : $block->getLogoAlt();?>
- <!-- title="<?php #echo $block->getLogoAlt() ?>" -->
-<div class="logo" href="<?php echo $block->getUrl(''); ?>" onclick="window.location.href='/'">
+<a class="logo" href="<?php echo $block->getUrl(''); ?>" title="<?php echo $block->getLogoAlt() ?>">
     <img src="<?php echo $block->getLogoSrc() ?>" alt="<?php echo $block->getLogoAlt() ?>" title="<?php echo $block->getLogoAlt() ?>" />
-</div>
+</a>
