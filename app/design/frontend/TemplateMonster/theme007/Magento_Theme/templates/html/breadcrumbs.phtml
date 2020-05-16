@@ -28,7 +28,9 @@ $request = $objectManager->get('Magento\Framework\App\Action\Context')->getReque
                 <?php if ($crumbInfo['link']) : ?>
                     <a href="<?php echo $crumbInfo['link'] ?>" title="<?php echo $block->escapeHtml($crumbInfo['title']) ?>">
                         <?php if($i==0): ?>
-                            <i class="icon-home"></i>
+                            <i class="icon-home">
+                                <span class="no-display">Home</span>
+                            </i>
                         <?php else: ?>
                             <?php echo $block->escapeHtml($crumbInfo['label']) ?>
                         <?php endif; ?>
