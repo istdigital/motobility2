@@ -71,7 +71,9 @@ $cats = [];
                                     <?= $post->getShortDescription() ?>
                                 
                                 <a class="mp-read-more" href="<?php echo $post->getUrl(); ?>"
-                                   title="<?php echo __('Read More'); ?>"></a>
+                                   title="<?php echo __('Read More'); ?>">
+                                       <span class="no-display"><?php echo __('Read More'); ?></span>
+                                   </a>
                                 </p>
                             </div>
                         </div>
