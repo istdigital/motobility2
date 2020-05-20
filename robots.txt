@@ -21,7 +21,7 @@ Disallow: /customer/
 Disallow: /customer/account/*
 Disallow: /customer/account/login/
 Disallow: /customer/account/login/*
-Disallow: /wishlist/
+Disallow: /wishlist*
 
 # Disable Search pages
 Disallow: /catalogsearch/
