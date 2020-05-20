@@ -2,8 +2,11 @@
 <div class="col-md-4 col-sm-4">
 	<div class="post-inner">
 		<span data-bind="text: post.publish_date"></span>
-		<h5 data-bind="text: post.name"></h5>
-		<a hdata-bind="attr:{href:post.url,title:post.name}">
+		<h5>
+			<a data-bind="text:post.name,attr:{href:post.url,title:post.name}">
+			</a>
+		</h5>
+		<a data-bind="attr:{href:post.url,title:post.name}">
 			<img data-bind="attr:{src:post.image, alt:post.name, title:post.name}"/>
 		</a>
 		<p data-bind="text: post.short_description"></p>
