@@ -37,6 +37,7 @@ Disallow: /dev/
 Disallow: /lib/
 Disallow: /phpserver/
 Disallow: /pub/
+Allow: /pub/media/catalog/product/*
 
 # Disable Tag & Review (Avoid duplicate content)
 
