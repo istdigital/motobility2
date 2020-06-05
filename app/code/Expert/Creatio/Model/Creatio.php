@@ -289,6 +289,8 @@ class Creatio
 			return '0026bde9-932b-4baa-ba30-ffa521a255ab';
 		}else if(preg_match('/afterpay/i', $code)){
 			return '47d85c8e-82e0-47e2-b963-390542d4a360';
+		}else if(preg_match('/humm/i', $code)){
+			return '47d85c8e-82e0-47e2-b963-390542d4a360';
 		}else{
 			return '7d5ded73-ce32-4de6-94ba-e58d2e6b3675';
 		}
