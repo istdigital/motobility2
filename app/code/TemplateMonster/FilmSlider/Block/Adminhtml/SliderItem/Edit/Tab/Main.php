@@ -159,7 +159,7 @@ class Main extends Generic implements TabInterface
             'video',
             'text',
             [
-                'name' => 'Video',
+                'name' => 'video',
                 'label' => __('Video'),
                 'title' => __('Video'),
                 'disabled' => $isElementDisabled
