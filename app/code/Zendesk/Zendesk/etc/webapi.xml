@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+    <!-- Orders -->
+    <route url="/V1/zendesk/orders/:brandId/:emailAddress/:orderCount" method="GET">
+        <service class="Zendesk\Zendesk\Api\OrderRepositoryInterface" method="getOrders"/>
+        <resources>
+            <resource ref="Magento_Sales::actions_view" />
+            <resource ref="Zendesk_Zendesk::zendesk" />
+        </resources>
+    </route>
+
+    <!-- Shipments -->
+    <!--
+        NOTE: these shipment APIs point directly to the shipment repository,
+        and exist only to allow Zendesk-specific REST path (for CORS whitelist)
+        and to additionally require Zendesk ACL.
+    -->
+    <route url="/V1/zendesk/shipment/:id" method="GET">
+        <service class="Magento\Sales\Api\ShipmentRepositoryInterface" method="get"/>
+        <resources>
+            <resource ref="Magento_Sales::sales" />
+            <resource ref="Zendesk_Zendesk::zendesk" />
+        </resources>
+    </route>
+    <route url="/V1/zendesk/shipments" method="GET">
+        <service class="Magento\Sales\Api\ShipmentRepositoryInterface" method="getList"/>
+        <resources>
+            <resource ref="Magento_Sales::sales" />
+            <resource ref="Zendesk_Zendesk::zendesk" />
+        </resources>
+    </route>
+</routes>

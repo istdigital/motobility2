@@ -1,0 +1,202 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="zendesk_extensions" translate="label" sortOrder="500">
+            <label>Zendesk</label>
+        </tab>
+        <section id="zendesk" translate="label" type="text" sortOrder="10"
+                 showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Zendesk</label>
+            <tab>zendesk_extensions</tab>
+            <resource>Zendesk_Zendesk::zendesk</resource>
+
+            <group id="setup" translate="label comment" sortOrder="10"
+                   showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Setup</label>
+                <comment>Haven't set up Zendesk Support yet? Click the button below to register.</comment>
+
+                <field id="setup" translate="button_label" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label/>
+                    <button_label>Get Started</button_label>
+                    <frontend_model>Zendesk\Zendesk\Block\Adminhtml\System\Config\SetupGuide</frontend_model>
+                </field>
+            </group>
+
+            <group id="general" translate="label comment" sortOrder="20"
+                   showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General</label>
+                <comment>General settings that are required to connect Zendesk Support and Magento.</comment>
+
+                <field id="domain" translate="label comment" type="text" sortOrder="10"
+                       showInDefault="1" showInWebsite="1" showInStore="1" canRestore="0">
+                    <label>Zendesk Domain</label>
+                    <comment><![CDATA[<i>yourdomain</i>.zendesk.com]]></comment>
+                </field>
+                <field id="email" translate="label comment" type="text" sortOrder="20"
+                       showInDefault="1" showInWebsite="1" showInStore="1" canRestore="0">
+                    <label>Agent Email Address</label>
+                    <comment><!-- @todo --></comment>
+                </field>
+                <field id="password" translate="label comment" type="text" sortOrder="30"
+                       showInDefault="1" showInWebsite="1" showInStore="1" canRestore="0">
+                    <label>Agent Token</label>
+                    <comment><![CDATA[To generate a token, log in to Zendesk then select Manage > Channels > API > Token]]></comment>
+                </field>
+
+                <field id="test" translate="button_label" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label/>
+                    <button_label>Test Connection</button_label>
+                    <frontend_model>Zendesk\Zendesk\Block\Adminhtml\System\Config\TestConnection</frontend_model>
+                </field>
+            </group>
+
+            <group id="zendesk_integration" translate="label comment" sortOrder="30"
+                   showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Zendesk / Magento Integration</label>
+
+                <field id="integration_status" translate="label"
+                       sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Magento Integration Status</label>
+                    <!-- NB: button_label handled in frontend model -->
+                    <frontend_model>Zendesk\Zendesk\Block\Adminhtml\System\Config\IntegrationStatus</frontend_model>
+                </field>
+
+                <field id="zendesk_app_status" translate="label"
+                       sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Zendesk App Status</label>
+                    <!-- NB: button_label handled in frontend model -->
+                    <frontend_model>Zendesk\Zendesk\Block\Adminhtml\System\Config\ZendeskAppStatus</frontend_model>
+                </field>
+
+                <field id="install_uninstall_zendesk_app" translate=""
+                       sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label/>
+                    <!-- NB: button_label handled in frontend model -->
+                    <frontend_model>Zendesk\Zendesk\Block\Adminhtml\System\Config\ZendeskApp</frontend_model>
+                </field>
+
+                <field id="remove_zendesk_integration" translate=""
+                       sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label/>
+                    <!-- NB: button_label handled in frontend model -->
+                    <frontend_model>Zendesk\Zendesk\Block\Adminhtml\System\Config\RemoveIntegration</frontend_model>
+                </field>
+            </group>
+
+            <group id="zendesk_app" translate="label comment" sortOrder="30"
+                   showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Zendesk App Settings</label>
+                <comment>
+                    Configure settings for the Magento 2 Zendesk app.
+                </comment>
+
+                <!-- customer info -->
+                <field id="display_name" translate="label comment" type="select" sortOrder="10"
+                       showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Display Customer Name</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+
+                <!-- order info -->
+                <field id="display_order_status" translate="label comment" type="select" sortOrder="10"
+                       showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Display Order Status</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+
+                <field id="display_order_store" translate="label comment" type="select" sortOrder="20"
+                       showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Display Order Store</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+
+                <field id="display_item_quantity" translate="label comment" type="select" sortOrder="30"
+                       showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Display Order Item Quantity</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+
+                <field id="display_item_price" translate="label comment" type="select" sortOrder="40"
+                       showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Display Order Item Price</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+
+                <field id="display_total_price" translate="label comment" type="select" sortOrder="50"
+                       showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Display Order Total Price</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+
+                <field id="display_shipping_address" translate="label comment" type="select" sortOrder="60"
+                       showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Display Shipping Address</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+
+                <field id="display_shipping_method" translate="label comment" type="select" sortOrder="70"
+                       showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Display Shipping Method</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+
+                <field id="display_tracking_number" translate="label comment" type="select" sortOrder="80"
+                       showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Display Tracking Number(s)</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+
+                <field id="display_order_comments" translate="label comment" type="select" sortOrder="90"
+                       showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Display Order Comments</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+
+            <group id="frontend_features" translate="label comment" sortOrder="40"
+                   showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Customer Frontend</label>
+                <comment>
+                    Decide which features you would like turned on in your Magento store.
+                </comment>
+
+                <field id="web_widget_code_active" translate="label comment" type="select" sortOrder="10"
+                       showInDefault="1" showInWebsite="1" showInStore="1" canRestore="0">
+                    <label>Include Web Widget</label>
+                    <comment><!-- @todo --></comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="web_widget_customize" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label/>
+                    <frontend_model>Zendesk\Zendesk\Block\Adminhtml\System\Config\WebWidgetCustomize</frontend_model>
+                </field>
+            </group>
+
+            <group id="brand_mapping" translate="label comment" sortOrder="50"
+                   showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Brand Mapping</label>
+                <comment>
+                    Map Zendesk Brands to Magento Stores.
+                </comment>
+            </group>
+
+            <group id="debug" translate="label comment" sortOrder="100"
+                   showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Debugging</label>
+                <comment>
+                    Settings related to Zendesk integration debugging.
+                </comment>
+
+                <field id="enable_debug_logging" translate="label comment" type="select" sortOrder="100"
+                       showInDefault="1" showInWebsite="0" showInStore="0" canRestore="1">
+                    <label>Enable Debug Logging</label>
+                    <comment>
+                        If set to Yes, Zendesk API call debug information will be logged.
+                        This should be set to No on production systems unless requested by Zendesk support.
+                    </comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

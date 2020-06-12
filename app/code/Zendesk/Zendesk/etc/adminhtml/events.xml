@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="admin_system_config_changed_section_zendesk">
+        <observer name="zendesk_api_credentials_validation"
+                  instance="Zendesk\Zendesk\Observer\ZendeskSettingsSave" />
+        <observer name="zendesk_auto_install_zendesk_app"
+                  instance="Zendesk\Zendesk\Observer\AutoInstallZendesk" />
+        <observer name="zendesk_update_zendesk_app_config"
+                  instance="Zendesk\Zendesk\Observer\UpdateZendeskAppConfig" />
+    </event>
+</config>

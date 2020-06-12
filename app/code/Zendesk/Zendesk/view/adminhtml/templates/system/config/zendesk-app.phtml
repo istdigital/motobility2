@@ -1,0 +1,43 @@
+<?php
+// @codingStandardsIgnoreFile
+
+/** @var $block \Zendesk\Zendesk\Block\Adminhtml\System\Config\ZendeskApp */
+?>
+<?php if ($block->getZendeskConfigured()): ?>
+    <a class="scalable <?= $block->getInstalled() ? 'uninstall' : 'action-primary' ?>"
+       id="<?= $block->getHtmlId() ?>"
+       href="<?= $block->escapeQuote($block->getInstallUrl()) ?>"
+    >
+        <span><span><span id="<?= $block->getHtmlId() ?>_result"><?= $block->escapeHtml($block->getButtonLabel()) ?></span></span></span>
+    </a>
+
+    <div id="remove-zendesk-app-confirmation">
+        <p>
+            <?= __('Are you sure you want to remove the Zendesk App?') ?>
+        </p>
+    </div>
+
+    <script type="text/javascript">
+        require([
+            'jquery',
+            'Magento_Ui/js/modal/confirm'
+        ], function($, confirmation) {
+            $('#<?= $block->getHtmlId() ?>.uninstall').click(function(e) {
+                e.preventDefault();
+
+                var link = this;
+
+                confirmation({
+                    title: '<?= __('Confirm Action') ?>',
+                    content: document.getElementById('remove-zendesk-app-confirmation').innerHTML,
+                    actions: {
+                        confirm: function() {
+                            window.location = link.href;
+                        }
+                    }
+                })
+            });
+        });
+    </script>
+
+<?php endif; ?>
