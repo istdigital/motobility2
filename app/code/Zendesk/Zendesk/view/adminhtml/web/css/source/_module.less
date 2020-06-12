@@ -1,0 +1,68 @@
+@icon-external-link__content: '';
+
+.admin__menu  {
+    .item-zendesk.level-0 {
+        > a {
+            padding: 1.2rem;
+
+            &::before {
+                content: '';
+                background-image: url("../Zendesk_Zendesk/images/zendesk-medium-white.svg");
+                background-repeat: no-repeat;
+                background-position: center;
+
+                margin-bottom: 0;
+
+                height: calc(6.2rem - 1rem);
+            }
+
+            span {
+                display: none;
+            }
+        }
+    }
+}
+
+.section-config {
+    .zendesk-status-ok {
+        &::before {
+            &:extend(.abs-icon all);
+            background-color: @success__color;
+            border-radius: 100%;
+            color: @color-white;
+            content: @icon-check-mage__content;
+        }
+    }
+
+    .zendesk-status-action-required {
+        &::before {
+            &:extend(.abs-icon all);
+            color: @color-red9;
+            content: @icon-error__content;
+        }
+    }
+}
+
+#remove-zendesk-integration-confirmation,
+#remove-zendesk-app-confirmation {
+    display: none;
+}
+
+.zendesk-register-link {
+    .lib-button-primary();
+}
+
+.zendesk-external-link {
+    &:after {
+        &:extend(.abs-icon all);
+        content: @icon-external-link__content;
+        font-size: 1rem;
+        margin-left: @indent__xs;
+        vertical-align: super;
+    }
+}
+
+.admin__scope-old .fix-zendesk-integration {
+    display: inline-block;
+    margin-top: 1em;
+}

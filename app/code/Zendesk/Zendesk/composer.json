@@ -1,0 +1,17 @@
+{
+    "name": "classyllama/module-zendesk",
+    "description": "Zendesk extension for Magento 2",
+    "type": "magento2-module",
+    "version": "1.0.02",
+    "require": {
+        "zendesk/zendesk_api_client_php": "^2.2",
+        "magento/framework": "^100.0.0|^101.0.0|^102.0.0",
+        "ext-json": "*"
+    },
+    "autoload": {
+        "files": [ "registration.php" ],
+        "psr-4": {
+            "Zendesk\\Zendesk\\": ""
+        }
+    }
+}

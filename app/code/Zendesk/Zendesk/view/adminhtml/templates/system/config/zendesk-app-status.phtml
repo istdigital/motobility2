@@ -1,0 +1,19 @@
+<?php
+// @codingStandardsIgnoreFile
+
+/** @var $block \Zendesk\Zendesk\Block\Adminhtml\System\Config\ZendeskApp */
+
+$cssClass = '';
+
+if ($block->getZendeskConfigured()) {
+    if ($block->getIsInstalled()) {
+        $cssClass = 'zendesk-status-ok';
+    } else {
+        $cssClass = 'zendesk-status-action-required';
+    }
+}
+
+?>
+<span class="<?= $block->escapeQuote($cssClass) ?>">
+    <?= $block->escapeHtml($block->getButtonLabel()) ?>
+</span>

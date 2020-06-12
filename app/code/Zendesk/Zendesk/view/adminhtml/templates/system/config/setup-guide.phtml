@@ -1,0 +1,11 @@
+<?php
+// @codingStandardsIgnoreFile
+
+/** @var $block \Zendesk\Zendesk\Block\Adminhtml\System\Config\SetupGuide */
+?>
+
+<a href="https://www.zendesk.com/register/"
+   class="scalable zendesk-external-link zendesk-register-link" target="_blank"
+   id="<?= $block->getHtmlId() ?>">
+    <?= $block->escapeHtml($block->getButtonLabel()) ?>
+</a>
