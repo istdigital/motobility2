@@ -182,6 +182,7 @@
 </IfModule>
 
 
+
 # For 404s and 403s that aren't handled by the application, show plain 404 response
 ErrorDocument 404 /errors/404.php
 ErrorDocument 403 /errors/404.php
