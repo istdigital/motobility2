@@ -1,0 +1,10 @@
+<?php
+    /** @var $block \Zendesk\Zendesk\Block\Adminhtml\System\Config\WebWidgetCustomize */
+
+    $customizeUrl = $block->getWebWidgetCustomizationUrl();
+?>
+<?php if (!empty($customizeUrl)) : ?>
+    <a href="<?= $block->escapeQuote($customizeUrl) ?>" class="zendesk-external-link" target="_blank">
+        <?= $block->escapeHtml(__('Customize Web Widget')) ?>
+    </a>
+<?php endif; ?>

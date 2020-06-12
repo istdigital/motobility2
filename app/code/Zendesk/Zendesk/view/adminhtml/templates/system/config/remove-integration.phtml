@@ -1,0 +1,57 @@
+<?php
+// @codingStandardsIgnoreFile
+
+/** @var $block \Zendesk\Zendesk\Block\Adminhtml\System\Config\RemoveIntegration */
+?>
+
+<?php if ($block->displayButton()): ?>
+    <button class="scalable action-secondary"
+        type="button"
+       id="<?= $block->getHtmlId() ?>"
+       data-url="<?= $block->escapeQuote($block->getRemoveUrl()) ?>"
+    >
+        <?= $block->escapeHtml($block->getButtonLabel()) ?>
+    </button>
+
+    <div id="remove-zendesk-integration-confirmation">
+        <p>
+            <?= __('Are you sure you want to remove the Zendesk integration? This will result in the following actions.') ?>
+        </p>
+
+        <ul>
+            <li><?= __('The Zendesk app will be removed from the Zendesk Support account.') ?></li>
+            <li><?= __('The Zendesk Web Widget will be removed from the Magento storefront.') ?></li>
+            <li><?= __('The Zendesk integration will be removed from Magento.') ?></li>
+            <li><?= __('The Zendesk API credentials will be cleared.') ?></li>
+        </ul>
+    </div>
+
+    <script type="text/javascript">
+        require([
+            'jquery',
+            'Magento_Ui/js/modal/confirm'
+        ], function($, confirmation) {
+            $('#<?= $block->getHtmlId() ?>').click(function(e) {
+                var button = this;
+
+                confirmation({
+                    title: '<?= __('Confirm Removing Zendesk Integration') ?>',
+                    content: document.getElementById('remove-zendesk-integration-confirmation').innerHTML,
+                    actions: {
+                        confirm: function() {
+                            var form = new Element('form', {method: 'post', action: button.dataset.url});
+
+                            form.appendChild(new Element('input', {type: 'hidden', name: 'form_key', value: '<?= $block->getFormKey() ?>'}));
+
+                            document.body.appendChild(form);
+
+                            form.submit();
+                        }
+                    }
+                })
+            });
+
+
+        });
+    </script>
+<?php endif; ?>

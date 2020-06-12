@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <zendesk>
+            <debug>
+                <enable_debug_logging>0</enable_debug_logging>
+            </debug>
+            <web_widget>
+                <web_widget_code_active>0</web_widget_code_active>
+                <dynamic_snippet_url_pattern>https://ekr.zdassets.com/snippets/web_widget/{domain}?dynamic_snippet=true</dynamic_snippet_url_pattern>
+                <web_widget_customize_url>https://{domain}/agent/admin/widget</web_widget_customize_url>
+            </web_widget>
+            <zendesk_app>
+                <app_id>190391</app_id>
+                <cors_origin_pattern>#https://.*zdusercontent\.com#</cors_origin_pattern>
+                <display_name>1</display_name>
+                <display_order_status>1</display_order_status>
+                <display_order_store>1</display_order_store>
+                <display_item_quantity>1</display_item_quantity>
+                <display_item_price>0</display_item_price>
+                <display_total_price>1</display_total_price>
+                <display_shipping_address>0</display_shipping_address>
+                <display_shipping_method>0</display_shipping_method>
+                <display_tracking_number>0</display_tracking_number>
+                <display_order_comments>0</display_order_comments>
+            </zendesk_app>
+        </zendesk>
+    </default>
+</config>

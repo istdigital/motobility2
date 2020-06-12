@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Zendesk\Zendesk\Api\OrderRepositoryInterface"
+                type="Zendesk\Zendesk\Model\OrderRepository" />
+    <preference for="Zendesk\Zendesk\Api\CorsRepositoryInterface"
+                type="Zendesk\Zendesk\Model\CorsRepository" />
+
+    <preference for="Zendesk\Zendesk\Api\Data\OrderInterface"
+                type="Zendesk\Zendesk\Model\Data\Order" />
+    <preference for="Zendesk\Zendesk\Api\Data\CustomerInterface"
+                type="Zendesk\Zendesk\Model\Data\Customer" />
+
+    <virtualType name="Zendesk\Zendesk\Logger\Api\DebugHandler" type="Zendesk\Zendesk\Logger\Handler">
+        <arguments>
+            <argument name="fileName" xsi:type="string">/var/log/zendesk-debug.log</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Zendesk\Zendesk\Logger\Api\Logger" type="Monolog\Logger">
+        <arguments>
+            <argument name="name" xsi:type="string">zendeskApiDebugLogger</argument>
+            <argument name="handlers"  xsi:type="array">
+                <item name="system" xsi:type="object">Zendesk\Zendesk\Logger\Api\DebugHandler</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <type name="Zendesk\Zendesk\ZendeskApi\HttpClient">
+        <arguments>
+            <argument name="logger" xsi:type="object">Zendesk\Zendesk\Logger\Api\Logger</argument>
+        </arguments>
+    </type>
+
+
+    <type name="Magento\Framework\Webapi\Rest\Request">
+        <plugin name="zendesk_webapi_rest_permit_options_method"
+                type="Zendesk\Zendesk\Plugin\Framework\Webapi\Rest\Request" sortOrder="1" disabled="false" />
+    </type>
+    <type name="Magento\Webapi\Controller\Rest\Router">
+        <plugin name="zendesk_webapi_rest_route_options_method"
+                type="Zendesk\Zendesk\Plugin\Webapi\Controller\Rest\Router" sortOrder="1" disabled="false" />
+    </type>
+    <type name="Magento\Webapi\Controller\Rest">
+        <plugin name="zendesk_webapi_rest_cors_headers"
+                type="Zendesk\Zendesk\Plugin\Webapi\Controller\Rest"
+                sortOrder="1" disabled="false" />
+    </type>
+
+</config>
