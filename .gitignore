@@ -8,6 +8,8 @@ atlassian*
 /nbproject
 # /robots.txt
 # /pub/robots.txt
+dev
+setup
 /sitemap
 /sitemap.xml
 /pub/sitemap
