@@ -8046,3 +8046,12 @@ ol.list-ordered {
     box-shadow: none;
     color: #35b3ca;
 }
+
+
+
+@media (min-width: 768px) {
+  iframe.zEWidget-launcher {
+      bottom: 71px !important;
+      right: -10px !important;
+  }
+}
