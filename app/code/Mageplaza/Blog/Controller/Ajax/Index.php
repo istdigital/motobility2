@@ -84,7 +84,7 @@ class Index extends Action
                 'url' => $post->getUrl(),
                 'publish_date' => date('F d, Y',strtotime($post->getPublishDate())),
                 'short_description' => $post->getShortDescription(),
-                'image' => $this->_helperBlog->getImageHelper()->resizeImage($post->getImage(), '327x261', 'post',false),
+                'image' => $this->_helperBlog->getImageHelper()->resizeImage($post->getImage(), '940x560', 'post',false),
             ];            
         }
         echo json_encode($return);
