@@ -225,7 +225,7 @@ class StripeCustomer extends \Magento\Framework\Model\AbstractModel
             if (empty($params))
                 $params = [];
 
-            $params["description"] = "$customerFirstname $customerLastname";
+            $params["name"] = "$customerFirstname $customerLastname";
             $params["email"] = $customerEmail;
 
             $this->_stripeCustomer = \Stripe\Customer::create($params);
@@ -378,7 +378,7 @@ class StripeCustomer extends \Magento\Framework\Model\AbstractModel
 
         $card = $this->_stripeCustomer->sources->retrieve($token);
         $obj = clone $card;
-        $card->delete();
+        $card->detach();
         return $obj;
     }
 

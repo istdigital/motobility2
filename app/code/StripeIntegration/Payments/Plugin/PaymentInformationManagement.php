@@ -22,11 +22,15 @@ class PaymentInformationManagement
      */
     public function __construct(
         \Magento\Checkout\Helper\Data $checkoutHelper,
-        \Magento\Quote\Api\CartManagementInterface $cartManagement
+        \Magento\Quote\Api\CartManagementInterface $cartManagement,
+        \StripeIntegration\Payments\Helper\Rollback $rollback,
+        \StripeIntegration\Payments\Helper\Generic $helper
     ) {
 
         $this->checkoutHelper = $checkoutHelper;
         $this->cartManagement = $cartManagement;
+        $this->rollback = $rollback;
+        $this->helper = $helper;
     }
 
     /**
@@ -54,9 +58,17 @@ class PaymentInformationManagement
         try
         {
             $orderId = $this->cartManagement->placeOrder($cartId);
+            $this->rollback->reset();
         }
         catch (\Exception $e)
         {
+            $msg = $e->getMessage();
+            if (!$this->helper->isAuthenticationRequiredMessage($msg))
+            {
+                $this->rollback->run();
+                $this->checkoutHelper->sendPaymentFailedEmail($this->helper->getQuote(), $msg);
+            }
+
             // Unmasks errors at the checkout, such as card declined messages, authentication needed exceptions etc
             throw new CouldNotSaveException(
                 __($e->getMessage()),

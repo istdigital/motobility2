@@ -16,7 +16,7 @@ class Subscriptions
     public $paymentIntents = [];
 
     public function __construct(
-        \StripeIntegration\Payments\Model\Rollback $rollback,
+        \StripeIntegration\Payments\Helper\Rollback $rollback,
         \StripeIntegration\Payments\Helper\Generic $paymentsHelper,
         \StripeIntegration\Payments\Model\Config $config,
         \Magento\Framework\Event\ManagerInterface $eventManager,
@@ -25,7 +25,8 @@ class Subscriptions
         \Magento\Framework\App\CacheInterface $cache,
         \Magento\Tax\Model\Sales\Order\TaxManagement $taxManagement,
         \Magento\Sales\Model\Service\InvoiceService $invoiceService,
-        \Magento\Quote\Api\CartRepositoryInterface $quoteRepository
+        \Magento\Quote\Api\CartRepositoryInterface $quoteRepository,
+        \StripeIntegration\Payments\Model\SubscriptionFactory $subscriptionFactory
     ) {
         $this->rollback = $rollback;
         $this->paymentsHelper = $paymentsHelper;
@@ -37,6 +38,7 @@ class Subscriptions
         $this->taxManagement = $taxManagement;
         $this->invoiceService = $invoiceService;
         $this->quoteRepository = $quoteRepository;
+        $this->subscriptionFactory = $subscriptionFactory;
     }
 
     public function createSubscriptions($order, $isDryRun = false, $trialEnd = null)
@@ -58,30 +60,39 @@ class Subscriptions
                 {
                     $this->createSubscriptionForProduct($product, $order, $item, $isDryRun, $trialEnd);
                 }
-                catch (\Stripe\Error\Card $e)
+                catch (\Stripe\Exception\CardException $e)
                 {
-                    $this->rollback->run($e->getMessage(), $e);
+                    $this->rollback->run();
+                    throw new CouldNotSaveException(__($e->getMessage()));
                 }
                 catch (\Stripe\Error $e)
                 {
-                    $this->rollback->run($e->getMessage(), $e);
+                    $this->rollback->run();
+                    throw new CouldNotSaveException(__($e->getMessage()));
                 }
                 catch (CouldNotSaveException $e)
                 {
-                    $this->rollback->run($e->getMessage(), $e);
+                    $this->rollback->run();
+                    throw new CouldNotSaveException(__($e->getMessage()));
                 }
                 catch (\Exception $e)
                 {
+                    $this->rollback->run();
+
                     // We get a \Stripe\Error\InvalidRequest if the customer is purchasing a subscription with a currency
                     // that is different from the currency they used for previous subscription purposes
                     $message = $e->getMessage();
                     if (preg_match('/with currency (\w+)$/', $message, $matches))
                     {
                         $currency = strtoupper($matches[1]);
-                        $this->rollback->run("Your account has been configured to use a different currency. Please complete the purchase in the currency: $currency", $e);
+                        $error = __("Your account has been configured to use a different currency. Please complete the purchase in the currency: %1", $currency);
+                        throw new CouldNotSaveException($error);
                     }
                     else
-                        $this->rollback->run("Sorry, we could not create the subscription for " . $product->getName() . ". Please contact us for more help.", $e);
+                    {
+                        $error = __("Sorry, we could not create the subscription for %1. Please contact us for more help.", $product->getName());
+                        throw new CouldNotSaveException($error);
+                    }
                 }
             }
         }
@@ -197,7 +208,7 @@ class Subscriptions
                 $amount = round($amount * $rate, 2); // We fix it by doing the calculation ourselves
 
             if (is_numeric($rate) && $rate > 0)
-                $initialFee = $initialFee * $rate;
+                $initialFee = round($initialFee * $rate, 2);
         }
         else
         {
@@ -227,6 +238,9 @@ class Subscriptions
         else
             $qty = $item->getQtyOrdered();
 
+        if ($order->getPayment()->getAdditionalInformation("remove_initial_fee"))
+            $initialFee = 0;
+
         $params = [
             'name' => $item->getName(),
             'qty' => $qty,
@@ -238,16 +252,16 @@ class Subscriptions
             'initial_fee_magento' => $initialFee,
             'discount_amount_magento' => $discount,
             'discount_amount_stripe' => $this->convertMagentoAmountToStripeAmount($discount, $currency),
-            'shipping_magento' => $shipping,
+            'shipping_magento' => round($shipping, 2),
             'shipping_stripe' => $this->convertMagentoAmountToStripeAmount($shipping, $currency),
             'currency' => strtolower($currency),
             'tax_percent' => $item->getTaxPercent(),
             'tax_amount_item' => $tax, // already takes $qty into account
             'tax_amount_shipping' => $shippingTaxAmount,
             'tax_amount_initial_fee' => round($initialFee * $qty * ($item->getTaxPercent() / 100), 2),
-            'trial_end' => null,
+            'trial_end' => $trialEnd,
             'trial_days' => 0,
-            'coupon_code' => $this->getCouponId($discount, $currency, $isDryRun),
+            'coupon_code' => $this->getCouponId($discount, $currency, $isDryRun, $item)
         ];
 
         $trialDays = 0;
@@ -256,7 +270,7 @@ class Subscriptions
             $trialDays = $product->getStripeSubTrial();
             if (!empty($trialDays) && is_numeric($trialDays) && $trialDays > 0)
             {
-                $params['trial_end'] = strtotime("+$trialDays days");
+                // $params['trial_end'] = strtotime("+$trialDays days");
                 $params['trial_days'] = $trialDays;
             }
         }
@@ -289,7 +303,7 @@ class Subscriptions
         return 0;
     }
 
-    public function getCouponId($amount, $currency, $isDryRun)
+    public function getCouponId($amount, $currency, $isDryRun, $item)
     {
         if ($isDryRun)
             return null;
@@ -297,8 +311,20 @@ class Subscriptions
         if ($amount <= 0)
             return null;
 
-        $stripeAmount = $this->convertMagentoAmountToStripeAmount($amount, $currency);
-        $couponId = ((string)$stripeAmount) . strtoupper($currency);
+        if (is_numeric($item->getDiscountPercent()) && $item->getDiscountPercent() > 0)
+        {
+            $discountType = "percent_off";
+            $stripeAmount = $item->getDiscountPercent();
+            $couponId = ((string)$stripeAmount) . "percent";
+            $name = $stripeAmount . "% Discount";
+        }
+        else
+        {
+            $discountType = "amount_off";
+            $stripeAmount = $this->convertMagentoAmountToStripeAmount($amount, $currency);
+            $couponId = ((string)$stripeAmount) . strtoupper($currency);
+            $name = $this->paymentsHelper->addCurrencySymbol($amount, $currency) . " Discount";
+        }
 
         try
         {
@@ -315,10 +341,10 @@ class Subscriptions
             {
                 $coupon = \Stripe\Coupon::create([
                     'id' => $couponId,
-                    'amount_off' => $stripeAmount,
+                    $discountType => $stripeAmount,
                     'currency' => $currency,
                     'duration' => 'forever',
-                    'name' => 'Discount'
+                    'name' => $name
                 ]);
             }
             catch (\Exception $e)
@@ -334,7 +360,7 @@ class Subscriptions
     {
         $profile = $this->getSubscriptionDetails($product, $order, $item, $isDryRun, $trialEnd);
 
-        $this->_subscriptionsTotal +=
+        $subscriptionTotal =
             ($profile['qty'] * $profile['initial_fee_magento']) +
             ($profile['qty'] * $profile['amount_magento']) +
             $profile['shipping_magento'] +
@@ -342,6 +368,8 @@ class Subscriptions
             $profile['tax_amount_item'] +
             $profile['tax_amount_initial_fee'] -
             $profile['discount_amount_magento'];
+
+        $this->_subscriptionsTotal += round($subscriptionTotal, 2);
 
         if ($this->_isDryRun)
             return;
@@ -385,8 +413,13 @@ class Subscriptions
             $plan,
             $order->getPayment()->getAdditionalInformation('token'),
             $profile,
-            $metadata
+            $metadata,
+            $order->getPayment()->getAdditionalInformation("off_session")
         );
+
+        $this->subscriptionFactory->create()
+            ->initFrom($subscription, $order, $product)
+            ->save();
 
         $this->_createdSubscriptions[$key] = $subscription->id;
 
@@ -563,7 +596,11 @@ class Subscriptions
         $quote = $order->getQuote();
         $params = [];
 
-        $customerStripeId = $this->customer->getStripeId();
+        if ($order->getPayment()->getAdditionalInformation("subscription_customer"))
+            $customerStripeId = $order->getPayment()->getAdditionalInformation("subscription_customer"); // This is used when migrating subscriptions from the CLI
+        else
+            $customerStripeId = $this->customer->getStripeId();
+
         if (!$customerStripeId)
         {
             $customer = $this->customer->createStripeCustomer($order, $params);
@@ -592,7 +629,7 @@ class Subscriptions
             else
                 $paymentMethod->attach([ 'customer' => $customer->id ]);
         }
-        catch (\Stripe\Error\Card $e)
+        catch (\Stripe\Exception\CardException $e)
         {
             $this->paymentsHelper->dieWithError($e->getMessage());
         }
@@ -630,6 +667,17 @@ class Subscriptions
         }
     }
 
+    protected function getTrialEnd($profile)
+    {
+        if ($profile['trial_days'] > 0)
+            return (time() + $profile['trial_days'] * 24 * 60 * 60);
+
+        if (is_numeric($profile['trial_end']) && $profile['trial_end'] > time())
+            return $profile['trial_end'];
+
+        return false;
+    }
+
     public function collectShipping($product, $customer, $profile, $subscriptionId = null)
     {
         $currency = $profile['currency'];
@@ -642,7 +690,7 @@ class Subscriptions
             if ($isRecurringShippingCost && $this->chargeShippingOnlyOnce())
                 return;
 
-            if ($isNonRecurringShippingCost && $this->chargeShippingRecurringly() && $profile['trial_days'] > 0)
+            if ($isNonRecurringShippingCost && $this->chargeShippingRecurringly() && $this->getTrialEnd($profile))
                 return;
 
             try
@@ -677,10 +725,9 @@ class Subscriptions
         }
     }
 
-    public function subscribeCustomer($product, $customer, $plan, $paymentMethodId, $profile, $metadata)
+    public function subscribeCustomer($product, $customer, $plan, $paymentMethodId, $profile, $metadata, $offSession = false)
     {
         $taxPercent = $profile['tax_percent'];
-        $trialDays = $profile['trial_days'];
         $shipping = $profile['shipping_stripe'];
         $couponCode = $profile['coupon_code'];
         $qty = $profile['qty'];
@@ -701,10 +748,14 @@ class Subscriptions
         if ($couponCode)
             $params['coupon'] = $couponCode;
 
-        if ($trialDays && $trialDays > 0)
-            $params['trial_end'] = time() + $trialDays * 24 * 60 * 60;
+        if ($this->getTrialEnd($profile))
+            $params['trial_end'] = $this->getTrialEnd($profile);
+
+        if ($this->paymentsHelper->isAdmin() || $offSession)
+            $params['off_session'] = true;
 
         $subscription = \Stripe\Subscription::create($params);
+        $this->rollback->addSubscription($subscription->id);
 
         if ($shipping && $shipping > 0)
         {
@@ -713,6 +764,11 @@ class Subscriptions
 
         $this->subscriptions[$subscription->id] = $subscription;
         $this->paymentIntents[$subscription->id] = $subscription->latest_invoice->payment_intent;
+
+        // Trialing subscriptions will not have any charges
+        if (!empty($subscription->latest_invoice->payment_intent->charges->data))
+            foreach ($subscription->latest_invoice->payment_intent->charges->data as $charge)
+                $this->rollback->addCharge($charge->id);
 
         return $subscription;
     }
@@ -831,7 +887,7 @@ class Subscriptions
 
         $subscription = $this->subscriptions[$subscriptionId];
 
-        if ($subscription->status == "active"  || $subscription->status == "trialing")
+        if ($subscription->status == "active" || $subscription->status == "trialing")
         {
             $this->updatePaymentIntentFrom($paymentIntent, $profile, $metadata);
 
@@ -862,6 +918,10 @@ class Subscriptions
                 throw new CouldNotSaveException(__($paymentIntent->last_payment_error->message));
             else
                 throw new CouldNotSaveException(__("Your card has been declined"));
+        }
+        else if ($subscription->status == "canceled")
+        {
+            return false;
         }
 
         return true;
@@ -915,46 +975,5 @@ class Subscriptions
 
         if ($profile['shipping_stripe'] > 0 && $this->chargeShippingOnlyOnce())
             return true;
-    }
-
-    public function validateCartItems($addToCartProduct = null)
-    {
-        $cartItems = $this->getQuote()->getAllItems();
-        $cartHasSubscriptions = false;
-        $cartHasRegularProducts = false;
-        $cartIsEmpty = true;
-
-        foreach ($cartItems as $cartItem)
-        {
-            $cartIsEmpty = false;
-
-            if ($cartItem->getParentItem() &&
-                $cartItem->getParentItem()->getProductType() == \Magento\ConfigurableProduct\Model\Product\Type\Configurable::TYPE_CODE)
-            {
-                $item = $cartItem->getParentItem();
-            }
-            else
-                $item = $cartItem;
-
-            $product = $this->paymentsHelper->loadProductById($item->getProduct()->getEntityId());
-
-            if ($product->getStripeSubEnabled())
-                $cartHasSubscriptions = true;
-            else
-                $cartHasRegularProducts = true;
-        }
-
-        if ($cartHasSubscriptions && $cartHasRegularProducts)
-            throw new LocalizedException(__('Sorry, purchasing subscriptions together with regular products is not possible. Please buy your subscriptions separately.'));
-
-        // This triggers when adding a product to the cart
-        if ($addToCartProduct)
-        {
-            if (!$cartIsEmpty && $addToCartProduct->getStripeSubEnabled())
-                throw new LocalizedException(__('Sorry, subscriptions must be purchased individually. Please buy your subscription separately.'));
-
-            if ($cartHasSubscriptions)
-                throw new LocalizedException(__('Sorry, subscriptions must be purchased individually. You already have a subscription in your shopping cart.'));
-        }
     }
 }

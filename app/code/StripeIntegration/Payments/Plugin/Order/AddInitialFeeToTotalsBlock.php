@@ -32,6 +32,9 @@ class AddInitialFeeToTotalsBlock
         if ($this->isRecurringOrder($subject, $order))
             return $order;
 
+        if ($this->removeInitialFee($order))
+            return $order;
+
         if ($this->isRecurringInvoice($subject, $order))
             return $order;
 
@@ -81,5 +84,14 @@ class AddInitialFeeToTotalsBlock
         }
 
         return false;
+    }
+
+    public function removeInitialFee($order)
+    {
+        $payment = $order->getPayment();
+        if (!$payment)
+            return false;
+
+        return $payment->getAdditionalInformation("remove_initial_fee");
     }
 }

@@ -104,9 +104,31 @@
     <?php endif; ?>
     </tbody>
 </table>
+<?php elseif ($this->getSubscription()): ?>
+    <br>
+<table class="admin__table-secondary order-information-table stripe payment-info">
+    <tbody>
+    <?php if ($this->getSubscription()): ?>
+    <tr>
+        <th><?php echo __('Subscription'); ?></th>
+        <td class="payment">
+            <a href="https://dashboard.stripe.com/<?php echo $this->getMode(); ?>subscriptions/<?php echo $this->getSubscription()->id; ?>" target="_blank">View in Stripe</a>
+        </td>
+    </tr>
+    <?php endif; ?>
+    <?php if ($this->getSubscription()->customer): ?>
+    <tr>
+        <th><?php echo __('Customer'); ?></th>
+        <td class="customer">
+            <a href="https://dashboard.stripe.com/<?php echo $this->getMode(); ?>customers/<?php echo $this->getSubscription()->customer; ?>" target="_blank">View in Stripe</a>
+        </td>
+    </tr>
+    <?php endif; ?>
+    </tbody>
+</table>
 <?php else: ?>
     <br>
-    <p>The payment details for this order could not be retrieved from Stripe.</p>
+    <p><?php echo __("The payment details for this order could not be retrieved from Stripe"); ?>.</p>
 <?php endif; ?>
 
 <?php

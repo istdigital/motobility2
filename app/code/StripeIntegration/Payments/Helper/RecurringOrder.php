@@ -11,12 +11,14 @@ use StripeIntegration\Payments\Exception\WebhookException;
 class RecurringOrder
 {
     public $invoice = null;
+    public $quoteManagement = null;
 
     public function __construct(
         \StripeIntegration\Payments\Helper\Generic $paymentsHelper,
         \StripeIntegration\Payments\Model\Config $config,
         \Magento\Quote\Model\QuoteFactory $quoteFactory,
         \Magento\Store\Model\Store $storeManager,
+        \Magento\Quote\Model\QuoteManagement $quoteManagement,
         \Magento\Quote\Api\CartRepositoryInterface $cartRepositoryInterface,
         \Magento\Quote\Api\CartManagementInterface $cartManagementInterface,
         \Magento\Customer\Api\Data\CustomerInterfaceFactory $customerFactory,
@@ -27,6 +29,7 @@ class RecurringOrder
         $this->config = $config;
         $this->quoteFactory = $quoteFactory;
         $this->storeManager = $storeManager;
+        $this->quoteManagement = $quoteManagement;
         $this->cartRepositoryInterface = $cartRepositoryInterface;
         $this->cartManagementInterface = $cartManagementInterface;
         $this->customerFactory = $customerFactory;
@@ -61,12 +64,18 @@ class RecurringOrder
 
     public function getInvoiceDetails($invoice, $order)
     {
+        $subscription = $this->getSubscriptionFrom($invoice);
+        $subscriptionAmount = $this->convertToMagentoAmount($subscription->amount / $subscription->quantity, $invoice->currency);
+        $baseSubscriptionAmount = round($subscriptionAmount / $order->getBaseToOrderRate(), 2);
+
         $details = [
             "invoice_amount" => $this->convertToMagentoAmount($invoice->amount_paid, $invoice->currency),
-            "base_invoice_amount" => 0,
+            "base_invoice_amount" => round($this->convertToMagentoAmount($invoice->amount_paid, $invoice->currency) / $order->getBaseToOrderRate(), 2),
             "invoice_currency" => $invoice->currency,
             "invoice_tax_percent" => $invoice->tax_percent,
             "invoice_tax_amount" => $this->convertToMagentoAmount($invoice->tax, $invoice->currency),
+            "subscription_amount" => $subscriptionAmount,
+            "base_subscription_amount" => $baseSubscriptionAmount,
             "payment_intent" => $invoice->payment_intent,
             "shipping_amount" => 0,
             "base_shipping_amount" => 0,
@@ -78,10 +87,11 @@ class RecurringOrder
             "initial_fee_currency" => null,
             "initial_fee_tax_percent" => 0,
             "initial_fee_tax_amount" => 0,
-            "discount_amount" => 0,
-            "discount_percent" => 0,
+            "discount_amount" => $this->getDiscountAmountFrom($invoice),
+            "discount_coupon" => $order->getCouponCode(),
             "products" => [],
-            "shipping_address" => []
+            "shipping_address" => [],
+            "charge_id" => $invoice->charge
         ];
 
         foreach ($invoice->lines->data as $invoiceLineItem)
@@ -165,6 +175,14 @@ class RecurringOrder
         return $details;
     }
 
+    public function getDiscountAmountFrom($invoice)
+    {
+        if (empty($invoice->data->object->discount->coupon->amount_off))
+            return 0;
+
+        return $this->convertToMagentoAmount($invoice->data->object->discount->coupon->amount_off, $invoice->currency);
+    }
+
     public function convertToMagentoAmount($amount, $currency)
     {
         $currency = strtolower($currency);
@@ -177,103 +195,156 @@ class RecurringOrder
 
     public function reOrder($originalOrder, $invoiceDetails)
     {
-        $originalOrder->setReordered(true);
-        $newOrder = $this->adminOrderCreateModel->initFromOrder($originalOrder);
-        $quote = $newOrder->getQuote();
-        $this->adjustOrderItems($quote, $invoiceDetails);
+        $quote = $this->createQuoteFrom($originalOrder);
+        $this->setQuoteCustomerFrom($originalOrder, $quote);
+        $this->setQuoteAddressesFrom($originalOrder, $quote);
+        $this->setQuoteItemsFrom($originalOrder, $invoiceDetails, $quote);
+        $this->setQuoteShippingMethodFrom($originalOrder, $quote);
+        $this->setQuoteDiscountFrom($originalOrder, $quote);
+        $this->setQuotePaymentMethodFrom($originalOrder, $quote);
 
-        $quote->getPayment()
-            ->setQuote($quote)
-            ->importData(['method' => 'stripe_payments'])
-            ->setAdditionalInformation("is_recurring_subscription", true);
-
-        $quote->setTotalsCollectedFlag(false)->setInventoryProcessed(false);
-
-        $quote->getBillingAddress()->unsetData('cached_items_all');
-        $quote->getShippingAddress()->unsetData('cached_items_all');
-
+        // Collect Totals & Save Quote
         $quote->collectTotals()->save();
 
-        if (!$quote->getIsVirtual())
-        {
-            $quote->getShippingAddress()
-                ->addData($invoiceDetails["shipping_address"])
-                ->setCollectShippingRates(true)
-                ->collectShippingRates()
-                ->setShippingMethod($originalOrder->getShippingMethod());
-        }
-
-        $order = $newOrder->createOrder();
-
-        $subscriptionId = $this->invoice->subscription->id;
-        $orderIncrementId = $originalOrder->getIncrementId();
-        $comment = "Recurring order generated from subscription with ID $subscriptionId. ";
-        $comment .= "Customer originally subscribed with order #$orderIncrementId. ";
-        $order->addStatusToHistory('processing', $comment, false)->save();
-
-        $this->paymentsHelper->invoiceOrder(
-            $order,
-            $invoiceDetails["payment_intent"],
-            \Magento\Sales\Model\Order\Invoice::CAPTURE_OFFLINE,
-            [
-                "amount" => $this->invoice->amount_paid,
-                "currency" => $this->invoice->currency
-            ]);
+        // Create Order From Quote
+        $order = $this->quoteManagement->submit($quote);
+        $this->addOrderCommentsTo($order, $originalOrder);
+        $this->setTransactionDetailsFor($order, $invoiceDetails);
 
         return $order;
     }
 
-    public function adjustOrderItems(&$quote, $invoiceDetails)
+    public function addOrderCommentsTo($order, $originalOrder)
     {
-        $quoteItems = $quote->getAllItems();
-        foreach ($quoteItems as $quoteItem)
-        {
-            if ($this->getIsParentProduct($quoteItem))
-            {
-                if ($this->getIsSubscriptionParent($quoteItem, $invoiceDetails))
-                    continue;
-            }
+        $subscriptionId = $this->invoice->subscription->id;
+        $orderIncrementId = $originalOrder->getIncrementId();
+        $comment = "Recurring order generated from subscription with ID $subscriptionId. ";
+        $comment .= "Customer originally subscribed with order #$orderIncrementId. ";
+        $order->setEmailSent(0);
+        $order->addStatusToHistory('processing', $comment, false)->save();
+    }
 
-            if (!isset($invoiceDetails["products"][$quoteItem->getProductId()]))
+    public function setTransactionDetailsFor($order, $invoiceDetails)
+    {
+        $transactionId = $invoiceDetails["charge_id"];
+
+        $order->getPayment()
+            ->setLastTransId($transactionId)
+            ->setIsTransactionClosed(0)
+            ->save();
+
+        foreach($order->getInvoiceCollection() as $invoice)
+            $invoice->setTransactionId($transactionId)->save();
+    }
+
+    public function setQuoteDiscountFrom($originalOrder, &$quote)
+    {
+        if (!empty($originalOrder->getCouponCode()))
+            $quote->setCouponCode($originalOrder->getCouponCode());
+    }
+
+    public function setQuotePaymentMethodFrom($originalOrder, &$quote, $data = [])
+    {
+        $quote->setPaymentMethod($originalOrder->getPayment()->getMethod());
+        $quote->setInventoryProcessed(false);
+        $quote->save(); // Needed before setting payment data
+        $data = array_merge($data, ['method' => $originalOrder->getPayment()->getMethod()]);
+        $quote->getPayment()
+            ->importData($data)
+            ->setAdditionalInformation("is_recurring_subscription", true);
+    }
+
+    public function setQuoteShippingMethodFrom($originalOrder, &$quote)
+    {
+        if (!$originalOrder->getIsVirtual())
+        {
+            $quote->getShippingAddress()
+                ->setCollectShippingRates(true)
+                ->collectShippingRates()
+                ->setShippingMethod($originalOrder->getShippingMethod());
+        }
+    }
+
+    public function setQuoteItemsFrom($originalOrder, $invoiceDetails, &$quote)
+    {
+        foreach ($invoiceDetails['products'] as $productId => $product)
+        {
+            $productModel = $this->paymentsHelper->loadProductById($productId);
+            $quoteItem = $quote->addProduct($productModel, $product['qty']);
+
+            if ($invoiceDetails['base_subscription_amount'] != $productModel->getPrice())
             {
-                $quote->removeItem($quoteItem->getItemId())->save();
-                continue;
-            }
-            else
-            {
-                $product = $invoiceDetails["products"][$quoteItem->getProductId()];
-                $qty = $product["qty"];
-                $quoteItem->setQtyOrdered($qty);
-                $quoteItem->setQty($qty);
-                $quoteItem->setQtyToAdd(0);
-                $quoteItem->setQtyCanceled(0);
-                $quoteItem->setDiscountPercent(0);
-                $quoteItem->setDiscountAmount(0);
-                $quoteItem->setQtyInvoiced($qty);
-                $quoteItem->getProduct()->setQuoteItemQty($qty);
-                $quoteItem->getProduct()->setIsSuperMode(true);
-                $quoteItem->save();
-                unset($invoiceDetails["products"][$quoteItem->getProductId()]);
+                $quoteItem->setCustomPrice($invoiceDetails['subscription_amount']);
+                $quoteItem->setOriginalCustomPrice($invoiceDetails['subscription_amount']);
+
+                // @todo - Magento bug where the base price is not calculated when a custom price is set, causing a wrong tax calculation
+                // https://github.com/magento/magento2/issues/28462
+                // $quoteItem->setBaseCustomPrice($invoiceDetails['base_subscription_amount']);
+                // $quoteItem->setBaseOriginalCustomPrice($invoiceDetails['base_subscription_amount']);
             }
         }
     }
 
-    public function getIsParentProduct($quoteItem)
+    public function setQuoteAddressesFrom($originalOrder, &$quote)
     {
-        $type = $quoteItem->getProductType();
-        return !in_array($type, ["virtual", "simple"]);
+        if ($originalOrder->getIsVirtual())
+        {
+            $data = $this->filterAddressData($originalOrder->getBillingAddress()->getData());
+            $quote->getBillingAddress()->addData($data);
+            $quote->setIsVirtual(true);
+        }
+        else
+        {
+            $data = $this->filterAddressData($originalOrder->getBillingAddress()->getData());
+            $quote->getBillingAddress()->addData($data);
+
+            $data = $this->filterAddressData($originalOrder->getShippingAddress()->getData());
+            $quote->getShippingAddress()->addData($originalOrder->getShippingAddress()->getData());
+        }
     }
 
-    public function getIsSubscriptionParent($quoteItem, $invoiceDetails)
+    public function filterAddressData($data)
     {
-        $qtyOptions = $quoteItem->getQtyOptions();
-        foreach ($qtyOptions as $productId => $option)
-        {
-            if (isset($invoiceDetails["products"][$productId]))
-                return true;
-        }
+        $allowed = ['prefix', 'firstname', 'middlename', 'lastname', 'email', 'suffix', 'company', 'street', 'city', 'country_id', 'region', 'region_id', 'postcode', 'telephone', 'fax', 'vat_id'];
+        $remove = [];
 
-        return false;
+        foreach ($data as $key => $value)
+            if (!in_array($key, $allowed))
+                $remove[] = $key;
+
+        foreach ($remove as $key)
+            unset($data[$key]);
+
+        return $data;
+    }
+
+    public function createQuoteFrom($originalOrder)
+    {
+        $store = $this->storeManager->load($originalOrder->getStoreId());
+        $store->setCurrentCurrencyCode($originalOrder->getOrderCurrencyCode());
+
+        $quote = $this->quoteFactory->create();
+        $quote->setStore($store);
+        $quote->setStoreId($store->getId());
+        $quote->setQuoteCurrencyCode($originalOrder->getOrderCurrencyCode());
+        $quote->setCustomerEmail($originalOrder->getCustomerEmail());
+        $quote->setIsRecurringOrder(true);
+
+        return $quote;
+    }
+
+    public function setQuoteCustomerFrom($originalOrder, &$quote)
+    {
+
+        if ($originalOrder->getCustomerIsGuest())
+        {
+            $quote->setCustomerIsGuest(true);
+        }
+        else
+        {
+            $customer = $this->paymentsHelper->loadCustomerById($originalOrder->getCustomerId());
+            $quote->assignCustomer($customer);
+        }
     }
 
     public function getAddressDataFrom($address)
@@ -297,5 +368,14 @@ class RecurringOrder
         );
 
         return $data;
+    }
+
+    public function getSubscriptionFrom($invoice)
+    {
+        foreach ($invoice->lines->data as $lineItem)
+            if ($lineItem->type == "subscription")
+                return $lineItem;
+
+        return null;
     }
 }

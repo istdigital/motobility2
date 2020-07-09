@@ -21,9 +21,11 @@ class PaymentIntent
     const CAPTURE_METHOD_MANUAL = "manual";
     const CAPTURE_METHOD_AUTOMATIC = "automatic";
     const REQUIRES_ACTION = "requires_action";
+    const CANCELED = "canceled";
 
     public function __construct(
         \StripeIntegration\Payments\Helper\Generic $helper,
+        \StripeIntegration\Payments\Helper\Rollback $rollback,
         \StripeIntegration\Payments\Helper\Subscriptions $subscriptionsHelper,
         \Magento\Framework\App\CacheInterface $cache,
         \StripeIntegration\Payments\Model\Config $config,
@@ -37,6 +39,7 @@ class PaymentIntent
         )
     {
         $this->helper = $helper;
+        $this->rollback = $rollback;
         $this->subscriptionsHelper = $subscriptionsHelper;
         $this->cache = $cache;
         $this->config = $config;
@@ -141,7 +144,7 @@ class PaymentIntent
         else
             $this->loadFromCache($quote);
 
-        if ($this->params['amount'] == 0)
+        if (empty($this->params['amount']) || $this->params['amount'] == 0)
             return null;
 
         if (!$this->paymentIntent)
@@ -309,7 +312,9 @@ class PaymentIntent
         if ($this->params['amount'] <= 0)
             return true;
 
-        if ($this->paymentIntent->status == $this::REQUIRES_ACTION)
+        if ($this->paymentIntent->status == $this::CANCELED)
+            return true;
+        else if ($this->paymentIntent->status == $this::REQUIRES_ACTION)
         {
             if ($this->paymentIntent->amount != $this->params['amount'])
                 return true;
@@ -381,7 +386,7 @@ class PaymentIntent
         $key = 'payment_intent_' . $quoteId;
         $this->session->unsetData($key);
 
-        if ($this->paymentIntent && $cancelPaymentIntent)
+        if ($this->paymentIntent && $cancelPaymentIntent && $this->paymentIntent->status != $this::CANCELED)
             $this->paymentIntent->cancel();
 
         $this->paymentIntent = null;
@@ -398,7 +403,7 @@ class PaymentIntent
     protected function getFilteredParamsForUpdate()
     {
         $params = $this->params; // clones the array
-        $allowedParams = ["amount", "currency", "description", "metadata", "shipping"];
+        $allowedParams = ["amount", "currency", "description", "metadata", "shipping", "level2", "level3"];
 
         foreach ($params as $key => $value) {
             if (!in_array($key, $allowedParams))
@@ -659,9 +664,11 @@ class PaymentIntent
             try
             {
                 $this->paymentIntent->confirm($confirmParams);
+                $this->prepareRollback();
             }
             catch (\Exception $e)
             {
+                $this->prepareRollback();
                 $this->helper->maskException($e);
             }
 
@@ -684,6 +691,25 @@ class PaymentIntent
         $this->stopUpdatesForThisSession = true;
 
         return $object;
+    }
+
+    public function prepareRollback()
+    {
+        if (empty($this->paymentIntent->charges->data))
+            return;
+
+        foreach ($this->paymentIntent->charges->data as $charge)
+        {
+            if ($charge->captured)
+            {
+                $this->rollback->addCharge($charge->id);
+            }
+            else
+            {
+                $this->rollback->addAuthorization($this->paymentIntent->id);
+                break;
+            }
+        }
     }
 
     public function processAuthenticatedOrder($order, $paymentIntent)
@@ -750,6 +776,14 @@ class PaymentIntent
         // Let's save the Stripe customer ID on the order's payment in case the customer registers after placing the order
         if (!empty($paymentIntent->customer))
             $payment->setAdditionalInformation("customer_stripe_id", $paymentIntent->customer);
+
+        // Add some card details for the sales email
+        $card = $paymentIntent->charges->data[0]->payment_method_details->card;
+        $info = [
+            'Card' => __("%1 ending **** %2", ucfirst($card->brand), $card->last4),
+            'Expires' => "{$card->exp_month}/{$card->exp_year}"
+        ];
+        $payment->setAdditionalInformation('source_info', json_encode($info));
     }
 
     protected function createSubscriptionsFor($order)
@@ -757,7 +791,11 @@ class PaymentIntent
         if (!$this->helper->hasSubscriptionsIn($order->getAllItems()))
             return [];
 
-        $quote = $this->quoteRepository->get($order->getQuoteId());
+        if ($this->quote)
+            $quote = $this->quote; // Used when migrating subscriptions from the CLI
+        else
+            $quote = $this->quoteRepository->get($order->getQuoteId());
+
         $params = $this->getParamsFrom($quote, $order->getPayment());
 
         $amount = $params['amount'];
@@ -765,7 +803,8 @@ class PaymentIntent
         if ($this->helper->isZeroDecimal($params['currency']))
             $cents = 1;
 
-        $this->subscriptionData = $data = $this->subscriptionsHelper->createSubscriptions($order, false);
+        $trialEnd = $order->getPayment()->getAdditionalInformation("subscription_start");
+        $this->subscriptionData = $data = $this->subscriptionsHelper->createSubscriptions($order, false, $trialEnd);
         $this->params['amount'] = round((($amount/$cents) - $data['subscriptionsTotal']) * $cents);
 
         $piSecrets = $data['piSecrets'];

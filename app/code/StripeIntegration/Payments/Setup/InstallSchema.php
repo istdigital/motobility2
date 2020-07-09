@@ -11,7 +11,6 @@ class InstallSchema implements InstallSchemaInterface
     public function install(SchemaSetupInterface $setup, ModuleContextInterface $context)
     {
         $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
-        $this->migrate = $objectManager->create('StripeIntegration\Payments\Helper\Migrate');
 
         $table = $setup->getConnection()->newTable(
                 $setup->getTable('stripe_customers')
@@ -53,7 +52,5 @@ class InstallSchema implements InstallSchemaInterface
                 'Last session ID for this customer'
             );
         $setup->getConnection()->createTable($table);
-        $this->migrate->orders();
-        $this->migrate->customers($setup);
     }
 }

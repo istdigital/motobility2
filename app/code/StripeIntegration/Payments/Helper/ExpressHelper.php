@@ -255,9 +255,7 @@ class ExpressHelper
         $active = $this->paymentsConfig->getConfigData('active') && $this->paymentsConfig->initStripe();
         $activeLocation = $this->paymentsConfig->getConfigData($location, "express");
 
-        return $active && $activeLocation
-            && !$this->isSubscriptionProduct()
-            && !$this->stripeHelper->hasSubscriptions();
+        return $active && $activeLocation;
     }
 
     /**

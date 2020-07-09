@@ -14,6 +14,7 @@ class WebhooksObserver implements ObserverInterface
         \StripeIntegration\Payments\Helper\Ach $achHelper,
         \StripeIntegration\Payments\Helper\SepaCredit $sepaCreditHelper,
         \StripeIntegration\Payments\Model\Config $config,
+        \StripeIntegration\Payments\Model\SubscriptionFactory $subscriptionFactory,
         \StripeIntegration\Payments\Helper\RecurringOrder $recurringOrderHelper,
         \Magento\Sales\Model\Order\Email\Sender\OrderCommentSender $orderCommentSender,
         \Magento\Sales\Model\Service\InvoiceService $invoiceService,
@@ -30,6 +31,7 @@ class WebhooksObserver implements ObserverInterface
         $this->achHelper = $achHelper;
         $this->sepaCreditHelper = $sepaCreditHelper;
         $this->config = $config;
+        $this->subscriptionFactory = $subscriptionFactory;
         $this->recurringOrderHelper = $recurringOrderHelper;
         $this->orderCommentSender = $orderCommentSender;
         $this->_stripeCustomer = $stripeCustomer;
@@ -354,9 +356,30 @@ class WebhooksObserver implements ObserverInterface
                 $orderId = $this->webhooksHelper->getOrderID($arrEvent);
                 $order = $this->webhooksHelper->loadOrderFromEvent($orderId, $arrEvent);
 
+                $subscriptionId = $this->getSubscriptionID($stdEvent);
+                $subscriptionModel = $this->subscriptionFactory->create()->load($subscriptionId, "subscription_id");
+                if (empty($subscriptionModel) || !$subscriptionModel->getId())
+                {
+                    $subscription = \StripeIntegration\Payments\Model\Config::$stripeClient->subscriptions->retrieve($subscriptionId, []);
+                    if (empty($subscription->metadata->{"Product ID"}))
+                        throw new WebhookException(__("Subscription %1 was paid but there was no Product ID in the subscription's metadata.", $subscriptionId));
+
+                    $productId = $subscription->metadata->{"Product ID"};
+                    $product = $this->paymentsHelper->loadProductById($productId);
+                    if (empty($product) || !$product->getId())
+                        throw new WebhookException(__("Subscription %1 was paid but the associated product with ID %1 could not be loaded.", $productId));
+
+                    $subscriptionModel->initFrom($subscription, $order, $product)
+                        ->setIsNew(false)
+                        ->save();
+                }
+
                 // If this is a subscription order which was just placed, create an invoice for the order and return
-                if ($this->orderAgeLessThan(30, $order))
+                if ($subscriptionModel->getIsNew())
+                {
                     $this->paymentSucceeded($stdEvent, $order);
+                    $subscriptionModel->setIsNew(false)->save();
+                }
                 else
                 {
                     // Otherwise, this is a recurring payment, so create a brand new order based on the original one
@@ -364,6 +387,7 @@ class WebhooksObserver implements ObserverInterface
                     $this->recurringOrderHelper->createFromInvoiceId($invoiceId);
                 }
                 break;
+
             case 'stripe_payments_webhook_invoice_payment_failed':
                 //$this->paymentFailed($event);
                 break;
