@@ -1,5 +1,52 @@
 # Changelog
 
+## 1.8.9 - 2020-07-07
+
+- Fixed a crash at customer sign up affecting 1.8.8
+- Fixed the subscription edit button not responding to clicks
+- Fixed a conflict with the AheadWorks OSC module
+
+## 1.8.8 - 2020-07-05
+
+- Security patch for a XSS issue
+
+## 1.8.7 - 2020-06-12
+
+- Added a rollback system so that if an error occurs after a payment succeeds, the payment is automatically refunded
+- Fixed an Apple Pay issue at the checkout preventing the customer from placing the order
+- Fixed Klarna terms and conditions block not displaying
+- Fixed Klarna payment options not hiding when another payment method is selected
+- Fixed a card deleting issue when the card was created with the Sources API
+
+## 1.8.6 - 2020-06-04
+
+- Added off_session parameter when placing an admin order that includes a subscription, reduces card decline rates
+- Fixed a Magento 2.1 compilation issue
+
+## 1.8.5 - 2020-06-03
+
+- Added payment card details to new order emails
+- Percent discounts for subscriptions are created in Stripe Billing as percent_off coupons instead of amount_off coupons
+- Stripe Billing Coupon names include the percent or amount off a subscription
+- Fixed a webhooks configuration problem when the default store has no API keys set
+- Fixed order totals issues for recurring orders with initial fees
+- Fixed a tax rounding issue for initial fees when multiple subscriptions are added to the cart
+- Fixed initial fee formating for subscriptions in the minicart details
+- Fixed a Klarna issue not loading at the checkout
+
+## 1.8.4 - 2020-05-14
+
+- Added billing address details to payment methods created from the Magento admin area
+- Fixed a data migration issue for new CLI based Magento installations
+
+## 1.8.3 - 2020-05-11
+
+- Magento 2.1 compatibility fix
+
+## 1.8.2 - 2020-05-05
+
+- Added Content-Security-Policy files required by Magento 2.3.5
+
 ## 1.8.0 - 2020-04-29
 
 - `MAJOR`: Added support for SEPA Credit Transfers

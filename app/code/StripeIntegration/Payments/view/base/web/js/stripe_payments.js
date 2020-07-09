@@ -1,7 +1,7 @@
 // Copyright © Stripe, Inc
 //
 // @package    StripeIntegration_Payments
-// @version    1.8.0
+// @version    1.8.9
 
 var stripeTokens = {};
 
@@ -38,7 +38,7 @@ var initStripe = function(params, callback)
 var stripe =
 {
     // Properties
-    version: "1.8.0",
+    version: "1.8.9",
     quote: null, // Comes from the checkout js
     customer: null, // Comes from the checkout js
     onPaymentSupportedCallbacks: [],
@@ -68,27 +68,19 @@ var stripe =
     urlBuilder: null,
     storage: null,
     prButton: null,
+    adminSourceOwner: null,
     onStripeInitCallback: function() {},
 
     // Methods
     loadStripeJsV3: function(callback)
     {
-        var script = document.getElementsByTagName('script')[0];
-        var stripeJsV3 = document.createElement('script');
-        stripeJsV3.src = "https://js.stripe.com/v3/";
-        stripeJsV3.onload = function()
+        require(['stripejs'], function(stripejs)
         {
             stripe.onLoadStripeJsV3();
             if (typeof callback === 'function') {
                 callback();
             }
-        };
-        stripeJsV3.onerror = function(evt) {
-            console.warn("Stripe.js v3 could not be loaded");
-            console.error(evt);
-        };
-        // Do this on the next cycle so that stripe.onLoadStripeJsV2() finishes first
-        script.parentNode.insertBefore(stripeJsV3, script);
+        });
     },
     onLoadStripeJsV3: function()
     {
@@ -645,6 +637,9 @@ var stripe =
 
     getSourceOwner: function()
     {
+        if (stripe.adminSourceOwner)
+            return stripe.adminSourceOwner;
+
         var owner = {
             name: null,
             email: null,

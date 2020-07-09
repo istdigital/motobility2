@@ -69,6 +69,7 @@ define(
 
                 var currentBillingAddress = quote.billingAddress();
                 var currentShippingAddress = quote.shippingAddress();
+                var currentTotals = quote.totals();
 
                 quote.billingAddress.subscribe(function (billingAddress)
                 {
@@ -110,10 +111,16 @@ define(
                 }
                 , this);
 
-                quote.totals.subscribe(function (shippingAddress)
+                quote.totals.subscribe(function (totals)
                 {
-                    if (shippingAddress == null || currentBillingAddress == null)
+                    if (currentShippingAddress == null || currentBillingAddress == null)
                         return;
+
+                    // Because this may be called multiple times, check if the totals have changed first
+                    if ((self.sourceId() || this.isLoading()) && JSON.stringify(totals) == JSON.stringify(currentTotals))
+                        return;
+
+                    currentTotals = totals;
 
                     self.resetPaymentForm();
                     this.isLoading(true);

@@ -97,6 +97,7 @@ class Multishipping
                 return $pi;
 
             $pi->confirm();
+            $this->paymentIntent->prepareRollback();
 
             if (!$this->paymentIntent->isSuccessfulStatus($pi))
             {
@@ -108,6 +109,7 @@ class Multishipping
         }
         catch (\Exception $e)
         {
+            $this->paymentIntent->prepareRollback();
             throw new \Exception("Payment authentication failed");
         }
 

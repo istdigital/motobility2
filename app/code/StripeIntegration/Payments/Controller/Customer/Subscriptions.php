@@ -20,6 +20,8 @@ class Subscriptions extends \Magento\Framework\App\Action\Action
         \Magento\Framework\View\Result\PageFactory $resultPageFactory,
         \Magento\Customer\Model\Session $session,
         \StripeIntegration\Payments\Helper\Generic $helper,
+        \StripeIntegration\Payments\Helper\Subscriptions $subscriptionsHelper,
+        \StripeIntegration\Payments\Model\SubscriptionFactory $subscriptionFactory,
         \Magento\Sales\Model\Order $order,
         \StripeIntegration\Payments\Model\StripeCustomer $stripeCustomer
     )
@@ -29,8 +31,10 @@ class Subscriptions extends \Magento\Framework\App\Action\Action
 
         $session = $session;
         $this->helper = $helper;
+        $this->subscriptionsHelper = $subscriptionsHelper;
         $this->order = $order;
         $this->stripeCustomer = $stripeCustomer;
+        $this->subscriptionFactory = $subscriptionFactory;
 
         if (!$session->isLoggedIn())
             $this->_redirect('customer/account/login');
@@ -75,8 +79,9 @@ class Subscriptions extends \Magento\Framework\App\Action\Action
                 throw new \Exception("Could not load customer account for subscription with ID $subscriptionId!");
 
             $subscription = $this->stripeCustomer->getSubscription($subscriptionId);
-            $subscription->cancel();
-            $this->helper->addSuccess("Subscription <b>{$subscription->plan->name}</b> has been canceled!");
+            $name = $this->subscriptionsHelper->formatSubscriptionName($subscription);
+            $this->subscriptionFactory->create()->cancel($subscriptionId);
+            $this->helper->addSuccess(__("Subscription <b>%1</b> has been canceled!", $name));
         }
         catch (\Stripe\Error $e)
         {
@@ -86,7 +91,7 @@ class Subscriptions extends \Magento\Framework\App\Action\Action
         }
         catch (\Exception $e)
         {
-            $this->helper->addError("Sorry, the subscription could not be canceled. Please contact us for more help.");
+            $this->helper->addError(__("Sorry, the subscription could not be canceled. Please contact us for more help."));
             $this->helper->logError("Could not cancel subscription with ID $subscriptionId: " . $e->getMessage());
             $this->helper->logError($e->getTraceAsString());
         }

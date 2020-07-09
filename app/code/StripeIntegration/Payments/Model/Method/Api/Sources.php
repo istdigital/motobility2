@@ -317,7 +317,7 @@ abstract class Sources extends \Magento\Payment\Model\Method\AbstractMethod
             {
                 throw new LocalizedException(__($e->getMessage()));
             }
-            catch (\Stripe\Error\Card $e)
+            catch (\Stripe\Exception\CardException $e)
             {
                 throw new LocalizedException(__($e->getMessage()));
             }
@@ -347,7 +347,7 @@ abstract class Sources extends \Magento\Payment\Model\Method\AbstractMethod
             $session->setStripePaymentsClientSecret($source->client_secret);
             $this->source = $source;
         }
-        catch (\Stripe\Error\Card $e)
+        catch (\Stripe\Exception\CardException $e)
         {
             throw new LocalizedException(__($e->getMessage()));
         }

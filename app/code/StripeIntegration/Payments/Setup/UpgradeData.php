@@ -42,6 +42,8 @@ class UpgradeData implements \Magento\Framework\Setup\UpgradeDataInterface
         if (version_compare($context->getVersion(), '1.1.0') < 0)
         {
             $this->initSubscriptions($setup);
+            $this->migrate->orders();
+            $this->migrate->customers($setup);
             $this->migrate->subscriptions($setup);
         }
 

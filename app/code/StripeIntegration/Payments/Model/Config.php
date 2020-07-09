@@ -10,12 +10,14 @@ use Magento\Store\Model\ScopeInterface;
 class Config
 {
     public static $moduleName           = "Magento2";
-    public static $moduleVersion        = "1.8.0";
-    public static $minStripePHPVersion  = "7.0.0";
+    public static $moduleVersion        = "1.8.9";
+    public static $minStripePHPVersion  = "7.33.0";
     public static $moduleUrl            = "https://stripe.com/docs/plugins/magento";
     public static $partnerId            = "pp_partner_Fs67gT2M6v3mH7";
     const STRIPE_API                    = "2020-03-02";
     public $isInitialized               = false;
+    public $isSubscriptionsEnabled      = null;
+    public static $stripeClient         = null;
 
     public function __construct(
         ScopeConfigInterface $scopeConfig,
@@ -23,7 +25,8 @@ class Config
         \Magento\Framework\Encryption\EncryptorInterface $encryptor,
         \Magento\Framework\Locale\Resolver $localeResolver,
         \Magento\Config\Model\ResourceModel\Config $resourceConfig,
-        \Psr\Log\LoggerInterface $logger
+        \Psr\Log\LoggerInterface $logger,
+        \Magento\Store\Model\StoreManagerInterface $storeManager
     ) {
         $this->scopeConfig = $scopeConfig;
         $this->helper = $helper;
@@ -31,6 +34,7 @@ class Config
         $this->localeResolver = $localeResolver;
         $this->resourceConfig = $resourceConfig;
         $this->logger = $logger;
+        $this->storeManager = $storeManager;
 
         $this->isInitialized = $this->initStripe();
     }
@@ -46,7 +50,7 @@ class Config
         if (version_compare(\Stripe\Stripe::VERSION, \StripeIntegration\Payments\Model\Config::$minStripePHPVersion) < 0)
         {
             $version = \StripeIntegration\Payments\Model\Config::$moduleVersion;
-            $this->logger->critical("Stripe Payments v$version now depends on Stripe PHP library v7. Please upgrade your installed Stripe PHP library with the command: composer require stripe/stripe-php:^7");
+            $this->logger->critical("Stripe Payments v$version now depends on Stripe PHP library v{$this::$minStripePHPVersion} or newer. Please upgrade your installed Stripe PHP library with the command: composer require stripe/stripe-php:^{$this::$minStripePHPVersion}");
             return false;
         }
 
@@ -63,19 +67,23 @@ class Config
 
         if ($this->getSecretKey($mode) && $this->getPublishableKey($mode))
         {
-            \Stripe\Stripe::setApiKey($this->getSecretKey($mode));
+            $key = $this->getSecretKey($mode);
+            \Stripe\Stripe::setApiKey($key);
             \Stripe\Stripe::setAppInfo($this::$moduleName, $this::$moduleVersion, $this::$moduleUrl, $this::$partnerId);
             \Stripe\Stripe::setApiVersion(\StripeIntegration\Payments\Model\Config::STRIPE_API);
+            $this::$stripeClient = new \Stripe\StripeClient($key);
             return true;
         }
 
         return false;
     }
 
-    public function reInitStripe($mode = null)
+    public function reInitStripe($storeId, $currencyCode, $mode)
     {
         $this->isInitialized = false;
-        return $this->isInitialized = $this->initStripe();
+        $this->storeManager->setCurrentStore($storeId);
+        $this->storeManager->getStore()->setCurrentCurrencyCode($currencyCode);
+        return $this->isInitialized = $this->initStripe($mode);
     }
 
     public static function module()
@@ -125,8 +133,11 @@ class Config
 
     public function isSubscriptionsEnabled($storeId = null)
     {
-        $enabled = ((bool)$this->getConfigData('active', 'subscriptions', $storeId)) && $this->initStripe();
-        return $enabled;
+        if ($this->isSubscriptionsEnabled !== null)
+            return $this->isSubscriptionsEnabled;
+
+        $this->isSubscriptionsEnabled = ((bool)$this->getConfigData('active', 'subscriptions', $storeId)) && $this->initStripe();
+        return $this->isSubscriptionsEnabled;
     }
 
     public function isEnabled()
@@ -135,17 +146,17 @@ class Config
         return $enabled;
     }
 
-    public function getStripeMode()
+    public function getStripeMode($storeId = null)
     {
-        return $this->getConfigData('stripe_mode', 'basic');
+        return $this->getConfigData('stripe_mode', 'basic', $storeId);
     }
 
-    public function getSecretKey($mode = null)
+    public function getSecretKey($mode = null, $storeId = null)
     {
         if (empty($mode))
-            $mode = $this->getStripeMode();
+            $mode = $this->getStripeMode($storeId);
 
-        $key = $this->getConfigData("stripe_{$mode}_sk", "basic");
+        $key = $this->getConfigData("stripe_{$mode}_sk", "basic", $storeId);
 
         return $this->decrypt($key);
     }
@@ -379,6 +390,45 @@ class Config
             $params["receipt_email"] = $customerEmail;
 
         return $params;
+    }
+
+    public function getAllStripeConfigurations()
+    {
+        $storeManagerDataList = $this->storeManager->getStores();
+        $configurations = array();
+
+        foreach ($storeManagerDataList as $storeId => $store)
+        {
+            $testModeConfig = $this->getStoreViewAPIKey($store, 'test');
+
+            if (!empty($testModeConfig['api_keys']['sk']))
+                $configurations[$testModeConfig['api_keys']['sk']] = $testModeConfig;
+
+            $liveModeConfig = $this->getStoreViewAPIKey($store, 'live');
+
+            if (!empty($liveModeConfig['api_keys']['sk']))
+                $configurations[$liveModeConfig['api_keys']['sk']] = $liveModeConfig;
+        }
+
+        return $configurations;
+    }
+
+    public function getStoreViewAPIKey($store, $mode)
+    {
+        $secretKey = $this->scopeConfig->getValue("payment/stripe_payments_basic/stripe_{$mode}_sk", \Magento\Store\Model\ScopeInterface::SCOPE_STORE, $store['code']);
+        if (empty($secretKey))
+            return null;
+
+        return array_merge($store->getData(), [
+            'api_keys' => [
+                'pk' => $this->scopeConfig->getValue("payment/stripe_payments_basic/stripe_{$mode}_pk", \Magento\Store\Model\ScopeInterface::SCOPE_STORE, $store['code']),
+                'sk' => $this->decrypt($secretKey),
+                'wss' => $this->getWebhooksSigningSecretFor($store['code'], $mode)
+            ],
+            'mode' => $mode,
+            'mode_label' => ucfirst($mode) . " Mode",
+            'default_currency' => $store->getDefaultCurrency()->getCurrencyCode()
+        ]);
     }
 
 }

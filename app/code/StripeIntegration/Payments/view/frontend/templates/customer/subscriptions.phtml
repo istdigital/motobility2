@@ -135,10 +135,10 @@ if (empty($subscriptions)): ?>
           <td data-th="Actions" class="col actions">
             <a href="cancel/<?php echo $subscription->id; ?>" class="action cancel"
               onclick="return confirm('<?php echo __("Are you sure you want to cancel this subscription?"); ?>');">
-              <span>Cancel</span>
+              <span><?php echo __("Cancel"); ?></span>
             </a>
-            <a href="javascript:void(0)" onclick="stripe.toggleSubscription('<?php echo $subscription->id; ?>', true);" class="action edit">
-              <span>Edit</span>
+            <a href="javascript:void(0)" onclick="stripe.toggleSubscription('.<?php echo $subscription->id; ?>', true);" class="action edit">
+              <span><?php echo __("Edit"); ?></span>
             </a>
           </td>
         </tr>

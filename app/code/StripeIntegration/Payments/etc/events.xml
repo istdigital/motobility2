@@ -20,6 +20,12 @@
     <event name="customer_register_success">
         <observer name="stripe_customer_register_success" instance="StripeIntegration\Payments\Observer\CustomerRegistration" />
     </event>
+    <event name="email_order_set_template_vars_before">
+        <observer name="stripe_email_order_set_template_vars_before" instance="StripeIntegration\Payments\Observer\SetOrderTemplateVars" />
+    </event>
+    <event name="customer_save_after_data_object">
+        <observer name="stripe_customer_save_after_data_object" instance="StripeIntegration\Payments\Observer\CustomerDetailsChanged" />
+    </event>
 
     <!-- Initial Fee -->
     <event name="checkout_cart_product_add_after">

@@ -34,9 +34,6 @@ class AddInitialFeeTaxObserver implements ObserverInterface
 
     public function applyInitialFeeTax($quote, $total)
     {
-        if (!$total->getAppliedTaxes() || empty($total->getAppliedTaxes()))
-            return;
-
         $baseExtraTax = 0;
         $extraTax = 0;
 
@@ -46,9 +43,9 @@ class AddInitialFeeTaxObserver implements ObserverInterface
             if (empty($appliedTaxes))
                 continue;
 
-            $productId = $item->getProductId();
-            $product = $this->paymentsHelper->loadProductById($productId);
+            $product = $this->paymentsHelper->getSubscriptionProductFrom($item);
             $baseInitialFee = $product->getStripeSubInitialFee();
+
             if (empty($baseInitialFee) || !is_numeric($baseInitialFee) || $baseInitialFee <= 0)
                 continue;
 
