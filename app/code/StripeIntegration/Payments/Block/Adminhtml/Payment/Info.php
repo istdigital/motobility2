@@ -11,11 +11,13 @@ class Info extends ConfigurableInfo
 {
     public $charge = null;
     public $cards = array();
+    public $subscription = null;
 
     public function __construct(
         \Magento\Framework\View\Element\Template\Context $context,
         \Magento\Payment\Gateway\ConfigInterface $config,
         \StripeIntegration\Payments\Helper\Generic $helper,
+        \StripeIntegration\Payments\Model\Config $paymentsConfig,
         \StripeIntegration\Payments\Helper\Api $api,
         \Magento\Directory\Model\Country $country,
         \Magento\Payment\Model\Info $info,
@@ -23,11 +25,13 @@ class Info extends ConfigurableInfo
         array $data = []
     ) {
         parent::__construct($context, $config, $data);
+
         $this->helper = $helper;
         $this->api = $api;
         $this->country = $country;
         $this->info = $info;
         $this->registry = $registry;
+        $this->paymentsConfig = $paymentsConfig;
     }
 
     public function shouldDisplayStripeSection()
@@ -248,7 +252,7 @@ class Info extends ConfigurableInfo
         $charge = $this->getCharge();
 
         if (isset($charge->amount_refunded) && $charge->amount_refunded > 0)
-            return $this->helper->formatPrice($charge->amount_refunded, $charge->currency);
+            return $this->helper->formatStripePrice($charge->amount_refunded, $charge->currency);
 
         return 'No';
     }
@@ -273,11 +277,37 @@ class Info extends ConfigurableInfo
         return null;
     }
 
+    public function getSubscription()
+    {
+        if (!$this->isStripeMethod())
+            return null;
+
+        if ($this->subscription)
+            return $this->subscription;
+
+        try
+        {
+            $token = $this->helper->cleanToken($this->getMethod()->getLastTransId());
+
+            if (strpos($token, "sub_") === 0)
+                return $this->subscription = \StripeIntegration\Payments\Model\Config::$stripeClient->subscriptions->retrieve($token, []);
+
+            return null;
+        }
+        catch (\Exception $e)
+        {
+            return null;
+        }
+    }
+
     public function getMode()
     {
-        $charge = $this->getCharge();
+        $object = $this->getCharge();
 
-        if ($charge->livemode)
+        if (empty($object))
+            $object = $this->getSubscription();
+
+        if ($object->livemode)
             return "";
 
         return "test/";

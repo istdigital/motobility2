@@ -40,7 +40,8 @@ define([
 
             this.isActive = ko.computed(function()
             {
-                return self.parentComponent.selectedPaymentOption() == self.paymentOptionCode;
+                return (self.parentComponent.selectedPaymentOption() == self.paymentOptionCode) &&
+                    (self.parentComponent.isChecked() == self.parentComponent.getCode());
             });
 
             return this;

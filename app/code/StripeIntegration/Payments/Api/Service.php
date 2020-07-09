@@ -271,6 +271,16 @@ class Service implements ServiceInterface
         ]);
     }
 
+    protected function getPaymentIntentClientSecret()
+    {
+        $pi = $this->paymentIntent->create();
+
+        if ($pi)
+            return $pi->getClientSecret();
+        else
+            return null; // If the customer is buying a subscription product only, there will be no P.I.
+    }
+
     /**
      * Return URL
      * @param mixed $address
@@ -325,7 +335,7 @@ class Service implements ServiceInterface
             }
 
             return \Zend_Json::encode([
-                "paymentIntent" => $this->paymentIntent->create()->getClientSecret(),
+                "paymentIntent" => $this->getPaymentIntentClientSecret(),
                 "results" => $result
             ]);
         }
@@ -395,7 +405,7 @@ class Service implements ServiceInterface
 
             $result = $this->expressHelper->getCartItems($quote);
             return \Zend_Json::encode([
-                "paymentIntent" => $this->paymentIntent->create()->getClientSecret(),
+                "paymentIntent" => $this->getPaymentIntentClientSecret(),
                 "results" => $result
             ]);
         } catch (\Exception $e) {
@@ -424,7 +434,7 @@ class Service implements ServiceInterface
         }
 
         return \Zend_Json::encode([
-            "paymentIntent" => $this->paymentIntent->create()->getClientSecret(),
+            "paymentIntent" => $this->getPaymentIntentClientSecret(),
             "results" => null
         ]);
     }
@@ -503,13 +513,14 @@ class Service implements ServiceInterface
                 $quote->getPayment()->setAdditionalInformation('customer_email', $this->stripeCustomer->getCustomerEmail());
             }
 
-            $quote->getPayment()->importData(['method' => 'stripe_payments']);
+            $quote->getPayment()->importData(['method' => 'stripe_payments', 'additional_data' => ['cc_stripejs_token' => $paymentMethodId]]);
 
             // Save Quote
             $quote->save();
 
             // Place Order
-            $this->paymentIntent->setPaymentMethod($paymentMethodId);
+            $this->paymentIntent->quote = $quote;
+
             /** @var \Magento\Sales\Model\Order $order */
             $order = $this->quoteManagement->submit($quote);
             if ($order) {
@@ -632,7 +643,7 @@ class Service implements ServiceInterface
 
             $result = $this->expressHelper->getCartItems($quote);
             return \Zend_Json::encode([
-                "paymentIntent" => $this->paymentIntent->create()->getClientSecret(),
+                "paymentIntent" => $this->getPaymentIntentClientSecret(),
                 "results" => $result
             ]);
         } catch (\Exception $e) {

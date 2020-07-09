@@ -118,10 +118,17 @@ define(
 
             makeActive: function()
             {
+                if (!this.displayAtThisLocation())
+                    return;
+
                 // If there are any selected payment methods from a different section, make them inactive
                 // This ensures that their form validations will not run
-                if (checkoutData.getSelectedPaymentMethod())
-                    selectPaymentMethod(null);
+                try
+                {
+                    if (checkoutData.getSelectedPaymentMethod())
+                        selectPaymentMethod(null);
+                }
+                catch (e) {}
 
                 // We do want terms & conditions validation for Apple Pay, so activate that temporarily
                 $(".payment-method.stripe-payments.mobile").addClass("_active");

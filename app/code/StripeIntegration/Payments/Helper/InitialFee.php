@@ -17,6 +17,10 @@ class InitialFee
 
     public function getTotalInitialFeeForCreditmemo($creditmemo, $orderRate = true)
     {
+        $payment = $creditmemo->getOrder()->getPayment();
+        if ($payment->getAdditionalInformation("is_recurring_subscription") || $payment->getAdditionalInformation("remove_initial_fee"))
+            return 0;
+
         $items = $creditmemo->getAllItems();
 
         if ($orderRate)
@@ -29,6 +33,10 @@ class InitialFee
 
     public function getTotalInitialFeeForInvoice($invoice, $invoiceRate = true)
     {
+        $payment = $invoice->getOrder()->getPayment();
+        if ($payment->getAdditionalInformation("is_recurring_subscription") || $payment->getAdditionalInformation("remove_initial_fee"))
+            return 0;
+
         $items = $invoice->getAllItems();
 
         if ($invoiceRate)
@@ -41,6 +49,9 @@ class InitialFee
 
     public function getTotalInitialFeeForQuote($quote, $quoteRate = true)
     {
+        if ($quote->getIsRecurringOrder() || $quote->getRemoveInitialFee())
+            return 0;
+
         $items = $quote->getAllItems();
 
         if ($quoteRate)
@@ -83,7 +94,7 @@ class InitialFee
         if (!is_numeric($product->getStripeSubInitialFee()))
             return 0;
 
-        return $product->getStripeSubInitialFee() * $rate * $qty;
+        return round($product->getStripeSubInitialFee() * $rate, 2) * $qty;
     }
 
     public function getAdditionalOptionsForChildrenOf($item)
@@ -117,7 +128,7 @@ class InitialFee
         {
             $additionalOptions[] = array(
                 'label' => 'Initial Fee',
-                'value' => $this->paymentsHelper->formatPrice($profile['initial_fee'] * $qty)
+                'value' => $this->paymentsHelper->addCurrencySymbol($profile['initial_fee'] * $qty)
             );
         }
 

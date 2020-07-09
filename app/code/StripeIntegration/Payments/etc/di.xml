@@ -195,6 +195,7 @@
                 <item name="MigrateAttributes" xsi:type="object">StripeIntegration\Payments\Setup\Migrate\AttributesCommand</item>
                 <item name="MigrateProductsConfiguration" xsi:type="object">StripeIntegration\Payments\Setup\Migrate\ProductConfigurationCommand</item>
                 <item name="MigrateStripeSubscriptions" xsi:type="object">StripeIntegration\Payments\Setup\Migrate\StripeSubscriptionsCommand</item>
+                <item name="MigrateSubscriptionPrice" xsi:type="object">StripeIntegration\Payments\Setup\Migrate\SubscriptionPriceCommand</item>
                 <item name="WebhookPingCleanup" xsi:type="object">StripeIntegration\Payments\Setup\Jobs\WebhookPingCleanupCommand</item>
             </argument>
         </arguments>
@@ -233,7 +234,7 @@
 
     <!-- CSRF Overwrite -->
     <type name="Magento\Framework\App\Request\CsrfValidator">
-        <plugin name="csrf_validator_skip" type="StripeIntegration\Payments\Plugin\CsrfValidatorSkip" sortOrder="30" />
+        <plugin name="stripe_payments_csrf_validator_skip" type="StripeIntegration\Payments\Plugin\CsrfValidatorSkip" sortOrder="30" />
     </type>
 
     <!-- Multishipping authorization needed redirect -->

@@ -20,7 +20,7 @@ class Api
         \StripeIntegration\Payments\Model\StripeCustomer $customer,
         \StripeIntegration\Payments\Model\PaymentIntent $paymentIntent,
         \Magento\Framework\Event\ManagerInterface $eventManager,
-        \StripeIntegration\Payments\Model\Rollback $rollback,
+        \StripeIntegration\Payments\Helper\Rollback $rollback,
         \Magento\Quote\Model\QuoteFactory $quoteFactory
     ) {
         $this->logger = $logger;
@@ -205,7 +205,7 @@ class Api
                 else
                     $charge = \Stripe\Charge::create($params);
 
-                $this->rollback->addCharge($charge);
+                $this->rollback->addCharge($charge->id);
 
                 if ($this->config->isStripeRadarEnabled() &&
                     isset($charge->outcome->type) &&
@@ -229,20 +229,24 @@ class Api
             $payment->setIsTransactionClosed(0);
             $payment->setIsFraudDetected($fraud);
         }
-        catch (\Stripe\Error\Card $e)
+        catch (\Stripe\Exception\CardException $e)
         {
-            $this->rollback->run($e->getMessage(), $e);
+            $this->rollback->run();
+            throw new CouldNotSaveException(__($e->getMessage()));
         }
         catch (\Stripe\Error $e)
         {
-            $this->rollback->run($e->getMessage(), $e);
+            $this->rollback->run();
+            throw new CouldNotSaveException(__($e->getMessage()));
         }
         catch (\Exception $e)
         {
+            $this->rollback->run();
+
             if ($this->helper->isAdmin())
-                $this->rollback->run($e->getMessage(), $e);
+                throw new CouldNotSaveException(__($e->getMessage()));
             else
-                $this->rollback->run(null, $e);
+                throw new CouldNotSaveException(__("Sorry, an payment error has occurred, please contact us for support."));
         }
     }
 }

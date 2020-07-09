@@ -18,11 +18,11 @@ class Generic
 {
     public $magentoCustomerId = null;
     public $urlBuilder = null;
-    protected $cards = array();
+    protected $cards = [];
+    public $orderComments = [];
 
     public function __construct(
         ScopeConfigInterface $scopeConfig,
-        \Magento\Framework\App\ScopeInterface $scope,
         \Magento\Backend\Model\Session\Quote $backendSessionQuote,
         \Magento\Framework\App\Request\Http $request,
         LoggerInterface $logger,
@@ -54,10 +54,13 @@ class Generic
         \Magento\Framework\Encryption\EncryptorInterface $encryptor,
         \Magento\Authorization\Model\UserContextInterface $userContext,
         \Magento\Sales\Model\Order\Email\Sender\OrderSender $orderSender,
-        \Magento\Framework\Pricing\PriceCurrencyInterface $priceCurrency
+        \Magento\Framework\Pricing\PriceCurrencyInterface $priceCurrency,
+        \Magento\Customer\Api\CustomerRepositoryInterface $customerRepositoryInterface,
+        \Magento\Sales\Model\Order\Email\Sender\OrderCommentSender $orderCommentSender,
+        \Magento\Sales\Model\Order\CreditmemoFactory $creditmemoFactory,
+        \Magento\Sales\Model\Service\CreditmemoService $creditmemoService
     ) {
         $this->scopeConfig = $scopeConfig;
-        $this->scope = $scope;
         $this->backendSessionQuote = $backendSessionQuote;
         $this->request = $request;
         $this->logger = $logger;
@@ -90,11 +93,15 @@ class Generic
         $this->userContext = $userContext;
         $this->orderSender = $orderSender;
         $this->priceCurrency = $priceCurrency;
+        $this->customerRepositoryInterface = $customerRepositoryInterface;
+        $this->orderCommentSender = $orderCommentSender;
+        $this->creditmemoFactory = $creditmemoFactory;
+        $this->creditmemoService = $creditmemoService;
     }
 
     public function getBackendSessionQuote()
     {
-        return $this->backendSessionQuote;
+        return $this->backendSessionQuote->getQuote();
     }
 
     public function isSecure()
@@ -172,6 +179,11 @@ class Generic
     public function loadOrderById($orderId)
     {
         return $this->orderFactory->create()->load($orderId);
+    }
+
+    public function loadCustomerById($customerId)
+    {
+        return $this->customerRepositoryInterface->getById($customerId);
     }
 
     public function createInvoiceComment($msg, $notify = false, $visibleOnFront = false)
@@ -747,7 +759,7 @@ class Generic
         return $invoice;
     }
 
-    public function cancelOrCloseOrder($order)
+    public function cancelOrCloseOrder($order, $refundInvoices = false, $refundOffline = true)
     {
         $cancelled = false;
 
@@ -760,6 +772,13 @@ class Generic
             {
                 $invoice->cancel();
                 $dbTransaction->addObject($invoice);
+                $cancelled = true;
+            }
+            else if ($refundInvoices)
+            {
+                $creditmemo = $this->creditmemoFactory->createByOrder($order);
+                $creditmemo->setInvoice($invoice);
+                $this->creditmemoService->refund($creditmemo, $refundOffline);
                 $cancelled = true;
             }
         }
@@ -900,6 +919,22 @@ class Generic
         return false;
     }
 
+    public function findSubscriptionsUsingPaymentMethod($paymentMethodId, $customer)
+    {
+        $subscriptions = [];
+
+        if (empty($customer->subscriptions->data))
+            return [];
+
+        foreach ($customer->subscriptions->data as $subscription)
+        {
+            if ($subscription->default_payment_method == $paymentMethodId)
+                $subscriptions[] = $subscription;
+        }
+
+        return $subscriptions;
+    }
+
     public function addSavedCard($customer, $newcard)
     {
         if (!$customer)
@@ -918,10 +953,17 @@ class Generic
 
             $card = $this->findCardByFingerprint($customer, $pm->card->fingerprint);
 
+            $subscriptions = [];
             if ($card)
-                return $card;
+            {
+                $subscriptions = $this->findSubscriptionsUsingPaymentMethod($card->id, $customer);
+                \StripeIntegration\Payments\Model\Config::$stripeClient->paymentMethods->detach($card->id);
+            }
 
             $pm->attach([ 'customer' => $customer->id ]);
+
+            foreach ($subscriptions as $subscription)
+                \StripeIntegration\Payments\Model\Config::$stripeClient->subscriptions->update($subscription->id, ['default_payment_method' => $pm->id]);
 
             return $this->convertPaymentMethodToCard($pm);
         }
@@ -973,7 +1015,7 @@ class Generic
         return null;
     }
 
-    public function formatPrice($price, $currency = null)
+    public function formatStripePrice($price, $currency = null)
     {
         if (!$this->isZeroDecimal($currency))
             $price /= 100;
@@ -1120,8 +1162,77 @@ class Generic
         return $amount;
     }
 
-    public function addCurrencySymbol($amount, $currencyCode)
+    public function addCurrencySymbol($amount, $currencyCode = null)
     {
+        if (empty($currencyCode))
+            $currencyCode = $this->storeManager->getStore()->getCurrentCurrency()->getCode();
+
         return $this->priceCurrency->format($amount, false, null, null, strtoupper($currencyCode));
+    }
+
+    public function getSubscriptionProductIdFrom($item)
+    {
+        $type = $item->getProductType();
+        switch ($type) {
+            case 'configurable':
+                foreach ($item->getChildrenItems() as $child)
+                    return $child->getProduct()->getId();
+            default:
+                return $item->getProductId();
+        }
+    }
+
+    public function getSubscriptionProductFrom($item)
+    {
+        $productId = $this->getSubscriptionProductIdFrom($item);
+        return $this->loadProductById($productId);
+    }
+
+    public function getClearSourceInfo($data)
+    {
+        $info = [];
+        $remove = ['mandate_url', 'fingerprint', 'client_token'];
+        foreach ($data as $key => $value)
+        {
+            if (!in_array($key, $remove))
+                $info[$key] = $value;
+        }
+
+        // Remove Klarna pay fields
+        $startsWith = ["pay_"];
+        foreach ($info as $key => $value)
+        {
+            foreach ($startsWith as $part)
+            {
+                if (strpos($key, $part) === 0)
+                    unset($info[$key]);
+            }
+        }
+
+        return $info;
+    }
+
+    public function notifyCustomer($order, $comment)
+    {
+        $order->addStatusToHistory($status = false, $comment, $isCustomerNotified = true);
+        $order->setCustomerNote($comment);
+        // $order->save();
+        $this->orderCommentSender->send($order, $notify = true, $comment);
+    }
+
+    public function sendNewOrderEmailWithComment($order, $comment)
+    {
+        $order->addStatusToHistory($status = false, $comment, $isCustomerNotified = true);
+        $this->orderComments[$order->getIncrementId()] = $comment;
+        $order->setEmailSent(false);
+        $this->orderSender->send($order, true);
+    }
+
+    public function isAuthenticationRequiredMessage($message)
+    {
+        if (strpos($message, "Authentication Required: ") === 0)
+            return true;
+
+        return false;
     }
 }

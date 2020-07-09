@@ -100,7 +100,7 @@ class Webhooks
         }
         catch (WebhookException $e)
         {
-            $this->error($e->getMessage(), $e->statusCode);
+            $this->error($e->getMessage(), $e->statusCode, true);
         }
         catch (\Exception $e)
         {
@@ -126,18 +126,22 @@ class Webhooks
         }
     }
 
-    public function error($msg, $status = null)
+    public function error($msg, $status = null, $displayError = false)
     {
         if ($status && $status > 0)
             $responseStatus = $status;
         else
             $responseStatus = 202;
 
+        $this->log("$responseStatus $msg");
+
+        if (!$displayError)
+            $msg = "An error has occurred. Please check var/log/stripe_payments_webhooks.log for more details.";
+
         $this->response
             ->setStatusCode($responseStatus)
+            ->setHeader('Content-Type', 'text/plain; charset=UTF-8', $overwriteExisting = true)
             ->setContent($msg);
-
-        $this->log("$responseStatus $msg");
     }
 
     public function log($msg)
@@ -225,13 +229,11 @@ class Webhooks
             throw new WebhookException("Order #$orderId was not placed using Stripe", 202);
 
         // For multi-stripe account configurations, load the correct Stripe API key from the correct store view
-        $this->storeManager->setCurrentStore($order->getStoreId());
-        $this->storeManager->getStore()->setCurrentCurrencyCode($order->getOrderCurrencyCode());
         if (isset($event['data']['object']['livemode']))
             $mode = ($event['data']['object']['livemode'] ? "live" : "test");
         else
             $mode = null;
-        $this->config->reInitStripe($mode);
+        $this->config->reInitStripe($order->getStoreId(), $order->getOrderCurrencyCode(), $mode);
         $this->webhookCollection->pong($this->config->getPublishableKey($mode));
         $this->verifyWebhookSignature($order->getStoreId());
     }
@@ -335,7 +337,7 @@ class Webhooks
             $payment->setIsTransactionClosed(0);
 
             // Log additional info about the payment
-            $info = $this->getClearSourceInfo($object[$object['type']]);
+            $info = $this->helper->getClearSourceInfo($object[$object['type']]);
             $payment->setAdditionalInformation('source_info', json_encode($info));
             $payment->save();
 
@@ -380,7 +382,7 @@ class Webhooks
 
             return $charge;
         }
-        catch (\Stripe\Error\Card $e)
+        catch (\Stripe\Exception\CardException $e)
         {
             $comment = "Order could not be charged because of a card error: " . $e->getMessage();
             $order->addStatusHistoryComment($comment);
@@ -425,30 +427,6 @@ class Webhooks
         }
 
         return null;
-    }
-
-    public function getClearSourceInfo($data)
-    {
-        $info = [];
-        $remove = ['mandate_url', 'fingerprint', 'client_token'];
-        foreach ($data as $key => $value)
-        {
-            if (!in_array($key, $remove))
-                $info[$key] = $value;
-        }
-
-        // Remove Klarna pay fields
-        $startsWith = ["pay_"];
-        foreach ($info as $key => $value)
-        {
-            foreach ($startsWith as $part)
-            {
-                if (strpos($key, $part) === 0)
-                    unset($info[$key]);
-            }
-        }
-
-        return $info;
     }
 
     public function getCurrentRefundFrom($webhookData)

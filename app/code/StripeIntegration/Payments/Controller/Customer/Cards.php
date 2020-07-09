@@ -71,7 +71,7 @@ class Cards extends \Magento\Framework\App\Action\Action
                 $this->helper->addError("Could not add card: " . $e->getMessage());
             }
         }
-        catch (\Stripe\Error\Card $e)
+        catch (\Stripe\Exception\CardException $e)
         {
             $this->helper->addError($e->getMessage());
         }
@@ -103,7 +103,7 @@ class Cards extends \Magento\Framework\App\Action\Action
 
             $this->helper->addSuccess(__("Card **** %1 has been deleted.", $card->last4));
         }
-        catch (\Stripe\Error\Card $e)
+        catch (\Stripe\Exception\CardException $e)
         {
             $this->helper->addError($e->getMessage());
         }

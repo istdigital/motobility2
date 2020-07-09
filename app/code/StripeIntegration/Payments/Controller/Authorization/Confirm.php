@@ -24,7 +24,7 @@ class Confirm extends \Magento\Framework\App\Action\Action
     {
         $outcomes = $this->multishippingHelper->confirmPaymentsForSessionOrders();
 
-        if ($outcomes["hasErrors"])
+        if (!empty($outcomes["hasErrors"]))
         {
             foreach ($outcomes["orders"] as $outcome)
             {
