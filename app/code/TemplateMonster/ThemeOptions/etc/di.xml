@@ -33,9 +33,12 @@
     <type name="Magento\Theme\Block\Html\Header">
         <plugin name="welcomeMessage" type="TemplateMonster\ThemeOptions\Plugin\Theme\Block\Html\HeaderPlugin" sortOrder="400" />
     </type>
-    <type name="Magento\Cms\Model\Page">
+    
+    <!-- <type name="Magento\Cms\Model\Page">
         <plugin name="pageSettings" type="TemplateMonster\ThemeOptions\Plugin\Cms\Model\PagePlugin" sortOrder="500" />
-    </type>
+    </type> -->
+
+
     <type name="Magento\Theme\Model\Favicon\Favicon">
         <plugin name="favicon" type="TemplateMonster\ThemeOptions\Plugin\Theme\Model\Favicon\FaviconPlugin" sortOrder="600" />
     </type>
