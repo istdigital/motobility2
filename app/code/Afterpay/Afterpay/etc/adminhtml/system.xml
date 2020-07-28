@@ -4,7 +4,7 @@
  * Magento 2 extensions for Afterpay Payment
  *
  * @author Afterpay
- * @copyright 2016-2019 Afterpay https://www.afterpay.com
+ * @copyright 2016-2020 Afterpay https://www.afterpay.com
  */
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
@@ -12,7 +12,7 @@
         <section id="payment">
             <group id="afterpaypayovertime" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
                 <label>Afterpay</label>
-                <comment><![CDATA[<span class="logo">&nbsp;</span><p>Offer interest-free instalment plans at checkout with zero risk. <a href="https://www.afterpay.com.au/for-merchants/" target="_blank">Register here</a></p>]]></comment>
+                <comment><![CDATA[<img class="logo" src="https://static.afterpay.com/integration/logo-afterpay-colour-221x46.png" srcset="https://static.afterpay.com/integration/logo-afterpay-colour-221x46.png 1x,https://static.afterpay.com/integration/logo-afterpay-colour-221x46@2x.png 2x,https://static.afterpay.com/integration/logo-afterpay-colour-221x46@3x.png 3x" height="31"/><p>Offer interest-free instalment plans at checkout with zero risk. <a href="https://www.afterpay.com.au/for-merchants/" target="_blank">Register here</a></p>]]></comment>
                 <attribute type="expanded">1</attribute>
                 <fieldset_css>complex afterpaypayovertime-section</fieldset_css>
                 <frontend_model>Magento\Config\Block\System\Config\Form\Fieldset</frontend_model>
@@ -128,6 +128,14 @@
                         <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                         <config_path>payment/afterpaypayovertime/enable_cbt</config_path>
 						<comment><![CDATA[Select "Yes" only if your Afterpay account is enabled for CBT. This option is dependent on your commercial contract. This will change the Afterpay artwork presented to consumers to promote CBT.]]></comment>
+                    </field>
+					
+					 <!-- Payment Flow -->
+                    <field id="payment_flow" translate="label" type="select" sortOrder="120" showInDefault="1" showInWebsite="1" showInStore="0">
+                        <label>Payment Flow</label>
+                        <source_model>Afterpay\Afterpay\Model\Source\PaymentFlow</source_model>
+                        <config_path>payment/afterpaypayovertime/payment_flow</config_path>
+						<comment><![CDATA[Find out more about the payment flows <a href="https://afterpay-online.readme.io/v2/reference#payment-flows" target="_blank">here</a>]]></comment>
                     </field>
                 </group>
 

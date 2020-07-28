@@ -3,7 +3,7 @@
  * Magento 2 extensions for Afterpay Payment
  *
  * @author Afterpay
- * @copyright 2016-2019 Afterpay https://www.afterpay.com
+ * @copyright 2016-2020 Afterpay https://www.afterpay.com
  */
 namespace Afterpay\Afterpay\Model\Config;
 
@@ -174,13 +174,13 @@ class Payovertime
 
         if ($type=='api_url') {
             if ($apiMode == 'Sandbox') {
-                if ($currency == 'USD') {
+                if ($currency == 'USD' || $currency == 'CAD') {
                     $url = 'https://api.us-sandbox.afterpay.com/';
                 } else {
                     $url = 'https://api-sandbox.afterpay.com/';
                 }
             } elseif ($apiMode == 'Production') {
-                if ($currency == 'USD') {
+                if ($currency == 'USD'  || $currency == 'CAD') {
                     $url = 'https://api.us.afterpay.com/';
                 } else {
                     $url = 'https://api.afterpay.com/';
@@ -320,9 +320,9 @@ class Payovertime
     /**
      * @return bool
      */
-    public function isActive()
+    public function isActive($override = [])
     {
-        return (bool)(int)$this->_getConfigData(self::ACTIVE);
+        return (bool)(int)$this->_getConfigData(self::ACTIVE,$override);
     }
 
     /**

@@ -3,7 +3,7 @@
  * Magento 2 extensions for Afterpay
  *
  * @author Afterpay
- * @copyright 2016-2019 Afterpay https://www.afterpay.com
+ * @copyright 2016-2020 Afterpay https://www.afterpay.com
  */
 namespace Afterpay\Afterpay\Controller\Payment;
 
@@ -12,13 +12,14 @@ use \Magento\Sales\Model\OrderFactory as OrderFactory;
 use \Magento\Quote\Model\QuoteFactory as QuoteFactory;
 use \Afterpay\Afterpay\Model\Config\Payovertime as AfterpayConfig;
 use \Magento\Payment\Model\Method\AbstractMethod;
-use \Afterpay\Afterpay\Model\Adapter\V1\AfterpayOrderTokenV1 as AfterpayOrderTokenV1;
+use \Afterpay\Afterpay\Model\Adapter\V2\AfterpayOrderTokenV2 as AfterpayOrderTokenV2;
 use \Magento\Framework\Json\Helper\Data as JsonHelper;
 use \Afterpay\Afterpay\Helper\Data as Helper;
 use \Magento\Checkout\Model\Cart as Cart;
 use \Magento\Store\Model\StoreResolver as StoreResolver;
 use \Magento\Quote\Model\ResourceModel\Quote as QuoteRepository;
 use \Magento\Framework\Controller\Result\JsonFactory as JsonResultFactory;
+use \Magento\Quote\Model\QuoteValidator as QuoteValidator;
 
 /**
  * Class Response
@@ -30,13 +31,14 @@ class Process extends \Magento\Framework\App\Action\Action
     protected $_orderFactory;
     protected $_quoteFactory;
     protected $_afterpayConfig;
-    protected $_afterpayOrderTokenV1;
+    protected $_afterpayOrderTokenV2;
     protected $_jsonHelper;
     protected $_helper;
     protected $_cart;
     protected $_storeResolver;
     protected $_quoteRepository;
     protected $_jsonResultFactory;
+    protected $_quoteValidator;
 
     /**
      * Response constructor.
@@ -49,26 +51,28 @@ class Process extends \Magento\Framework\App\Action\Action
         OrderFactory $orderFactory,
         QuoteFactory $quoteFactory,
         AfterpayConfig $afterpayConfig,
-        AfterpayOrderTokenV1 $afterpayOrderTokenV1,
+        AfterpayOrderTokenV2 $afterpayOrderTokenV2,
         JsonHelper $jsonHelper,
         Helper $helper,
         Cart $cart,
         StoreResolver $storeResolver,
         QuoteRepository $quoteRepository,
-        JsonResultFactory $jsonResultFactory
+        JsonResultFactory $jsonResultFactory,
+        QuoteValidator $quoteValidator
     ) {
         $this->_checkoutSession = $checkoutSession;
         $this->_orderFactory = $orderFactory;
         $this->_quoteFactory = $quoteFactory;
         $this->_afterpayConfig = $afterpayConfig;
-        $this->_afterpayOrderTokenV1 = $afterpayOrderTokenV1;
+        $this->_afterpayOrderTokenV2 = $afterpayOrderTokenV2;
         $this->_jsonHelper = $jsonHelper;
         $this->_helper = $helper;
         $this->_cart = $cart;
         $this->_storeResolver = $storeResolver;
         $this->_quoteRepository = $quoteRepository;
         $this->_jsonResultFactory = $jsonResultFactory;
-
+        $this->_quoteValidator = $quoteValidator;
+        
         parent::__construct($context);
     }
 
@@ -88,11 +92,11 @@ class Process extends \Magento\Framework\App\Action\Action
         
         $quote = $this->_checkoutSession->getQuote();
         $website_id = $this->_afterpayConfig->getStoreObjectFromRequest()->getWebsiteId();
-
+		
         if ($website_id > 1) {
             $quote = $this->_quoteFactory->create()->loadByIdWithoutStore($data["quote_id_" . $website_id]);
         }
-
+		
         $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
         $customerSession = $objectManager->get('Magento\Customer\Model\Session');
         $customerRepository = $objectManager->get('Magento\Customer\Api\CustomerRepositoryInterface');
@@ -103,51 +107,7 @@ class Process extends \Magento\Framework\App\Action\Action
 
             // customer login
             $quote->setCustomer($customer);
-
-            $billingAddress  = $quote->getBillingAddress();
-            $shippingAddress = $quote->getShippingAddress();
-
-            //check if shipping address is missing - e.g. Gift Cards
-            if ((empty($shippingAddress) || empty($shippingAddress->getStreetLine(1))) && (empty($billingAddress) || empty($billingAddress->getStreetLine(1)))) {
-				
-              //Handle the virtual products
-              if($quote->isVirtual()){
-	            try{
-		           $billingID =  $customerSession->getCustomer()->getDefaultBilling();
-		           $this->_helper->debug("No billing address for the virtual product. Adding the Customer's default billing address.");
-		           $address = $objectManager->create('Magento\Customer\Model\Address')->load($billingID);
-		           $billingAddress->addData($address->getData());
-		
-	            }catch(\Exception $e){
-		            $this->_helper->debug($e->getMessage());
-		            $result = $this->_jsonResultFactory->create()->setData(
-		              ['success' => false, 'message' => 'Please select an Address']
-		            );
-
-		          return $result;
-	            }
-              }else{
-	              $result = $this->_jsonResultFactory->create()->setData(
-		            ['success' => false, 'message' => 'Please select an Address']
-	              );
-
-	              return $result;
-                }
-                
-            } // else if( empty($shippingAddress) || empty($shippingAddress->getStreetLine(1))  || empty($shippingAddress->getFirstname()) ) {
-            //     $shippingAddress = $quote->getBillingAddress();
-            //     $quote->setShippingAddress($quote->getBillingAddress());
-            // }
-            elseif (empty($billingAddress) || empty($billingAddress->getStreetLine(1)) || empty($billingAddress->getFirstname())) {
-                
-                $billingAddress = $quote->getShippingAddress();
-                $quote->setBillingAddress($quote->getShippingAddress());
-                $this->_helper->debug("No billing address found. Adding the shipping address as billing address");
-				
-                // Above code copies the shipping address to billing address with the 'address_type' ='shipping', which results in problem with order creating.  
-				
-                $billingAddress->addData(array('address_type'=>'billing'));
-            }
+ 
         } else {
             $post = $this->getRequest()->getPostValue();
 
@@ -168,7 +128,87 @@ class Process extends \Magento\Framework\App\Action\Action
                 }
             }
         }
+		
+		$billingAddress  = $quote->getBillingAddress();
+        $shippingAddress = $quote->getShippingAddress();
+		
+		if (empty($billingAddress) || empty($billingAddress->getStreetLine(1)) || empty($billingAddress->getFirstname())) {
+			if(!empty($shippingAddress) && !empty($shippingAddress->getStreetLine(1)))
+			{
+				$shippingAddressData = $shippingAddress->getData();
+				$billingAddress->setPrefix($shippingAddressData['prefix']);
+				$billingAddress->setFirstName($shippingAddressData['firstname']);
+				$billingAddress->setMiddleName($shippingAddressData['middlename']);
+				$billingAddress->setLastName($shippingAddressData['lastname']);
+				$billingAddress->setSuffix($shippingAddressData['suffix']);
+				$billingAddress->setCompany($shippingAddressData['company']);
+				$billingAddress->setStreet($shippingAddressData['street']);
+				$billingAddress->setCity($shippingAddressData['city']);
+				$billingAddress->setRegion($shippingAddressData['region']);
+				$billingAddress->setRegionId($shippingAddressData['region_id']);
+				$billingAddress->setPostcode($shippingAddressData['postcode']);
+				$billingAddress->setCountryId($shippingAddressData['country_id']);
+				$billingAddress->setTelephone($shippingAddressData['telephone']);
+				$billingAddress->setFax($shippingAddressData['fax']);
+				$this->_helper->debug("No billing address found. Adding the shipping address as billing address");
+			}
+			else{
+				if($customerSession->isLoggedIn()){
+					try{
+					   $billingID =  $customerSession->getCustomer()->getDefaultBilling();
+					   $this->_helper->debug("No billing address found. Adding the Customer's default billing address.");
+					   $address = $objectManager->create('Magento\Customer\Model\Address')->load($billingID);
+					   $billingAddress->addData($address->getData());
+			
+					}catch(\Exception $e){
+						$this->_helper->debug($e->getMessage());
+						$result = $this->_jsonResultFactory->create()->setData(
+						  ['success' => false, 'message' => 'Please select an Address']
+						);
 
+					  return $result;
+					}
+				}
+				else{
+				  $result = $this->_jsonResultFactory->create()->setData(
+					['success' => false, 'message' => 'Please select an Address']
+				  );
+
+				  return $result;
+				}
+			}
+		}
+		
+		if((empty($shippingAddress) || empty($shippingAddress->getStreetLine(1))) && !$quote->isVirtual()){
+			$billingAddress  = $quote->getBillingAddress();
+			if(!empty($billingAddress) && !empty($billingAddress->getStreetLine(1)))
+			{
+				$billingAddressData = $billingAddress->getData();
+				$shippingAddress->setPrefix($billingAddressData['prefix']);
+				$shippingAddress->setFirstName($billingAddressData['firstname']);
+				$shippingAddress->setMiddleName($billingAddressData['middlename']);
+				$shippingAddress->setLastName($billingAddressData['lastname']);
+				$shippingAddress->setSuffix($billingAddressData['suffix']);
+				$shippingAddress->setCompany($billingAddressData['company']);
+				$shippingAddress->setStreet($billingAddressData['street']);
+				$shippingAddress->setCity($billingAddressData['city']);
+				$shippingAddress->setRegion($billingAddressData['region']);
+				$shippingAddress->setRegionId($billingAddressData['region_id']);
+				$shippingAddress->setPostcode($billingAddressData['postcode']);
+				$shippingAddress->setCountryId($billingAddressData['country_id']);
+				$shippingAddress->setTelephone($billingAddressData['telephone']);
+				$shippingAddress->setFax($billingAddressData['fax']);
+				$this->_helper->debug("No shipping address found. Adding the billing address as shipping address");
+			}
+			else{
+				$result = $this->_jsonResultFactory->create()->setData(
+					['success' => false, 'message' => 'Please select an Address']
+				  );
+
+				return $result;
+			}
+		}
+		
         $payment = $quote->getPayment();
 
         $payment->setMethod(\Afterpay\Afterpay\Model\Payovertime::METHOD_CODE);
@@ -177,7 +217,7 @@ class Process extends \Magento\Framework\App\Action\Action
 
 
         try {
-            $payment = $this->_getAfterPayOrderToken($this->_afterpayOrderTokenV1, $payment, $quote);
+            $payment = $this->_getAfterPayOrderToken($this->_afterpayOrderTokenV2, $payment, $quote);
         } catch (\Exception $e) {
             $result = $this->_jsonResultFactory->create()->setData(
                 ['error' => 1, 'message' => $e->getMessage()]
@@ -187,8 +227,17 @@ class Process extends \Magento\Framework\App\Action\Action
         }
 
         $quote->setPayment($payment);
-        $this->_quoteRepository->save($quote);
-
+        
+		try{
+			$this->_quoteValidator->validateBeforeSubmit($quote);
+		}
+		catch(\Magento\Framework\Exception\LocalizedException $e){
+			 $result = $this->_jsonResultFactory->create()->setData(
+				['success' => false, 'message' => $e->getMessage()]
+			  );
+			return $result;
+		}
+		$this->_quoteRepository->save($quote);
         $this->_checkoutSession->replaceQuote($quote);
 
         $token = $payment->getAdditionalInformation(\Afterpay\Afterpay\Model\Payovertime::ADDITIONAL_INFORMATION_KEY_TOKEN);
@@ -208,9 +257,9 @@ class Process extends \Magento\Framework\App\Action\Action
     private function _getAfterPayOrderToken($afterpayOrderToken, $payment, $targetObject)
     {
         if ($targetObject && $targetObject->getReservedOrderId()) {
-            $result = $afterpayOrderToken->generate($targetObject, \Afterpay\Afterpay\Model\Payovertime::AFTERPAY_PAYMENT_TYPE_CODE_V1, ['merchantOrderId' => $targetObject->getReservedOrderId() ]);
+            $result = $afterpayOrderToken->generate($targetObject, ['merchantOrderId' => $targetObject->getReservedOrderId() ]);
         } elseif ($targetObject) {
-            $result = $afterpayOrderToken->generate($targetObject, \Afterpay\Afterpay\Model\Payovertime::AFTERPAY_PAYMENT_TYPE_CODE_V1);
+            $result = $afterpayOrderToken->generate($targetObject);
         }
         
         $result = $this->_jsonHelper->jsonDecode($result->getBody(), true);

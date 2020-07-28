@@ -3,7 +3,7 @@
  * Magento 2 extensions for Afterpay Payment
  *
  * @author Afterpay
- * @copyright 2016-2019 Afterpay https://www.afterpay.com
+ * @copyright 2016-2020 Afterpay https://www.afterpay.com
  */
 namespace Afterpay\Afterpay\Controller\Payment;
 
@@ -27,6 +27,7 @@ class Response extends \Magento\Framework\App\Action\Action
     protected $_jsonHelper;
     protected $_afterpayConfig;
     protected $_directCapture;
+    protected $_authRequest;
     protected $_tokenCheck;
     protected $_quoteManagement;
     protected $_transactionBuilder;
@@ -35,12 +36,30 @@ class Response extends \Magento\Framework\App\Action\Action
     protected $_paymentRepository;
     protected $_transactionRepository;
 	protected $_notifierPool;
+	protected $_paymentCapture;
+	protected $_quoteValidator;
+	protected $_timezone;
+	protected $_afterpayApiPayment;
 	
     /**
      * Response constructor.
      * @param \Magento\Framework\App\Action\Context $context
      * @param \Magento\Framework\Controller\Result\ForwardFactory $resultForwardFactory
      * @param \Afterpay\Afterpay\Model\Response $response
+     * @param \Afterpay\Afterpay\Helper\Data $helper
+     * @param \Afterpay\Afterpay\Model\Adapter\V2\AfterpayOrderDirectCapture $directCapture
+     * @param \Afterpay\Afterpay\Model\Adapter\V2\AfterpayOrderAuthRequest $authRequest
+     * @param \Afterpay\Afterpay\Model\Adapter\V2\AfterpayOrderTokenCheck $tokenCheck
+     * @param \Magento\Framework\Json\Helper\Data $jsonHelper
+     * @param \Afterpay\Afterpay\Model\Config\Payovertime $afterpayConfig
+     * @param \Magento\Quote\Model\QuoteManagement $quoteManagement
+     * @param \Magento\Sales\Model\Order\Payment\Transaction\BuilderInterface $transactionBuilder
+     * @param \Magento\Sales\Model\Order\Email\Sender\OrderSender $orderSender
+     * @param \Magento\Sales\Model\OrderRepository $orderRepository
+     * @param \Magento\Sales\Model\Order\Payment\Repository $paymentRepository
+     * @param \Magento\Sales\Model\Order\Payment\Transaction\Repository $transactionRepository
+     * @param \Magento\Framework\Notification\NotifierInterface $notifierPool
+     * @param \Afterpay\Afterpay\Model\Adapter\V2\AfterpayOrderPaymentCapture $paymentCapture
      */
     public function __construct(
         \Magento\Framework\App\Action\Context $context,
@@ -48,8 +67,9 @@ class Response extends \Magento\Framework\App\Action\Action
         \Magento\Checkout\Model\Session $checkoutSession,
         \Afterpay\Afterpay\Model\Response $response,
         \Afterpay\Afterpay\Helper\Data $helper,
-        \Afterpay\Afterpay\Model\Adapter\V1\AfterpayOrderDirectCapture $directCapture,
-        \Afterpay\Afterpay\Model\Adapter\V1\AfterpayOrderTokenCheck $tokenCheck,
+        \Afterpay\Afterpay\Model\Adapter\V2\AfterpayOrderDirectCapture $directCapture,
+        \Afterpay\Afterpay\Model\Adapter\V2\AfterpayOrderAuthRequest $authRequest,
+        \Afterpay\Afterpay\Model\Adapter\V2\AfterpayOrderTokenCheck $tokenCheck,
         \Magento\Framework\Json\Helper\Data $jsonHelper,
         \Afterpay\Afterpay\Model\Config\Payovertime $afterpayConfig,
         \Magento\Quote\Model\QuoteManagement $quoteManagement,
@@ -58,35 +78,33 @@ class Response extends \Magento\Framework\App\Action\Action
         \Magento\Sales\Model\OrderRepository $orderRepository,
         \Magento\Sales\Model\Order\Payment\Repository $paymentRepository,
         \Magento\Sales\Model\Order\Payment\Transaction\Repository $transactionRepository,
-		\Magento\Framework\Notification\NotifierInterface $notifierPool
+		\Magento\Framework\Notification\NotifierInterface $notifierPool,
+		\Afterpay\Afterpay\Model\Adapter\V2\AfterpayOrderPaymentCapture $paymentCapture,
+		\Magento\Quote\Model\QuoteValidator $quoteValidator,
+		\Magento\Framework\Stdlib\DateTime\TimezoneInterface $timezone,
+		\Afterpay\Afterpay\Model\Adapter\AfterpayPayment $afterpayApiPayment
     ) {
-        $this->_resultForwardFactory = $resultForwardFactory;
-        $this->response = $response;
-        $this->_helper = $helper;
-        $this->_checkoutSession = $checkoutSession;
-
+        $this->_resultForwardFactory = $resultForwardFactory; 
+		$this->response = $response;
+		$this->_helper = $helper;
+		$this->_checkoutSession = $checkoutSession;
         $this->_jsonHelper = $jsonHelper;
-
         $this->_directCapture = $directCapture;
-
+		$this->_authRequest = $authRequest;
         $this->_tokenCheck = $tokenCheck;
-
         $this->_afterpayConfig = $afterpayConfig;
-        
         $this->_quoteManagement = $quoteManagement;
-
         $this->_transactionBuilder = $transactionBuilder;
-
         $this->_orderSender = $orderSender;
-
         $this->_orderRepository = $orderRepository;
-
         $this->_paymentRepository = $paymentRepository;
-
         $this->_transactionRepository = $transactionRepository;
-		
         $this->_notifierPool = $notifierPool;
-
+		$this->_paymentCapture = $paymentCapture;
+		$this->_quoteValidator = $quoteValidator;
+		$this->_timezone = $timezone;
+		$this->_afterpayApiPayment = $afterpayApiPayment;
+		
         parent::__construct($context);
     }
 
@@ -131,8 +149,10 @@ class Response extends \Magento\Framework\App\Action\Action
                     $quote = $this->_checkoutSession->getQuote();
 
                     $payment = $quote->getPayment();
-
-                    $token = $payment->getAdditionalInformation(\Afterpay\Afterpay\Model\Payovertime::ADDITIONAL_INFORMATION_KEY_TOKEN);
+					
+					$this->_quoteValidator->validateBeforeSubmit($quote);
+                    
+					$token = $payment->getAdditionalInformation(\Afterpay\Afterpay\Model\Payovertime::ADDITIONAL_INFORMATION_KEY_TOKEN);
                     $merchant_order_id = $quote->getReservedOrderId();
 
                     $response_check = $this->_tokenCheck->generate($token);
@@ -147,14 +167,23 @@ class Response extends \Magento\Framework\App\Action\Action
                     } elseif ($merchant_order_id != $response_check['merchantReference']) {
                         // Check order id
                         throw new \Magento\Framework\Exception\LocalizedException(__('There are issues when processing your payment. Invalid Merchant Reference'));
-                    } elseif (round($quote->getGrandTotal(), 2) != round($response_check['totalAmount']['amount'], 2)) {
+                    } elseif (round($quote->getGrandTotal(), 2) != round($response_check['amount']['amount'], 2)) {
                         // Check the order amount
                         throw new \Magento\Framework\Exception\LocalizedException(__('There are issues when processing your payment. Invalid Amount'));
                     }
 
-
-                    $response = $this->_directCapture->generate($token, $merchant_order_id);
-                    $response = $this->_jsonHelper->jsonDecode($response->getBody());
+					if(!$this->_helper->getConfig('payment/afterpaypayovertime/payment_flow') || $this->_helper->getConfig('payment/afterpaypayovertime/payment_flow')=="immediate" || $quote->getIsVirtual()){
+						
+						$this->_helper->debug("Starting Payment Capture request.");
+						$response = $this->_directCapture->generate($token, $merchant_order_id);
+					}
+					else{
+						
+						$this->_helper->debug("Starting Auth request.");
+						$response = $this->_authRequest->generate($token, $merchant_order_id);
+					}
+					
+					$response = $this->_jsonHelper->jsonDecode($response->getBody());
 
                     if (empty($response['status'])) {
                         $response['status'] = \Afterpay\Afterpay\Model\Response::RESPONSE_STATUS_DECLINED;
@@ -163,7 +192,21 @@ class Response extends \Magento\Framework\App\Action\Action
 
                     switch ($response['status']) {
                         case \Afterpay\Afterpay\Model\Response::RESPONSE_STATUS_APPROVED:
-                            $payment->setAdditionalInformation(\Afterpay\Afterpay\Model\Payovertime::ADDITIONAL_INFORMATION_KEY_ORDERID, $response['id']);
+							$payment->setAdditionalInformation(\Afterpay\Afterpay\Model\Payovertime::ADDITIONAL_INFORMATION_KEY_ORDERID, $response['id']);
+                            
+							$payment->setAdditionalInformation(\Afterpay\Afterpay\Model\Payovertime::PAYMENT_STATUS,$response['paymentState']);
+							
+							if($response['paymentState']==\Afterpay\Afterpay\Model\Response::PAYMENT_STATUS_AUTH_APPROVED && array_key_exists('events',$response)){
+								try{
+									$payment->setAdditionalInformation(\Afterpay\Afterpay\Model\Payovertime::AUTH_EXPIRY,$this->_timezone->date($response['events'][0]['expires'])->format('Y-m-d H:i T'));
+								}
+								catch(\Exception $e){
+									$payment->setAdditionalInformation(\Afterpay\Afterpay\Model\Payovertime::AUTH_EXPIRY,$this->_timezone->date($response['events'][0]['expires'],null,false)->format('Y-m-d H:i T'));
+									$this->_helper->debug($e->getMessage());
+								}
+							}
+							
+							$payment->setAdditionalInformation(\Afterpay\Afterpay\Model\Payovertime::OPEN_TOCAPTURE_AMOUNT, array_key_exists('openToCaptureAmount',$response) && !empty($response['openToCaptureAmount']) ? $response['openToCaptureAmount']['amount'] : "0.00");
 
                             $this->_checkoutSession
                                 ->setLastQuoteId($quote->getId())
@@ -190,40 +233,83 @@ class Response extends \Magento\Framework\App\Action\Action
 			                       $retry = true;
 			                       sleep(1);
 		                         } 
-		                         else{
-									$this->_notifierPool->addMajor(
-									'Afterpay Order Failed',
-									'There was a problem with an Afterpay order. Order number : '.$response['id'].' and the merchant order number : '.$merchant_order_id,
-									''
-									);
-									$this->_helper->debug("Order Exception : There was a problem with order creation. ".$e->getMessage());
-		                         }
+								 else{
+									 //Reverse or void the order
+									$orderId = $payment->getAdditionalInformation(\Afterpay\Afterpay\Model\Payovertime::ADDITIONAL_INFORMATION_KEY_ORDERID);
+									$paymentStatus = $payment->getAdditionalInformation(\Afterpay\Afterpay\Model\Payovertime::PAYMENT_STATUS);
+									
+									if($paymentStatus == \Afterpay\Afterpay\Model\Response::PAYMENT_STATUS_AUTH_APPROVED){
+										$voidResponse = $this->_afterpayApiPayment->voidOrder($orderId);
+										$voidResponse = $this->_jsonHelper->jsonDecode($voidResponse->getBody());
+											
+										if(!array_key_exists("errorCode",$voidResponse)) {
+											$payment->setAdditionalInformation(\Afterpay\Afterpay\Model\Payovertime::PAYMENT_STATUS, $voidResponse['paymentState']);
+											
+											if(array_key_exists('openToCaptureAmount',$voidResponse) && !empty($voidResponse['openToCaptureAmount'])){
+												$payment->setAdditionalInformation(\Afterpay\Afterpay\Model\Payovertime::OPEN_TOCAPTURE_AMOUNT,$voidResponse['openToCaptureAmount']['amount']);
+											}
+											
+											throw new \Magento\Framework\Exception\LocalizedException(__('There was a problem placing your order. Your Afterpay order ' .$orderId. ' is refunded.'));
+											$this->_helper->debug('Order Exception : There was a problem with order creation. Afterpay Order ' .$orderId. ' Voided.'.$e->getMessage());
+										}
+										else{
+											$this->_helper->debug("Transaction Exception : " . json_encode($voidResponse));
+											$this->_notifierPool->addMajor(
+											'Afterpay Order Failed',
+											'There was a problem with an Afterpay order. Order number : '.$response['id'].' and the merchant order number : '.$merchant_order_id,
+											''
+											);
+											throw new \Magento\Framework\Exception\LocalizedException(__('There was a problem placing your order.'));						
+										}
+									}
+									else{
+										$orderTotal = $quote->getGrandTotal();
+										
+										$refundResponse = $this->_afterpayApiPayment->refund(number_format($orderTotal, 2, '.', ''),$orderId,$quote->getQuoteCurrencyCode());
+
+										$refundResponse = $this->_jsonHelper->jsonDecode($refundResponse->getBody());
+
+										if (!empty($refundResponse['refundId'])) {
+											throw new \Magento\Framework\Exception\LocalizedException(__('There was a problem placing your order. Your Afterpay order ' .$orderId. ' is refunded.'));
+											$this->_helper->debug('Order Exception : There was a problem with order creation. Afterpay Order ' .$orderId. ' refunded.'.$e->getMessage());
+											
+										} else {
+											$this->_helper->debug("Transaction Exception : " . json_encode($refundResponse));
+											$this->_notifierPool->addMajor(
+											'Afterpay Order Failed',
+											'There was a problem with an Afterpay order. Order number : '.$response['id'].' and the merchant order number : '.$merchant_order_id,
+											''
+											);
+											throw new \Magento\Framework\Exception\LocalizedException(__('There was a problem placing your order.'));
+										}
+									} 
+								 }
 	                            }
 								$tries++;
                             }while($tries<3 && $retry);
-                            // $order->setEmailSent(0);
+
                             if ($order) {
-                                $this->_checkoutSession->setLastOrderId($order->getId())
+								
+								$payment = $order->getPayment();
+								
+								if($payment->getAdditionalInformation(\Afterpay\Afterpay\Model\Payovertime::PAYMENT_STATUS)==\Afterpay\Afterpay\Model\Response::PAYMENT_STATUS_AUTH_APPROVED){
+									$totalDiscount = $this->_calculateTotalDiscount($order);
+									if($totalDiscount > 0){
+										$payment->setAdditionalInformation(\Afterpay\Afterpay\Model\Payovertime::ROLLOVER_DISCOUNT,$this->_calculateTotalDiscount($order));
+									}
+									$this->_captureVirtual($order,$payment);
+								}
+                                
+							    $this->_checkoutSession->setLastOrderId($order->getId())
                                                    ->setLastRealOrderId($order->getIncrementId())
                                                    ->setLastOrderStatus($order->getStatus());
 
-                                $this->_createTransaction($order, $response);
+                                $this->_createTransaction($order, $response,$payment);
+								
+								$this->messageManager->addSuccess("Afterpay Transaction Completed");
 
-                                //email sending mechanism
-                                $redirectUrl = $quote->getPayment()->getOrderPlaceRedirectUrl();
-                                if (!$redirectUrl && $order->getCanSendNewEmailFlag()) {
-                                    try {
-                                        $this->_orderSender->send($order);
-                                    } catch (\Exception $e) {
-                                        $this->_helper->debug("Transaction Email Sending Error: " . json_encode($e));
-                                    }
-                                }
-
-
-                                $this->messageManager->addSuccess("Afterpay Transaction Completed");
-
-                                $redirect = 'checkout/onepage/success';
-                                // $this->_redirect('checkout/onepage/success');
+								$redirect = 'checkout/onepage/success';
+								
                             } else {
 	                           $this->_helper->debug("Order Exception : There was a problem with order creation.");
                             }
@@ -231,12 +317,7 @@ class Response extends \Magento\Framework\App\Action\Action
                         case \Afterpay\Afterpay\Model\Response::RESPONSE_STATUS_DECLINED:
                             $this->messageManager->addError(__('Afterpay payment declined. Please select an alternative payment method.'));
                             break;
-                        // case \Afterpay\Afterpay\Model\Response::RESPONSE_STATUS_PENDING:
-                        //     $payment->setTransactionId($payment->getAfterpayOrderId())
-                        //         ->setIsTransactionPending(true);
-                        //     break;
                         default:
-                            // $this->messageManager->addError(__('There is a problem with your Afterpay payment. Please select an alternative payment method.'));
                             $this->messageManager->addError($response);
                             break;
                     }
@@ -255,11 +336,9 @@ class Response extends \Magento\Framework\App\Action\Action
         return $redirect;
     }
 
-    private function _createTransaction($order = null, $paymentData = [])
+    private function _createTransaction($order = null, $paymentData = [],$payment=null)
     {
         try {
-            //get payment object from order object
-            $payment = $order->getPayment();
             $payment->setLastTransId($paymentData['id']);
             $payment->setTransactionId($paymentData['id']);
             $formatedPrice = $order->getBaseCurrency()->formatTxt(
@@ -285,8 +364,8 @@ class Response extends \Magento\Framework\App\Action\Action
 			
 			$order->setBaseCustomerBalanceInvoiced(null);
 			$order->setCustomerBalanceInvoiced(null);
-            
-			$this->_orderRepository->save($order);
+            $this->_orderRepository->save($order);
+			
             $transaction = $this->_transactionRepository->save($transaction);
  
             return  $transaction->getTransactionId();
@@ -294,5 +373,72 @@ class Response extends \Magento\Framework\App\Action\Action
             //log errors here
             $this->_helper->debug("Transaction Exception: There was a problem with creating the transaction. ".$e->getMessage());
         }
+    }
+	
+	private function _captureVirtual($order = null,$payment = null)
+	{
+		$totalCaptureAmount = 0.00;
+		
+		foreach($order->getAllItems() as $items) {  			
+			if($items->getIsVirtual()) {
+				$itemPrice = ($items->getQtyOrdered() * $items->getPrice())+$items->getBaseTaxAmount();
+				$totalCaptureAmount = $totalCaptureAmount + ($itemPrice - $items->getDiscountAmount());
+			}
+		}
+		
+		$totalDiscountAmount = $payment->getAdditionalInformation(\Afterpay\Afterpay\Model\Payovertime::ROLLOVER_DISCOUNT);
+			
+		if($totalDiscountAmount!=0){
+			if($totalCaptureAmount >= $totalDiscountAmount){
+				$totalCaptureAmount = $totalCaptureAmount - $totalDiscountAmount;
+				$totalDiscountAmount = 0.00;
+			}
+			else if($totalCaptureAmount < $totalDiscountAmount){
+				$totalDiscountAmount = $totalDiscountAmount  - $totalCaptureAmount;
+				$totalCaptureAmount = 0.00;
+				
+			}
+			$payment->setAdditionalInformation(\Afterpay\Afterpay\Model\Payovertime::ROLLOVER_DISCOUNT, number_format($totalDiscountAmount, 2, '.', ''));
+		}
+
+		if($totalCaptureAmount >= 1){
+			$afterpay_order_id = $payment->getAdditionalInformation(\Afterpay\Afterpay\Model\Payovertime::ADDITIONAL_INFORMATION_KEY_ORDERID);
+			$merchant_order_id = $order->getIncrementId();
+			$currencyCode      = $order->getOrderCurrencyCode();
+			
+			$totalAmount= [
+                        'amount'   => number_format($totalCaptureAmount, 2, '.', ''),
+                        'currency' => $currencyCode
+                    ];	
+			
+			$response = $this->_paymentCapture->send($totalAmount,$merchant_order_id,$afterpay_order_id);
+			$response = $this->_jsonHelper->jsonDecode($response->getBody());
+			
+			if(!array_key_exists("errorCode",$response)) {
+				$payment->setAdditionalInformation(\Afterpay\Afterpay\Model\Payovertime::PAYMENT_STATUS,$response['paymentState']);
+				if(array_key_exists('openToCaptureAmount',$response) && !empty($response['openToCaptureAmount'])){
+					$payment->setAdditionalInformation(\Afterpay\Afterpay\Model\Payovertime::OPEN_TOCAPTURE_AMOUNT,$response['openToCaptureAmount']['amount']);
+				}
+			}
+			else{
+				$this->_helper->debug("Transaction Exception : " . json_encode($response));
+			}
+		}
+		else{
+			if($totalCaptureAmount < 1 && $totalCaptureAmount > 0){
+				$payment->setAdditionalInformation(\Afterpay\Afterpay\Model\Payovertime::ROLLOVER_AMOUNT, number_format($totalCaptureAmount, 2, '.', ''));
+			}
+		}
+		
+	}
+	
+   /*
+    Calculate Total Discount for the given order
+   */
+    private function _calculateTotalDiscount($order){
+	  $storeCredit    =  $order->getCustomerBalanceAmount();
+	  $giftCardAmount =  $order->getGiftCardsAmount();
+	  $totalDiscountAmount = $storeCredit + $giftCardAmount;
+	  return number_format($totalDiscountAmount, 2, '.', '');
     }
 }
