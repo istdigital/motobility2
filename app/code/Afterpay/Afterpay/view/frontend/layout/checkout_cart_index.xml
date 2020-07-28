@@ -4,12 +4,13 @@
  * Magento 2 extensions for Afterpay Payment
  *
  * @author Afterpay
- * @copyright 2016-2019 Afterpay https://www.afterpay.com
+ * @copyright 2016-2020 Afterpay https://www.afterpay.com
  */
 -->
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <head>
         <css src="Afterpay_Afterpay::css/afterpay.css"/>
+		<link src="Afterpay_Afterpay::js/view/cart/afterpay-cart.js"/>
     </head>
     <body>
         <referenceContainer name="checkout.cart.methods">

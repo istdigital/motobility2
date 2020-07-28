@@ -3,7 +3,7 @@
  * Magento 2 extensions for Afterpay Payment
  *
  * @author Afterpay
- * @copyright 2016-2019 Afterpay https://www.afterpay.com
+ * @copyright 2016-2020 Afterpay https://www.afterpay.com
  */
 namespace Afterpay\Afterpay\Block\Catalog;
 
@@ -91,11 +91,12 @@ class Installments extends Template
 				if($this->afterpayPayovertime->canUseForCurrency($this->afterpayConfig->getCurrencyCode())){
 					$excluded_categories=$this->afterpayConfig->getExcludedCategories();
 					if($excluded_categories!=""){
+						$excluded_categories_array =  explode(",",$excluded_categories);
 						$product = $this->registry->registry('product');
 						$categoryids = $product->getCategoryIds();
 						foreach($categoryids as $k)
 						{
-							if(strpos($excluded_categories,$k) !== false){
+							if(in_array($k,$excluded_categories_array)){
 								return false;
 							}
 						}

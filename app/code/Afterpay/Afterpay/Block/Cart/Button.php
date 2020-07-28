@@ -3,7 +3,7 @@
  * Magento 2 extensions for Afterpay Payment
  *
  * @author Afterpay
- * @copyright 2016-2019 Afterpay https://www.afterpay.com
+ * @copyright 2016-2020 Afterpay https://www.afterpay.com
  */
 namespace Afterpay\Afterpay\Block\Cart;
 
@@ -108,12 +108,12 @@ class Button extends Template
 				$grandTotal =$quote->getGrandTotal();
 				$excluded_categories=$this->afterpayConfig->getExcludedCategories();
 				
-				if($this->afterpayPayovertime->canUseForCurrency($this->afterpayConfig->getCurrencyCode()) && $this->afterpayConfig->getMaxOrderLimit() > $grandTotal && $this->afterpayConfig->getMinOrderLimit() < $grandTotal){
+				if($this->afterpayPayovertime->canUseForCurrency($this->afterpayConfig->getCurrencyCode()) && $this->afterpayConfig->getMaxOrderLimit() >= $grandTotal && $this->afterpayConfig->getMinOrderLimit() <= $grandTotal){
 					
 					if($excluded_categories !=""){
 						$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
 						$productRepository = $objectManager->get('\Magento\Catalog\Model\ProductRepository');
-						
+						$excluded_categories_array =  explode(",",$excluded_categories);
 						
 						foreach ($quote->getAllVisibleItems() as $item) {
 							$productid = $item->getProductId();
@@ -122,7 +122,7 @@ class Button extends Template
 							
 							foreach($categoryids as $k)
 							{
-								if(strpos($excluded_categories,$k) !== false){
+								if(in_array($k,$excluded_categories_array)){
 									return false;
 								}
 							}
@@ -162,17 +162,22 @@ class Button extends Template
     {
         $currencyCode = $this->afterpayConfig->getCurrencyCode();
         $assetsPath = $this->componentRegistrar->getPath(ComponentRegistrar::MODULE, 'Afterpay_Afterpay');
-        $assets_cart_page = '';
+        $assets_cart_page = [];
 
         if(file_exists($assetsPath.'/assets.ini'))
         {
             $assets = parse_ini_file($assetsPath.'/assets.ini',true);
-            if(isset($assets[$currencyCode]['cart_page']))
+            if(isset($assets[$currencyCode]['cart_page1']))
             {
-                $assets_cart_page = $assets[$currencyCode]['cart_page'];
-                $assets_cart_page = str_replace(array('[modal-href]'), 
-                    array('javascript:void(0)'), $assets_cart_page);
-            } 
+                $assets_cart_page['snippet1'] = $assets[$currencyCode]['cart_page1'];
+                $assets_cart_page['snippet2'] = $assets[$currencyCode]['cart_page2'];
+                $assets_cart_page['snippet2'] = str_replace(array('[modal-href]'), 
+                    array('javascript:void(0)'), $assets_cart_page['snippet2']);
+            }
+			else{
+				$assets_cart_page['snippet1'] = '';
+				$assets_cart_page['snippet2'] = '';
+			}			
         } 
         return $assets_cart_page;
     }

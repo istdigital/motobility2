@@ -3,7 +3,7 @@
  * Magento 2 extensions for Afterpay Payment
  *
  * @author Afterpay
- * @copyright 2016-2019 Afterpay https://www.afterpay.com
+ * @copyright 2016-2020 Afterpay https://www.afterpay.com
  */
 namespace Afterpay\Afterpay\Model;
 
@@ -22,9 +22,15 @@ class Payovertime extends \Magento\Payment\Model\Method\AbstractMethod
     const ADDITIONAL_INFORMATION_KEY_TOKEN = 'afterpay_token';
     const ADDITIONAL_INFORMATION_KEY_ORDERID = 'afterpay_order_id';
     const ADDITIONAL_INFORMATION_KEY_TOKENGENERATED = 'afterpay_token_generated';
+    const PAYMENT_STATUS = 'afterpay_payment_status';
+    const ROLLOVER_DISCOUNT = 'afterpay_rollover_discount';
+    const ROLLOVER_AMOUNT = 'afterpay_rollover_amount';
+    const OPEN_TOCAPTURE_AMOUNT = 'afterpay_open_to_capture_amount';
+    const ROLLOVER_REFUND = 'afterpay_rollover_refund_amount';
+	const AUTH_EXPIRY = 'afterpay_auth_expiry_date';
+
 
     const AFTERPAY_PAYMENT_TYPE_CODE = 'PBI';
-    const AFTERPAY_PAYMENT_TYPE_CODE_V1 = 'PAY_BY_INSTALLMENT';
 
     const MINUTE_DELAYED_ORDER = 75;
 
@@ -34,7 +40,7 @@ class Payovertime extends \Magento\Payment\Model\Method\AbstractMethod
     protected $_code = self::METHOD_CODE;
 
     protected $_isGateway = true;
-    protected $_isInitializeNeeded = true;
+    protected $_isInitializeNeeded = false;
     protected $_canOrder = true;
     protected $_canAuthorize = true;
     protected $_canCapture = true;
@@ -48,7 +54,7 @@ class Payovertime extends \Magento\Payment\Model\Method\AbstractMethod
     /**
      * For dependency injection
      */
-    protected $supportedCurrencyCodes = ['AUD','NZD','USD'];
+    protected $supportedCurrencyCodes = ['AUD','NZD','USD','CAD'];
     protected $afterPayPaymentTypeCode = self::AFTERPAY_PAYMENT_TYPE_CODE;
 
     protected $logger;
@@ -56,7 +62,7 @@ class Payovertime extends \Magento\Payment\Model\Method\AbstractMethod
     protected $checkoutSession;
     protected $exception;
 
-    protected $afterpayOrderTokenV1;
+    protected $afterpayOrderTokenV2;
 
     protected $afterpayPayment;
     protected $afterpayResponse;
@@ -81,7 +87,7 @@ class Payovertime extends \Magento\Payment\Model\Method\AbstractMethod
      * @param \Magento\Payment\Model\Method\Logger $logger
      * @param \Magento\Checkout\Model\Session $checkoutSession
      * @param \Magento\Framework\Exception\LocalizedExceptionFactory $exception
-     * @param Adapter\AfterpayOrderTokenV1 $afterpayOrderTokenV1
+     * @param Adapter\AfterpayOrderTokenV2 $afterpayOrderTokenV2
      * @param Adapter\AfterpayPayment $afterpayPayment
      * @param Response $afterpayResponse
      * @param Helper $afterpayHelper
@@ -106,7 +112,7 @@ class Payovertime extends \Magento\Payment\Model\Method\AbstractMethod
         \Magento\Payment\Model\Method\Logger $logger,
         \Magento\Checkout\Model\Session $checkoutSession,
         \Magento\Framework\Exception\LocalizedExceptionFactory $exception,
-        \Afterpay\Afterpay\Model\Adapter\V1\AfterpayOrderTokenV1 $afterpayOrderTokenV1,
+        \Afterpay\Afterpay\Model\Adapter\V2\AfterpayOrderTokenV2 $afterpayOrderTokenV2,
         \Afterpay\Afterpay\Model\Adapter\AfterpayPayment $afterpayPayment,
         \Afterpay\Afterpay\Model\Response $afterpayResponse,
         Helper $afterpayHelper,
@@ -147,7 +153,7 @@ class Payovertime extends \Magento\Payment\Model\Method\AbstractMethod
         $this->jsonHelper = $jsonHelper;
         $this->messageManager = $messageManager;
 
-        $this->afterpayOrderTokenV1 = $afterpayOrderTokenV1;
+        $this->afterpayOrderTokenV2 = $afterpayOrderTokenV2;
         $this->_paymentQuoteRepository = $paymentQuoteRepository;
     }
 
@@ -156,11 +162,6 @@ class Payovertime extends \Magento\Payment\Model\Method\AbstractMethod
      */
     public function isInitializeNeeded()
     {
-        if ($this->getConfigData('payment_action') == self::ACTION_AUTHORIZE_CAPTURE) {
-            $this->afterPayPaymentTypeCode = self::AFTERPAY_PAYMENT_TYPE_CODE_V1;
-            return false;
-        }
-        
         return $this->_isInitializeNeeded;
     }
 
@@ -266,44 +267,15 @@ class Payovertime extends \Magento\Payment\Model\Method\AbstractMethod
     {
         // debug mode
         $this->helper->debug('Start \Afterpay\Afterpay\Model\Payovertime::refund()');
-
-        // get Afterpay Order ID
-        $orderId = $payment->getAdditionalInformation(self::ADDITIONAL_INFORMATION_KEY_ORDERID);
-
-        // Check if order is linked to the Afterpay Order
-        if ($orderId) {
-            if ($payment->getOrder()->getStore()->getWebsiteId() > 1) {
-                $response = $this->afterpayPayment->refund(
-                    round($amount, 2),
-                    $orderId,
-                    $payment->getOrder()->getOrderCurrencyCode(),
-                    ["website_id" => $payment->getOrder()->getStore()->getWebsiteId()] //override
-                );
-            } else {
-                $response = $this->afterpayPayment->refund(round($amount, 2), $orderId, $payment->getOrder()->getOrderCurrencyCode());
-            }
-
-            $response = $this->jsonHelper->jsonDecode($response->getBody());
-
-            //Display API error if refund id is not returned.
-            if (!empty($response['refundId'])) {
-                // debug mode
-                $this->helper->debug('Finished \Afterpay\Afterpay\Model\Payovertime::refund()');
-                return $this;
-            } else {
-                $message = __('Afterpay API Error: ' . $response['message']);
-            }
-        } else {
-            $message = __('There are no Afterpay payment linked to this order. Please use refund offline for this order.');
-        }
-
-        // Throw an exception and error
-        $this->messageManager->addError($message);
-
-        // debug mode
-        $this->helper->debug($message);
-
-        throw new \Magento\Framework\Exception\LocalizedException($message);
+		
+		$result = $this->afterpayResponse->calculateRefund($payment, $amount);
+		
+		if(!array_key_exists('success',$result)){
+			throw new \Magento\Framework\Exception\LocalizedException(__('There was a problem with your refund. Please check the logs.'));
+		}
+		$this->helper->debug('Finished \Afterpay\Afterpay\Model\Payovertime::refund()');
+		return $this;
+		
     }
 
     /**
@@ -312,7 +284,7 @@ class Payovertime extends \Magento\Payment\Model\Method\AbstractMethod
      */
     public function isAvailable(\Magento\Quote\Api\Data\CartInterface $quote = null)
     {
-        if (!$this->getConfigData('merchant_id') || !$this->getConfigData('merchant_key')) {
+        if (!$this->getConfigData('merchant_id') || !$this->getConfigData('merchant_key') || ($this->getConfigData('payment_flow') == "deferred" && $quote->getGrandTotal() < 1)) {
             return false;
         }
 		else{
@@ -322,7 +294,7 @@ class Payovertime extends \Magento\Payment\Model\Method\AbstractMethod
 				$quote = $this->checkoutSession->getQuote();
 				$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
 				$productRepository = $objectManager->get('\Magento\Catalog\Model\ProductRepository');
-				$excluded_categories=$this->getConfigData('exclude_category');
+				$excluded_categories_array =  explode(",",$excluded_categories);
 			
 				foreach ($quote->getAllVisibleItems() as $item) {
 					$productid = $item->getProductId();
@@ -332,7 +304,7 @@ class Payovertime extends \Magento\Payment\Model\Method\AbstractMethod
 				
 					foreach($categoryids as $k)
 					{
-						if(strpos($excluded_categories,$k) !== false){
+						if(in_array($k,$excluded_categories_array)){
 							return false;
 						}
 					}

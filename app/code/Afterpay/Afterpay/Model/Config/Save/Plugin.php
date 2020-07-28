@@ -3,7 +3,7 @@
  * Magento 2 extensions for Afterpay Payment
  *
  * @author Afterpay
- * @copyright 2016-2019 Afterpay https://www.afterpay.com
+ * @copyright 2016-2020 Afterpay https://www.afterpay.com
  */
 namespace Afterpay\Afterpay\Model\Config\Save;
 
@@ -77,14 +77,10 @@ class Plugin
 								// default min and max if not provided
 								$minTotal = "0";
 								$maxTotal = "0";
-
+								
 								// understand the response from the API
-								foreach ($response as $result) {
-									if (!empty($result['type']) && $result['type'] === \Afterpay\Afterpay\Model\Payovertime::AFTERPAY_PAYMENT_TYPE_CODE_V1) {
-										$minTotal = isset($result['minimumAmount']['amount']) ? $result['minimumAmount']['amount'] : "0";
-										$maxTotal = isset($result['maximumAmount']['amount']) ? $result['maximumAmount']['amount'] : "0";
-									}
-								}
+								$minTotal = array_key_exists('minimumAmount',$response) && isset($response['minimumAmount']['amount']) ? $response['minimumAmount']['amount'] : "0";
+								$maxTotal = array_key_exists('maximumAmount',$response) && isset($response['maximumAmount']['amount']) ? $response['maximumAmount']['amount'] : "0";
 
 								//Change the minimum amd maximum to Not applicable if both limits are 0.
 								if ($minTotal == "0" && $maxTotal=="0") {
@@ -101,6 +97,7 @@ class Plugin
 								return $proceed();
 							} else {
 								$this->messageManager->addWarningMessage('Afterpay Update Limits Failed. Please check Merchant ID and Key.');
+								
 							}
 						}
 					}
