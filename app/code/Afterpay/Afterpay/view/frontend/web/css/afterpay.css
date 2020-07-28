@@ -102,6 +102,7 @@
 
 .modal-popup.afterpay-learn-more .action-close {
     padding: 1.75rem !important;
+    display: block;
 }
 
 .afterpay_instalments_logo {
