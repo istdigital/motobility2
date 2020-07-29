@@ -3,7 +3,7 @@
  * Magento 2 extensions for Afterpay Payment
  *
  * @author Afterpay
- * @copyright 2016-2019 Afterpay https://www.afterpay.com
+ * @copyright 2016-2020 Afterpay https://www.afterpay.com
  */
 namespace Afterpay\Afterpay\Model\Adapter\Afterpay;
 
@@ -73,8 +73,8 @@ class Call
         $client->setUri($url);
 
         // set body and the url
-        if ($body) {
-            $client->setRawData($this->jsonHelper->jsonEncode($body), 'application/json');
+        if ($body || ($method == \Magento\Framework\HTTP\ZendClient::POST || $method == \Magento\Framework\HTTP\ZendClient::PUT)) {
+			$client->setRawData($this->jsonHelper->jsonEncode($body), 'application/json');
         }
 
         // add auth for API requirements
@@ -84,7 +84,7 @@ class Call
         );
 
         //Additional debugging on the merchant ID and Key being sent on Update Payment Limits
-        if ($url == $this->afterpayConfig->getApiUrl('v1/configuration') ||
+        if ($url == $this->afterpayConfig->getApiUrl('v2/configuration') ||
             $url == $this->afterpayConfig->getApiUrl('merchants/valid-payment-types') ) {
             //Solves the problem of magento 2 cron not working for some merchants  
             if(array_key_exists('REQUEST_URI',$_SERVER)){
@@ -100,7 +100,6 @@ class Call
             $this->helper->debug('Merchant Key:' . $masked_merchant_key);
         }
 
-        $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
         $productMetadata = $objectManager->get('Magento\Framework\App\ProductMetadataInterface');
         $version = $productMetadata->getVersion(); //will return the magento version
         $description = $productMetadata->getName() . ' ' . $productMetadata->getEdition(); //will return the magento description
@@ -117,7 +116,7 @@ class Call
             [
                 'timeout'           => 80,
                 'maxredirects'      => 0,
-                'useragent'         => 'AfterpayMagento2Plugin ' . $this->helper->getModuleVersion() . ' (' . $description . ' ' . $version . ') MerchantID: ' . trim($this->afterpayConfig->getMerchantId($override) . ' URL: ' . $url)
+                'useragent'         => 'AfterpayMagento2Plugin ' . $this->helper->getModuleVersion() . ' (' . $description . ' ' . $version . ')' . ' PHPVersion: PHP/' . phpversion() . ' MerchantID: ' . trim($this->afterpayConfig->getMerchantId($override) . ' URL: ' . $url)
             ]
         );
 
@@ -133,6 +132,17 @@ class Call
         // do the request with catch
         try {
             $response = $client->request($method);
+			$responseBody = $response->getBody();
+
+			try{
+				$responseBody = $this->jsonHelper->jsonDecode($responseBody);
+			}
+			catch(\Exception $e){
+				$this->helper->debug("A non JSON response was received. Cf-ray ID : ".$response->getHeaders()['Cf-ray']);
+				throw new \Magento\Framework\Exception\LocalizedException(
+					__($e->getMessage())
+				);
+			}
 
             // debug mode
             $responseLog = [
@@ -140,9 +150,10 @@ class Call
                 'method' => $method,
                 'url' => $url,
                 'httpStatusCode' => $response->getStatus(),
-                'body' => $this->obfuscateCustomerData($this->jsonHelper->jsonDecode($response->getBody()))
+                'body' => $this->obfuscateCustomerData($responseBody)
             ];
-            $this->helper->debug($this->jsonHelper->jsonEncode($responseLog));
+			$this->helper->debug($this->jsonHelper->jsonEncode($responseLog));
+			
         } catch (\Exception $e) {
             $this->helper->debug($e->getMessage());
 
@@ -184,7 +195,7 @@ class Call
     {
 		$fieldsToObfuscate= ["shipping","billing","consumer",'orderDetails'];
 		$body_replace=[];
-		if(!empty($body)){
+		if(!empty($body) && is_array($body)){
 			foreach($body as $body_key=>$body_value)
 			{
 				if(in_array($body_key,$fieldsToObfuscate)){

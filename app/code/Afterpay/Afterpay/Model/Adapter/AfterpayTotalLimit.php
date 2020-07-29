@@ -3,7 +3,7 @@
  * Magento 2 extensions for Afterpay Payment
  *
  * @author Afterpay
- * @copyright 2016-2019 Afterpay https://www.afterpay.com
+ * @copyright 2016-2020 Afterpay https://www.afterpay.com
  */
 namespace Afterpay\Afterpay\Model\Adapter;
 
@@ -51,7 +51,7 @@ class AfterpayTotalLimit
     public function getLimit($override = [])
     {
         /** @var \Afterpay\Afterpay\Model\Config\Payovertime $url */
-        $url = $this->afterpayConfig->getApiUrl('v1/configuration'); //V1
+        $url = $this->afterpayConfig->getApiUrl('v2/configuration'); //V2
 
         // calling API
         try {

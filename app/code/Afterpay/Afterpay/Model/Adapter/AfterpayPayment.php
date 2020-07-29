@@ -3,7 +3,7 @@
  * Magento 2 extensions for Afterpay Payment
  *
  * @author Afterpay
- * @copyright 2016-2019 Afterpay https://www.afterpay.com
+ * @copyright 2016-2020 Afterpay https://www.afterpay.com
  */
 namespace Afterpay\Afterpay\Model\Adapter;
 
@@ -96,20 +96,22 @@ class AfterpayPayment
      * @param $amount
      * @param $orderId
      * @param string $currency
+     * @param array $override
      * @return mixed|\Zend_Http_Response
      */
     public function refund($amount, $orderId, $currency = 'AUD', $override = [])
     {
         // create url to request refunds
-        $url = $this->afterpayConfig->getApiUrl('v1/payments/' . $orderId . '/refund', [], $override);
+        $url = $this->afterpayConfig->getApiUrl('v2/payments/' . $orderId . '/refund', [], $override);
 
         // generate body to be sent to refunds
         $body = [
+		    'requestId'  => uniqid(),
             'amount'    => [
-                'amount'    => abs(round($amount, 2)), // Afterpay API V1 requires a positive amount
+                'amount'    => abs(round($amount, 2)), // Afterpay API V2 requires a positive amount
                 'currency'  => $currency,
             ],
-            'merchantRefundId'  => null
+            'merchantReference'  => $orderId
         ];
 
 
@@ -118,6 +120,35 @@ class AfterpayPayment
             $response = $this->afterpayApiCall->send(
                 $url,
                 $body,
+                \Magento\Framework\HTTP\ZendClient::POST,
+                $override
+            );
+        } catch (\Exception $e) {
+            $response = $this->objectManagerInterface->create('Afterpay\Afterpay\Model\Payovertime');
+            $response->setBody($this->jsonHelper->jsonEncode([
+                'error' => 1,
+                'message' => $e->getMessage()
+            ]));
+        }
+
+        return $response;
+    }
+	
+	/**
+     * @param $orderId
+     * @param array $override
+     * @return mixed|\Zend_Http_Response
+     */
+    public function voidOrder($orderId, $override = [])
+    {
+        // create url to request refunds
+        $url = $this->afterpayConfig->getApiUrl('v2/payments/' . $orderId . '/void', [], $override);
+
+        // refunding now
+        try {
+            $response = $this->afterpayApiCall->send(
+                $url,
+                [],
                 \Magento\Framework\HTTP\ZendClient::POST,
                 $override
             );
