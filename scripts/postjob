@@ -1,5 +1,5 @@
 #!/bin/bash
-cd /var/www/pgo
+cd /var/www/mobilizeme.com.au
 sudo php bin/magento cache:clean
 #sudo php bin/magento setup:upgrade
 #sudo php bin/magento deploy:mode:set production
