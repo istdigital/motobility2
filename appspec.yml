@@ -4,9 +4,17 @@ files:
   - source: /
     destination: /var/www/mobilizeme.com.au/
 hooks:
+  ApplicationStop:
+    - location: scripts/stop_server
+      timeout: 300
+      runas: root
   AfterInstall:
     - location: scripts/postjob
       timeout: 3000000
+      runas: ubuntu
+  ApplicationStart:
+    - location: scripts/start_server
+      timeout: 300
       runas: ubuntu
 permissions:
   - object: /var/www/mobilizeme.com.au/

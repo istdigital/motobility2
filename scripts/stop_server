@@ -1,0 +1,6 @@
+#!/bin/bash
+isExistApp = `pgrep nginx`
+if [[ -n  $isExistApp ]]; then
+    service nginx stop        
+fi
+#sudo find /opt/codedeploy-agent/deployment-root/deployment-instructions -type f -name "*-cleanup" -delete;
