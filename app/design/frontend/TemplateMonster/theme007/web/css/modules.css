@@ -10417,7 +10417,13 @@ table.cart {
     font-weight: 400;
     cursor: pointer; }
   .cart-summary .checkout.methods .item {
-    margin-bottom: 0.5rem; }
+    margin-bottom: 20px; }
+    .cart-summary .checkout.methods .item a {
+    color: #35b3ca;
+    }
+    .cart-summary .checkout.methods .item h3 {
+        margin-bottom: 10px;
+    }
   .cart-summary .block {
     margin: 0; }
     .cart-summary .block .title {
@@ -10522,7 +10528,9 @@ table.cart {
   padding: 0 10px;
   display: block; }
   .cart-summary .checkout-methods-items img {
-    width: 100%; }
+    width: 100%; 
+    max-width: 130px;
+  }
   @media (max-width: 767px) {
     .cart-summary .checkout-methods-items {
       border-top: 1px solid #eae9e9;
