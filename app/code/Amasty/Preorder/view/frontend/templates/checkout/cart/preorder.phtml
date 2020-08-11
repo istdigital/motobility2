@@ -1,0 +1,15 @@
+<?php
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
+ * @package Amasty_Preorder
+ */
+?>
+<?php
+/**
+ * @var $block \Amasty\Preorder\Block\Checkout\Cart\Preorder
+ */
+?>
+<?php if($block->canShowBlock()): ?>
+    <div class="ampreorder-note"><?=$block->getPreorderNote();?></div>
+<?php endif; ?>

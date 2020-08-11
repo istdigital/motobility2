@@ -1,0 +1,26 @@
+<?php
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
+ * @package Amasty_Preorder
+ */
+?>
+<?php /* @var $block \Amasty\Preorder\Block\Product\View\Preorder\ProductGrouped */?>
+<?php
+if (!$block->canShowBlock()) {
+    return;
+}
+?>
+<script type="text/javascript">
+    require(['jquery', 'Amasty_Preorder/js/product/preorder_grouped'], function($) {
+        $widget = $.mage.amastyPreorderGrouped({
+            preOrderNote: '<?= /** @noEscape */ $block->getPreorderNote() ?>',
+            preorder: '<?= /** @noEscape */ $block->isProductPreorder() ?>',
+            addToCartLabel: '',
+            map: <?= /** @noEscape */ json_encode($block->getGroupPreorderMap()) ?>,
+            preorderNoteTemplate: '<div class="stock available"><span>{preorderNote}</span></div>',
+            originalNote: '<?= /** @noEscape */ $block->getOriginalNote() ?>'
+
+        });
+    });
+</script>

@@ -1,0 +1,106 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
+ * @package Amasty_Preorder
+ */
+-->
+<!--
+/**
+ * Copyright © 2015 Amasty. All rights reserved.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="ampreorder" translate="label" type="text" sortOrder="161809" showInDefault="1" showInWebsite="1" showInStore="1">
+            <resource>Amasty_Preorder::config</resource>
+            <class>separator-top</class>
+            <label>Pre Order</label>
+            <tab>amasty</tab>
+
+            <group id="amasty_information" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1"
+                   showInStore="1">
+                <label>Information</label>
+                <frontend_model>Amasty\Preorder\Block\Adminhtml\System\Config\Information</frontend_model>
+            </group>
+
+            <group id="functional" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Functional Options</label>
+                <field id="enabled" translate="label comment tooltip" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Pre Orders</label>
+                    <comment><![CDATA[Affects new orders with products set to be pre-ordered.</br>
+                    Please note! Products on "Pre Order" must be set to <b>"In Stock"</b>.]]></comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="allowemptyqty" translate="label comment" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Allow Pre Orders for Products with Zero and Below Zero Qty</label>
+                    <comment>If set to "No", it is possible to pre order products that have quantity set to 1 or higher only. This way you can limit number of products available for pre order.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="disableforpositiveqty" translate="label comment" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Disable Pre Order for Items with Qty Above Zero</label>
+                    <comment>If set to "Yes", pre orders will take effect only for products with quantity 0 or lower.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="allowemptyqty">1</field>
+                    </depends>
+                </field>
+            </group>
+
+            <group id="general" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Display Options</label>
+                <field id="addtocartbuttontext" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Add To Cart Button Text</label>
+                    <comment>Text to display on the button instead of 'Add To Cart'</comment>
+                </field>
+                <field id="defaultpreordernote" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Default Pre-Order Note</label>
+                    <comment>You can use product attributes like {sku} or {delivery_time}</comment>
+                </field>
+                <field id="note_position" translate="label comment" type="text" sortOrder="25" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Pre-Order Note Output Place</label>
+                    <comment>Specify the selector to display the Pre-Order Note in. It replaces .stock if empty.</comment>
+                </field>
+                <field id="show_preorder_note" translate="label comment" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show Pre-Order Note on Category Pages</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="orderpreorderwarning" translate="label comment" type="textarea" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Pre-Order Warning in Order</label>
+                    <comment>Message to be displayed with order information</comment>
+                </field>
+                <field id="cart_message" translate="label comment" type="textarea" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Pre-Order Warning in Shopping Cart</label>
+                    <comment>This warning is shown only when there is no enough quantity of ordered product. Here the '%1$s' is the product name and the '%2$s' is the pre-ordered product qty.</comment>
+                    <validate>required-entry</validate>
+                </field>
+                <field id="below_zero_message" translate="label comment" type="textarea" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Pre-Order Warning for Below Zero Qty</label>
+                    <comment><![CDATA[
+                        This warning is shown on product page only when there is not enough quantity of ordered product and pre-order not allowed for products with zero and below zero qty.<br/>
+                        Here the '%1$s' is the product name and the '%2$s' is the available product qty.
+                        ]]></comment>
+                    <validate>required-entry</validate>
+                </field>
+
+            </group>
+
+            <group id="additional" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Additional Options</label>
+                <field id="discovercompositeoptions" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Detect Complex Products Which Consist only of Pre-Order Components</label>
+                    <comment><![CDATA[
+                            If set to 'Yes', the extension analyzes your configurable, bundle and grouped products on category pages to indicate preorder status before customers choose any option in cases, when all components have 'Preorder' status.<br />
+                            Please be aware this may cause huge performance degradation for larger catalogs.
+                            ]]></comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="addwarningtoemail" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Automatically Add Warning to Transactional Emails</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>
