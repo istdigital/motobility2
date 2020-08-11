@@ -1,0 +1,37 @@
+Pre-Order,Pre-Order
+"Pre-Order Note","Pre-Order Note"
+"Pre-Order Cart Button","Pre-Order Cart Button"
+"Please update Amasty Base module. Re-upload it and replace all the files.","Please update Amasty Base module. Re-upload it and replace all the files."
+"In stock","In stock"
+"Out of stock","Out of stock"
+"Allow Pre-Orders","Allow Pre-Orders"
+"Pre Order","Pre Order"
+Information,Information
+"Functional Options","Functional Options"
+"Enable Pre Orders","Enable Pre Orders"
+"Affects new orders with products set to be pre-ordered.</br>
+                    Please note! Products on ""Pre Order"" must be set to <b>""In Stock""</b>.","Affects new orders with products set to be pre-ordered.</br>
+                    Please note! Products on ""Pre Order"" must be set to <b>""In Stock""</b>."
+"Allow Pre Orders for Products with Zero and Below Zero Qty","Allow Pre Orders for Products with Zero and Below Zero Qty"
+"If set to ""No"", it is possible to pre order products that have quantity set to 1 or higher only. This way you can limit number of products available for pre order.","If set to ""No"", it is possible to pre order products that have quantity set to 1 or higher only. This way you can limit number of products available for pre order."
+"Disable Pre Order for Items with Qty Above Zero","Disable Pre Order for Items with Qty Above Zero"
+"If set to ""Yes"", pre orders will take effect only for products with quantity 0 or lower.","If set to ""Yes"", pre orders will take effect only for products with quantity 0 or lower."
+"Display Options","Display Options"
+"Add To Cart Button Text","Add To Cart Button Text"
+"Text to display on the button instead of 'Add To Cart'","Text to display on the button instead of 'Add To Cart'"
+"Default Pre-Order Note","Default Pre-Order Note"
+"You can use product attributes like {sku} or {delivery_time}","You can use product attributes like {sku} or {delivery_time}"
+"Pre-Order Note Output Place","Pre-Order Note Output Place"
+"Specify the selector to display the Pre-Order Note in. It replaces .stock if empty.","Specify the selector to display the Pre-Order Note in. It replaces .stock if empty."
+"Show Pre-Order Note on Category Pages","Show Pre-Order Note on Category Pages"
+"Pre-Order Warning in Order","Pre-Order Warning in Order"
+"Message to be displayed with order information","Message to be displayed with order information"
+"Pre-Order Warning in Shopping Cart","Pre-Order Warning in Shopping Cart"
+"This warning is shown only when there is no enough quantity of ordered product. Here the '%1$s' is the product name and the '%2$s' is the pre-ordered product qty.","This warning is shown only when there is no enough quantity of ordered product. Here the '%1$s' is the product name and the '%2$s' is the pre-ordered product qty."
+"Pre-Order Warning for Below Zero Qty","Pre-Order Warning for Below Zero Qty"
+"This warning is shown on product page only when there is not enough quantity of ordered product and pre-order not allowed for products with zero and below zero qty.<br/>
+                        Here the '%1$s' is the product name and the '%2$s' is the available product qty.","This warning is shown on product page only when there is not enough quantity of ordered product and pre-order not allowed for products with zero and below zero qty.<br/>
+                        Here the '%1$s' is the product name and the '%2$s' is the available product qty."
+"Additional Options","Additional Options"
+"Detect Complex Products Which Consist only of Pre-Order Components","Detect Complex Products Which Consist only of Pre-Order Components"
+"Automatically Add Warning to Transactional Emails","Automatically Add Warning to Transactional Emails"

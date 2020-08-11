@@ -1,0 +1,18 @@
+.product-items .ampreorder-observed .price-box {
+    margin-bottom: 15px;
+}
+
+.product-items .ampreorder-observed .ampreorder-note {
+    margin-bottom: 20px;
+}
+
+.ampreorder-observed,
+.ampreorder-note,
+.preorder_note {
+    word-break: break-all;
+    word-break: break-word;
+}
+
+.ampreorder-observed .tocart {
+    white-space: normal
+}

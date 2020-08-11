@@ -1,0 +1,21 @@
+{
+    "name": "amasty/preorder",
+    "description": "Pre Order By Amasty",
+    "require": {
+        "php": "^7.1.0",
+        "amasty/base": ">=1.10.5"
+    },
+    "type": "magento2-module",
+    "version": "1.3.15",
+    "license": [
+        "Commercial"
+    ],
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Amasty\\Preorder\\": ""
+        }
+    }
+}

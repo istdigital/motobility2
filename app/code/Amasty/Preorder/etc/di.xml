@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
+ * @package Amasty_Preorder
+ */
+-->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="\Magento\CatalogInventory\Model\Source\Backorders">
+        <plugin name="Amasty_Preorder::toOptionArray" type="Amasty\Preorder\Plugin\CatalogInventoryBackorders" />
+    </type>
+    <type name="\Magento\CatalogInventory\Model\StockStateProvider">
+        <plugin name="Amasty_Preorder::stockState" type="Amasty\Preorder\Plugin\StockStateProvider" />
+    </type>
+
+    <type name="\Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <plugin name="Amasty_Preorder::injectCollection" type="Amasty\Preorder\Plugin\UiSearchResult" />
+    </type>
+
+    <type name="Magento\Catalog\Block\Adminhtml\Product\Edit\Action\Attribute\Tab\Inventory">
+        <plugin name="Amasty_Preorder::addPreOrderFields" type="Amasty\Preorder\Plugin\ProductMassEditTabInventory" />
+    </type>
+
+    <type name="\Magento\Sales\Model\Order\Item">
+        <plugin name="Amasty_Preorder::addPreorderLabel" type="Amasty\Preorder\Plugin\SalesOrderItem" />
+    </type>
+    <virtualType name="Magento\CatalogSearch\Block\SearchResult\ListProduct" type="Magento\Catalog\Block\Product\ListProduct">
+        <arguments>
+            <argument name="catalogLayer" xsi:type="object">Magento\Catalog\Model\Layer\Search</argument>
+        </arguments>
+    </virtualType>
+
+    <type name="Magento\Catalog\Model\ResourceModel\Product">
+        <plugin name="Amasty_Preorder::savePreOrderField" type="Amasty\Preorder\Plugin\ProductSave" />
+    </type>
+
+    <type name="Magento\Framework\Webapi\ServiceOutputProcessor">
+        <plugin name="Amasty_Preorder::checkout" type="Amasty\Preorder\Plugin\Framework\Webapi\ServiceOutputProcessor" />
+    </type>
+
+    <type name="Magento\Email\Model\Template">
+        <plugin name="Amasty_Preorder::display-email-warning" type="Amasty\Preorder\Plugin\Email\Model\Template" />
+    </type>
+
+    <!-- make for indexer product salable if amasty backorder uses -->
+    <type name="Magento\InventorySales\Model\ResourceModel\IsStockItemSalableCondition\BackordersCondition">
+        <plugin name="Amasty_Preorder::msi-backorders"
+                type="Amasty\Preorder\Plugin\InventorySales\Model\ResourceModel\IsStockItemSalableCondition\BackordersCondition" />
+    </type>
+
+    <!-- add warning message to cart when part of product preorder -->
+    <type name="Magento\InventorySales\Plugin\StockState\CheckQuoteItemQtyPlugin">
+        <plugin name="Amasty_Preorder::msi-check-quote-item"
+                type="Amasty\Preorder\Plugin\InventorySales\Plugin\StockState\CheckQuoteItemQtyPlugin"/>
+    </type>
+
+    <!-- if product uses amasty backorder that not mean that product in stock -->
+    <type name="Magento\InventorySales\Model\IsProductSalableCondition\BackOrderCondition">
+        <plugin name="Amasty_Preorder::msi-backorder-not-affect-stockstatus"
+                type="Amasty\Preorder\Plugin\InventorySales\Model\IsProductSalableCondition\BackOrderCondition"/>
+    </type>
+
+    <type name="Magento\ScalableOms\Console\Command\SplitSales">
+        <arguments>
+            <argument name="tables" xsi:type="array">
+                <item name="amasty_preorder_order_preorder" xsi:type="string">amasty_preorder_order_preorder</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

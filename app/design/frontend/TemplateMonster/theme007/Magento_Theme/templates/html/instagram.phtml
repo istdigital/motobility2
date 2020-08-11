@@ -38,6 +38,19 @@
 				</div>");
 			}
 
+			owl.on('initialized.owl.carousel', function(event) {
+				var w = $('#instagram-slide .owl-item').first().css('width');
+				if(w){
+					$('#instagram-slide .owl-item').css({'height': w})
+				}
+			})
+			owl.on('resized.owl.carousel', function(event) {
+				var w = $('#instagram-slide .owl-item').first().css('width');
+				if(w){
+					$('#instagram-slide .owl-item').css({'height': w})
+				}
+			})
+
 			owl.owlCarousel({
                 loop:true,
                 margin:10,
@@ -57,8 +70,6 @@
                     }
                 }
             });
-
-
 		});
 	 });
 </script>
