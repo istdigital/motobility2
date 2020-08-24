@@ -8061,3 +8061,8 @@ ol.list-ordered {
       right: -10px !important;
   }
 }
+.price-holder {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
