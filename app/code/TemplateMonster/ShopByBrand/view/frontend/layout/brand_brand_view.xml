@@ -4,11 +4,11 @@
         <css src="Magento_Swatches::css/swatches.css"/>
     </head>
     <body>
-        <referenceContainer name="main">
-            <container name="category.view.container" htmlTag="div" htmlClass="category-brand" before="-">
+        <referenceContainer name="main.content">
+            <container name="category.view.container" htmlTag="div" htmlClass="category-brand" before="columns">
                 <block class="TemplateMonster\ShopByBrand\Block\Brand\View" name="brand.banner" template="TemplateMonster_ShopByBrand::brand/banner.phtml"/>
-                <container name="logo.description.container" htmlTag="div" htmlClass="logo-description-container" after="brand.banner">
-                    <block class="TemplateMonster\ShopByBrand\Block\Brand\View" name="brand.logo" template="TemplateMonster_ShopByBrand::brand/logo.phtml"/>
+                <container name="logo.description.container" htmlTag="div" htmlClass="logo-description-container container" after="brand.banner">
+                    <!-- <block class="TemplateMonster\ShopByBrand\Block\Brand\View" name="brand.logo" template="TemplateMonster_ShopByBrand::brand/logo.phtml"/> -->
                     <block class="TemplateMonster\ShopByBrand\Block\Brand\View" name="brand.description" template="TemplateMonster_ShopByBrand::brand/description.phtml"/>
                 </container>
             </container>

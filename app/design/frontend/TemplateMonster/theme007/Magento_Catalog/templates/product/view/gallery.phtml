@@ -53,8 +53,14 @@
 ?>
 <meta itemprop="mpn" content="<?= $_product->getId() ?>"/>
 <meta itemprop="sku" content="<?= $_product->getSku() ?>"/>
-<meta itemprop="brand" content="<?= $brand['name'] ?>"/>
 <link itemprop="image" href="<?= $mainImageData ?>"/>
+<span itemprop="aggregateRating" itemscope itemtype="https://schema.org/AggregateRating">
+    <meta itemprop="ratingValue" content="5"/>
+  <meta itemprop="ratingCount" content="100"/>
+</span>
+<meta itemprop="description" content="<?= $_product->getShortDescription() ?>" />
+<meta itemprop="brand" content="<?= $brand['name'] ?>"/>
+
 
 <div class="gallery-placeholder _block-content-loading" data-gallery-role="gallery-placeholder">
     <img

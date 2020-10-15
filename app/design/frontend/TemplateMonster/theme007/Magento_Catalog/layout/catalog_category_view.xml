@@ -10,7 +10,7 @@
         <!-- <move element="page.main.title" destination="main.columns.grid-main" before="-"/> -->
         <!-- <move element="category.view.container" destination="main.columns.grid-main" after="page.main.title"/> -->
         <!--<move element="category.view.container" destination="main.columns.grid-main" after="page.main.title"/>-->
-        <move element="category.cms" destination="main.content" after="-"/>
+        <move element="category.cms" destination="main.content" after="page.main.title"/>
 
         <referenceContainer name="catalog.compare.sidebar" remove="true"/>
         <referenceContainer name="wishlist_sidebar" remove="true"/>
