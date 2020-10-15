@@ -105,7 +105,7 @@ $query = $connection->select()->from("catalog_product_entity_text", 'value')->wh
                             <meta itemprop="ratingValue" content="5"/>
                           <meta itemprop="ratingCount" content="100"/>
                      </span>
-                     <meta itemprop="description" content="<?= $_product->getShortDescription() ?>" />
+                     <meta itemprop="description" content="<?= $block->escapeHtml($_product->getShortDescription()) ?>" />
                                                            
 
 
