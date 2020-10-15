@@ -96,6 +96,19 @@ $query = $connection->select()->from("catalog_product_entity_text", 'value')->wh
                     <?php if ($block->getMode() == 'list'): ?>
                     <div class="product-item-photo-wrap">
                     <?php endif; ?>
+
+
+                    <meta itemprop="mpn" content="<?= $_product->getId() ?>"/>
+                    <meta itemprop="sku" content="<?= $_product->getSku() ?>"/>
+                    <link itemprop="image" href="<?= $productImage->getUrl() ?>"/>
+                    <span itemprop="aggregateRating" itemscope itemtype="https://schema.org/AggregateRating">
+                            <meta itemprop="ratingValue" content="5"/>
+                          <meta itemprop="ratingCount" content="100"/>
+                     </span>
+                     <meta itemprop="description" content="<?= $_product->getShortDescription() ?>" />
+                                                           
+
+
                     <a href="<?php /* @escapeNotVerified */ echo $_product->getProductUrl() ?>" class="product photo product-item-photo" tabindex="-1">
                         <?php echo $productImage->toHtml(); ?>
                     </a>
@@ -115,6 +128,7 @@ $query = $connection->select()->from("catalog_product_entity_text", 'value')->wh
                         <p style="margin: 0">
                             <?php $brand = $_bhelper->getBrandById($_product->getData('brand_id')) ?>
                             <?php if($brand && count($brand)): ?>
+                                <meta itemprop="brand" content="<?= $brand['name'] ?>"/>
                                 <a class="product-brand-name" href="<?= $this->getUrl($brand['url_key']) ?>"><?= $brand['name'] ?></a>
                             <?php else: ?>
                                 <a class="product-brand-name"  href="#">&nbsp;</a>
