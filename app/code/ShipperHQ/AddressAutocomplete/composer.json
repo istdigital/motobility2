@@ -1,0 +1,34 @@
+{
+    "name": "shipperhq/module-address-autocomplete",
+    "description": "ShipperHQ Address Autocomplete Tool",
+    "type": "magento2-module",
+    "version": "20.3.0",
+    "license": [
+        "OSL-3.0",
+        "AFL-3.0"
+    ],
+    "authors": [
+        {
+            "name": "ShipperHQ",
+            "email": "sales@shipperhq.com",
+            "homepage": "http://www.Shipperhq.com"
+        },
+        {
+            "name": "Zowta LLC"
+        }
+    ],
+    "support": {
+        "documentation": "http://docs.shipperhq.com"
+    },
+    "require": {
+        "shipperhq/module-shipper": "^20.0"
+    },
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "ShipperHQ\\AddressAutocomplete\\": ""
+        }
+    }
+}
