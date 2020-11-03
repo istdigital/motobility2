@@ -32,6 +32,7 @@ $loader = $this->loaderDimensions($slider->getParams());
                                 <img class="sp-image" 
                                     src="<?php echo $this->getViewFileUrl("TemplateMonster_FilmSlider::images/blank.gif"); ?>" 
                                     <?php if(!empty($mbi = $item->getMobileImage())): ?>data-small="<?php echo $block->addUrl($mbi) ?>"<?php endif; ?>
+                                    <?php if(!empty($mbi = $item->getMobileImage())): ?>data-medium="<?php echo $block->addUrl($mbi) ?>"<?php endif; ?>
                                     data-src="<?php echo $block->addUrl($item->getImage()) ?>" alt="<?= $item->getTitle(); ?>"
                                     title="<?= $item->getTitle(); ?>"/>
 

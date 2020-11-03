@@ -25,6 +25,8 @@
         <span translate="'Close'"/>
     </button>
 
+    <strong class="add-success-msg no-display" data-bind="i18n: 'Success! You\'ve added this item to your bag.'"></strong>
+
     <if args="getCartParam('summary_count')">
         <div class="items-total">
             <span class="count" if="maxItemsToDisplay < getCartLineItemsCount()" text="maxItemsToDisplay"/>
@@ -71,6 +73,13 @@
     </if>
     <div class="actions" if="getCartParam('summary_count')">
         <div class="primary" if="getCartParam('possible_onepage_checkout')">
+            <button type="button" class="action primary" data-action="close" data-bind="
+                attr: {
+                    title: $t('Continue shopping')
+                },
+                click: closeMinicart()
+            , i18n: 'Continue shopping'" title="Continue shopping">Continue shopping</button>
+
             <button
                     id="top-cart-btn-checkout"
                     type="button"
@@ -78,14 +87,14 @@
                     data-action="close"
                     data-bind="
                             attr: {
-                                title: $t('Proceed to Checkout')
+                                title: $t('Checkout')
                             },
                             click: closeMinicart()
                         "
-                    translate="'Proceed to Checkout'"
+                    translate="'Checkout'"
             />
-            <div data-bind="html: getCartParam('extra_actions')"></div>
         </div>
+        <div data-bind="html: getCartParam('extra_actions')"></div>
         <div class="secondary"  if="getCartParam('summary_count')">
             <a class="action viewcart primary" data-bind="attr: {href: shoppingCartUrl}">
                 <span translate="'View and Edit Cart'"/>

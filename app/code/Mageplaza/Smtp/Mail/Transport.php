@@ -136,6 +136,7 @@ class Transport
                     }
 
                     $this->emailLog($message);
+
                 } catch (Exception $e) {
                     $this->emailLog($message, false);
                     throw new MailException(new Phrase($e->getMessage()), $e);
@@ -231,9 +232,31 @@ class Transport
             $log = $this->logFactory->create();
             try {
                 $log->saveLog($message, $status);
+                if ($status) {
+                    $this->saveLogIdForAbandonedCart($log);
+                }
             } catch (Exception $e) {
                 $this->logger->critical($e->getMessage());
             }
+        }
+    }
+
+    /**
+     * @param Log $log
+     */
+    protected function saveLogIdForAbandonedCart($log)
+    {
+        try {
+            $quote = $this->registry->registry('smtp_abandoned_cart');
+
+            if ($quote) {
+                $ids = $quote->getMpSmtpAceLogIds() ?
+                    $quote->getMpSmtpAceLogIds() . ',' . $log->getId() : $log->getId();
+                $quote->setMpSmtpAceSent(1)->setMpSmtpAceLogIds($ids)->save();
+
+            }
+        } catch (Exception $e) {
+            $this->logger->critical($e->getMessage());
         }
     }
 }

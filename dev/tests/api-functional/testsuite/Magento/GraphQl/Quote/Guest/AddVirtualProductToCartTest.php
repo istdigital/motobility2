@@ -7,6 +7,7 @@ declare(strict_types=1);
 
 namespace Magento\GraphQl\Quote\Guest;
 
+use Exception;
 use Magento\GraphQl\Quote\GetMaskedQuoteIdByReservedOrderId;
 use Magento\TestFramework\Helper\Bootstrap;
 use Magento\TestFramework\TestCase\GraphQlAbstract;
@@ -24,7 +25,7 @@ class AddVirtualProductToCartTest extends GraphQlAbstract
     /**
      * @inheritdoc
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $objectManager = Bootstrap::getObjectManager();
         $this->getMaskedQuoteIdByReservedOrderId = $objectManager->get(GetMaskedQuoteIdByReservedOrderId::class);
@@ -44,18 +45,75 @@ class AddVirtualProductToCartTest extends GraphQlAbstract
         $response = $this->graphQlMutation($query);
 
         self::assertArrayHasKey('cart', $response['addVirtualProductsToCart']);
+        self::assertArrayHasKey('id', $response['addVirtualProductsToCart']['cart']);
+        self::assertEquals($maskedQuoteId, $response['addVirtualProductsToCart']['cart']['id']);
         self::assertEquals($quantity, $response['addVirtualProductsToCart']['cart']['items'][0]['quantity']);
         self::assertEquals($sku, $response['addVirtualProductsToCart']['cart']['items'][0]['product']['sku']);
     }
 
     /**
+     */
+    public function testAddVirtualProductToCartIfCartIdIsEmpty()
+    {
+        $this->expectException(\Exception::class);
+        $this->expectExceptionMessage('Required parameter "cart_id" is missing');
+
+        $query = <<<QUERY
+mutation {
+  addSimpleProductsToCart(
+    input: {
+      cart_id: "",
+      cart_items: []
+    }
+  ) {
+    cart {
+      items {
+        id
+      }
+    }
+  }
+}
+QUERY;
+
+        $this->graphQlMutation($query);
+    }
+
+    /**
+     */
+    public function testAddVirtualProductToCartIfCartItemsAreEmpty()
+    {
+        $this->expectException(\Exception::class);
+        $this->expectExceptionMessage('Required parameter "cart_items" is missing');
+
+        $query = <<<QUERY
+mutation {
+  addSimpleProductsToCart(
+    input: {
+      cart_id: "cart_id",
+      cart_items: []
+    }
+  ) {
+    cart {
+      items {
+        id
+      }
+    }
+  }
+}
+QUERY;
+
+        $this->graphQlMutation($query);
+    }
+
+    /**
      * @magentoApiDataFixture Magento/GraphQl/Catalog/_files/virtual_product.php
      *
-     * @expectedException \Exception
-     * @expectedExceptionMessage Could not find a cart with ID "non_existent_masked_id"
      */
     public function testAddVirtualToNonExistentCart()
     {
+        $this->expectException(\Exception::class);
+        $this->expectExceptionMessage('Could not find a cart with ID "non_existent_masked_id"');
+
         $sku = 'virtual_product';
         $quantity = 1;
         $maskedQuoteId = 'non_existent_masked_id';
@@ -67,11 +125,12 @@ class AddVirtualProductToCartTest extends GraphQlAbstract
     /**
      * @magentoApiDataFixture Magento/GraphQl/Quote/_files/guest/create_empty_cart.php
      *
-     * @expectedException \Exception
-     * @expectedExceptionMessage Could not find a product with SKU "virtual_product"
      */
     public function testNonExistentProductToCart()
     {
+        $this->expectException(\Exception::class);
+        $this->expectExceptionMessage('Could not find a product with SKU "virtual_product"');
+
         $sku = 'virtual_product';
         $quantity = 1;
         $maskedQuoteId = $this->getMaskedQuoteIdByReservedOrderId->execute('test_quote');
@@ -124,6 +183,7 @@ mutation {
     }
   ) {
     cart {
+      id
       items {
         quantity
         product {

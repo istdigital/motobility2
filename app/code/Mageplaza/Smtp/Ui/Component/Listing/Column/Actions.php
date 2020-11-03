@@ -39,7 +39,7 @@ class Actions extends Column
     private $urlBuilder;
 
     /**
-     * @var helperData
+     * @var Data
      */
     protected $helperData;
 
@@ -78,12 +78,6 @@ class Actions extends Column
     {
         if (isset($dataSource['data']['items'])) {
             foreach ($dataSource['data']['items'] as & $item) {
-                if (!$this->helperData->versionCompare('2.2.8')) {
-                    $item['subject']   = iconv_mime_decode($item['subject'], 2, 'UTF-8');
-                    $item['recipient'] = iconv_mime_decode($item['recipient'], 2, 'UTF-8');
-                    $item['sender']    = iconv_mime_decode($item['sender'], 2, 'UTF-8');
-                }
-
                 $item[$this->getData('name')] = [
                     'view'   => [
                         'label' => __('View')

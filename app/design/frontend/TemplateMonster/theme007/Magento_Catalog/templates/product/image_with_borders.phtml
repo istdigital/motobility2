@@ -11,7 +11,6 @@
     <span class="product-image-wrapper"
           style="padding-bottom: <?= /* @escapeNotVerified */ ($block->getRatio() * 100) ?>%;">
         <img class="<?= /* @escapeNotVerified */ $block->getClass() ?>"
-            <?= /* @escapeNotVerified */ $block->getCustomAttributes() ?>
             src="<?= /* @escapeNotVerified */ $block->getImageUrl() ?>"
             title="<?= /* @escapeNotVerified */ $block->stripTags($block->getLabel(), null, true) ?>"
             alt="<?= /* @escapeNotVerified */ $block->stripTags($block->getLabel(), null, true) ?>"/></span>

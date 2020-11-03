@@ -111,8 +111,11 @@ define([
             },
             customSelect: {
                 selector: "#product-options-wrapper .product-custom-option:not('.input-text'), #product-review-container select, .toolbar-posts select, select"
-            }
+            },
+            itemAdded: false
         },
+
+
 
         _rdNavbar: function () {
             /* Navbar init */
@@ -255,6 +258,22 @@ define([
 
             $( document ).ajaxComplete(function() {
                 $("select").selectize();
+            });
+
+
+            var self = this;
+            $(document).on('ajax:addToCart', function (ev) {
+                self.options.itemAdded = true;
+            });
+            $('[data-block="minicart"]').on('contentUpdated', function () {
+                if(self.options.itemAdded){
+                    $('[data-block="minicart"]').find('[data-role="dropdownDialog"]').dropdownDialog('open');
+                    $('.block-minicart strong.add-success-msg').show();
+                    setTimeout(function () {
+                        $('.block-minicart strong.add-success-msg').hide();
+                    }, 5000);
+                    self.options.itemAdded = false;
+                }
             });
 
             this._rdNavbar();
