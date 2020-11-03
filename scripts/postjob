@@ -1,6 +1,6 @@
 #!/bin/bash
 cd /var/www/mobilizeme.com.au
-sudo php7.4 bin/magento cache:clean
+#sudo php7.4 bin/magento cache:clean
 #sudo php bin/magento setup:upgrade
 #sudo php bin/magento deploy:mode:set production
 #sudo php bin/magento cache:clean
