@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0c4031cf3577cef401ffd9b8cf1dee94",
+    "content-hash": "1a1e8145e03cfaf95955699b780b4964",
     "packages": [
         {
             "name": "2tvenom/cborencode",
@@ -15349,6 +15349,94 @@
             "time": "2020-05-19T23:25:07+00:00"
         },
         {
+            "name": "mageplaza/module-core",
+            "version": "1.4.9",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mageplaza/module-core.git",
+                "reference": "3c531ab1b1390ae04f6a9886d0d2f0a5d40788b9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mageplaza/module-core/zipball/3c531ab1b1390ae04f6a9886d0d2f0a5d40788b9",
+                "reference": "3c531ab1b1390ae04f6a9886d0d2f0a5d40788b9",
+                "shasum": ""
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Mageplaza\\Core\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "proprietary"
+            ],
+            "authors": [
+                {
+                    "name": "Mageplaza",
+                    "email": "support@mageplaza.com",
+                    "homepage": "https://www.mageplaza.com",
+                    "role": "Technical Support"
+                }
+            ],
+            "description": "Mageplaza Core for Magento 2",
+            "time": "2020-08-04T17:20:33+00:00"
+        },
+        {
+            "name": "mageplaza/module-smtp",
+            "version": "4.1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mageplaza/magento-2-smtp.git",
+                "reference": "77d476035c2126f80ebf3a7a64497a80c86497d3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mageplaza/magento-2-smtp/zipball/77d476035c2126f80ebf3a7a64497a80c86497d3",
+                "reference": "77d476035c2126f80ebf3a7a64497a80c86497d3",
+                "shasum": ""
+            },
+            "require": {
+                "mageplaza/module-core": "^1.4.5"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Mageplaza\\Smtp\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "proprietary"
+            ],
+            "authors": [
+                {
+                    "name": "Mageplaza",
+                    "email": "support@mageplaza.com",
+                    "homepage": "https://www.mageplaza.com",
+                    "role": "Technical Support"
+                }
+            ],
+            "description": "SMTP Extension for Magento 2 helps the owner of store simply install SMTP (Simple Mail Transfer Protocol) server which transmits the messages into codes or numbers",
+            "keywords": [
+                "email settings",
+                "gmail smtp",
+                "magento 2",
+                "magento 2 smtp",
+                "magento smtp",
+                "mageplaza",
+                "smtp"
+            ],
+            "time": "2020-10-29T02:25:26+00:00"
+        },
+        {
             "name": "mmucklo/inflect",
             "version": "v0.3.0",
             "source": {
@@ -20450,6 +20538,7 @@
             "keywords": [
                 "tokenizer"
             ],
+            "abandoned": true,
             "time": "2017-11-27T05:48:46+00:00"
         },
         {
@@ -20915,6 +21004,7 @@
             ],
             "description": "FinderFacade is a convenience wrapper for Symfony's Finder component.",
             "homepage": "https://github.com/sebastianbergmann/finder-facade",
+            "abandoned": true,
             "time": "2020-01-16T08:08:45+00:00"
         },
         {

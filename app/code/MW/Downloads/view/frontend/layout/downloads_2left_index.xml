@@ -7,61 +7,65 @@
   ~
   ~  @copyright   Copyright (c) 2018 Mage-World (https://www.mage-world.com/)
   -->
-
 <page layout="2columns-left" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+
     <body>
         <referenceContainer name="sidebar.additional">
             <referenceBlock name="catalog.compare.sidebar" remove="true" />
             <referenceBlock name="wishlist_sidebar" remove="true" />
-
             <block class="Magento\Framework\View\Element\Template" name="downloads.filter" template="MW_Downloads::filter.phtml">
                 <block class="MW\Downloads\Block\Downloads\Search" before="-" name="downloads-search" template="MW_Downloads::search.phtml" cacheable="true" />
-
                 <block class="MW\Downloads\Block\Category\Index" name="downloads-sidebar" template="MW_Downloads::category.phtml" cacheable="true" />
             </block>
-
-
             <block class="Magento\Cms\Block\Block" name="sidebar.contact.popup">
                 <arguments>
                     <argument name="block_id" xsi:type="string">sidebar_contact_popup</argument>
                 </arguments>
             </block>
-
         </referenceContainer>
-
         <referenceContainer name="content">
-
             <block class="MW\Downloads\Block\Downloads\Search" before="-" name="downloads-search-mb" template="MW_Downloads::search.phtml" cacheable="true" />
-
-            <block class="MW\Downloads\Block\Downloads\Index" name="downloads-page" template="MW_Downloads::downloads.phtml" cacheable="false"/>
-
+            <block class="MW\Downloads\Block\Downloads\Index" name="downloads-page" template="MW_Downloads::downloads.phtml" cacheable="false" />
             <block class="Magento\Framework\View\Element\Template" name="downloads-search-js" template="MW_Downloads::js.phtml" cacheable="true" />
-
         </referenceContainer>
-
         <referenceContainer name="before.body.end">
             <block class="Magento\Contact\Block\ContactForm" name="contact.popup" template="Magento_Contact::popup.phtml" cacheable="true">
 
-            <block class="MSP\ReCaptcha\Block\Frontend\ReCaptcha"
+              <block class="Magento\ReCaptchaUi\Block\ReCaptcha"
                    name="msp-recaptcha-contact"
                    after="-"
-                   template="MSP_ReCaptcha::msp_recaptcha_contact.phtml">
+                   template="Magento_ReCaptchaFrontendUi::recaptcha.phtml"
+                   ifconfig="recaptcha_frontend/type_for/contact">
                 <arguments>
+                    <argument name="recaptcha_for" xsi:type="string">contact</argument>
                     <argument name="jsLayout" xsi:type="array">
                         <item name="components" xsi:type="array">
-                            <item name="msp-recaptcha" xsi:type="array">
-                                <item name="component" xsi:type="string">MSP_ReCaptcha/js/reCaptcha</item>
-                                <item name="reCaptchaId" xsi:type="string">msp-recaptcha-contact</item>
-                                <item name="zone" xsi:type="string">contact</item>
-                                <item name="badge" xsi:type="string">bottomright</item>
-                                <item name="settings" xsi:type="array">
-                                    <item name="size" xsi:type="string">invisible</item>
-                                </item>
+                            <item name="recaptcha" xsi:type="array">
+                                <item name="component" xsi:type="string">Magento_ReCaptchaFrontendUi/js/reCaptcha</item>
                             </item>
                         </item>
                     </argument>
                 </arguments>
-            </block>            </block>
+            </block>
+
+               <!--  <block class="MSP\ReCaptcha\Block\Frontend\ReCaptcha" name="msp-recaptcha-contact" after="-" template="MSP_ReCaptcha::msp_recaptcha_contact.phtml">
+                    <arguments>
+                        <argument name="jsLayout" xsi:type="array">
+                            <item name="components" xsi:type="array">
+                                <item name="msp-recaptcha" xsi:type="array">
+                                    <item name="component" xsi:type="string">MSP_ReCaptcha/js/reCaptcha</item>
+                                    <item name="reCaptchaId" xsi:type="string">msp-recaptcha-contact</item>
+                                    <item name="zone" xsi:type="string">contact</item>
+                                    <item name="badge" xsi:type="string">bottomright</item>
+                                    <item name="settings" xsi:type="array">
+                                        <item name="size" xsi:type="string">invisible</item>
+                                    </item>
+                                </item>
+                            </item>
+                        </argument>
+                    </arguments>
+                </block> -->
+            </block>
         </referenceContainer>
     </body>
 </page>

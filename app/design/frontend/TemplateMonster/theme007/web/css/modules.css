@@ -9854,18 +9854,20 @@ body.account .box address {
         visibility: visible;
     }
 
-    .minicart-wrapper .ui-dialog {
-        position: fixed;
-        right: 0;
-        top: 0;
-        z-index: 9999;
-    }
+    
 
     .minicart-wrapper .ui-dialog .rd-navbar-cart {
         height: 100vh;
         top: 0;
     }
 }
+
+.minicart-wrapper .ui-dialog {
+        position: fixed;
+        right: 0;
+        top: 0;
+        z-index: 5;
+    }
 
 /*@media (min-width: 768px) {
   .rd-navbar-cart-wrap {
@@ -9940,11 +9942,22 @@ body.account .box address {
 .block-minicart .block-content {
   position: relative; }
 .block-minicart .action.close {
-  position: absolute;
-  right: 1rem;
-  top: 1rem;
-  padding: 0;
-  background: none; }
+    position: absolute;
+    right: 0;
+    top: -23px;
+    padding: 0;
+    background: none;
+    display: block; 
+    box-shadow: none;
+}
+
+.block-minicart .action.close:before {
+    font-family: "Linearicons";
+    content: "\e935";
+    font-size: 16px;
+}
+.block-minicart .action.close span{display: none;}
+
 .block-minicart .price {
   font-size: 20px; }
 .block-minicart .subtotal {
@@ -10076,6 +10089,8 @@ body.account .box address {
       font-weight: normal;
       font-style: normal;
       line-height: 20px; }
+
+      .minicart-items .product.options .list > dt:after{content: ":"; margin-left: 5px;}
 
     .minicart-items .product.options .list > dd {
       -webkit-flex-basis: 75%;
@@ -17434,16 +17449,19 @@ form#co-shipping-form .fieldset.address .label{
 form#co-shipping-form .fieldset.address .control{
   clear: both;
 }
+
+
 @media (min-width: 992px) {
-  form#co-shipping-form .field[name='shippingAddress.postcode'],
+  form#co-shipping-form .field[name='shippingAddress.region_id'],
+  form#co-shipping-form .field[name='shippingAddress.region'],
   form#co-shipping-form .field[name='shippingAddress.city'],
   form#co-shipping-form .field[name='shippingAddress.firstname']
   {
     width: 48%;margin-right: 2%
   }
+  
+  form#co-shipping-form .field[name='shippingAddress.postcode'],
   form#co-shipping-form .field[name='shippingAddress.country_id'],
-  form#co-shipping-form .field[name='shippingAddress.region_id'],
-  form#co-shipping-form .field[name='shippingAddress.region'],
   form#co-shipping-form .field[name='shippingAddress.lastname']{
     width: 48%;margin-left: 2%
   }
@@ -17451,6 +17469,52 @@ form#co-shipping-form .fieldset.address .control{
 
 .form.methods-shipping table{width: 100%}
 .form.methods-shipping table th{padding-top: 10px;padding-bottom: 10px}
+
+@media (min-width: 992px) {
+  div.billing-address-form fieldset.fieldset .field[name*='.region_id'],
+  div.billing-address-form fieldset.fieldset .field[name*='.region'],
+  div.billing-address-form fieldset.fieldset .field[name*='.city'],
+  div.billing-address-form fieldset.fieldset .field[name*='.firstname']
+  {
+    width: 48% !important;margin-right: 2%
+  }
+  
+  div.billing-address-form fieldset.fieldset .field[name*='.postcode'],
+  div.billing-address-form fieldset.fieldset .field[name*='.country_id'],
+  div.billing-address-form fieldset.fieldset .field[name*='.lastname']{
+    width: 48% !important;margin-left: 2%
+  }
+}
+div.billing-address-form fieldset.fieldset{
+      display: flex;
+    flex-wrap: wrap;
+}
+div.billing-address-form fieldset.fieldset .field[name*='billing'] {
+    display: flex;
+    flex-direction: COLUMN;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+div.billing-address-form fieldset.fieldset .field input[id^="billing-save-in-address-book"]{
+    display: none !important;
+}
+
+div.billing-address-form fieldset.street {
+  width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0;
+}
+div.billing-address-form fieldset.street  .label{
+  padding-top: 0;
+}
+div.billing-address-form fieldset.street  .control{
+  clear: both;
+    width: 100%;
+}
+
+
 /*END Checkout Compact form*/
 
 
