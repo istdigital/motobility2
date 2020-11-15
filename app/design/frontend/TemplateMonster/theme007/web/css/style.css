@@ -7832,8 +7832,14 @@ a#open-repayment-popup{
 
 #shipping .new-address-popup button,
 button.action-select-shipping-item{
-  color: #35b3ca;
-  font-weight: bold;
+    color: #FFF;
+    /* background: red; */
+    font-weight: bold;
+    padding: 7px 19px 9px;
+    font-size: 14px;
+    line-height: 20px;
+    border-radius: 5px;
+    background: #35b3ca;
 }
 #checkout-step-shipping #customer-email-error{
   position: relative;
@@ -8081,4 +8087,51 @@ strong.add-success-msg {
     color: #000;
     font-weight: normal;
     margin-bottom: 10px;
+}
+
+
+.product-items .ampreorder-observed .price-box {
+    margin-bottom: 8px;
+}
+
+.product-items .ampreorder-observed .ampreorder-note {
+    margin-bottom: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 17px;
+    background: #f9b761 !important;
+    padding: 11px 15px;
+    color: #fff;
+    display: inline-block;
+    border-radius: 3px;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+    order: -1;
+}
+
+.ampreorder-observed,
+.ampreorder-note,
+.preorder_note {
+    word-break: break-all;
+    word-break: break-word;
+}
+
+.ampreorder-observed .tocart {
+    white-space: normal
+}
+
+#shopping-cart-table .cart.item .message {
+    font-size: 14px;
+    padding: 0;
+    line-height: 14px;
+    text-align: left;
+    color: #f7981d;
+}
+#shopping-cart-table .cart.item .message > div:after{display: none;}
+
+div.paypal-buttons{z-index: 1}
+.checkout-index-index .opc-wrapper .step-content div.discount-code .message {
+    font-size: 20px;
+    padding: 1rem 3.5rem 0.9rem 1rem;
+    text-align: center;
 }

@@ -58,7 +58,10 @@
     <meta itemprop="ratingValue" content="5"/>
   <meta itemprop="ratingCount" content="100"/>
 </span>
+<?php if($_product->getShortDescription()): ?>
 <meta itemprop="description" content="<?= $block->escapeHtml($_product->getShortDescription()) ?>" />
+<?php endif; ?>
+
 <meta itemprop="brand" content="<?= $brand['name'] ?>"/>
 
 
