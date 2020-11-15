@@ -62,8 +62,9 @@
 <meta itemprop="description" content="<?= $block->escapeHtml($_product->getShortDescription()) ?>" />
 <?php endif; ?>
 
-<meta itemprop="brand" content="<?= $brand['name'] ?>"/>
-
+<?php if($brand && isset($brand['name'])): ?>
+<meta itemprop="brand" content="<?= $brand['name']  ?>"/>
+<?php endif; ?>
 
 <div class="gallery-placeholder _block-content-loading" data-gallery-role="gallery-placeholder">
     <img

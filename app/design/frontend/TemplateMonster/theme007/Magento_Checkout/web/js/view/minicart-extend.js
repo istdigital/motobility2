@@ -73,6 +73,13 @@ define([
     miniCart.on('dropdowndialogopen', function () {
         initSidebarExtend();
     });
+
+    miniCart.on('click', '[data-action="close"]', function (event) {
+        event.stopPropagation();
+        console.log("ASdasd")
+        miniCart.find('[data-role="dropdownDialog"]').dropdownDialog('close');
+    });
+
     return function (Component) {
         return Component.extend({
             /**
@@ -98,6 +105,9 @@ define([
                 if (cartData()['website_id'] !== window.checkout.websiteId) {
                     customerData.reload(['cart'], false);
                 }
+
+
+                
 
                 return this._super();
             },
