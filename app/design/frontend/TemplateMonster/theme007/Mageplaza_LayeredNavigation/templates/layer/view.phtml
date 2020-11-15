@@ -29,13 +29,13 @@ if ($block->canShowBlock()) : ?>
     ?>
     <!-- data-mage-init='{"collapsible":{"openedState": "active", "collapsible": false, "active": true, "collateral": { "openedState": "filter-active", "element": "body" } }}' -->
     <div class="block filter" id="layered-filter-block">
-        <div style="display: none;">
+        
         <div id="ln_overlay" class="ln_overlay">
             <div class="loader">
                 <img src="<?= /** @noEscape */ $block->getViewFileUrl('images/loader-1.gif') ?>" alt="Loading...">
             </div>
         </div>
-        </div>
+        
         <div class="block-title filter-title" data-count="<?= /** @noEscape */ $filtered ?>">
             <strong data-role="title"><?= /** @noEscape */ __('Filters') ?></strong>
         </div>

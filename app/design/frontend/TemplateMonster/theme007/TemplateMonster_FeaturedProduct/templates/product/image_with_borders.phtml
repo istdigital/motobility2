@@ -8,7 +8,6 @@
 <span class="product-image-container">
     <span class="product-image-wrapper">
         <img class="product-image-photo"
-            <?= /* @escapeNotVerified */ $block->getCustomAttributes() ?>
             src="<?= /* @escapeNotVerified */ $block->getImageUrl() ?>"
             title="<?= /* @escapeNotVerified */ $block->stripTags($block->getLabel(), null, true) ?>"
             alt="<?= /* @escapeNotVerified */ $block->stripTags($block->getLabel(), null, true) ?>"/></span>
