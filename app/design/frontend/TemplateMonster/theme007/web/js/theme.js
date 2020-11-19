@@ -268,9 +268,9 @@ define([
             $('[data-block="minicart"]').on('contentUpdated', function () {
                 if(self.options.itemAdded){
                     $('[data-block="minicart"]').find('[data-role="dropdownDialog"]').dropdownDialog('open');
-                    $('.block-minicart strong.add-success-msg').show();
+                    $('.block-minicart p.add-success-msg').show();
                     setTimeout(function () {
-                        $('.block-minicart strong.add-success-msg').hide();
+                        $('.block-minicart p.add-success-msg').hide();
                     }, 5000);
                     self.options.itemAdded = false;
                 }
