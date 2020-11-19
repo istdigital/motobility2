@@ -41,17 +41,18 @@ if ($block->canShowBlock()) : ?>
         </div>
         <div class="block-content filter-content" data-mage-init='{"mpLayer": <?= /** @noEscape */ $layerConfig ?>}'>
 
-            <div class="filter-current--wrapper">
+            <?php if ($block->getLayer()->getState()->getFilters()) : ?>
+                <div class="filter-current--wrapper">
                 <?= /** @noEscape */ $block->getChildHtml('state') ?>
-                <?php if ($block->getLayer()->getState()->getFilters()) : ?>
+                
                     <div class="block-actions filter-actions">
                         <a href="<?= /** @noEscape */ $block->getClearUrl() ?>" class="action clear filter-clear">
                             <span><?= /** @noEscape */ __('Clear All') ?></span>
                         </a>
                     </div>
-                <?php endif; ?>
-            </div>
-            
+                
+                </div>
+            <?php endif; ?>
 
 
             <?php $wrapOptions = false; ?>
