@@ -5725,7 +5725,7 @@ ul.header.links li.link a{position: relative;    display: inline-block;}
   }
 }
 
-.home-section-1 div[class*='col'] {position: relative;padding: 0;    margin: 20px 0 0;}
+.home-section-1 div[class*='col'] {position: relative;padding: 0;    margin: 0 0 20px;}
 
 
 @media (min-width: 768px) {
