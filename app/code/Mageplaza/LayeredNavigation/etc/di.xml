@@ -83,4 +83,8 @@
     <type name="Magento\Framework\App\PageCache\Kernel">
         <plugin name="mplayerProcessRequest" type="Mageplaza\LayeredNavigation\Plugin\PageCache\ProcessRequest" />
     </type>
+
+    <type name="Magento\Catalog\Model\Config">
+        <plugin name="mp_category_config_sortby_latest" type="Mageplaza\LayeredNavigation\Plugin\Category\Model\Config"/>
+    </type>
 </config>

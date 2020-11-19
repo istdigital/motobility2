@@ -390,6 +390,12 @@ fieldset,
       top: 90%;
       left: 0;
       right: 0; }
+
+      .field.required textarea + div.mage-error {
+        top: 98%;
+      }
+
+
       .field._required .control,
     .field.required .control {
       position: relative; }
@@ -2519,7 +2525,9 @@ dl dd {
   vertical-align: middle;
   max-width: 250px;
   min-width: 100%;
-  font-size: 12px; }
+  font-size: 12px; 
+  z-index: 2;
+}
   .select2-container .select2-selection--single {
     box-sizing: border-box;
     cursor: pointer;
@@ -8103,8 +8111,8 @@ ol.list-ordered {
 }
 
 
-strong.add-success-msg {
-    font-size: 18px;
+p.add-success-msg {
+    font-size: 20px;
     color: #000;
     font-weight: normal;
     margin-bottom: 10px;
