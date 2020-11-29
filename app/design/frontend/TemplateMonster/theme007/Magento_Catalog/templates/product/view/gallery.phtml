@@ -58,9 +58,13 @@
     <meta itemprop="ratingValue" content="5"/>
   <meta itemprop="ratingCount" content="100"/>
 </span>
+<?php if($_product->getShortDescription()): ?>
 <meta itemprop="description" content="<?= $block->escapeHtml($_product->getShortDescription()) ?>" />
-<meta itemprop="brand" content="<?= $brand['name'] ?>"/>
+<?php endif; ?>
 
+<?php if($brand && isset($brand['name'])): ?>
+<meta itemprop="brand" content="<?= $brand['name']  ?>"/>
+<?php endif; ?>
 
 <div class="gallery-placeholder _block-content-loading" data-gallery-role="gallery-placeholder">
     <img

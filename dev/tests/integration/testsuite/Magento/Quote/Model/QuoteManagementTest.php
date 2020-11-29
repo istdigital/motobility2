@@ -12,9 +12,11 @@ use Magento\Catalog\Model\Product\Type;
 use Magento\Framework\Api\SearchCriteriaBuilder;
 use Magento\Quote\Api\CartManagementInterface;
 use Magento\Quote\Api\CartRepositoryInterface;
+use Magento\Sales\Api\OrderManagementInterface;
 use Magento\Sales\Api\OrderRepositoryInterface;
 use Magento\TestFramework\Helper\Bootstrap;
 use Magento\TestFramework\ObjectManager;
+use PHPUnit\Framework\ExpectationFailedException;
 
 /**
  * Class for testing QuoteManagement model
@@ -34,7 +36,7 @@ class QuoteManagementTest extends \PHPUnit\Framework\TestCase
     /**
      * @inheritdoc
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->objectManager = Bootstrap::getObjectManager();
 
@@ -72,11 +74,12 @@ class QuoteManagementTest extends \PHPUnit\Framework\TestCase
      * @magentoAppArea adminhtml
      * @magentoAppIsolation enabled
      * @magentoDataFixture Magento/Sales/_files/quote_with_bundle.php
-     * @expectedException \Magento\Framework\Exception\LocalizedException
-     * @expectedExceptionMessage Some of the products below do not have all the required options.
      */
     public function testSubmitWithDeletedItem()
     {
+        $this->expectException(\Magento\Framework\Exception\LocalizedException::class);
+        $this->expectExceptionMessage('Some of the products below do not have all the required options.');
+
         /** @var ProductRepositoryInterface $productRepository */
         $productRepository = $this->objectManager->get(ProductRepositoryInterface::class);
         $product = $productRepository->get('simple-2');
@@ -90,15 +93,44 @@ class QuoteManagementTest extends \PHPUnit\Framework\TestCase
      * Tries to create order with item of stock during checkout.
      *
      * @magentoDataFixture Magento/Sales/_files/quote.php
-     * @expectedException \Magento\Framework\Exception\LocalizedException
-     * @expectedExceptionMessage Some of the products are out of stock.
      * @magentoDbIsolation enabled
      */
     public function testSubmitWithItemOutOfStock()
     {
+        $this->expectException(\Magento\Framework\Exception\LocalizedException::class);
+        $this->expectExceptionMessage('Some of the products are out of stock.');
+
         $this->makeProductOutOfStock('simple');
         $quote = $this->getQuote('test01');
         $this->cartManagement->placeOrder($quote->getId());
+    }
+
+    /**
+     * Tries to create an order using quote with empty customer email.
+     *
+     * Order should not start placing if order validation is failed.
+     *
+     * @magentoDataFixture Magento/Quote/Fixtures/quote_without_customer_email.php
+     */
+    public function testSubmitWithEmptyCustomerEmail()
+    {
+        $this->expectException(\Magento\Framework\Exception\LocalizedException::class);
+        $this->expectExceptionMessage('Email has a wrong format');
+
+        $quote = $this->getQuote('test01');
+        $orderManagement = $this->getMockForAbstractClass(OrderManagementInterface::class);
+        $orderManagement->expects($this->never())
+            ->method('place');
+        $cartManagement = $this->objectManager->create(
+            CartManagementInterface::class,
+            ['orderManagement' => $orderManagement]
+        );
+
+        try {
+            $cartManagement->placeOrder($quote->getId());
+        } catch (ExpectationFailedException $e) {
+            $this->fail('Place order method was not expected to be called if order validation is failed');
+        }
     }
 
     /**

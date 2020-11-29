@@ -390,6 +390,13 @@ fieldset,
       top: 90%;
       left: 0;
       right: 0; }
+
+      .field.required textarea + div.mage-error {
+        top: 98%;
+      }
+
+
+      .field._required .control,
     .field.required .control {
       position: relative; }
       .field.required .control._with-tooltip input.input-text + div.mage-error {
@@ -1821,6 +1828,27 @@ dl dd {
   .rd-navbar-collapse li{
     border-right: 1px solid #eae9e9;
   }
+
+
+  ul.header.links li.link.compare{
+    margin: 0;
+    border: 0;
+    padding: 0;
+  }
+
+  ul.header.links li.link.compare a{
+    padding: 11px 11px 11px 0px;
+    border-right: 1px solid #eae9e9;
+    margin: 0 23px 0 0;
+    position: relative;
+  }
+  ul.header.links li.link.compare a.no-display{
+    display: none;
+  }
+  ul.header.links li.link.compare a .counter{
+        top: -3px;
+    right: 0;
+  }
 }
 
 @media (min-width: 768px) and (max-width: 1353px) {
@@ -2173,25 +2201,32 @@ dl dd {
   margin: 0; }
 
 .messages {
-  position: fixed;
-  top: 70px;
-  right: 10px;
-  max-width: 90%;
-  z-index: 4;
-  font-size: 12px; }
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    max-width: 100%;
+    width: 100%;
+    z-index: 99;
+  }
   @media (min-width: 768px) {
     .messages {
-      top: 10px;
-      max-width: 100%; } }
-
+          z-index: 4;} }
+#maincontent .message {
+    width: 100%;
+}
 .message {
-  padding: 0.8rem 3.5rem 0.8rem 1rem;
-  margin-bottom: 30px;
-  border: 1px solid transparent;
-  border-radius: 2px;
-  position: relative;
-  cursor: pointer;
-  font-size: 14px; }
+    padding: 1rem 3.5rem 0.9rem 1rem;
+    margin-bottom: 10px;
+    border: 1px solid transparent;
+    border-radius: 2px;
+    position: relative;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: 600;
+    max-width: 100%;
+    width: 500px;
+    text-align: center;
+  }
   .message > div:after {
     font-family: "Linearicons";
     content: '\e935';
@@ -2212,23 +2247,23 @@ dl dd {
 .message.notice,
 .message.info {
   color: #fff;
-  background-color:#35b3ca;
-  border-color:#35b3ca; }
+  background-color:#f7981d;
+  border-color:#f7981d; }
 
 .message-warning {
   color: #fff;
-  background-color: #35b3ca;
-  border-color: #35b3ca; }
+  background-color: #f7981d;
+  border-color: #f7981d; }
 
 .message-error {
   color: #fff;
-  background-color: #35b3ca;
-  border-color: #35b3ca; }
+  background-color: #f7981d;
+  border-color: #f7981d; }
 
 .message-success {
   color: #fff;
-  background-color: #35b3ca;
-  border-color: #35b3ca; }
+  background-color: #f7981d;
+  border-color: #f7981d; }
 
 /* 
  * 	Core Owl Carousel CSS File
@@ -2490,7 +2525,9 @@ dl dd {
   vertical-align: middle;
   max-width: 250px;
   min-width: 100%;
-  font-size: 12px; }
+  font-size: 12px; 
+  z-index: 2;
+}
   .select2-container .select2-selection--single {
     box-sizing: border-box;
     cursor: pointer;
@@ -5688,7 +5725,7 @@ ul.header.links li.link a{position: relative;    display: inline-block;}
   }
 }
 
-.home-section-1 div[class*='col'] {position: relative;padding: 0;    margin: 20px 0 0;}
+.home-section-1 div[class*='col'] {position: relative;padding: 0;    margin: 0 0 20px;}
 
 
 @media (min-width: 768px) {
@@ -7824,8 +7861,14 @@ a#open-repayment-popup{
 
 #shipping .new-address-popup button,
 button.action-select-shipping-item{
-  color: #35b3ca;
-  font-weight: bold;
+    color: #FFF;
+    /* background: red; */
+    font-weight: bold;
+    padding: 7px 19px 9px;
+    font-size: 14px;
+    line-height: 20px;
+    border-radius: 5px;
+    background: #35b3ca;
 }
 #checkout-step-shipping #customer-email-error{
   position: relative;
@@ -8065,4 +8108,77 @@ ol.list-ordered {
     display: flex;
     align-items: center;
     justify-content: space-around;
+}
+
+
+p.add-success-msg {
+    font-size: 20px;
+    color: #000;
+    font-weight: normal;
+    margin-bottom: 10px;
+}
+
+
+.product-items .ampreorder-observed .price-box {
+    margin-bottom: 8px;
+}
+
+.product-items .ampreorder-observed .ampreorder-note {
+    margin-bottom: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 17px;
+    background: #f9b761 !important;
+    padding: 11px 15px;
+    color: #fff;
+    display: inline-block;
+    border-radius: 3px;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+    order: -1;
+}
+
+.ampreorder-observed,
+.ampreorder-note,
+.preorder_note {
+    word-break: break-all;
+    word-break: break-word;
+}
+
+.ampreorder-observed .tocart {
+    white-space: normal
+}
+
+#shopping-cart-table .cart.item .message {
+    font-size: 14px;
+    padding: 0;
+    line-height: 14px;
+    text-align: left;
+    color: #f7981d;
+}
+#shopping-cart-table .cart.item .message > div:after{display: none;}
+
+div.paypal-buttons{z-index: 1}
+.checkout-index-index .opc-wrapper .step-content div.discount-code .message {
+    font-size: 20px;
+    padding: 1rem 3.5rem 0.9rem 1rem;
+    text-align: center;
+}
+
+.home-section-5 .not-found {
+    display: none;
+}
+
+#layered-filter-block .ln_overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+    padding: 30vh;
+    text-align: center;
 }

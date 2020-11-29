@@ -12,16 +12,16 @@
     },
     "require": {
         "ebizmarts/mailchimp-lib": "^3.0",
-        "magento/product-community-edition": "2.3.2",
+        "magento/product-community-edition": "2.4.0",
+        "mageplaza/module-core": "1.4.9",
+        "mageplaza/module-smtp": "^4.1",
         "stripe/stripe-php": "^7.33",
         "zendesk/zendesk_api_client_php": "^2.2"
     },
     "require-dev": {
         "allure-framework/allure-phpunit": "~1.2.0",
-        "friendsofphp/php-cs-fixer": "~2.13.0",
         "lusitanian/oauth": "~0.8.10",
         "magento/magento-coding-standard": "~1.0.0",
-        "magento/magento2-functional-testing-framework": "~2.3.14",
         "pdepend/pdepend": "2.5.2",
         "phpmd/phpmd": "@stable",
         "phpunit/phpunit": "~6.5.0",
