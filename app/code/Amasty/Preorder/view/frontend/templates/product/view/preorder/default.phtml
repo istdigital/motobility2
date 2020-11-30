@@ -13,10 +13,10 @@ if (!$block->canShowBlock()) {
 ?>
 <script type="text/javascript">
     require(['jquery', 'Amasty_Preorder/js/product/preorder'], function ($) {
-        $widget = $.mage.amastyPreorder({
-            availabilityElement: '<?= $block->getPreorderNotePosition(); ?>',
-            preOrderNote: '<?= $block->getPreorderNote(); ?>',
-            addToCartLabel: '<?= $block->getCartLabel(); ?>'
+        var $widget = $.mage.amastyPreorder({
+            availabilityElement: '<?= /** @noEscape */ $block->getPreorderNotePosition(); ?>',
+            preOrderNote: '<?= /** @noEscape */ $block->getPreorderNote(); ?>',
+            addToCartLabel: '<?= /** @noEscape */ $block->getCartLabel(); ?>'
         });
         $widget.enable();
     });

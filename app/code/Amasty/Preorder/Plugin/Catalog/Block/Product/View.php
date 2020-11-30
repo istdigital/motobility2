@@ -41,7 +41,7 @@ class View
     protected function _construct()
     {
         // @codingStandardsIgnoreLine
-        $this->regexp = '@(<button[^>]*title=")[^"]*("[^>]*id="product-addtocart-button"[^>]*>[^>]*<span>)(.*)(</span>.*</button>)@s';
+        $this->regexp = '@(<button[^>]*title=")[^"]*("[^>]*id="product-addtocart-button"[^>]*>[^>]*<span>)(.*)(</span>.*</button>)@Us';
     }
 
     /**
@@ -55,10 +55,11 @@ class View
             && $this->helper->preordersEnabled()
             && $this->helper->getIsProductPreorder($subject->getProduct())
         ) {
-            $note = $this->helper->getProductPreorderCartLabel($subject->getProduct());
+            $label = $this->helper->getProductPreorderCartLabel($subject->getProduct());
+            $labelText = $this->helper->stripTags($label);
             $html = preg_replace(
                 $this->regexp,
-                '$1 ' . $note . '$2 ' . $note . '$4'
+                '$1 ' . $labelText . '$2 ' . $label . '$4'
                     . '<div class="original-add-to-cart-text" data-text="$3"></div>',
                 $html
             );
