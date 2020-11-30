@@ -55,7 +55,7 @@ class ProductAbstract extends \Magento\Catalog\Block\Product\View\AbstractView
      */
     public function getCartLabel()
     {
-        return $this->escapeQuote($this->helper->getProductPreorderCartLabel($this->getProduct()));
+        return $this->helper->getProductPreorderCartLabel($this->getProduct());
     }
 
     /**

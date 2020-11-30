@@ -79,7 +79,7 @@ define([
                 return;
             }
 
-            button.attr('title', cartLabel);
+            button.attr('title', $('<div/>').html(cartLabel).text());
             $.mage.catalogAddToCart.prototype.options.addToCartButtonTextDefault = cartLabel;
             button.html(cartLabel);
         }
