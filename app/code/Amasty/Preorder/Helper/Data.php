@@ -13,14 +13,13 @@ use Magento\ConfigurableProduct\Model\Product\Type\Configurable;
 use Magento\Framework\App\Helper\Context;
 use Magento\GroupedProduct\Model\Product\Type\Grouped;
 use Magento\Store\Model\ScopeInterface;
-use Magento\CatalogInventory\Model\Configuration;
 use Amasty\Preorder\Model\Order\ProductQty;
 
 class Data extends \Magento\Framework\App\Helper\AbstractHelper
 {
     const BACKORDERS_PREORDER_OPTION = 101;
-    const ALLOWED_TAGS
-        = '<b><a><i><strong><blockquote><code><del><em><img><kbd><p><s><sup><sub><br><hr><ul><li><h1><h2><h3><dd><dl>';
+    const ALLOWED_TAGS = '<b><a><i><strong><blockquote><code><del><em><img><kbd><p><s><sup><sub><br><hr><ul><li><h1>'
+        . '<h2><h3><dd><dl><span>';
 
     protected $isOrderProcessing = false;
 
@@ -622,15 +621,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
             $template = $this->getCurrentStoreConfig('ampreorder/general/defaultpreordernote');
         }
 
-        $template = $this->filterManager->stripTags($template, ['allowableTags' => self::ALLOWED_TAGS]);
-
-        /* validate output - remove to validate html*/
-        /* $template = $this->outputHelper->productAttribute(
-            $product,
-            $template,
-            'amasty_preorder_note'
-        );*/
-
+        $template = $this->stripTags($template, self::ALLOWED_TAGS);
         $note = $this->templater->process($template, $product);
 
         if (is_array($note)) {
@@ -649,6 +640,22 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     }
 
     /**
+     * Wrapper for standard strip_tags() function with extra functionality for html entities
+     *
+     * @param string $data
+     * @param string|null $allowableTags
+     * @param bool $allowHtmlEntities
+     * @return string
+     */
+    public function stripTags($data, $allowableTags = null, $allowHtmlEntities = false)
+    {
+        return $this->filterManager->stripTags(
+            $data,
+            ['allowableTags' => $allowableTags, 'escape' => $allowHtmlEntities]
+        );
+    }
+
+    /**
      * @param Product $product
      *
      * @return null|string|string[]
@@ -663,10 +670,12 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         }
 
         if (!$template) {
-            $template = $this->getCurrentStoreConfig('ampreorder/general/addtocartbuttontext');
+            $template = $this->getDefaultPreorderCartLabel();
         }
 
+        $template = $this->stripTags($template, self::ALLOWED_TAGS);
         $note = $this->templater->process($template, $product);
+
         if (is_array($note)) {
             $note = implode($note);
         }
