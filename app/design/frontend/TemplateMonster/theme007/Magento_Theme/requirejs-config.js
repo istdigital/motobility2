@@ -22,6 +22,7 @@ var config = {
         "magnificPopup":      'Magento_Theme/js/jquery.magnific-popup',
         "customSelect":     "Magento_Theme/js/select2",
         "doubleTap":        "Magento_Theme/js/doubletaptogo",
+        "expertScroll":    "Magento_Theme/js/scroll",
         "googleMapOptions": "js/googleMapOptions"
     },
     shim: {
