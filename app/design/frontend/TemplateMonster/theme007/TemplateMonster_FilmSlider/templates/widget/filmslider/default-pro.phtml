@@ -1,0 +1,87 @@
+<?php
+
+$slider = $block->createSlider();
+$items = $slider->getSlideCollection();
+$loader = $this->loaderDimensions($slider->getParams());
+?>
+<div class="slider-pro-wrapper">
+    <div class="slider-pro-container" style="padding-bottom: <?php echo $loader['padding'] ?>%; height: <?php echo $loader['height'] ?>px;">
+        <div class="loading-mask for-slider">
+            <div class="loader">
+                <img src="<?php /* @escapeNotVerified */ echo $this->getViewFileUrl("TemplateMonster_FilmSlider::images/loader-2.gif"); ?>"
+                    title="<?php /* @escapeNotVerified */ echo __('Loading...'); ?>"
+                     alt="<?php /* @escapeNotVerified */ echo __('Loading...'); ?>">
+            </div>
+        </div>
+        <div id="example1" class="slider-pro <?php echo $loader['position']; ?>" data-mage-init='{"FilmSlider": <?php echo $slider->getParams(); ?>}'>
+            <div class="sp-slides">
+                <?php foreach($items as $item):?>
+                    <?php if($item->getStatus()): ?>
+                        <div class="sp-slide">
+
+                            <?php $video = $item->getVideo(); ?>                            
+
+                            <?php if(!empty($video) && !preg_match('/Edge/i', $_SERVER['HTTP_USER_AGENT'])): ?>
+
+                                <video loop="" autoplay="" muted="" playsinline="" preload="none" class="lozad" data-poster="<?php echo $block->addUrl($item->getImage()) ?>">
+                                    <source src="<?php echo $block->addUrl($video) ?>" type="video/mp4">
+                                </video>
+
+                            <?php else: ?>
+
+                                <img class="sp-image" 
+                                    src="<?php echo $this->getViewFileUrl("TemplateMonster_FilmSlider::images/blank.gif"); ?>" 
+                                    <?php if(!empty($mbi = $item->getMobileImage())): ?>data-small="<?php echo $block->addUrl($mbi) ?>"<?php endif; ?>
+                                    <?php if(!empty($mbi = $item->getMobileImage())): ?>data-medium="<?php echo $block->addUrl($mbi) ?>"<?php endif; ?>
+                                    data-src="<?php echo $block->addUrl($item->getImage()) ?>" alt="<?= $item->getTitle(); ?>"
+                                    title="<?= $item->getTitle(); ?>"/>
+
+                            <?php endif; ?>
+
+
+                            <?php foreach($item->getLayerItems() as $layer): ?>
+                                <div class="sp-layer <?php echo $layer->getData('css-class'); ?>"
+                                    <?php echo $this->includeAttr('data-width',           $layer->getData('data-width') ); ?>
+                                    <?php echo $this->includeAttr('data-height',          $layer->getData('data-height') ); ?>
+                                    <?php echo $this->includeAttr('data-depth',           $layer->getData('data-depth') ); ?>
+                                    <?php echo $this->includeAttr('data-position',        $layer->getData('data-position') ); ?>
+                                    <?php echo $this->includeAttr('data-horizontal',      $layer->getData('data-horizontal') ); ?>
+                                    <?php echo $this->includeAttr('data-vertical',        $layer->getData('data-vertical') ); ?>
+                                    <?php echo $this->includeAttr('data-show-transition', $layer->getData('data-show-transition') ); ?>
+                                    <?php echo $this->includeAttr('data-hide-transition', $layer->getData('data-hide-transition') ); ?>
+                                    <?php echo $this->includeAttr('data-show-delay',      $layer->getData('data-show-delay') ); ?>
+                                    <?php echo $this->includeAttr('data-hide-delay',      $layer->getData('data-hide-delay') ); ?>
+                                    <?php echo $this->includeAttr('data-show-duration',   $layer->getData('data-show-duration') ); ?>
+                                    <?php echo $this->includeAttr('data-hide-duration',   $layer->getData('data-hide-duration') ); ?>
+                                    <?php echo $this->includeAttr('data-show-offset',     $layer->getData('data-show-offset') ); ?>
+                                    <?php echo $this->includeAttr('data-hide-offset',     $layer->getData('data-hide-offset') ); ?>
+                                    <?php echo $this->includeAttr('data-stay-duration',   $layer->getData('data-stay-duration') ); ?> >
+
+                                    <?php if ($layer->getData('layer_images')) { ?>
+                                        <img data-src="<?php echo $block->addUrl($layer->getLayerImages());?>">
+                                    <?php } ?>
+                                    <?php if ($layer->getData('layer_text_html')) { ?>
+                                        <div style="<?php echo $layer->getData('layer_text_width')       ? ('width: ' . $layer->getData('layer_text_width') . 'px;') : '' ?>
+                                        <?php echo $layer->getData('layer_text_height')      ? ('height: ' . $layer->getData('layer_text_height') . 'px;') : '' ?>
+                                        <?php echo $this->setBackground($layer->getData('layer_text_back_color'), $layer->getData('layer_text_back_opacity')); ?>
+                                        <?php echo $layer->getData('layer_text_color')       ? ('color: ' . $layer->getData('layer_text_color') . ';') : '' ?>
+                                        <?php echo $layer->getData('layer_text_font_family') ? ('font-family: ' . $layer->getData('layer_text_font_family') . ';') : '' ?>
+                                        <?php echo $layer->getData('layer_text_font_size')   ? ('font-size: ' . $layer->getData('layer_text_font_size') . 'px;') : '' ?>
+                                        <?php echo $layer->getData('layer_text_line_height') ? ('line-height: ' . $layer->getData('layer_text_line_height') . 'px;') : '' ?>
+                                        <?php echo $layer->getData('layer_text_font_style')  ? ('font-style: ' . $layer->getData('layer_text_font_style') . ';') : '' ?>
+                                        <?php echo $layer->getData('layer_text_font_weight') ? ('font-weight: ' . $layer->getData('layer_text_font_weight') . ';') : '' ?>
+                                        <?php echo $layer->getData('layer_text_indent')      ? ('padding: ' . $layer->getData('layer_text_indent') . 'px;') : '' ?>
+                                            ">
+                                            <?php echo $layer->getData('layer_text_html'); ?>
+                                        </div>
+                                    <?php } ?>
+                                </div>
+                                <?php ?>
+                            <?php endforeach; ?>
+                        </div>
+                    <?php endif; ?>
+                <?php endforeach; ?>
+            </div>
+        </div>
+    </div>
+</div>

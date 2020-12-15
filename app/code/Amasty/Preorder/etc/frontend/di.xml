@@ -11,6 +11,7 @@
     <type name="Magento\Catalog\Block\Product\ListProduct">
         <plugin name="Amasty_Preorder::addPreorderLabelToCatalogList" type="Amasty\Preorder\Plugin\ProductList\Catalog" />
     </type>
+    
     <type name="Magento\CatalogWidget\Block\Product\ProductsList">
         <plugin name="Amasty_Preorder::addPreorderLabelToWidgetList" type="Amasty\Preorder\Plugin\ProductList\Widget" />
     </type>

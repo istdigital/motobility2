@@ -9335,7 +9335,10 @@ padding: 0 ;}
 @media (max-width: 767px) {
   .action.filter-toggle {
     position: relative;
-    margin-bottom: 15px; } }
+    margin-bottom: 15px; 
+    display: block !important;
+    box-shadow: none;
+    } }
 .form-login .actions-toolbar {
   flex-direction: row-reverse; }
 
@@ -9868,14 +9871,16 @@ body.account .box address {
         height: 100vh;
         top: 0;
     }
+
+    .minicart-wrapper .ui-dialog {
+      position: fixed;
+      right: 0;
+      top: 0;
+      z-index: 5;
+  }
 }
 
-.minicart-wrapper .ui-dialog {
-        position: fixed;
-        right: 0;
-        top: 0;
-        z-index: 5;
-    }
+
 
 /*@media (min-width: 768px) {
   .rd-navbar-cart-wrap {
@@ -14338,6 +14343,7 @@ div[class^="swatch-opt-"] {
       border-top: 1px solid #eae9e9; }
     .search-autocomplete ul li .amount {
       position: static; 
+      display: none;
       margin-left: 10px;
     }
     .search-autocomplete ul li .amount:after{content: ")"}

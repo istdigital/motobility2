@@ -16,6 +16,9 @@ var config = {
             },
             "Magento_Checkout/js/sidebar": {
                 'Magento_Checkout/js/sidebar-mixin': true
+            },
+            'Magento_Checkout/js/view/summary/cart-items': {
+              'Magento_Checkout/js/view/summary/cart-items-mixin': true
             }
         }
     }
