@@ -40,53 +40,105 @@ define([
     };
 
 
-    GoogleMapsLoader.done(function () {
-        var enabled = window.checkoutConfig.shipperhq_autocomplete.active;
+    var autocomplete;
+
+    var checkForRegistry = setInterval(function(){
+        var tt = uiRegistry.get('checkout.steps.shipping-step.shippingAddress.shipping-address-fieldset.street').elems();
+
+        if(tt.length){
 
 
 
-        var geocoder = new google.maps.Geocoder();
-        setTimeout(function () {
-            
+            var tStreet = document.getElementById(tt[0].uid);
+            if(tStreet){
+                clearCheckRegistry();    
+            }            
+        }
+    }, 1000);
+
+    var clearCheckRegistry = function(){
+        clearInterval(checkForRegistry);
+        loadGoogleAutoComplete();
+    }
+
+
+
+    var loadGoogleAutoComplete = function () {
+
+        GoogleMapsLoader.done(function () {
+            var enabled = window.checkoutConfig.shipperhq_autocomplete.active;
+
+            var geocoder = new google.maps.Geocoder();
 
             if(!googleMapError) {
                 if (enabled == '1') {
-
+                    // var tt = uiRegistry.get('checkout.steps.shipping-step.shippingAddress.shipping-address-fieldset.street').elems();
+                    // console.log(tt);
                     var domID = uiRegistry.get('checkout.steps.shipping-step.shippingAddress.shipping-address-fieldset.street').elems()[0].uid;
-
-                    console.log(domID)
 
                     var street = $('#' + domID);
 
+
+                    var countryDomID = uiRegistry.get('checkout.steps.shipping-step.shippingAddress.shipping-address-fieldset.country_id').uid;
+
+                    var countries = [];
+                    $('#' + countryDomID + ' option').each(function() { countries.push($(this).val()); });
+
+
+
+                    $("#" + domID).attr("autocomplete", "off");
+
                     //SHQ18-260
-                    var observer = new MutationObserver(function () {
-                        observer.disconnect();
-                        $("#" + domID).attr("autocomplete", "new-password");
-                    });
+                    // var observer = new MutationObserver(function () {
+                    //     observer.disconnect();
+                    //     $("#" + domID).attr("autocomplete", "new-password");
+                    // });
 
-                    street.each(function () {
-                        var element = this;
+                    var tStreet = document.getElementById(domID);
 
-                        observer.observe(element, {
-                            attributes: true,
-                            attributeFilter: ['autocomplete']
+                    autocomplete = new google.maps.places.Autocomplete(
+                        tStreet,
+                        { types: ["geocode"] }
+                    );
+
+                    if(countries.length){
+                        autocomplete.setComponentRestrictions({
+                            country: countries,
                         });
+                    }
 
-                        autocomplete = new google.maps.places.Autocomplete(
-                            /** @type {!HTMLInputElement} */(this),
-                            {types: ['geocode']}
-                        );
-                        autocomplete.addListener('place_changed', fillInAddress);
+                    autocomplete.setFields(["address_component"]);
+                    autocomplete.addListener("place_changed", fillInAddress);
 
-                    });
-                    $('#' + domID).focus(geolocate);
+                    // street.each(function () {
+                    //     var element = this;
+
+                    //     console.log("Sdsdsd")
+
+                    //     observer.observe(element, {
+                    //         attributes: true,
+                    //         attributeFilter: ['autocomplete']
+                    //     });
+
+                    //     autocomplete = new google.maps.places.Autocomplete(
+                    //         /** @type {!HTMLInputElement} */(this),
+                    //         {types: ['geocode']}
+                    //     );
+                    //     autocomplete.addListener('place_changed', fillInAddress);
+
+                    // });
+                    // $('#' + domID).focus(geolocate);
                 }
             }
-        }, 2000);
 
-    }).fail(function () {
-        console.error("ERROR: Google maps library failed to load");
-    });
+        }).fail(function () {
+            console.error("ERROR: Google maps library failed to load");
+        });
+    }
+
+
+
+    
 
     var fillInAddress = function () {
         var place = autocomplete.getPlace();

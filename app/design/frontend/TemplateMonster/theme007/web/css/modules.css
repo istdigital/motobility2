@@ -9298,6 +9298,10 @@ padding: 0 ;}
   #layered-filter-block {
     margin: 0; }
 
+#layered-filter-block .filter-title {
+    padding-left: 0;
+}
+
   .action.filter-toggle {
     border-radius: 5px;
     background: #FFF;
@@ -11022,14 +11026,13 @@ body._has-modal-custom .modal-custom-overlay {
       padding-right: 5px; }
 
 
-  .checkout-index-index .opc-wrapper .step-content .message {
+/*  .checkout-index-index .opc-wrapper .step-content .message {
       padding: 9px 0px 6px 0px;
       margin-bottom: 10px;
       font-size: 12px;
       line-height: 1;
-      /* color: #fff; */
       text-align: left;
-  }
+  }*/
   .checkout-index-index .opc-wrapper .step-content #customer-email-fieldset > .field .label,
   .checkout-index-index .opc-wrapper .step-content .fieldset.address > .field .label {
     font-size: 14px;
