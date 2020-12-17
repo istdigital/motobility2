@@ -17,7 +17,7 @@ define([
     $.widget('expert.Scroll', {
 
         options: {
-
+            icon:null
         },
 
         _create: function () {
@@ -28,10 +28,15 @@ define([
             if(toolbar.length){
                 toolbar.hide();
 
-                toolbarWrap.append("<p class='loader' style='display:none;text-align:center'>Loading...</p>");
+                toolbarWrap.append("<p class='loader' style='display:none;text-align:center'></p>");
+
+                if(this.options.icon){
+                    toolbarWrap.find('p').prepend('<img src="'+this.options.icon+'" />');
+                }
 
                 //toolbarWrap.find('.loader').loader();
             }
+
 
             $(window).scroll(function(){
                 var wt = $(window).scrollTop(),
