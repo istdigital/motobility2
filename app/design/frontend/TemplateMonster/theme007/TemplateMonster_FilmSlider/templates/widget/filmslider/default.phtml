@@ -49,8 +49,10 @@ $data = $block->getData();
         owl.owlCarousel({
             items:1,
             lazyLoad : true,
-            dots:true,
+            dots:false,
             loop:true,
+            autoplay:true,
+            autoplayTimeout:3000,
             navText:['<span class="gicon-prev"></span>','<span class="gicon-next"></span>'],
             responsive : {
                 0 : {

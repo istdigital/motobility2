@@ -8182,3 +8182,15 @@ div.paypal-buttons{z-index: 1}
     padding: 30vh;
     text-align: center;
 }
+
+.slider-pro picture{
+    display: inline-block;
+}
+.slider-pro .item{
+    text-align: center;
+}
+
+
+.pac-container{
+  z-index: 1 !important
+}

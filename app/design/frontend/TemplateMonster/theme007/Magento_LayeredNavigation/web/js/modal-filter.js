@@ -42,15 +42,15 @@ require([
 
     modalAside();
 
-    $(document).ajaxComplete(function(event, XMLHttpRequest){
-        var data = JSON.parse(XMLHttpRequest.responseText);
-        if(data.navigation){
-            //modalAside();
-        }
-        //$(".filter-wrapper").html('');
-        //$('body').removeClass('_has-modal-custom');
-        //modalAside();
-        //$('.filter-content').modal('closeModal');
-    });
+    // $(document).ajaxComplete(function(event, XMLHttpRequest){
+    //     var data = JSON.parse(XMLHttpRequest.responseText);
+    //     if(data.navigation){
+    //         //modalAside();
+    //     }
+    //     //$(".filter-wrapper").html('');
+    //     //$('body').removeClass('_has-modal-custom');
+    //     //modalAside();
+    //     //$('.filter-content').modal('closeModal');
+    // });
 
 });
