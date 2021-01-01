@@ -76,7 +76,6 @@ define([
 
     miniCart.on('click', '[data-action="close"]', function (event) {
         event.stopPropagation();
-        console.log("ASdasd")
         miniCart.find('[data-role="dropdownDialog"]').dropdownDialog('close');
     });
 
