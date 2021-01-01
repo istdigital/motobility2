@@ -23,6 +23,8 @@
             <image id="category_page_grid" type="small_image">
                 <width>222</width>
                 <height>222</height>
+                <aspect_ratio>true</aspect_ratio>
+                <frame>true</frame>
             </image>
             <image id="category_page_grid-1" type="small_image">
                 <width>222</width>
