@@ -220,7 +220,7 @@ switch ($type = $block->getType()) {
 
                         <p>
                             <?php $brand = $_bhelper->getBrandById($_item->getData('brand_id')) ?>
-                            <?php if(count($brand)): ?>
+                            <?php if($brand && count($brand)): ?>
                                 <a class="product-brand-name" href="<?= $this->getUrl($brand['url_key']) ?>"><?= $brand['name'] ?></a>
                             <?php else: ?>
                                 <a class="product-brand-name"  href="#">&nbsp;</a>
