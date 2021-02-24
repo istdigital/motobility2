@@ -83,6 +83,12 @@
                     <validate>validate-number validate-zero-or-greater</validate>
                 </field>
 
+                <field id="max_orderamount" translate="label" type="text" sortOrder="9" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Max Order Amount</label>
+                    <validate>validate-number validate-zero-or-greater</validate>
+                    <comment>You can use this to hide method if free shippping is available for a certain price</comment>
+                </field>
+
                 <field id="sallowspecific" translate="label" type="select" sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Ship to Applicable Countries</label>
                     <frontend_class>shipping-applicable-country</frontend_class>
